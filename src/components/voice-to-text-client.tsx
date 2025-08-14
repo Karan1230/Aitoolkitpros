@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -8,136 +8,203 @@ import { z } from 'zod';
 import { voiceToTextConverter } from '@/ai/flows/voice-to-text-converter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Form } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
-import { Mic, MicOff, Copy, Trash2 } from 'lucide-react';
+import { Upload, Copy, FileText, Languages } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { languages } from '@/lib/languages';
+
+
+const MAX_FILE_SIZE_MB = 10;
+const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
 
 const formSchema = z.object({
-  // Since we are not using a form, the schema can be empty.
-  // We keep the form for structure, but don't need validation.
+    files: z
+        .custom<FileList>()
+        .refine((files) => files && files.length > 0, 'At least one file is required.')
+        .refine(
+            (files) => Array.from(files).every((file) => file.size <= MAX_FILE_SIZE_BYTES),
+            `Each file must be less than ${MAX_FILE_SIZE_MB}MB.`
+        ),
+    targetLanguage: z.string().min(1, 'Please select a language.'),
 });
 
+interface TranscriptionResult {
+    fileName: string;
+    translatedText?: string;
+    error?: string;
+}
+
 export function VoiceToTextClient() {
-  const [transcription, setTranscription] = useState<string | null>(null);
-  const [isRecording, setIsRecording] = useState(false);
+  const [results, setResults] = useState<TranscriptionResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-  const audioChunksRef = useRef<Blob[]>([]);
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      files: undefined,
+      targetLanguage: 'English',
+    },
   });
 
-  const startRecording = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      mediaRecorderRef.current = new MediaRecorder(stream);
-      mediaRecorderRef.current.ondataavailable = (event) => {
-        audioChunksRef.current.push(event.data);
-      };
-      mediaRecorderRef.current.onstop = async () => {
-        setIsLoading(true);
-        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
-        const reader = new FileReader();
-        reader.readAsDataURL(audioBlob);
-        reader.onloadend = async () => {
-          const audioDataUri = reader.result as string;
-          try {
-            const result = await voiceToTextConverter({ audioDataUri });
-            setTranscription(result.transcription);
-          } catch (error) {
-            console.error('Transcription failed:', error);
-            toast({
-              variant: 'destructive',
-              title: 'Uh oh! Something went wrong.',
-              description: 'Failed to transcribe audio. Please try again.',
-            });
-          } finally {
-            setIsLoading(false);
-            audioChunksRef.current = [];
-          }
-        };
-      };
-      mediaRecorderRef.current.start();
-      setIsRecording(true);
-      setTranscription(null);
-    } catch (error) {
-      console.error('Failed to start recording:', error);
-      toast({
-        variant: 'destructive',
-        title: 'Microphone access denied',
-        description: 'Please allow microphone access in your browser settings to use this feature.',
-      });
-    }
-  };
+  const { register, handleSubmit, watch } = form;
+  const watchedFiles = watch("files");
 
-  const stopRecording = () => {
-    if (mediaRecorderRef.current) {
-      mediaRecorderRef.current.stop();
-      setIsRecording(false);
-    }
-  };
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
+    setResults([]);
 
-  const copyToClipboard = () => {
-    if (transcription) {
-      navigator.clipboard.writeText(transcription);
-      toast({
-        title: "Copied to clipboard!",
-        description: "The transcription has been copied.",
-      });
-    }
-  };
+    const fileList = Array.from(values.files);
+    const newResults: TranscriptionResult[] = fileList.map(file => ({ fileName: file.name }));
+    setResults(newResults);
 
-  const clearTranscription = () => {
-    setTranscription(null);
+    await Promise.all(
+        fileList.map(async (file, index) => {
+            try {
+                const reader = new FileReader();
+                const audioDataUri = await new Promise<string>((resolve, reject) => {
+                    reader.onloadend = () => resolve(reader.result as string);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+
+                const result = await voiceToTextConverter({
+                    audioDataUri,
+                    targetLanguage: values.targetLanguage
+                });
+                
+                newResults[index] = { ...newResults[index], translatedText: result.translatedText };
+                setResults([...newResults]);
+
+            } catch (error) {
+                console.error(`Transcription failed for ${file.name}:`, error);
+                const errorMessage = error instanceof Error ? error.message : "An unknown error occurred.";
+                newResults[index] = { ...newResults[index], error: `Failed to process: ${errorMessage}` };
+                setResults([...newResults]);
+                 toast({
+                    variant: 'destructive',
+                    title: `Error processing ${file.name}`,
+                    description: 'Please try again.',
+                });
+            }
+        })
+    );
+
+    setIsLoading(false);
   }
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    toast({
+      title: "Copied to clipboard!",
+    });
+  };
 
   return (
     <Card className="border-2 border-primary/20 shadow-lg">
-      <CardContent className="p-6 space-y-6">
-        <div className="text-center">
-          <Button
-            onClick={isRecording ? stopRecording : startRecording}
-            size="lg"
-            variant={isRecording ? 'destructive' : 'default'}
-            className="rounded-full w-24 h-24"
-            disabled={isLoading}
-          >
-            {isRecording ? <MicOff className="h-10 w-10" /> : <Mic className="h-10 w-10" />}
-          </Button>
-          <p className="mt-4 text-muted-foreground">
-            {isLoading ? "Transcribing..." : isRecording ? "Recording in progress..." : "Click to start recording"}
-          </p>
-        </div>
-        
+      <CardContent className="p-6">
         <Form {...form}>
-          <form className="space-y-6"></form>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="files"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-lg font-semibold">Upload Audio Files</FormLabel>
+                  <FormControl>
+                    <div className="relative border-2 border-dashed border-muted rounded-lg p-6 text-center cursor-pointer hover:border-primary">
+                        <Upload className="mx-auto h-12 w-12 text-muted-foreground" />
+                        <p className="mt-2 text-sm text-muted-foreground">
+                           Drag & drop files here, or click to select files
+                        </p>
+                        <p className="mt-1 text-xs text-muted-foreground">
+                            (Max {MAX_FILE_SIZE_MB}MB per file)
+                        </p>
+                        <input 
+                            id="file-upload" 
+                            type="file" 
+                            multiple 
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                            {...register("files")}
+                        />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {watchedFiles && watchedFiles.length > 0 && (
+                <div className="space-y-2">
+                    <p className="text-sm font-medium">Selected files:</p>
+                    <ul className="list-disc list-inside bg-muted/50 p-2 rounded-md">
+                        {Array.from(watchedFiles).map((file, i) => (
+                           <li key={i} className="text-sm flex items-center gap-2">
+                            <FileText className="h-4 w-4" />
+                            {file.name}
+                           </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+            
+            <FormField
+              control={form.control}
+              name="targetLanguage"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-lg font-semibold">Output Language</FormLabel>
+                   <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                        <SelectTrigger>
+                          <Languages className="mr-2 h-4 w-4" />
+                          <SelectValue placeholder="Select a language" />
+                        </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                        {languages.map(lang => (
+                            <SelectItem key={lang.value} value={lang.name}>
+                                {lang.name}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Button type="submit" disabled={isLoading} size="lg" className="w-full">
+              {isLoading ? 'Processing...' : 'Convert to Text'}
+            </Button>
+          </form>
         </Form>
         
-
-        {isLoading && (
-           <div className="p-4 border rounded-lg bg-muted/50">
-             <p className="text-center text-muted-foreground animate-pulse">AI is listening, please wait...</p>
-           </div>
-        )}
-
-        {transcription && (
-          <div>
-            <h3 className="text-lg font-semibold mb-2">Transcription</h3>
-            <Card className="bg-muted/50">
-                <CardContent className="p-4 relative">
-                    <pre className="whitespace-pre-wrap font-body text-sm pr-20">{transcription}</pre>
-                    <div className="absolute top-2 right-2 flex gap-1">
-                        <Button variant="ghost" size="icon" onClick={copyToClipboard}>
-                           <Copy className="h-4 w-4" />
-                        </Button>
-                        <Button variant="ghost" size="icon" onClick={clearTranscription}>
-                           <Trash2 className="h-4 w-4" />
-                        </Button>
+        {results.length > 0 && (
+          <div className="mt-6 space-y-4">
+            <h3 className="text-lg font-semibold">Results</h3>
+            {results.map((result, index) => (
+              <Card key={index} className="bg-muted/50">
+                <CardContent className="p-4">
+                  <p className="font-semibold text-sm mb-2">{result.fileName}</p>
+                  {result.translatedText && (
+                    <div className="relative">
+                      <pre className="whitespace-pre-wrap font-body text-sm pr-10">{result.translatedText}</pre>
+                       <Button
+                         variant="ghost"
+                         size="icon"
+                         onClick={() => copyToClipboard(result.translatedText!)}
+                         className="absolute top-0 right-0 h-8 w-8"
+                       >
+                         <Copy className="h-4 w-4" />
+                       </Button>
                     </div>
+                  )}
+                  {result.error && <p className="text-sm text-destructive">{result.error}</p>}
+                  {!result.translatedText && !result.error && <p className="text-sm text-muted-foreground animate-pulse">Processing...</p>}
                 </CardContent>
-            </Card>
+              </Card>
+            ))}
           </div>
         )}
       </CardContent>
