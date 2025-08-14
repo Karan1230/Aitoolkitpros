@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -15,6 +15,13 @@ const allTools = [
     description: "Generate engaging scripts for videos, podcasts, and more based on your prompts.",
     href: "/tools/ai-script-writer",
     icon: <FileText className="h-8 w-8 text-primary" />,
+    category: "Content"
+  },
+  {
+    name: "Product Description Generator",
+    description: "Create compelling descriptions for your e-commerce products.",
+    href: "/tools/product-description-generator",
+    icon: <ShoppingCart className="h-8 w-8 text-primary" />,
     category: "Content"
   },
   {
@@ -108,7 +115,7 @@ export default function AllToolsPage() {
       </p>
 
       <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {allTools.map((tool) => (
+        {allTools.sort((a,b) => a.name.localeCompare(b.name)).map((tool) => (
           <Link href={tool.href} key={tool.name} className="group flex">
             <Card className="w-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary flex flex-col">
               <CardHeader>

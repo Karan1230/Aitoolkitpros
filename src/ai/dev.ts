@@ -16,3 +16,4 @@ import '@/ai/flows/meme-generator.ts';
 import '@/ai/flows/background-remover.ts';
 import '@/ai/flows/idea-generator.ts';
 import '@/ai/flows/ai-logo-generator.ts';
+import '@/ai/flows/product-description-generator.ts';
