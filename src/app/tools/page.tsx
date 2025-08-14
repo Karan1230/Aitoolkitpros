@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -142,6 +142,13 @@ const allTools = [
     href: "/tools/reel-shorts-script-writer",
     icon: <Video className="h-8 w-8 text-primary" />,
     category: "Content"
+  },
+  {
+    name: "Cartoon/Avatar Maker",
+    description: "Turn your photo into a stylized cartoon, avatar, or anime character.",
+    href: "/tools/cartoon-avatar-maker",
+    icon: <UserSquare className="h-8 w-8 text-primary" />,
+    category: "Image"
   },
 ];
 
