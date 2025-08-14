@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -113,6 +113,13 @@ const allTools = [
     description: "Generate relevant, trending, and niche-specific hashtags for social media.",
     href: "/tools/hashtag-generator",
     icon: <Hash className="h-8 w-8 text-primary" />,
+    category: "Marketing"
+  },
+  {
+    name: "Slogan/Tagline Generator",
+    description: "Create short, memorable, and brand-focused slogans and taglines.",
+    href: "/tools/slogan-generator",
+    icon: <MessageSquare className="h-8 w-8 text-primary" />,
     category: "Marketing"
   },
 ];
