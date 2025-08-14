@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -37,6 +37,13 @@ const allTools = [
     href: "/tools/voice-to-text",
     icon: <Wrench className="h-8 w-8 text-primary" />,
     category: "Audio"
+  },
+  {
+    name: "ChatGPT AI Tools",
+    description: "A suite of tools for Q&A, coding help, grammar correction, and text rewriting.",
+    href: "/tools/chatgpt-ai-tools",
+    icon: <Bot className="h-8 w-8 text-primary" />,
+    category: "Assistant"
   },
   // Add other tools here as they are created
 ];

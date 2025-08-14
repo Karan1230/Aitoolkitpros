@@ -2,12 +2,21 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu } from 'lucide-react';
+import { Menu, Bot } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { Logo } from './icons';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 const navItems = [
   { name: 'Home', href: '/' },
@@ -40,6 +49,23 @@ export function Header() {
                 {item.name}
               </Link>
             ))}
+             <DropdownMenu>
+              <DropdownMenuTrigger className={cn(
+                  'flex items-center transition-colors hover:text-foreground/80 text-sm font-medium',
+                  pathname.startsWith('/tools/chatgpt') ? 'text-foreground' : 'text-foreground/60'
+                )}>ChatGPT Tools</DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>Writing & Content</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild><Link href="/tools/chatgpt-ai-tools">All ChatGPT Tools</Link></DropdownMenuItem>
+                <DropdownMenuItem asChild><Link href="/tools/chatgpt-ai-tools?tab=q-and-a">Q&A</Link></DropdownMenuItem>
+                <DropdownMenuItem asChild><Link href="/tools/chatgpt-ai-tools?tab=text-rewriter">Text Rewriter</Link></DropdownMenuItem>
+                 <DropdownMenuItem asChild><Link href="/tools/chatgpt-ai-tools?tab=grammar-spelling">Grammar Corrector</Link></DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuLabel>Development</DropdownMenuLabel>
+                <DropdownMenuItem asChild><Link href="/tools/chatgpt-ai-tools?tab=coding-help">Coding Helper</Link></DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
         </div>
 
@@ -71,6 +97,15 @@ export function Header() {
                         {item.name}
                     </Link>
                 ))}
+                 <Link
+                    href="/tools/chatgpt-ai-tools"
+                    className={cn(
+                        'flex items-center justify-center py-2 transition-colors hover:text-foreground/80',
+                        pathname.startsWith('/tools/chatgpt') ? 'text-foreground bg-muted rounded-md' : 'text-foreground/60'
+                    )}
+                >
+                    ChatGPT Tools
+                </Link>
               </nav>
             </SheetContent>
           </Sheet>
