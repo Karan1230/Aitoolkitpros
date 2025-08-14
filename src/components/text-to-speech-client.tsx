@@ -12,27 +12,20 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Volume2 } from 'lucide-react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { RadioGroup, RadioGroupItem } from './ui/radio-group';
-import { Label } from './ui/label';
 
 const formSchema = z.object({
   text: z.string().min(5, 'Text must be at least 5 characters long.'),
-  model: z.string().min(1, 'Please select a model.'),
-  language: z.string(),
 });
 
 export function TextToSpeechClient() {
   const [audioDataUri, setAudioDataUri] = useState<string | null>(null);
-  const [isLoading, setIsLoading] =useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       text: '',
-      model: 'googleai/gemini-2.5-flash-preview-tts',
-      language: 'en',
     },
   });
 

@@ -14,8 +14,6 @@ import wav from 'wav';
 
 const TextToSpeechConverterInputSchema = z.object({
   text: z.string().describe('The text to convert to speech.'),
-  model: z.string().describe('The TTS model to use.'),
-  language: z.string().describe('The language of the text.').optional(),
 });
 export type TextToSpeechConverterInput = z.infer<typeof TextToSpeechConverterInputSchema>;
 
@@ -65,32 +63,27 @@ const textToSpeechConverterFlow = ai.defineFlow(
   async (input) => {
     let audioDataUri: string;
     
-    if (input.model.startsWith('googleai/')) {
-        const { media } = await ai.generate({
-            model: input.model as any,
-            config: {
-                responseModalities: ['AUDIO'],
-                speechConfig: {
-                voiceConfig: {
-                    prebuiltVoiceConfig: { voiceName: 'Algenib' },
-                },
-                },
+    const { media } = await ai.generate({
+        model: 'googleai/gemini-2.5-flash-preview-tts',
+        config: {
+            responseModalities: ['AUDIO'],
+            speechConfig: {
+            voiceConfig: {
+                prebuiltVoiceConfig: { voiceName: 'Algenib' },
             },
-            prompt: input.text,
-        });
+            },
+        },
+        prompt: input.text,
+    });
 
-        if (!media) {
-            throw new Error('no media returned from Google AI');
-        }
-        const audioBuffer = Buffer.from(
-            media.url.substring(media.url.indexOf(',') + 1),
-            'base64'
-        );
-        audioDataUri = 'data:audio/wav;base64,' + (await toWav(audioBuffer));
-
-    } else {
-        throw new Error(`Unsupported model: ${input.model}`);
+    if (!media) {
+        throw new Error('no media returned from Google AI');
     }
+    const audioBuffer = Buffer.from(
+        media.url.substring(media.url.indexOf(',') + 1),
+        'base64'
+    );
+    audioDataUri = 'data:audio/wav;base64,' + (await toWav(audioBuffer));
 
     return { audioDataUri };
   }
