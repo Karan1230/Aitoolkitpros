@@ -11,7 +11,6 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import wav from 'wav';
-import {elevenLabs} from '@genkit-ai/elevenlabs';
 
 const TextToSpeechConverterInputSchema = z.object({
   text: z.string().describe('The text to convert to speech.'),
@@ -89,16 +88,6 @@ const textToSpeechConverterFlow = ai.defineFlow(
         );
         audioDataUri = 'data:audio/wav;base64,' + (await toWav(audioBuffer));
 
-    } else if (input.model.startsWith('elevenlabs/')) {
-        const { media } = await ai.generate({
-            model: input.model as any,
-            prompt: input.text,
-        });
-
-        if (!media || !media.url) {
-            throw new Error('No media returned from ElevenLabs');
-        }
-        audioDataUri = media.url;
     } else {
         throw new Error(`Unsupported model: ${input.model}`);
     }
