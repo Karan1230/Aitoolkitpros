@@ -16,6 +16,7 @@ const AiImageGeneratorInputSchema = z.object({
   style: z.string().describe('The artistic style of the image.').optional(),
   aspectRatio: z.string().describe('The aspect ratio of the image.').optional(),
   model: z.string().describe('The image generation model to use.'),
+  isThumbnail: z.boolean().describe('Whether the image is a thumbnail.').optional(),
 });
 export type AiImageGeneratorInput = z.infer<typeof AiImageGeneratorInputSchema>;
 
@@ -35,7 +36,14 @@ const aiImageGeneratorFlow = ai.defineFlow(
     outputSchema: AiImageGeneratorOutputSchema,
   },
   async (input) => {
-    const fullPrompt = `${input.prompt}, in the style of ${input.style || 'photorealistic'}`;
+    let fullPrompt = input.prompt;
+
+    if (input.isThumbnail) {
+        fullPrompt = `Create a visually appealing, click-worthy YouTube thumbnail with the title "${input.prompt}". It should have bold, readable text, vibrant colors, and professional design. Style: ${input.style || 'digital art'}.`;
+    } else {
+        fullPrompt = `${input.prompt}, in the style of ${input.style || 'photorealistic'}`;
+    }
+
 
     const isGemini = input.model.startsWith('googleai/');
 
