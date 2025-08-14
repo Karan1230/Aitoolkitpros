@@ -14,8 +14,9 @@ const VoiceToTextConverterInputSchema = z.object({
   audioDataUri: z
     .string()
     .describe(
-      "The audio file to transcribe, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'."
+      "The audio file to transcribe, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'"
     ),
+  language: z.string().describe('The language of the audio.').optional(),
 });
 export type VoiceToTextConverterInput = z.infer<typeof VoiceToTextConverterInputSchema>;
 
@@ -32,7 +33,9 @@ const voiceToTextConverterPrompt = ai.definePrompt({
   name: 'voiceToTextConverterPrompt',
   input: {schema: VoiceToTextConverterInputSchema},
   output: {schema: VoiceToTextConverterOutputSchema},
-  prompt: `You are an expert transcriptionist. Please transcribe the following audio file into text.  Here is the audio file:
+  prompt: `You are an expert transcriptionist. Please transcribe the following audio file into text. The language of the audio is {{language}}.
+
+Here is the audio file:
 
 Audio: {{media url=audioDataUri}}`,
 });
