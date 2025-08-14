@@ -1,6 +1,6 @@
 'use server';
 /**
- * @fileOverview Converts text to speech using the ElevenLabs API. It supports
+ * @fileOverview Converts text to speech using various AI models. It supports
  * multiple voices and languages for creating accessible audio content.
  *
  * - textToSpeechConverter - A function that converts text to speech.
@@ -11,14 +11,17 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import wav from 'wav';
+import {elevenLabs} from '@genkit-ai/elevenlabs';
 
 const TextToSpeechConverterInputSchema = z.object({
   text: z.string().describe('The text to convert to speech.'),
+  model: z.string().describe('The TTS model to use.'),
+  language: z.string().describe('The language of the text.').optional(),
 });
 export type TextToSpeechConverterInput = z.infer<typeof TextToSpeechConverterInputSchema>;
 
 const TextToSpeechConverterOutputSchema = z.object({
-  audioDataUri: z.string().describe('The audio data URI in WAV format.'),
+  audioDataUri: z.string().describe('The audio data URI in WAV or MP3 format.'),
 });
 export type TextToSpeechConverterOutput = z.infer<typeof TextToSpeechConverterOutputSchema>;
 
@@ -61,27 +64,45 @@ const textToSpeechConverterFlow = ai.defineFlow(
     outputSchema: TextToSpeechConverterOutputSchema,
   },
   async (input) => {
-    const { media } = await ai.generate({
-      model: 'googleai/gemini-2.5-flash-preview-tts',
-      config: {
-        responseModalities: ['AUDIO'],
-        speechConfig: {
-          voiceConfig: {
-            prebuiltVoiceConfig: { voiceName: 'Algenib' },
-          },
-        },
-      },
-      prompt: input.text,
-    });
-    if (!media) {
-      throw new Error('no media returned');
+    let audioDataUri: string;
+    
+    if (input.model.startsWith('googleai/')) {
+        const { media } = await ai.generate({
+            model: input.model as any,
+            config: {
+                responseModalities: ['AUDIO'],
+                speechConfig: {
+                voiceConfig: {
+                    prebuiltVoiceConfig: { voiceName: 'Algenib' },
+                },
+                },
+            },
+            prompt: input.text,
+        });
+
+        if (!media) {
+            throw new Error('no media returned from Google AI');
+        }
+        const audioBuffer = Buffer.from(
+            media.url.substring(media.url.indexOf(',') + 1),
+            'base64'
+        );
+        audioDataUri = 'data:audio/wav;base64,' + (await toWav(audioBuffer));
+
+    } else if (input.model.startsWith('elevenlabs/')) {
+        const { media } = await ai.generate({
+            model: input.model as any,
+            prompt: input.text,
+        });
+
+        if (!media || !media.url) {
+            throw new Error('No media returned from ElevenLabs');
+        }
+        audioDataUri = media.url;
+    } else {
+        throw new Error(`Unsupported model: ${input.model}`);
     }
-    const audioBuffer = Buffer.from(
-      media.url.substring(media.url.indexOf(',') + 1),
-      'base64'
-    );
-    return {
-      audioDataUri: 'data:audio/wav;base64,' + (await toWav(audioBuffer)),
-    };
+
+    return { audioDataUri };
   }
 );

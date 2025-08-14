@@ -11,10 +11,15 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { Sparkles, Volume2 } from 'lucide-react';
+import { Volume2 } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { RadioGroup, RadioGroupItem } from './ui/radio-group';
+import { Label } from './ui/label';
 
 const formSchema = z.object({
   text: z.string().min(5, 'Text must be at least 5 characters long.'),
+  model: z.string().min(1, 'Please select a model.'),
+  language: z.string(),
 });
 
 export function TextToSpeechClient() {
@@ -26,6 +31,8 @@ export function TextToSpeechClient() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       text: '',
+      model: 'googleai/gemini-2.5-flash-preview-tts',
+      language: 'en',
     },
   });
 
@@ -34,7 +41,7 @@ export function TextToSpeechClient() {
     setAudioDataUri(null);
 
     try {
-      const result = await textToSpeechConverter({ text: values.text });
+      const result = await textToSpeechConverter(values);
       setAudioDataUri(result.audioDataUri);
     } catch (error) {
       console.error('Text-to-Speech conversion failed:', error);
@@ -70,6 +77,7 @@ export function TextToSpeechClient() {
                 </FormItem>
               )}
             />
+
             <Button type="submit" disabled={isLoading} size="lg" className="w-full">
               {isLoading ? 'Converting...' : 'Convert to Speech'}
               <Volume2 className="ml-2 h-5 w-5" />
