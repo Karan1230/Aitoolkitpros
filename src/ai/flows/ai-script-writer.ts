@@ -10,6 +10,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { textTranslatorFlow } from './text-translator';
 
 const AiScriptWriterInputSchema = z.object({
   prompt: z.string().describe('A prompt describing the type of script to generate.'),
@@ -29,14 +30,13 @@ export async function aiScriptWriter(input: AiScriptWriterInput): Promise<AiScri
   return aiScriptWriterFlow(input);
 }
 
-const prompt = ai.definePrompt({
+const scriptGenerationPrompt = ai.definePrompt({
   name: 'aiScriptWriterPrompt',
   input: {schema: AiScriptWriterInputSchema},
   output: {schema: AiScriptWriterOutputSchema},
-  prompt: `You are an expert script writer. Generate a script based on the following prompt and parameters.
+  prompt: `You are an expert script writer. Generate a script in English based on the following prompt and parameters.
 
 Prompt: {{{prompt}}}
-Language: {{language}}
 Genre: {{genre}}
 Length: {{length}}
 
@@ -54,7 +54,23 @@ const aiScriptWriterFlow = ai.defineFlow(
     outputSchema: AiScriptWriterOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    // 1. Generate the script in English
+    const {output: scriptOutput} = await scriptGenerationPrompt(input);
+    if (!scriptOutput?.script) {
+        throw new Error("Failed to generate script.");
+    }
+
+    // 2. Translate the script if the target language is not English
+    if (input.language !== 'English') {
+        const translationResult = await textTranslatorFlow({
+            text: scriptOutput.script,
+            targetLanguage: input.language
+        });
+        return {
+            script: translationResult.translatedText
+        };
+    }
+
+    return scriptOutput;
   }
 );
