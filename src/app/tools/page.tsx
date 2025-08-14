@@ -25,6 +25,13 @@ const allTools = [
     category: "Image"
   },
   {
+    name: "Meme Generator",
+    description: "Create funny memes from text or images, powered by AI.",
+    href: "/tools/meme-generator",
+    icon: <Laugh className="h-8 w-8 text-primary" />,
+    category: "Fun"
+  },
+  {
     name: "YouTube Thumbnail Generator",
     description: "Create click-worthy YouTube thumbnails with bold text and vibrant colors.",
     href: "/tools/youtube-thumbnail-generator",

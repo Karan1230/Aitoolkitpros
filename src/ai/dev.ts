@@ -12,3 +12,4 @@ import '@/ai/flows/grammar-spelling-corrector.ts';
 import '@/ai/flows/text-rewriter.ts';
 import '@/ai/flows/social-media-post-generator.ts';
 import '@/ai/flows/quiz-generator.ts';
+import '@/ai/flows/meme-generator.ts';
