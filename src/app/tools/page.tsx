@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image, Gift, ChefHat, Notebook } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image, Gift, ChefHat, Notebook, BookCopy } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -211,6 +211,13 @@ const allTools = [
     description: "Convert long text into concise study notes.",
     href: "/tools/study-notes-creator",
     icon: <Notebook className="h-8 w-8 text-primary" />,
+    category: "Education"
+  },
+  {
+    name: "Course Outline Generator",
+    description: "Create a complete course structure with modules and lessons.",
+    href: "/tools/course-outline-generator",
+    icon: <BookCopy className="h-8 w-8 text-primary" />,
     category: "Education"
   },
 ];
