@@ -40,9 +40,9 @@ const aiImageGeneratorFlow = ai.defineFlow(
         ai.generate({
             model: 'googleai/gemini-2.0-flash-preview-image-generation',
             prompt: fullPrompt,
+            aspectRatio: input.aspectRatio || '1:1',
             config: {
                 responseModalities: ['TEXT', 'IMAGE'],
-                aspectRatio: input.aspectRatio || '1:1',
             },
         })
     );
