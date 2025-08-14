@@ -116,6 +116,13 @@ const allTools = [
     category: "Education"
   },
   {
+    name: "Exam Question Generator",
+    description: "Create practice exam questions on any topic for students and teachers.",
+    href: "/tools/exam-question-generator",
+    icon: <HelpCircle className="h-8 w-8 text-primary" />,
+    category: "Education"
+  },
+  {
     name: "Idea Generator",
     description: "Generate creative ideas for business, content, marketing, and more.",
     href: "/tools/idea-generator",
