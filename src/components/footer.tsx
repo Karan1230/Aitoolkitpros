@@ -18,6 +18,9 @@ export function Footer() {
           <Link href="/about" className="text-sm font-medium text-muted-foreground hover:text-primary">
             About Us
           </Link>
+          <Link href="/blog" className="text-sm font-medium text-muted-foreground hover:text-primary">
+            Blog
+          </Link>
           <Link href="/contact" className="text-sm font-medium text-muted-foreground hover:text-primary">
             Contact
           </Link>
