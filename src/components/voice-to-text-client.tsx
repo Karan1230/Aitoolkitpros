@@ -58,7 +58,7 @@ export function VoiceToTextClient() {
     },
   });
 
-  const handleTranscription = async (audioDataUri: string, fileName: string, language?: string) => {
+  const handleTranscription = async (audioDataUri: string, fileName: string, language: string) => {
     try {
       const result = await voiceToTextConverter({ audioDataUri, language });
       return { fileName, transcription: result.transcription };
@@ -77,25 +77,25 @@ export function VoiceToTextClient() {
     const files = event.target.files;
     if (!files || files.length === 0) return;
 
-    setTranscriptions([]);
     setIsLoading(true);
+    setTranscriptions([]);
     const { language } = form.getValues();
-    const transcriptionPromises: Promise<TranscriptionResult>[] = [];
+    const newTranscriptions: TranscriptionResult[] = [];
 
     for (const file of Array.from(files)) {
       const reader = new FileReader();
       const promise = new Promise<TranscriptionResult>((resolve) => {
         reader.onloadend = async () => {
           const audioDataUri = reader.result as string;
-          resolve(handleTranscription(audioDataUri, file.name, language));
+          const result = await handleTranscription(audioDataUri, file.name, language);
+          resolve(result);
         };
         reader.readAsDataURL(file);
       });
-      transcriptionPromises.push(promise);
+      newTranscriptions.push(await promise);
+      setTranscriptions([...newTranscriptions]); // Update state after each file
     }
 
-    const results = await Promise.all(transcriptionPromises);
-    setTranscriptions(results);
     setIsLoading(false);
   };
   
@@ -157,7 +157,7 @@ export function VoiceToTextClient() {
         </Form>
         
 
-        {isLoading && (
+        {isLoading && transcriptions.length === 0 && (
            <div className="p-4 border rounded-lg bg-muted/50">
              <p className="text-center text-muted-foreground animate-pulse">AI is transcribing, please wait...</p>
            </div>
