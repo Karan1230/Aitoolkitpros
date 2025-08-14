@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -162,6 +162,13 @@ const allTools = [
     description: "Get your daily, weekly, or monthly horoscope for any zodiac sign.",
     href: "/tools/horoscope-generator",
     icon: <Star className="h-8 w-8 text-primary" />,
+    category: "Fun"
+  },
+  {
+    name: "Dream Interpreter",
+    description: "Analyze the symbols and meanings behind your dreams with AI.",
+    href: "/tools/dream-interpreter",
+    icon: <Moon className="h-8 w-8 text-primary" />,
     category: "Fun"
   },
 ];
