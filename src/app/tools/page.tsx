@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -22,6 +22,13 @@ const allTools = [
     description: "Create compelling descriptions for your e-commerce products.",
     href: "/tools/product-description-generator",
     icon: <ShoppingCart className="h-8 w-8 text-primary" />,
+    category: "Content"
+  },
+  {
+    name: "Story Plot Generator",
+    description: "Generate unique story plots, characters, and settings for any genre.",
+    href: "/tools/story-plot-generator",
+    icon: <BookMarked className="h-8 w-8 text-primary" />,
     category: "Content"
   },
   {
