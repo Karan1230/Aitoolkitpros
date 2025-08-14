@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -176,6 +176,13 @@ const allTools = [
     description: "Generate harmonious color palettes from a text description.",
     href: "/tools/color-palette-finder",
     icon: <Palette className="h-8 w-8 text-primary" />,
+    category: "Design"
+  },
+  {
+    name: "Custom Icon Generator",
+    description: "Create unique icons in various styles from a text description.",
+    href: "/tools/custom-icon-generator",
+    icon: <Image className="h-8 w-8 text-primary" />,
     category: "Design"
   },
 ];
