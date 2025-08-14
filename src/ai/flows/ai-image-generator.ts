@@ -1,7 +1,7 @@
 'use server';
 
 /**
- * @fileOverview Generates images from text prompts using the Stable Diffusion 3 API and Flux API.
+ * @fileOverview Generates images from text prompts using an AI model.
  *
  * - aiImageGenerator - A function that handles the image generation process.
  * - AiImageGeneratorInput - The input type for the aiImageGenerator function.
@@ -13,11 +13,13 @@ import {z} from 'genkit';
 
 const AiImageGeneratorInputSchema = z.object({
   prompt: z.string().describe('The text prompt to generate the image from.'),
+  style: z.string().describe('The artistic style of the image.').optional(),
+  aspectRatio: z.string().describe('The aspect ratio of the image.').optional(),
 });
 export type AiImageGeneratorInput = z.infer<typeof AiImageGeneratorInputSchema>;
 
 const AiImageGeneratorOutputSchema = z.object({
-  imageUrl: z.string().describe('The URL of the generated image.'),
+  imageUrls: z.array(z.string()).describe('The URLs of the generated images.'),
 });
 export type AiImageGeneratorOutput = z.infer<typeof AiImageGeneratorOutputSchema>;
 
@@ -25,27 +27,29 @@ export async function aiImageGenerator(input: AiImageGeneratorInput): Promise<Ai
   return aiImageGeneratorFlow(input);
 }
 
-const aiImageGeneratorPrompt = ai.definePrompt({
-  name: 'aiImageGeneratorPrompt',
-  input: {schema: AiImageGeneratorInputSchema},
-  output: {schema: AiImageGeneratorOutputSchema},
-  prompt: `Generate an image based on the following prompt: {{{prompt}}}`,
-});
-
 const aiImageGeneratorFlow = ai.defineFlow(
   {
     name: 'aiImageGeneratorFlow',
     inputSchema: AiImageGeneratorInputSchema,
     outputSchema: AiImageGeneratorOutputSchema,
   },
-  async input => {
-    const {media} = await ai.generate({
-      model: 'googleai/gemini-2.0-flash-preview-image-generation',
-      prompt: input.prompt,
-      config: {
-        responseModalities: ['TEXT', 'IMAGE'],
-      },
-    });
-    return {imageUrl: media!.url!};
+  async (input) => {
+    const fullPrompt = `${input.prompt}, in the style of ${input.style || 'photorealistic'}`;
+
+    const imagePromises = Array(4).fill(null).map(() => 
+        ai.generate({
+            model: 'googleai/gemini-2.0-flash-preview-image-generation',
+            prompt: fullPrompt,
+            config: {
+                responseModalities: ['TEXT', 'IMAGE'],
+                aspectRatio: input.aspectRatio || '1:1',
+            },
+        })
+    );
+    
+    const results = await Promise.all(imagePromises);
+    const imageUrls = results.map(result => result.media?.url).filter((url): url is string => !!url);
+    
+    return { imageUrls };
   }
 );
