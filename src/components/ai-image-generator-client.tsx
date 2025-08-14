@@ -21,9 +21,16 @@ const formSchema = z.object({
   prompt: z.string().min(10, 'Prompt must be at least 10 characters long.'),
   style: z.string().min(1, 'Please select a style.'),
   aspectRatio: z.string().min(1, 'Please select an aspect ratio.'),
+  model: z.string().min(1, 'Please select a model.'),
 });
 
 const styles = ['Realistic', 'Anime', 'Digital Art', 'Cartoon'];
+const models = [
+    { name: 'Gemini Flash', value: 'googleai/gemini-2.0-flash-preview-image-generation' },
+    { name: 'Stable Diffusion 3', value: 'stability/stable-diffusion-3' },
+    { name: 'Flux', value: 'black-forest-labs/flux' },
+];
+
 
 export function AiImageGeneratorClient() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
@@ -36,6 +43,7 @@ export function AiImageGeneratorClient() {
       prompt: '',
       style: 'Realistic',
       aspectRatio: '1:1',
+      model: 'googleai/gemini-2.0-flash-preview-image-generation',
     },
   });
 
@@ -97,28 +105,53 @@ export function AiImageGeneratorClient() {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="style"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-lg font-semibold">Style</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a style" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {styles.map(style => (
-                        <SelectItem key={style} value={style}>{style}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FormField
+                control={form.control}
+                name="style"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel className="text-lg font-semibold">Style</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a style" />
+                        </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                        {styles.map(style => (
+                            <SelectItem key={style} value={style}>{style}</SelectItem>
+                        ))}
+                        </SelectContent>
+                    </Select>
+                    <FormMessage />
+                    </FormItem>
+                )}
+                />
+                 <FormField
+                    control={form.control}
+                    name="model"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel className="text-lg font-semibold">Model</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select a model" />
+                            </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                            {models.map(model => (
+                                <SelectItem key={model.value} value={model.value}>{model.name}</SelectItem>
+                            ))}
+                            </SelectContent>
+                        </Select>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                />
+            </div>
+
 
             <FormField
               control={form.control}

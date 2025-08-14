@@ -15,6 +15,7 @@ const AiImageGeneratorInputSchema = z.object({
   prompt: z.string().describe('The text prompt to generate the image from.'),
   style: z.string().describe('The artistic style of the image.').optional(),
   aspectRatio: z.string().describe('The aspect ratio of the image.').optional(),
+  model: z.string().describe('The image generation model to use.'),
 });
 export type AiImageGeneratorInput = z.infer<typeof AiImageGeneratorInputSchema>;
 
@@ -38,11 +39,11 @@ const aiImageGeneratorFlow = ai.defineFlow(
 
     const imagePromises = Array(4).fill(null).map(() => 
         ai.generate({
-            model: 'googleai/gemini-2.0-flash-preview-image-generation',
+            model: input.model as any,
             prompt: fullPrompt,
-            aspectRatio: input.aspectRatio || '1:1',
             config: {
                 responseModalities: ['TEXT', 'IMAGE'],
+                aspectRatio: input.aspectRatio || '1:1',
             },
         })
     );
