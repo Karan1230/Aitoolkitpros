@@ -35,7 +35,7 @@ const textRewriterFlow = ai.defineFlow(
     const prompt = `Rewrite the following text${input.tone ? ` in a ${input.tone} tone` : ''}:\n\n${input.text}`;
 
     const llmResponse = await ai.generate({
-      model: 'openai/gpt-4o',
+      model: 'googleai/gemini-2.0-flash',
       prompt,
       output: {
         schema: TextRewriterOutputSchema,

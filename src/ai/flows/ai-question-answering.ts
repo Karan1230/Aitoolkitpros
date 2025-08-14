@@ -33,7 +33,7 @@ const aiQuestionAnsweringFlow = ai.defineFlow(
   },
   async (input) => {
     const llmResponse = await ai.generate({
-      model: 'openai/gpt-4o',
+      model: 'googleai/gemini-2.0-flash',
       prompt: `Answer the following question: ${input.question}`,
       output: {
         schema: AiQuestionAnsweringOutputSchema,

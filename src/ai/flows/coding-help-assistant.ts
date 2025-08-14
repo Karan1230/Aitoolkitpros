@@ -33,7 +33,7 @@ const codingHelpAssistantFlow = ai.defineFlow(
   },
   async (input) => {
     const llmResponse = await ai.generate({
-      model: 'openai/gpt-4o',
+      model: 'googleai/gemini-2.0-flash',
       prompt: `You are a coding help assistant. Provide a helpful response to the following prompt. If it's a code snippet, explain the issue and provide a corrected version. Use markdown for code blocks.\n\n${input.prompt}`,
       output: {
         schema: CodingHelpAssistantOutputSchema,

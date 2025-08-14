@@ -33,7 +33,7 @@ const grammarSpellingCorrectorFlow = ai.defineFlow(
   },
   async (input) => {
     const llmResponse = await ai.generate({
-      model: 'openai/gpt-4o',
+      model: 'googleai/gemini-2.0-flash',
       prompt: `Correct the grammar and spelling of the following text:\n\n${input.text}`,
       output: {
         schema: GrammarSpellingCorrectorOutputSchema,

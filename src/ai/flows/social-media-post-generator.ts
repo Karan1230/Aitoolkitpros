@@ -33,7 +33,7 @@ const socialMediaPostGeneratorFlow = ai.defineFlow(
   },
   async (input) => {
     const llmResponse = await ai.generate({
-      model: 'openai/gpt-4o',
+      model: 'googleai/gemini-2.0-flash',
       prompt: `Generate a social media post in ${input.language} about "${input.topic}". Include relevant hashtags.`,
       output: {
         schema: SocialMediaPostGeneratorOutputSchema,
