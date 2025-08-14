@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -127,6 +127,13 @@ const allTools = [
     description: "Generate ad copy for platforms like Google, Facebook, and Instagram.",
     href: "/tools/ad-copy-generator",
     icon: <Megaphone className="h-8 w-8 text-primary" />,
+    category: "Marketing"
+  },
+  {
+    name: "Engagement Post Ideas Generator",
+    description: "Generate creative post ideas to boost social media interaction.",
+    href: "/tools/engagement-post-generator",
+    icon: <ThumbsUp className="h-8 w-8 text-primary" />,
     category: "Marketing"
   },
 ];
