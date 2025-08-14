@@ -6,12 +6,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { voiceToTextConverter } from '@/ai/flows/voice-to-text-converter';
+import { textTranslator } from '@/ai/flows/text-translator';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Upload, FileAudio, Copy } from 'lucide-react';
+import { Upload, FileAudio, Copy, Languages } from 'lucide-react';
 
 const languages = [
   { name: "English (US)", value: "en-US" },
@@ -35,7 +36,6 @@ const languages = [
   { name: "Vietnamese", value: "vi-VN" },
 ];
 
-
 const formSchema = z.object({
     language: z.string().min(1, 'Please select a language.'),
 });
@@ -43,11 +43,14 @@ const formSchema = z.object({
 interface TranscriptionResult {
     fileName: string;
     transcription: string;
+    translatedText?: string;
+    isTranslating?: boolean;
 }
 
 export function VoiceToTextClient() {
   const [transcriptions, setTranscriptions] = useState<TranscriptionResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [targetLanguage, setTargetLanguage] = useState('es-US');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { toast } = useToast();
 
@@ -99,11 +102,28 @@ export function VoiceToTextClient() {
     setIsLoading(false);
   };
   
+  const handleTranslate = async (text: string, index: number) => {
+    setTranscriptions(prev => prev.map((t, i) => i === index ? { ...t, isTranslating: true } : t));
+    try {
+        const result = await textTranslator({ text, targetLanguage });
+        setTranscriptions(prev => prev.map((t, i) => i === index ? { ...t, translatedText: result.translatedText, isTranslating: false } : t));
+    } catch (error) {
+        console.error('Translation failed:', error);
+        toast({
+            variant: 'destructive',
+            title: 'Translation failed',
+            description: 'Could not translate the text. Please try again.',
+        });
+        setTranscriptions(prev => prev.map((t, i) => i === index ? { ...t, isTranslating: false } : t));
+    }
+  };
+
+
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     toast({
         title: "Copied to clipboard!",
-        description: "The transcription has been copied.",
+        description: "The text has been copied.",
     });
   }
 
@@ -113,13 +133,34 @@ export function VoiceToTextClient() {
       <CardContent className="p-6 space-y-6">
         <Form {...form}>
             <form className="space-y-6">
-                <FormField
-                    control={form.control}
-                    name="language"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel className="text-lg font-semibold">Audio Language</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <FormField
+                        control={form.control}
+                        name="language"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel className="text-lg font-semibold">Audio Language</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select a language" />
+                                </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                {languages.map(lang => (
+                                    <SelectItem key={lang.value} value={lang.value}>
+                                    {lang.name}
+                                    </SelectItem>
+                                ))}
+                                </SelectContent>
+                            </Select>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormItem>
+                        <FormLabel className="text-lg font-semibold">Translate To</FormLabel>
+                        <Select onValueChange={setTargetLanguage} defaultValue={targetLanguage}>
                             <FormControl>
                             <SelectTrigger>
                                 <SelectValue placeholder="Select a language" />
@@ -133,10 +174,9 @@ export function VoiceToTextClient() {
                             ))}
                             </SelectContent>
                         </Select>
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                    </FormItem>
+                </div>
+                
 
                 <div className="space-y-2 text-center">
                     <input
@@ -149,7 +189,7 @@ export function VoiceToTextClient() {
                     />
                     <Button onClick={() => fileInputRef.current?.click()} size="lg" className="w-full" disabled={isLoading}>
                         <Upload className="mr-2 h-5 w-5" />
-                        Choose Audio Files
+                        {isLoading ? 'Processing...' : 'Choose Audio Files'}
                     </Button>
                     <p className="text-xs text-muted-foreground">Select one or more audio files. Make sure to select the correct language above.</p>
                 </div>
@@ -165,7 +205,7 @@ export function VoiceToTextClient() {
 
         {transcriptions.length > 0 && (
           <div>
-            <h3 className="text-lg font-semibold mb-4">Transcriptions</h3>
+            <h3 className="text-lg font-semibold mb-4">Results</h3>
             <div className="space-y-4">
               {transcriptions.map((result, index) => (
                 <Card key={index} className="bg-muted/50">
@@ -175,11 +215,22 @@ export function VoiceToTextClient() {
                                 <FileAudio className="mr-2 h-5 w-5 flex-shrink-0" />
                                 <p className="font-semibold text-sm truncate">{result.fileName}</p>
                             </div>
-                            <Button variant="ghost" size="icon" onClick={() => copyToClipboard(result.transcription)}>
-                                <Copy className="h-4 w-4" />
-                            </Button>
+                            <div className="flex items-center gap-1">
+                                <Button variant="ghost" size="icon" onClick={() => handleTranslate(result.transcription, index)} disabled={result.isTranslating}>
+                                    <Languages className="h-4 w-4" />
+                                </Button>
+                                <Button variant="ghost" size="icon" onClick={() => copyToClipboard(result.transcription)}>
+                                    <Copy className="h-4 w-4" />
+                                </Button>
+                            </div>
                         </div>
-                        <p className="font-body text-sm">{result.transcription}</p>
+                        <p className="font-body text-sm mb-2">{result.transcription}</p>
+                        {result.isTranslating && <p className="text-sm text-muted-foreground animate-pulse">Translating...</p>}
+                        {result.translatedText && (
+                            <div className="border-t pt-2 mt-2">
+                                <p className="font-body text-sm text-primary">{result.translatedText}</p>
+                            </div>
+                        )}
                     </CardContent>
                 </Card>
               ))}
