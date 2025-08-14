@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image, Gift, ChefHat } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image, Gift, ChefHat, Notebook } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -205,6 +205,13 @@ const allTools = [
     href: "/tools/gift-suggestion-tool",
     icon: <Gift className="h-8 w-8 text-primary" />,
     category: "Fun"
+  },
+  {
+    name: "Study Notes Creator",
+    description: "Convert long text into concise study notes.",
+    href: "/tools/study-notes-creator",
+    icon: <Notebook className="h-8 w-8 text-primary" />,
+    category: "Education"
   },
 ];
 
