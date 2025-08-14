@@ -60,6 +60,13 @@ const allTools = [
     category: "Fun"
   },
   {
+    name: "Roast/Joke Generator",
+    description: "Generate funny roasts, comebacks, and jokes on any topic.",
+    href: "/tools/roast-joke-generator",
+    icon: <Laugh className="h-8 w-8 text-primary" />,
+    category: "Fun"
+  },
+  {
     name: "YouTube Thumbnail Generator",
     description: "Create click-worthy YouTube thumbnails with bold text and vibrant colors.",
     href: "/tools/youtube-thumbnail-generator",
