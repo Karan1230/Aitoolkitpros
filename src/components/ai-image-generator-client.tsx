@@ -21,16 +21,10 @@ const formSchema = z.object({
   prompt: z.string().min(10, 'Prompt must be at least 10 characters long.'),
   style: z.string().min(1, 'Please select a style.'),
   aspectRatio: z.string().min(1, 'Please select an aspect ratio.'),
-  model: z.string().min(1, 'Please select a model.'),
+  model: z.string(),
 });
 
 const styles = ['Realistic', 'Anime', 'Digital Art', 'Cartoon'];
-const models = [
-    { name: 'Gemini Flash', value: 'googleai/gemini-2.0-flash-preview-image-generation' },
-    { name: 'Stable Diffusion 3', value: 'stability/stable-diffusion-3' },
-    { name: 'Flux', value: 'black-forest-labs/flux' },
-];
-
 
 export function AiImageGeneratorClient() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
@@ -127,28 +121,6 @@ export function AiImageGeneratorClient() {
                     <FormMessage />
                     </FormItem>
                 )}
-                />
-                 <FormField
-                    control={form.control}
-                    name="model"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel className="text-lg font-semibold">Model</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                            <SelectTrigger>
-                                <SelectValue placeholder="Select a model" />
-                            </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                            {models.map(model => (
-                                <SelectItem key={model.value} value={model.value}>{model.name}</SelectItem>
-                            ))}
-                            </SelectContent>
-                        </Select>
-                        <FormMessage />
-                        </FormItem>
-                    )}
                 />
             </div>
 

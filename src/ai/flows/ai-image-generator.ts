@@ -37,14 +37,21 @@ const aiImageGeneratorFlow = ai.defineFlow(
   async (input) => {
     const fullPrompt = `${input.prompt}, in the style of ${input.style || 'photorealistic'}`;
 
+    const isGemini = input.model.startsWith('googleai/');
+
     const imagePromises = Array(4).fill(null).map(() => 
         ai.generate({
             model: input.model as any,
             prompt: fullPrompt,
-            config: {
-                responseModalities: ['TEXT', 'IMAGE'],
-                aspectRatio: input.aspectRatio || '1:1',
-            },
+            ...(isGemini ? {
+              config: {
+                  responseModalities: ['TEXT', 'IMAGE'],
+              },
+            } : {
+              config: {
+              }
+            }),
+            aspectRatio: input.aspectRatio || '1:1',
         })
     );
     
