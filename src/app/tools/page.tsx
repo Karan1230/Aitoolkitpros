@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -79,6 +79,13 @@ const allTools = [
     href: "/tools/quiz-generator",
     icon: <HelpCircle className="h-8 w-8 text-primary" />,
     category: "Education"
+  },
+  {
+    name: "Idea Generator",
+    description: "Generate creative ideas for business, content, marketing, and more.",
+    href: "/tools/idea-generator",
+    icon: <Lightbulb className="h-8 w-8 text-primary" />,
+    category: "Business"
   },
 ];
 
