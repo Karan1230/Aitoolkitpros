@@ -10,3 +10,4 @@ import '@/ai/flows/ai-question-answering.ts';
 import '@/ai/flows/coding-help-assistant.ts';
 import '@/ai/flows/grammar-spelling-corrector.ts';
 import '@/ai/flows/text-rewriter.ts';
+import '@/ai/flows/social-media-post-generator.ts';

@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2 } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -44,6 +44,13 @@ const allTools = [
     href: "/tools/chatgpt-ai-tools",
     icon: <Bot className="h-8 w-8 text-primary" />,
     category: "Assistant"
+  },
+  {
+    name: "Social Media Post Generator",
+    description: "Create engaging posts and captions for your social media channels in seconds.",
+    href: "/tools/social-media-post-generator",
+    icon: <Share2 className="h-8 w-8 text-primary" />,
+    category: "Content"
   },
   // Add other tools here as they are created
 ];
