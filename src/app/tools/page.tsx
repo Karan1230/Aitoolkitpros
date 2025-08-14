@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -120,6 +120,13 @@ const allTools = [
     description: "Create short, memorable, and brand-focused slogans and taglines.",
     href: "/tools/slogan-generator",
     icon: <MessageSquare className="h-8 w-8 text-primary" />,
+    category: "Marketing"
+  },
+  {
+    name: "Ad Copy Generator",
+    description: "Generate ad copy for platforms like Google, Facebook, and Instagram.",
+    href: "/tools/ad-copy-generator",
+    icon: <Megaphone className="h-8 w-8 text-primary" />,
     category: "Marketing"
   },
 ];
