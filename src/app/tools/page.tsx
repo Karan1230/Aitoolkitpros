@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -59,7 +59,13 @@ const allTools = [
     icon: <Share2 className="h-8 w-8 text-primary" />,
     category: "Content"
   },
-  // Add other tools here as they are created
+  {
+    name: "Quiz Generator",
+    description: "Create quizzes on any topic with various question types and difficulty levels.",
+    href: "/tools/quiz-generator",
+    icon: <HelpCircle className="h-8 w-8 text-primary" />,
+    category: "Education"
+  },
 ];
 
 
