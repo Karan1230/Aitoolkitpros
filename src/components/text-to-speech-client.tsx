@@ -28,16 +28,16 @@ const ttsModels = [
 ];
 
 const voices = [
-    { name: 'Adhara', gender: 'Female', value: 'Adhara' },
-    { name: 'Bellatrix', gender: 'Female', value: 'Bellatrix' },
-    { name: 'Capella', gender: 'Female', value: 'Capella' },
-    { name: 'Mimosa', gender: 'Female', value: 'Mimosa' },
-    { name: 'Vega', gender: 'Female', value: 'Vega' },
-    { name: 'Algenib', gender: 'Male', value: 'Algenib' },
+    { name: 'Leda', gender: 'Female', value: 'Leda' },
+    { name: 'Erinome', gender: 'Female', value: 'Erinome' },
+    { name: 'Callirrhoe', gender: 'Female', value: 'Callirrhoe' },
+    { name: 'Autonoe', gender: 'Female', value: 'Autonoe' },
+    { name: 'Aoede', gender: 'Female', value: 'Aoede' },
     { name: 'Achernar', gender: 'Male', value: 'Achernar' },
-    { name: 'Aldebaran', gender: 'Male', value: 'Aldebaran' },
-    { name: 'Antares', gender: 'Male', value: 'Antares' },
-    { name: 'Sirius', gender: 'Male', value: 'Sirius' },
+    { name: 'Algenib', gender: 'Male', value: 'Algenib' },
+    { name: 'Orus', gender: 'Male', value: 'Orus' },
+    { name: 'Puck', gender: 'Male', value: 'Puck' },
+    { name: 'Zephyr', gender: 'Male', value: 'Zephyr' },
 ];
 
 const languages = [
@@ -73,7 +73,7 @@ export function TextToSpeechClient() {
     defaultValues: {
       text: '',
       model: 'googleai/gemini-2.5-flash-preview-tts',
-      voice: 'Adhara',
+      voice: 'Leda',
       languageCode: 'en-US',
     },
   });
