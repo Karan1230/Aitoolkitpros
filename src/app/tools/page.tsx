@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -22,6 +22,13 @@ const allTools = [
     description: "Turn your text prompts into stunning, unique visual art and graphics.",
     href: "/tools/ai-image-generator",
     icon: <ImageIcon className="h-8 w-8 text-primary" />,
+    category: "Image"
+  },
+    {
+    name: "AI Background Remover",
+    description: "Automatically remove the background from any image with a single click.",
+    href: "/tools/background-remover",
+    icon: <ScanSearch className="h-8 w-8 text-primary" />,
     category: "Image"
   },
   {
