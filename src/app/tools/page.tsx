@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -135,6 +135,13 @@ const allTools = [
     href: "/tools/engagement-post-generator",
     icon: <ThumbsUp className="h-8 w-8 text-primary" />,
     category: "Marketing"
+  },
+  {
+    name: "Reel/Shorts Script Writer",
+    description: "Generate 15-60 second video scripts for Reels, Shorts, and TikTok.",
+    href: "/tools/reel-shorts-script-writer",
+    icon: <Video className="h-8 w-8 text-primary" />,
+    category: "Content"
   },
 ];
 

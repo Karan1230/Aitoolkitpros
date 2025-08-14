@@ -22,3 +22,4 @@ import '@/ai/flows/hashtag-generator.ts';
 import '@/ai/flows/slogan-generator.ts';
 import '@/ai/flows/ad-copy-generator.ts';
 import '@/ai/flows/engagement-post-generator.ts';
+import '@/ai/flows/reel-shorts-script-writer.ts';
