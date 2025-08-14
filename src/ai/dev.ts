@@ -27,3 +27,4 @@ import '@/ai/flows/cartoon-avatar-maker.ts';
 import '@/ai/flows/roast-joke-generator.ts';
 import '@/ai/flows/horoscope-generator.ts';
 import '@/ai/flows/dream-interpreter.ts';
+import '@/ai/flows/color-palette-finder.ts';

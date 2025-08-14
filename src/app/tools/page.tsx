@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -170,6 +170,13 @@ const allTools = [
     href: "/tools/dream-interpreter",
     icon: <Moon className="h-8 w-8 text-primary" />,
     category: "Fun"
+  },
+  {
+    name: "Color Palette Finder",
+    description: "Generate harmonious color palettes from a text description.",
+    href: "/tools/color-palette-finder",
+    icon: <Palette className="h-8 w-8 text-primary" />,
+    category: "Design"
   },
 ];
 
