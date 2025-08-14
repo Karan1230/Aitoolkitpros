@@ -67,7 +67,7 @@ export default function QuizGeneratorPage() {
             <Card>
                 <CardHeader>
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
-                </Header>
+                </CardHeader>
                 <CardContent>
                     <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="item-1">
