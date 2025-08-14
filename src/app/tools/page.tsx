@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image, Gift } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -184,6 +184,13 @@ const allTools = [
     href: "/tools/custom-icon-generator",
     icon: <Image className="h-8 w-8 text-primary" />,
     category: "Design"
+  },
+  {
+    name: "Gift Suggestion Tool",
+    description: "Get personalized gift ideas for any occasion, person, and budget.",
+    href: "/tools/gift-suggestion-tool",
+    icon: <Gift className="h-8 w-8 text-primary" />,
+    category: "Fun"
   },
 ];
 
