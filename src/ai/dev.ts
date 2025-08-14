@@ -30,3 +30,4 @@ import '@/ai/flows/dream-interpreter.ts';
 import '@/ai/flows/color-palette-finder.ts';
 import '@/ai/flows/custom-icon-generator.ts';
 import '@/ai/flows/gift-suggestion-generator.ts';
+import '@/ai/flows/ai-recipe-maker.ts';

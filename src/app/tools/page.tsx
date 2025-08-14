@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image, Gift } from 'lucide-react';
+import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image, Gift, ChefHat } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -10,6 +10,13 @@ export const metadata: Metadata = {
 };
 
 const allTools = [
+  {
+    name: "AI Recipe Maker",
+    description: "Generate recipes from ingredients you have at home.",
+    href: "/tools/ai-recipe-maker",
+    icon: <ChefHat className="h-8 w-8 text-primary" />,
+    category: "Lifestyle"
+  },
   {
     name: "AI Script Writer",
     description: "Generate engaging scripts for videos, podcasts, and more based on your prompts.",
