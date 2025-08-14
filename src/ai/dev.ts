@@ -25,3 +25,4 @@ import '@/ai/flows/engagement-post-generator.ts';
 import '@/ai/flows/reel-shorts-script-writer.ts';
 import '@/ai/flows/cartoon-avatar-maker.ts';
 import '@/ai/flows/roast-joke-generator.ts';
+import '@/ai/flows/horoscope-generator.ts';
