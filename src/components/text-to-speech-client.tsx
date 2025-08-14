@@ -12,10 +12,16 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Volume2 } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
 const formSchema = z.object({
   text: z.string().min(5, 'Text must be at least 5 characters long.'),
+  model: z.string().min(1, 'Please select a model.'),
 });
+
+const ttsModels = [
+  { name: 'Google', value: 'googleai/gemini-2.5-flash-preview-tts' },
+];
 
 export function TextToSpeechClient() {
   const [audioDataUri, setAudioDataUri] = useState<string | null>(null);
@@ -26,6 +32,7 @@ export function TextToSpeechClient() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       text: '',
+      model: 'googleai/gemini-2.5-flash-preview-tts',
     },
   });
 
@@ -66,6 +73,31 @@ export function TextToSpeechClient() {
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="model"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-lg font-semibold">AI Model</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a model" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {ttsModels.map(model => (
+                        <SelectItem key={model.value} value={model.value}>
+                          {model.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
