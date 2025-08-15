@@ -32,6 +32,18 @@ const faqs = [
   {
     question: "Is my data safe when using these tools?",
     answer: "Your privacy is our priority. We do not store your inputs (like text prompts or uploaded images) on our servers. Your data is sent to the respective third-party AI provider for processing and the result is returned directly to you."
+  },
+  {
+    question: "What kind of images can I generate?",
+    answer: "Our AI Image Generator can create a wide variety of visuals, including realistic photos, digital art, cartoons, logos, and YouTube thumbnails. The quality of the result depends on the detail of your prompt."
+  },
+  {
+      question: "How can I get the best results from the AI tools?",
+      answer: "The key is to be specific and provide clear instructions. For text-based tools, offer as much context as possible. For image tools, describe the subject, style, colors, and lighting in detail for the best output."
+  },
+  {
+      question: "Do you offer an API for developers?",
+      answer: "Currently, we do not offer a public API. Our tools are designed to be used directly on our website. We may consider offering an API in the future as our platform grows."
   }
 ];
 
@@ -249,11 +261,18 @@ export default function Home() {
            <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
               Have questions? We've got answers. Here are some common queries about our platform.
            </p>
-           <Accordion type="single" collapsible className="w-full mt-12">
+           <Accordion type="single" collapsible className="w-full mt-12 space-y-4">
             {faqs.map((faq, index) => (
-              <AccordionItem value={`item-${index + 1}`} key={index}>
-                <AccordionTrigger className="text-lg text-left">{faq.question}</AccordionTrigger>
-                <AccordionContent className="text-base text-muted-foreground">
+              <AccordionItem 
+                value={`item-${index + 1}`} 
+                key={index} 
+                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+              >
+                <AccordionTrigger className="text-lg text-left px-6 hover:no-underline">
+                  <span className="font-bold text-primary mr-4">{String(index + 1).padStart(2, '0')}</span>
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="px-6">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
