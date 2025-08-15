@@ -123,7 +123,7 @@ const TestimonialSchema = () => {
 
 
 export default function Home() {
-  const autoplayPlugin = useRef(Autoplay({ delay: 2, stopOnInteraction: true }));
+  const autoplayPlugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
   return (
     <div className="flex flex-col">
       <TestimonialSchema />
@@ -308,4 +308,3 @@ export default function Home() {
     </div>
   );
 }
-
