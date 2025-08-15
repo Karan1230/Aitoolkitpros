@@ -1,12 +1,16 @@
 
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, BrainCircuit, CheckCircle, Paintbrush, PenLine, Search, Sparkles, Wand2 } from "lucide-react";
+import { ArrowRight, BrainCircuit, CheckCircle, Paintbrush, PenLine, Search, Sparkles, Wand2, Star } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { allTools, toolCategories } from "@/lib/tools";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Image from "next/image";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 
 const featuredTools = allTools.filter(t => ["AI Script Writer", "AI Image Generator", "Text-to-Speech Converter", "AI Logo Maker", "Hashtag Generator", "Product Description Generator"].includes(t.name));
 
@@ -29,9 +33,63 @@ const faqs = [
   }
 ];
 
+const testimonials = [
+    {
+        name: "Alex Rivera",
+        title: "Content Creator",
+        quote: "The AI Script Writer is a game-changer! I went from spending hours on a video script to drafting one in minutes. My productivity has skyrocketed.",
+        avatar: "https://i.pravatar.cc/150?u=alex",
+        rating: 5,
+    },
+    {
+        name: "Samantha Lee",
+        title: "Small Business Owner",
+        quote: "I created a professional logo for my new business in under 60 seconds using the AI Logo Maker. It's free, fast, and the results are stunning. Highly recommend!",
+        avatar: "https://i.pravatar.cc/150?u=samantha",
+        rating: 5,
+    },
+    {
+        name: "Mike Chen",
+        title: "Digital Marketer",
+        quote: "The Ad Copy and Hashtag Generators are my go-to tools for every campaign. They save me so much time on research and consistently deliver great results.",
+        avatar: "https://i.pravatar.cc/150?u=mike",
+        rating: 5,
+    }
+];
+
+const TestimonialSchema = () => {
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "AI Toolkit Pro",
+        "url": "https://your-domain.com",
+        "review": testimonials.map(testimonial => ({
+            "@type": "Review",
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": testimonial.rating,
+                "bestRating": "5"
+            },
+            "author": {
+                "@type": "Person",
+                "name": testimonial.name
+            },
+            "reviewBody": testimonial.quote
+        }))
+    };
+    return (
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+    );
+};
+
+
 export default function Home() {
   return (
     <div className="flex flex-col">
+      <TestimonialSchema />
       {/* Hero Section */}
       <section className="relative py-24 md:py-32 lg:py-40 text-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-background">
          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat [mask-image:linear-gradient(to_bottom,white_5%,transparent_90%)]"></div>
@@ -156,8 +214,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQs Section */}
+      {/* Testimonials Section */}
       <section className="py-20 md:py-28 bg-card">
+        <div className="container">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">What Our Users Say</h2>
+          <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
+            Trusted by creators, marketers, and businesses worldwide.
+          </p>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full max-w-4xl mx-auto mt-12"
+          >
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div className="p-4">
+                    <Card className="h-full flex flex-col">
+                      <CardContent className="p-6 flex-grow flex flex-col justify-center items-center text-center">
+                        <Avatar className="w-20 h-20 mb-4">
+                          <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                          <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                        </Avatar>
+                        <p className="text-muted-foreground italic">"{testimonial.quote}"</p>
+                        <div className="mt-4">
+                            <h4 className="font-bold">{testimonial.name}</h4>
+                            <p className="text-xs text-muted-foreground">{testimonial.title}</p>
+                            <div className="flex justify-center mt-2">
+                                {Array(testimonial.rating).fill(0).map((_, i) => (
+                                    <Star key={i} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                                ))}
+                            </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
+        </div>
+      </section>
+
+      {/* FAQs Section */}
+      <section className="py-20 md:py-28">
         <div className="container max-w-3xl">
            <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">Frequently Asked Questions</h2>
            <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
