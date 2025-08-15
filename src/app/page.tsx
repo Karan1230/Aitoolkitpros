@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { Button } from "@/components/ui/button";
@@ -282,26 +283,29 @@ export default function Home() {
            <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
               Have questions? We've got answers. Here are some common queries about our platform.
            </p>
-           <Accordion type="single" collapsible className="w-full mt-12 space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem 
-                value={`item-${index + 1}`} 
-                key={index} 
-                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
-              >
-                <AccordionTrigger className="text-lg text-left px-6 hover:no-underline">
-                  <span className="font-bold text-primary mr-4">{String(index + 1).padStart(2, '0')}</span>
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+           <div className="mt-12 p-4 rounded-lg bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 shadow-inner">
+            <Accordion type="single" collapsible className="w-full space-y-4">
+                {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index + 1}`} 
+                    key={index} 
+                    className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+                >
+                    <AccordionTrigger className="text-lg text-left px-6 hover:no-underline">
+                    <span className="font-bold text-primary mr-4">{String(index + 1).padStart(2, '0')}</span>
+                    {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-6">
+                    {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+                ))}
+            </Accordion>
+           </div>
         </div>
       </section>
 
     </div>
   );
 }
+
