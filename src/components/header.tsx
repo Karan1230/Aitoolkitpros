@@ -29,11 +29,11 @@ export function Header() {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
         const currentScrollY = window.scrollY;
-        // Hide header on scroll up, show on scroll down or at the top
+        // Hide header on scroll down, show on scroll up or if at the very top
         if (currentScrollY > lastScrollY && currentScrollY > 100) { 
           setIsVisible(false); // Hide on scroll down
         } else { 
-          setIsVisible(true); // Show on scroll up or at the top
+          setIsVisible(true); // Show on scroll up
         }
         setLastScrollY(currentScrollY); 
       }
