@@ -134,7 +134,7 @@ export default function Home() {
             Unlock Creativity with Free AI Tools in Seconds
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
-            Generate ideas, write content, design logos, create scripts, and more – all powered by AI.
+            Generate ideas, write content, design logos, create scripts, and more – all powered by our suite of <Link href="/tools" className="text-primary underline hover:text-accent">free AI tools</Link>.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg">

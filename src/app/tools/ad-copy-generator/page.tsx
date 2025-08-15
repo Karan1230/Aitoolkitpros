@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import Link from 'next/link';
 
 
 export const metadata: Metadata = {
@@ -63,7 +64,7 @@ export default function AdCopyGeneratorPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Turn your product details into persuasive <strong>high-converting ad copy</strong> that drives clicks and conversions. Our <strong>AI ad copy generator</strong> helps you craft compelling headlines, body text, and calls-to-action (CTAs) for various platforms, including our <strong>Google Ads copywriting tool</strong> and <strong>Facebook ad copy generator</strong>. This free <strong>AI-powered ad writing tool</strong> is perfect for marketers looking to create effective <strong>AI for ad creatives</strong>, run A/B tests, and save time on copywriting. Boost your digital marketing campaigns with the <strong>best AI ad copy tools</strong> available.
+                Turn your product details into persuasive <strong>high-converting ad copy</strong> that drives clicks and conversions. Our <strong>AI ad copy generator</strong> helps you craft compelling headlines, body text, and calls-to-action (CTAs) for various platforms, including our <strong>Google Ads copywriting tool</strong> and <strong>Facebook ad copy generator</strong>. This free <strong>AI-powered ad writing tool</strong> is perfect for marketers looking to create effective <strong>AI for ad creatives</strong>, run A/B tests, and save time on copywriting. Boost your digital marketing campaigns with the <strong>best AI ad copy tools</strong> available. You can also generate creative posts with our <Link href="/tools/social-media-post-generator" className="text-primary hover:underline">Social Media Post Generator</Link>.
               </p>
             </div>
 

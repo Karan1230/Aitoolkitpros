@@ -6,6 +6,7 @@ import { CodingHelpClient } from '@/components/coding-help-client';
 import { GrammarSpellingClient } from '@/components/grammar-spelling-client';
 import { TextRewriterClient } from '@/components/text-rewriter-client';
 import { Bot, Code, SpellCheck, PencilRuler } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Best Free AI ChatBot Assistant | Code Helper & Grammar Corrector',
@@ -21,7 +22,7 @@ export default function ChatGptToolsPage() {
         </h1>
         <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
           <p className="text-lg text-muted-foreground">
-            Powered by an advanced <strong>AI ChatBot Assistant</strong>, these tools are designed to help you with a variety of tasks, from answering questions to writing better code and content. Our <strong>free AI assistant tool</strong> offers a suite of features including an <strong>AI code helper</strong>, <strong>grammar corrector</strong>, and <strong>text rewriter online</strong>. Get instant answers to your questions, improve your writing with our <strong>AI paraphrasing tool</strong>, and receive expert <strong>AI coding assistance</strong>, all in one place.
+            Powered by an advanced <strong>AI ChatBot Assistant</strong>, these tools are designed to help you with a variety of tasks, from answering questions to writing better code and content. Our <strong>free AI assistant tool</strong> offers a suite of features including an <strong>AI code helper</strong>, <strong>grammar corrector</strong>, and <strong>text rewriter online</strong>. Get instant answers to your questions, improve your writing with our <strong>AI paraphrasing tool</strong>, and receive expert <strong>AI coding assistance</strong>, all in one place. For more specific writing needs, try our <Link href="/tools/ai-script-writer" className="text-primary hover:underline">AI Script Writer</Link>.
           </p>
         </div>
       </div>
