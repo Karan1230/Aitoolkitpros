@@ -31,7 +31,7 @@ export default function BackgroundRemoverPage() {
                 AI Image Background Remover
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Upload any image and let our AI automatically remove the background. It's fast, free, and incredibly simple.
+                Upload any image and let our AI automatically remove the background. It's fast, free, and incredibly simple. Our AI image background remover helps you create transparent PNGs, add custom color backgrounds, and save time on manual photo editing. This free tool is perfect for e-commerce product photos, social media posts, and graphic design projects. Get professional results instantly with our easy-to-use background eraser.
             </p>
 
             <div className="mt-8">

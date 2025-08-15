@@ -31,7 +31,7 @@ export default function RoastJokeGeneratorPage() {
                 AI Roast & Joke Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Unleash your inner comedian. Enter a topic, pick a style, and let our AI generate hilarious roasts and jokes for you.
+                Unleash your inner comedian. Enter a topic, pick a style, and let our AI generate hilarious roasts and jokes for you. Our free AI roast and joke generator helps you create funny one-liners and comebacks in seconds. Choose from various tones to match your humor, and entertain your friends, family, or social media followers with creative and witty content.
             </p>
 
             <div className="mt-8">

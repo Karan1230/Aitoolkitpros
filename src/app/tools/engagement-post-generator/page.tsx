@@ -31,7 +31,7 @@ export default function EngagementPostGeneratorPage() {
                 Engagement Post Ideas Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Never run out of content ideas. Generate engaging posts with captions and hashtags to keep your audience hooked.
+                Never run out of content ideas. Generate engaging posts with captions and hashtags to keep your audience hooked. Our free AI engagement post ideas generator helps you create creative content for Instagram, Facebook, TikTok, and more. Boost your social media engagement by generating questions, polls, and challenges that spark conversations. Get instant captions and hashtags to keep your feed fresh and exciting.
             </p>
 
             <div className="mt-8">

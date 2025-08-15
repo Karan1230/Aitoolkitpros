@@ -31,7 +31,7 @@ export default function ProductDescriptionGeneratorPage() {
                 AI Product Description Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Turn product features into compelling descriptions that sell. Let our AI craft the perfect copy for your e-commerce store.
+                Turn product features into compelling descriptions that sell. Let our AI craft the perfect copy for your e-commerce store. Our free AI product description generator creates high-converting, SEO-friendly copy for any product. Increase conversions with persuasive descriptions, improve your SEO with keyword-rich content, and save hours of writing time. Maintain a consistent brand voice and watch your sales grow.
             </p>
 
             <div className="mt-8">

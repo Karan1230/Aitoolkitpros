@@ -31,7 +31,7 @@ export default function ReelShortsScriptWriterPage() {
                 AI Reel/Shorts Script Writer
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Turn your ideas into engaging, short-form video scripts designed to go viral on TikTok, Reels, and YouTube Shorts.
+                Turn your ideas into engaging, short-form video scripts designed to go viral on TikTok, Reels, and YouTube Shorts. Our free AI Reel/Shorts script writer helps you generate catchy hooks, structured content, and effective calls-to-action in seconds. Create viral-worthy video scripts and save time on brainstorming. This tool is perfect for content creators looking to boost their social media presence.
             </p>
 
             <div className="mt-8">

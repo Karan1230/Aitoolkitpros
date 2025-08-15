@@ -31,7 +31,7 @@ export default function HoroscopeGeneratorPage() {
                 AI Horoscope Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Select your zodiac sign and timeframe to receive a personalized horoscope covering love, career, health, and more.
+                Select your zodiac sign and timeframe to receive a personalized horoscope covering love, career, health, and more. Our free AI horoscope generator provides daily, weekly, and monthly predictions for any zodiac sign. Get insights into your love life, career, and health, and discover your lucky numbers and colors. This tool offers personalized readings in multiple languages, making astrology accessible to everyone.
             </p>
 
             <div className="mt-8">

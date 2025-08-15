@@ -30,7 +30,7 @@ export default function IdeaGeneratorPage() {
                 AI Idea Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Stuck in a creative rut? Enter a topic and let our AI generate a list of innovative ideas to get you started.
+                Stuck in a creative rut? Enter a topic and let our AI generate a list of innovative ideas to get you started. Our free AI idea generator helps you brainstorm creative concepts for business, marketing, and content. Overcome creative blocks, discover new opportunities, and spark your next big project in any language. Get instant inspiration for your startup, blog, or social media campaign.
             </p>
 
             <div className="mt-8">

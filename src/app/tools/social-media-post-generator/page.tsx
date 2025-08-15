@@ -30,7 +30,7 @@ export default function SocialMediaPostGeneratorPage() {
                 Social Media Post Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Enter a topic and let our AI create engaging posts for your social media channels, complete with hashtags.
+                Enter a topic and let our AI create engaging posts for your social media channels, complete with hashtags. Our free AI social media post generator helps you create compelling content in seconds. Get relevant hashtags to boost your reach on Instagram, Facebook, Twitter, and LinkedIn. Save time, overcome creative blocks, and keep your social media feed active and engaging with our easy-to-use tool.
             </p>
 
             <div className="mt-8">

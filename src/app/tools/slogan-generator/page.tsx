@@ -31,7 +31,7 @@ export default function SloganGeneratorPage() {
                 AI Slogan/Tagline Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Describe your brand and let our AI create short, memorable slogans that capture your message and stick with your audience.
+                Describe your brand and let our AI create short, memorable slogans that capture your message and stick with your audience. Our free AI slogan and tagline generator helps you create catchy, professional, or funny taglines for your brand in any language. Generate dozens of creative options instantly and craft the perfect tagline for your marketing campaigns. Define your brand's message with clarity and create a memorable identity.
             </p>
 
             <div className="mt-8">

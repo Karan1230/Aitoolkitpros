@@ -30,7 +30,7 @@ export default function QuizGeneratorPage() {
                 AI Quiz Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Create custom quizzes on any topic in seconds. Just specify your requirements and let the AI build your quiz.
+                Create custom quizzes on any topic in seconds. Just specify your requirements and let the AI build your quiz. Our free AI quiz generator helps you create engaging educational content by choosing the difficulty, question type, and language. This tool is perfect for teachers, students, and trivia enthusiasts who want to quickly assess knowledge, create study materials, or generate questions for games.
             </p>
 
             <div className="mt-8">

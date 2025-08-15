@@ -31,7 +31,7 @@ export default function CartoonAvatarMakerPage() {
                 AI Cartoon & Avatar Maker
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Upload your photo and let our AI transform it into a stunning cartoon or avatar in your favorite style.
+                Upload your photo and let our AI transform it into a stunning cartoon or avatar in your favorite style. Our free AI cartoon and avatar maker allows you to create unique profile pictures for social media, gaming, or personal branding. Choose from various styles like anime, 3D, and comic book to get a professional look without any artistic skills. Download high-resolution, transparent PNGs and express your personality online.
             </p>
 
             <div className="mt-8">

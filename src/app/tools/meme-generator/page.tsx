@@ -31,7 +31,7 @@ export default function MemeGeneratorPage() {
                 AI Meme Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Unleash your inner comedian. Describe a topic or upload an image, and let our AI create the perfect meme for you.
+                Unleash your inner comedian. Describe a topic or upload an image, and let our AI create the perfect meme for you. Our free AI meme generator helps you create hilarious, shareable memes from text or images. Go viral with your creativity and generate funny content for social media without any graphic design skills. Turn your ideas into humorous images and entertain your audience instantly.
             </p>
 
             <div className="mt-8">

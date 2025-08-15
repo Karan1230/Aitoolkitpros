@@ -31,7 +31,7 @@ export default function DreamInterpreterPage() {
                 AI Dream Interpreter
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Describe your dream in any language, and our AI will provide a thoughtful interpretation to help you understand its meaning.
+                Describe your dream in any language, and our AI will provide a thoughtful interpretation to help you understand its meaning. Our free AI dream interpreter offers instant analysis of symbols, emotions, and context to unlock the secrets of your subconscious. Gain insights from psychological and spiritual perspectives, with interpretations available in over 100 languages. Start understanding your dreams today with our easy-to-use tool.
             </p>
 
             <div className="mt-8">

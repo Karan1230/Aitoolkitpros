@@ -30,7 +30,7 @@ export default function ExamQuestionGeneratorPage() {
                 AI Exam Question Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Create custom practice exams on any topic in seconds. Just specify your requirements and let the AI build your test.
+                Create custom practice exams on any topic in seconds. Just specify your requirements and let the AI build your test. Our free AI exam question generator helps you create practice quizzes by choosing the difficulty, question type, and language. This tool is perfect for students preparing for exams and teachers creating study materials. Save time and enhance learning with our automated exam builder.
             </p>
 
             <div className="mt-8">

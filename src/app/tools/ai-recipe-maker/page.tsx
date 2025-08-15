@@ -31,7 +31,7 @@ export default function AiRecipeMakerPage() {
                 AI Recipe Maker
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Don't know what to cook? Enter the ingredients you have, and let our AI create delicious recipes for you.
+                Don't know what to cook? Enter the ingredients you have, and let our AI create delicious recipes for you. Our free AI recipe maker helps you discover new meal ideas, reduce food waste, and save time on meal planning. Whether you have specific dietary needs or want to explore a new cuisine, this tool provides step-by-step instructions for breakfast, lunch, and dinner. Cook amazing meals with the ingredients already in your kitchen.
             </p>
 
             <div className="mt-8">

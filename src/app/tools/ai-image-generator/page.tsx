@@ -31,7 +31,7 @@ export default function AiImageGeneratorPage() {
                 AI Image Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Transform your words into breathtaking images. Describe what you want to see, and our AI will bring it to life in seconds.
+                Transform your words into breathtaking images. Describe what you want to see, and our AI will bring it to life in seconds. This free AI image generator allows you to create high-quality, royalty-free images from text prompts. Whether you need visuals for your blog, social media, or creative projects, this tool helps you generate stunning art, illustrations, and photos instantly. Unleash your creativity and visualize any concept without needing artistic skills.
             </p>
 
             <div className="mt-8">

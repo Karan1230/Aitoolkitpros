@@ -31,7 +31,7 @@ export default function TextToSpeechPage() {
                 Text-to-Speech Converter
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Bring your text to life with realistic AI voices. Paste your text, choose a voice, and generate high-quality audio in seconds.
+                Bring your text to life with realistic AI voices. Paste your text, choose a voice, and generate high-quality audio in seconds. Our free AI text-to-speech (TTS) tool converts text into natural-sounding speech, perfect for voiceovers, accessibility, and content creation. Create high-quality audio for videos, listen to articles on the go, and prototype voice applications with our easy-to-use converter.
             </p>
 
             <div className="mt-8">

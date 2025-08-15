@@ -20,7 +20,7 @@ export default function ChatGptToolsPage() {
           Advanced AI Assistant Tools
         </h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          Powered by ChatGPT, these tools are designed to help you with a variety of tasks, from answering questions to writing better code and content.
+          Powered by ChatGPT, these tools are designed to help you with a variety of tasks, from answering questions to writing better code and content. Our free AI ChatGPT tool offers a suite of features including an AI code helper, grammar corrector, and text rewriter. Get instant answers to your questions, improve your writing, and receive expert coding assistance, all in one place.
         </p>
       </div>
 

@@ -31,7 +31,7 @@ export default function StudyNotesCreatorPage() {
                 AI Study Notes Creator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Paste any text and let our AI create clear, concise, and easy-to-understand study notes for you.
+                Paste any text and let our AI create clear, concise, and easy-to-understand study notes for you. Our free AI study notes creator helps you summarize long articles, documents, and textbooks instantly. Get key points and summaries in any language, saving you hours of reading and note-taking. Improve your focus by studying only the most important concepts and quickly grasp the main ideas of any text.
             </p>
 
             <div className="mt-8">

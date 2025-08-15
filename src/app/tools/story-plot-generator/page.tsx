@@ -31,7 +31,7 @@ export default function StoryPlotGeneratorPage() {
                 AI Story Plot Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Never stare at a blank page again. Generate unique story ideas, complete with characters, settings, conflict, and resolution.
+                Never stare at a blank page again. Generate unique story ideas, complete with characters, settings, conflict, and resolution. Our free AI story plot generator helps you overcome writer's block by providing endless inspiration. Develop complex characters, create detailed settings, and structure your narrative with a clear plot outline. Explore different genres and story angles to kickstart your next novel or script.
             </p>
 
             <div className="mt-8">

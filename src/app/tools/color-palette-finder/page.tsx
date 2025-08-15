@@ -31,7 +31,7 @@ export default function ColorPaletteFinderPage() {
                 AI Color Palette Finder
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Describe your idea, and let our AI generate the perfect color palette. It's the ideal tool for designers, marketers, and creators.
+                Describe your idea, and let our AI generate the perfect color palette. It's the ideal tool for designers, marketers, and creators. Our free AI color palette finder helps you create harmonious color schemes from any text description. Generate matching colors for your website, brand, or design projects in any language. Discover unique palettes and instantly copy HEX codes for your favorite design tools.
             </p>
 
             <div className="mt-8">

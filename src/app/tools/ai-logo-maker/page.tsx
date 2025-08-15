@@ -31,7 +31,7 @@ export default function AiLogoMakerPage() {
                 AI Logo Maker
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Describe your brand, and let our AI design the perfect logo for you. It's fast, free, and surprisingly creative.
+                Describe your brand, and let our AI design the perfect logo for you. It's fast, free, and surprisingly creative. Our AI logo maker generates unique, professional logos for your business in seconds. Whether you need a design for your startup, website, or social media, this free tool helps you create a high-quality brand identity without needing any design skills. Download your logo in various formats and start building your brand today.
             </p>
 
             <div className="mt-8">

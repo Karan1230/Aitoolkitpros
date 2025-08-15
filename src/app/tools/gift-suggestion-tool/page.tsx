@@ -31,7 +31,7 @@ export default function GiftSuggestionToolPage() {
                 AI Gift Suggestion Tool
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Never struggle to find the perfect gift again. Describe the recipient and occasion, and let our AI suggest thoughtful presents.
+                Never struggle to find the perfect gift again. Describe the recipient and occasion, and let our AI suggest thoughtful presents. Our free AI gift suggestion tool provides personalized gift ideas for any occasion, age, or interest. Find the perfect present for birthdays, anniversaries, and holidays, all tailored to your budget. Save time and surprise your loved ones with unique and thoughtful gifts recommended by our smart suggestion engine.
             </p>
 
             <div className="mt-8">

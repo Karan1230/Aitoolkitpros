@@ -31,7 +31,7 @@ export default function HashtagGeneratorPage() {
                 AI Hashtag Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Enter a topic and let our AI generate the perfect hashtags to boost your social media presence.
+                Enter a topic and let our AI generate the perfect hashtags to boost your social media presence. Our free AI hashtag generator helps you find relevant, trending, and niche-specific hashtags for Instagram, TikTok, YouTube, and more. Increase your post's visibility, attract your target audience, and save time on research. Discover the best hashtags for your content and watch your reach grow.
             </p>
 
             <div className="mt-8">

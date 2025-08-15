@@ -31,7 +31,7 @@ export default function CourseOutlineGeneratorPage() {
                 AI Course Outline Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-                Turn your expertise into a well-structured course. Describe your topic, and let our AI build the curriculum for you.
+                Turn your expertise into a well-structured course. Describe your topic, and let our AI build the curriculum for you. Our free AI course outline generator helps you create a complete course structure with modules, lessons, and key points. This tool is perfect for educators, coaches, and content creators who want to save time on curriculum design and generate a clear roadmap for their educational content.
             </p>
 
             <div className="mt-8">
