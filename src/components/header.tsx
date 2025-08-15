@@ -28,12 +28,14 @@ export function Header() {
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
-        if (window.scrollY > lastScrollY && window.scrollY > 100) { // if scroll down hide the navbar
-          setIsVisible(false);
-        } else { // if scroll up show the navbar
-          setIsVisible(true);
+        const currentScrollY = window.scrollY;
+        // Hide header on scroll up, show on scroll down or at the top
+        if (currentScrollY > lastScrollY && currentScrollY > 100) { 
+          setIsVisible(false); // Hide on scroll down
+        } else { 
+          setIsVisible(true); // Show on scroll up or at the top
         }
-        setLastScrollY(window.scrollY); 
+        setLastScrollY(currentScrollY); 
       }
     };
 
