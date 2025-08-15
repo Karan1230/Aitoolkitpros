@@ -8,8 +8,8 @@ import { TextRewriterClient } from '@/components/text-rewriter-client';
 import { Bot, Code, SpellCheck, PencilRuler } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Best Free AI ChatGPT Tool | Code Helper & Grammar Corrector',
-  description: 'Unlock the power of AI with free ChatGPT-powered tools. Get answers, receive coding help with an online AI code helper, correct grammar, and rewrite text effortlessly.',
+  title: 'Best Free AI ChatBot Assistant | Code Helper & Grammar Corrector',
+  description: 'Unlock the power of AI with a free ChatBot assistant. Get answers, receive coding help with an online AI code helper, correct grammar, and rewrite text effortlessly.',
 };
 
 export default function ChatGptToolsPage() {
@@ -17,11 +17,11 @@ export default function ChatGptToolsPage() {
     <div className="container py-12 md:py-20">
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="font-headline text-4xl md:text-5xl font-bold">
-          Advanced AI Assistant Tools
+          AI ChatBot Assistant
         </h1>
         <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
           <p className="text-lg text-muted-foreground">
-            Powered by <strong>ChatGPT API</strong>, these tools are designed to help you with a variety of tasks, from answering questions to writing better code and content. Our <strong>free AI ChatGPT tool</strong> offers a suite of features including an <strong>AI code helper</strong>, <strong>grammar corrector</strong>, and <strong>text rewriter online</strong>. Get instant answers to your questions, improve your writing with our <strong>AI paraphrasing tool</strong>, and receive expert <strong>AI coding assistance</strong>, all in one place.
+            Powered by an advanced <strong>AI ChatBot Assistant</strong>, these tools are designed to help you with a variety of tasks, from answering questions to writing better code and content. Our <strong>free AI assistant tool</strong> offers a suite of features including an <strong>AI code helper</strong>, <strong>grammar corrector</strong>, and <strong>text rewriter online</strong>. Get instant answers to your questions, improve your writing with our <strong>AI paraphrasing tool</strong>, and receive expert <strong>AI coding assistance</strong>, all in one place.
           </p>
         </div>
       </div>

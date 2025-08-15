@@ -136,7 +136,7 @@ export const allTools: Tool[] = [
     category: "Audio"
   },
   {
-    name: "ChatGPT AI Tools",
+    name: "Ai ChatBot Assistant",
     description: "A suite of tools for Q&A, coding help, grammar correction, and text rewriting.",
     href: "/tools/chatgpt-ai-tools",
     icon: <Bot className="h-8 w-8 text-primary" />,
