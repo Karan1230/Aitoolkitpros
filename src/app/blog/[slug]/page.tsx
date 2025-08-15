@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { TableOfContents } from '@/components/table-of-contents';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ChevronRight } from 'lucide-react';
+import { ShareButtons } from '@/components/share-buttons';
 
 interface BlogPostPageProps {
   params: {
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     return {};
   }
 
-  const siteUrl = 'https://your-domain.com'; // Replace with your actual domain
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const fullUrl = `${siteUrl}/blog/${post.slug}`;
   
   return {
@@ -82,7 +83,7 @@ const JsonLd = ({ post, url }: { post: any, url: string }) => {
       "name": "AI Toolkit Pro",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://your-domain.com/logo.png" // Replace with your logo URL
+        "url": `${process.env.NEXT_PUBLIC_SITE_URL}/logo.png`
       }
     },
     "datePublished": new Date(post.datePublished).toISOString(),
@@ -105,7 +106,7 @@ const JsonLd = ({ post, url }: { post: any, url: string }) => {
 export default function BlogPostPage({ params }: BlogPostPageProps) {
   const post = getPostBySlug(params.slug);
   const relatedPosts = getRelatedPosts(post);
-  const siteUrl = 'https://your-domain.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const fullUrl = `${siteUrl}/blog/${post.slug}`;
 
 
@@ -164,6 +165,9 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                             <Badge key={tag} variant="outline"># {tag}</Badge>
                         ))}
                     </div>
+
+                    <ShareButtons post={post} url={fullUrl} />
+
                 </article>
 
                 <aside className="lg:col-span-1">
