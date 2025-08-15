@@ -18,6 +18,9 @@ export default {
       },
     },
     extend: {
+      backgroundImage: {
+        'gradient-bg': 'radial-gradient(circle at top left, hsl(var(--primary) / 0.1), transparent 40%), radial-gradient(circle at bottom right, hsl(var(--accent) / 0.1), transparent 40%)',
+      },
       fontFamily: {
         body: ['var(--font-inter)', ...fontFamily.sans],
         headline: ['var(--font-space-grotesk)', ...fontFamily.sans],

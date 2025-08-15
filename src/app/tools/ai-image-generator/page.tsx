@@ -27,7 +27,7 @@ export default function AiImageGeneratorPage() {
     <div className="container py-12 md:py-20">
       <div className="grid lg:grid-cols-5 gap-12">
         <div className="lg:col-span-3">
-            <h1 className="font-headline text-4xl md:text-5xl font-bold">
+            <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
                 AI Image Generator
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
@@ -39,7 +39,7 @@ export default function AiImageGeneratorPage() {
             </div>
         </div>
         <div className="lg:col-span-2 space-y-8">
-            <Card>
+            <Card className="bg-card/50">
                 <CardHeader>
                     <CardTitle className="font-headline text-2xl">How to Use</CardTitle>
                 </CardHeader>
@@ -50,7 +50,7 @@ export default function AiImageGeneratorPage() {
                 </CardContent>
             </Card>
 
-             <Card>
+             <Card className="bg-card/50">
                 <CardHeader>
                     <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
                 </CardHeader>
@@ -64,7 +64,7 @@ export default function AiImageGeneratorPage() {
                 </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-card/50">
                 <CardHeader>
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
                 </CardHeader>

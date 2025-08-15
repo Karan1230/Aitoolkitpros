@@ -12,23 +12,28 @@ export const metadata: Metadata = {
 export default function AllToolsPage() {
   return (
     <div className="container py-12 md:py-20">
-      <h1 className="font-headline text-4xl md:text-5xl font-bold text-center">
-        All AI Tools
-      </h1>
-      <p className="mt-6 text-lg text-center text-muted-foreground max-w-3xl mx-auto">
-        Explore our full suite of AI-powered tools designed to be simple, powerful, and completely free. Find the perfect assistant for your next creative project.
-      </p>
+      <div className="text-center max-w-3xl mx-auto">
+        <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
+          All AI Tools
+        </h1>
+        <p className="mt-6 text-lg text-muted-foreground">
+          Explore our full suite of AI-powered tools designed to be simple, powerful, and completely free. Find the perfect assistant for your next creative project.
+        </p>
+      </div>
+
 
       <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {allTools.sort((a,b) => a.name.localeCompare(b.name)).map((tool) => (
           <Link href={tool.href} key={tool.name} className="group flex">
-            <Card className="w-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary flex flex-col">
+            <Card className="w-full transition-all duration-300 hover:shadow-xl hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
               <CardHeader>
                 <div className="flex items-center justify-between">
-                    {tool.icon}
+                    <div className="p-3 rounded-lg bg-primary/10 text-primary w-fit">
+                        {tool.icon}
+                    </div>
                     <div className="text-xs font-medium bg-primary/10 text-primary px-2 py-1 rounded-full">{tool.category}</div>
                 </div>
-                <CardTitle className="font-headline text-2xl pt-4">{tool.name}</CardTitle>
+                <CardTitle className="font-headline text-2xl pt-4 group-hover:text-primary transition-colors">{tool.name}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow">
                 <CardDescription>{tool.description}</CardDescription>

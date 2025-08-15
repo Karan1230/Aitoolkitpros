@@ -2,26 +2,36 @@ import Link from 'next/link';
 import { Logo } from './icons';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
-import { Send } from 'lucide-react';
+import { Send, Twitter, Github, Linkedin } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t bg-card">
+    <footer className="border-t border-border/40">
       <div className="container py-12">
-        <div className="grid md:grid-cols-3 gap-12">
-          <div className="flex flex-col gap-2 items-start">
+        <div className="grid md:grid-cols-12 gap-12">
+          <div className="md:col-span-4 flex flex-col gap-2 items-start">
             <Link href="/" className="flex items-center gap-2 mb-2">
               <Logo className="h-8 w-8 text-primary" />
               <span className="font-headline text-xl font-bold">AI Toolkit Pro</span>
             </Link>
-            <p className="text-sm text-muted-foreground">© {currentYear} AI Toolkit Pro. All rights reserved.</p>
             <p className="text-sm text-muted-foreground mt-2">
               Your hub for free AI tools for creativity, business, content, and fun. Explore tools in multiple languages.
             </p>
+             <div className="flex gap-2 mt-4">
+                <Button variant="ghost" size="icon" asChild>
+                    <a href="#" aria-label="Twitter"><Twitter /></a>
+                </Button>
+                <Button variant="ghost" size="icon" asChild>
+                    <a href="#" aria-label="GitHub"><Github /></a>
+                </Button>
+                <Button variant="ghost" size="icon" asChild>
+                    <a href="#" aria-label="LinkedIn"><Linkedin /></a>
+                </Button>
+             </div>
           </div>
-          <div className="md:col-span-2 grid grid-cols-2 sm:grid-cols-4 gap-8">
+          <div className="md:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
             <div>
                 <h4 className="font-headline font-semibold mb-3">Quick Links</h4>
                 <nav className="flex flex-col gap-2">
@@ -48,6 +58,9 @@ export function Footer() {
              </form>
             </div>
           </div>
+        </div>
+         <div className="mt-12 pt-8 border-t border-border/40 text-center text-sm text-muted-foreground">
+             <p>© {currentYear} AI Toolkit Pro. All rights reserved.</p>
         </div>
       </div>
     </footer>

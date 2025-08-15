@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, Bot } from 'lucide-react';
+import { Menu, Bot, Sparkles } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -30,7 +30,7 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
@@ -43,30 +43,13 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'transition-colors hover:text-foreground/80',
-                  pathname === item.href ? 'text-foreground' : 'text-foreground/60'
+                  'transition-colors hover:text-primary',
+                  pathname === item.href ? 'text-primary' : 'text-muted-foreground'
                 )}
               >
                 {item.name}
               </Link>
             ))}
-             <DropdownMenu>
-              <DropdownMenuTrigger className={cn(
-                  'flex items-center transition-colors hover:text-foreground/80 text-sm font-medium',
-                  pathname.startsWith('/tools/chatgpt') ? 'text-foreground' : 'text-foreground/60'
-                )}>ChatGPT Tools</DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>Writing & Content</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild><Link href="/tools/chatgpt-ai-tools">All ChatGPT Tools</Link></DropdownMenuItem>
-                <DropdownMenuItem asChild><Link href="/tools/chatgpt-ai-tools?tab=q-and-a">Q&A</Link></DropdownMenuItem>
-                <DropdownMenuItem asChild><Link href="/tools/chatgpt-ai-tools?tab=text-rewriter">Text Rewriter</Link></DropdownMenuItem>
-                 <DropdownMenuItem asChild><Link href="/tools/chatgpt-ai-tools?tab=grammar-spelling">Grammar Corrector</Link></DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuLabel>Development</DropdownMenuLabel>
-                <DropdownMenuItem asChild><Link href="/tools/chatgpt-ai-tools?tab=coding-help">Coding Helper</Link></DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </nav>
         </div>
 
@@ -91,25 +74,21 @@ export function Header() {
                         key={item.href}
                         href={item.href}
                         className={cn(
-                            'flex items-center justify-center py-2 transition-colors hover:text-foreground/80',
-                            pathname === item.href ? 'text-foreground bg-muted rounded-md' : 'text-foreground/60'
+                            'flex items-center justify-center py-2 transition-colors hover:text-primary',
+                            pathname === item.href ? 'text-primary bg-muted rounded-md' : 'text-muted-foreground'
                         )}
                     >
                         {item.name}
                     </Link>
                 ))}
-                 <Link
-                    href="/tools/chatgpt-ai-tools"
-                    className={cn(
-                        'flex items-center justify-center py-2 transition-colors hover:text-foreground/80',
-                        pathname.startsWith('/tools/chatgpt') ? 'text-foreground bg-muted rounded-md' : 'text-foreground/60'
-                    )}
-                >
-                    ChatGPT Tools
-                </Link>
               </nav>
             </SheetContent>
           </Sheet>
+        </div>
+        <div className="flex flex-1 items-center justify-end">
+            <Button asChild>
+                <Link href="/tools">Try AI Tools <Sparkles className="ml-2 h-4 w-4"/></Link>
+            </Button>
         </div>
       </div>
     </header>

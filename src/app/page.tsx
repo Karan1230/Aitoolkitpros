@@ -1,14 +1,16 @@
 
+'use client';
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, BrainCircuit, CheckCircle, Paintbrush, PenLine, Search, Sparkles, Wand2, Star } from "lucide-react";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { useRef } from "react";
 import { allTools, toolCategories } from "@/lib/tools";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Image from "next/image";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 
@@ -87,26 +89,26 @@ const TestimonialSchema = () => {
 
 
 export default function Home() {
+  const autoplayPlugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
   return (
     <div className="flex flex-col">
       <TestimonialSchema />
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 lg:py-40 text-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-background">
-         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat [mask-image:linear-gradient(to_bottom,white_5%,transparent_90%)]"></div>
+      <section className="relative py-24 md:py-32 lg:py-40 text-center overflow-hidden">
         <div className="container px-4 md:px-6 relative">
-          <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
+          <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter gradient-text">
             Unlock Creativity with Free AI Tools in Seconds
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
             Generate ideas, write content, design logos, create scripts, and more – all powered by AI.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="rounded-full bg-accent hover:bg-accent/90">
+            <Button asChild size="lg">
               <Link href="/tools">
                 Explore All Tools <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full">
+            <Button asChild size="lg" variant="outline">
               <Link href="/tools/idea-generator">
                 Generate Idea Now <Sparkles className="ml-2 h-5 w-5" />
               </Link>
@@ -115,29 +117,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Categories Section */}
-      <section id="categories" className="py-20 md:py-28">
-        <div className="container px-4 md:px-6">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">Explore by Category</h2>
-          <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
-            Find the perfect AI tool for any task, organized for your convenience.
-          </p>
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {toolCategories.map((category) => (
-              <Link href={`/tools#${category.id}`} key={category.name} className="group">
-                <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary p-6 text-center">
-                  <div className="flex justify-center mb-4">{category.icon}</div>
-                  <h3 className="font-headline text-xl font-semibold">{category.name}</h3>
-                  <p className="mt-2 text-muted-foreground text-sm">{category.description}</p>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Popular Tools Section */}
-      <section id="popular-tools" className="py-20 md:py-28 bg-card">
+      <section id="popular-tools" className="py-20 md:py-28">
         <div className="container px-4 md:px-6">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">Most Popular AI Tools</h2>
           <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
@@ -146,7 +127,7 @@ export default function Home() {
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredTools.map((tool) => (
               <Link href={tool.href} key={tool.name} className="group flex">
-                <Card className="w-full transition-all duration-300 hover:shadow-xl hover:border-primary flex flex-col">
+                <Card className="w-full transition-all duration-300 hover:shadow-xl hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
                   <CardHeader className="flex flex-row items-center gap-4 pb-4">
                     <div className="p-3 rounded-lg bg-primary/10 text-primary">
                       {tool.icon}
@@ -166,7 +147,7 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-16 text-center">
-            <Button asChild size="lg" className="rounded-full bg-accent hover:bg-accent/90">
+            <Button asChild size="lg" variant="secondary">
               <Link href="/tools">
                 See All 29 Tools <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -176,14 +157,14 @@ export default function Home() {
       </section>
       
       {/* How It Works Section */}
-      <section className="py-20 md:py-28">
+      <section className="py-20 md:py-28 bg-card/50">
         <div className="container">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">How Our AI Tools Work</h2>
           <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
               Achieve amazing results in three simple steps.
           </p>
           <div className="mt-12 grid md:grid-cols-3 gap-8 text-center">
-            <Card className="p-8">
+            <Card className="p-8 border-transparent shadow-none bg-transparent">
                 <div className="flex justify-center mb-4">
                     <div className="p-4 rounded-full bg-primary/10">
                         <PenLine className="h-10 w-10 text-primary" />
@@ -192,7 +173,7 @@ export default function Home() {
                 <h3 className="font-headline text-xl font-bold">1. Select Tool & Enter Input</h3>
                 <p className="text-muted-foreground mt-2">Choose from our suite of 29 specialized AI tools and provide your prompt, text, or image.</p>
             </Card>
-            <Card className="p-8">
+            <Card className="p-8 border-transparent shadow-none bg-transparent">
                  <div className="flex justify-center mb-4">
                     <div className="p-4 rounded-full bg-primary/10">
                         <BrainCircuit className="h-10 w-10 text-primary" />
@@ -201,7 +182,7 @@ export default function Home() {
                 <h3 className="font-headline text-xl font-bold">2. AI Generates Results</h3>
                 <p className="text-muted-foreground mt-2">Our advanced AI gets to work instantly, processing your request to generate high-quality content.</p>
             </Card>
-            <Card className="p-8">
+            <Card className="p-8 border-transparent shadow-none bg-transparent">
                  <div className="flex justify-center mb-4">
                     <div className="p-4 rounded-full bg-primary/10">
                         <CheckCircle className="h-10 w-10 text-primary" />
@@ -215,14 +196,15 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 md:py-28 bg-card">
+      <section className="py-20 md:py-28">
         <div className="container">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">What Our Users Say</h2>
           <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
             Trusted by creators, marketers, and businesses worldwide.
           </p>
           <Carousel
-            opts={{
+             plugins={[autoplayPlugin.current]}
+             opts={{
               align: "start",
               loop: true,
             }}
@@ -232,9 +214,9 @@ export default function Home() {
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                   <div className="p-4">
-                    <Card className="h-full flex flex-col">
+                    <Card className="h-full flex flex-col bg-card/50 backdrop-blur-sm">
                       <CardContent className="p-6 flex-grow flex flex-col justify-center items-center text-center">
-                        <Avatar className="w-20 h-20 mb-4">
+                        <Avatar className="w-20 h-20 mb-4 border-2 border-primary/20">
                           <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                           <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                         </Avatar>
@@ -261,7 +243,7 @@ export default function Home() {
       </section>
 
       {/* FAQs Section */}
-      <section className="py-20 md:py-28">
+      <section className="py-20 md:py-28 bg-card/50">
         <div className="container max-w-3xl">
            <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">Frequently Asked Questions</h2>
            <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
