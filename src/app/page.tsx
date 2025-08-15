@@ -68,6 +68,27 @@ const testimonials = [
         quote: "The Ad Copy and Hashtag Generators are my go-to tools for every campaign. They save me so much time on research and consistently deliver great results.",
         avatar: "https://i.pravatar.cc/150?u=mike",
         rating: 5,
+    },
+    {
+        name: "Chloe Garcia",
+        title: "Student",
+        quote: "The Study Notes Creator is a lifesaver for my exams. It summarizes long articles into key points, making revision so much faster and more effective.",
+        avatar: "https://i.pravatar.cc/150?u=chloe",
+        rating: 5,
+    },
+    {
+        name: "David Kim",
+        title: "Indie Game Developer",
+        quote: "As a solo dev, the AI Image and Icon Generators are indispensable. I can create high-quality assets for my games in minutes, without needing to be an artist.",
+        avatar: "https://i.pravatar.cc/150?u=david",
+        rating: 5,
+    },
+    {
+        name: "Fatima Ahmed",
+        title: "Chef & Food Blogger",
+        quote: "The AI Recipe Maker is my secret weapon for creativity. I plug in leftover ingredients and it gives me amazing, unique recipes. It has made my blog so much more interesting!",
+        avatar: "https://i.pravatar.cc/150?u=fatima",
+        rating: 5,
     }
 ];
 
@@ -220,19 +241,19 @@ export default function Home() {
               align: "start",
               loop: true,
             }}
-            className="w-full max-w-4xl mx-auto mt-12"
+            className="w-full max-w-6xl mx-auto mt-12"
           >
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <div className="p-4">
-                    <Card className="h-full flex flex-col bg-card/50 backdrop-blur-sm">
+                  <div className="p-4 h-full">
+                    <Card className="h-full flex flex-col bg-card/50 backdrop-blur-sm border rounded-lg transition-all duration-300 hover:shadow-lg hover:border-primary/50">
                       <CardContent className="p-6 flex-grow flex flex-col justify-center items-center text-center">
                         <Avatar className="w-20 h-20 mb-4 border-2 border-primary/20">
                           <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                           <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                         </Avatar>
-                        <p className="text-muted-foreground italic">"{testimonial.quote}"</p>
+                        <p className="text-muted-foreground italic flex-grow">"{testimonial.quote}"</p>
                         <div className="mt-4">
                             <h4 className="font-bold">{testimonial.name}</h4>
                             <p className="text-xs text-muted-foreground">{testimonial.title}</p>
@@ -248,8 +269,8 @@ export default function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
+            <CarouselPrevious className="hidden xl:flex" />
+            <CarouselNext className="hidden xl:flex" />
           </Carousel>
         </div>
       </section>
@@ -272,7 +293,7 @@ export default function Home() {
                   <span className="font-bold text-primary mr-4">{String(index + 1).padStart(2, '0')}</span>
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="px-6">
+                <AccordionContent className="px-6 pb-6">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
