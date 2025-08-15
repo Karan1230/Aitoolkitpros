@@ -1,19 +1,21 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getAllPosts } from '@/lib/posts';
+import { getAllPosts, Post } from '@/lib/posts';
 import { format } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { Search, ArrowRight } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BlogSidebar } from '@/components/blog-sidebar';
 import { cn } from '@/lib/utils';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+
 
 // export const metadata: Metadata = {
 //   title: 'Blog | AI Toolkit Pro',
@@ -23,11 +25,31 @@ import { cn } from '@/lib/utils';
 const POSTS_PER_PAGE = 6;
 
 export default function BlogPage() {
-  const allPosts = getAllPosts();
+  const [allPosts, setAllPosts] = useState<Post[]>([]);
   const [filter, setFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [visiblePosts, setVisiblePosts] = useState(POSTS_PER_PAGE);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [featuredPosts, setFeaturedPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    const posts = getAllPosts();
+    setAllPosts(posts);
+
+    if (posts.length > 0) {
+      const recent = posts[0];
+      const popular = posts[1] || recent; // Fallback for fewer than 2 posts
+      
+      let randomPost = posts[Math.floor(Math.random() * posts.length)];
+      // Ensure random is not same as recent or popular if possible
+      while (posts.length > 2 && (randomPost.slug === recent.slug || randomPost.slug === popular.slug)) {
+        randomPost = posts[Math.floor(Math.random() * posts.length)];
+      }
+
+      const uniqueFeaturedPosts = [...new Set([recent, popular, randomPost])];
+      setFeaturedPosts(uniqueFeaturedPosts);
+    }
+  }, []);
 
   const categories = ['All', ...Array.from(new Set(allPosts.map(post => post.category)))];
   
@@ -36,12 +58,9 @@ export default function BlogPage() {
     post.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const featuredPost = searchQuery ? null : searchedPosts[0];
-  const recentPosts = searchQuery ? searchedPosts : searchedPosts.slice(1);
-
   const filteredPosts = filter === 'All'
-    ? recentPosts
-    : recentPosts.filter(post => post.category === filter);
+    ? searchedPosts
+    : searchedPosts.filter(post => post.category === filter);
   
   const loadMorePosts = () => {
     setVisiblePosts(prev => prev + POSTS_PER_PAGE);
@@ -78,41 +97,59 @@ export default function BlogPage() {
           </div>
       </div>
 
-      {/* Main Content */}
-      <div className="mt-16 grid lg:grid-cols-4 gap-12">
-        <div className="lg:col-span-3">
-
-            {/* Featured Post */}
-            {featuredPost && (
-                <>
-                <h2 className="font-headline text-3xl font-bold mb-8">Featured Post</h2>
-                <Link href={`/blog/${featuredPost.slug}`} className="group block mb-16">
-                    <Card className="w-full transition-all duration-300 hover:shadow-lg hover:border-primary">
+       {/* Featured Posts Carousel */}
+      {featuredPosts.length > 0 && (
+        <div className="mt-16">
+          <h2 className="font-headline text-3xl font-bold mb-8 text-center">Featured Posts</h2>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full max-w-4xl mx-auto"
+          >
+            <CarouselContent>
+              {featuredPosts.map((post) => (
+                <CarouselItem key={post.slug}>
+                  <div className="p-1">
+                     <Link href={`/blog/${post.slug}`} className="group block">
+                      <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-primary">
                         <div className="grid md:grid-cols-2">
-                            <div className="p-8">
-                                <Badge variant="secondary" className="w-fit mb-4">{featuredPost.category}</Badge>
-                                <CardTitle className="font-headline text-3xl mb-4 group-hover:text-primary">{featuredPost.title}</CardTitle>
-                                <CardDescription className="mb-4">{featuredPost.description}</CardDescription>
-                                <div className="text-sm text-muted-foreground">
-                                    <span>{format(new Date(featuredPost.datePublished), 'MMMM d, yyyy')}</span> by <span>{featuredPost.author}</span>
-                                </div>
-                            </div>
                             <div className="relative min-h-[250px] md:min-h-full">
                                 <Image
-                                    src={featuredPost.featuredImage}
-                                    alt={featuredPost.title}
+                                    src={post.featuredImage}
+                                    alt={post.title}
                                     fill
-                                    className="object-cover rounded-r-lg"
-                                    data-ai-hint={featuredPost.dataAiHint}
+                                    className="object-cover"
+                                    data-ai-hint={post.dataAiHint}
                                     priority
                                 />
                             </div>
+                            <div className="p-8 flex flex-col justify-center">
+                                <Badge variant="secondary" className="w-fit mb-4">{post.category}</Badge>
+                                <CardTitle className="font-headline text-3xl mb-4 group-hover:text-primary">{post.title}</CardTitle>
+                                <CardDescription className="mb-4">{post.description}</CardDescription>
+                                <div className="text-sm text-muted-foreground">
+                                    <span>{format(new Date(post.datePublished), 'MMMM d, yyyy')}</span> by <span>{post.author}</span>
+                                </div>
+                            </div>
                         </div>
-                    </Card>
-                </Link>
-                </>
-            )}
+                      </Card>
+                    </Link>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
+        </div>
+      )}
 
+
+      {/* Main Content */}
+      <div className="mt-16 grid lg:grid-cols-4 gap-12">
+        <div className="lg:col-span-3">
           {/* Category Filters */}
             <div className="mb-8 flex flex-wrap gap-2">
                 {categories.map(category => (
