@@ -18,31 +18,31 @@ const featuredTools = allTools.filter(t => ["AI Script Writer", "AI Image Genera
 
 const faqs = [
   {
-    question: "Are all the AI tools on this website free to use?",
+    question: "1. Are all the AI tools on this website free to use?",
     answer: "Yes, absolutely! All tools available on AI Toolkit Pro are 100% free to use. We believe in making powerful AI technology accessible to everyone without any hidden costs, subscriptions, or sign-ups."
   },
   {
-    question: "Can I use the generated content for commercial purposes?",
+    question: "2. Can I use the generated content for commercial purposes?",
     answer: "Generally, yes. The content you generate (e.g., images, scripts, logos) is royalty-free. However, we recommend checking the terms of the underlying AI models for any specific restrictions, as they may vary."
   },
   {
-    question: "Which languages do the AI tools support?",
+    question: "3. Which languages do the AI tools support?",
     answer: "Many of our tools, especially those for text generation and translation, support a wide variety of languages. You can typically select your desired language from a dropdown menu within the tool itself."
   },
   {
-    question: "Is my data safe when using these tools?",
+    question: "4. Is my data safe when using these tools?",
     answer: "Your privacy is our priority. We do not store your inputs (like text prompts or uploaded images) on our servers. Your data is sent to the respective third-party AI provider for processing and the result is returned directly to you."
   },
   {
-    question: "What kind of images can I generate?",
+    question: "5. What kind of images can I generate?",
     answer: "Our AI Image Generator can create a wide variety of visuals, including realistic photos, digital art, cartoons, logos, and YouTube thumbnails. The quality of the result depends on the detail of your prompt."
   },
   {
-      question: "How can I get the best results from the AI tools?",
+      question: "6. How can I get the best results from the AI tools?",
       answer: "The key is to be specific and provide clear instructions. For text-based tools, offer as much context as possible. For image tools, describe the subject, style, colors, and lighting in detail for the best output."
   },
   {
-      question: "Do you offer an API for developers?",
+      question: "7. Do you offer an API for developers?",
       answer: "Currently, we do not offer a public API. Our tools are designed to be used directly on our website. We may consider offering an API in the future as our platform grows."
   }
 ];
@@ -122,7 +122,7 @@ const TestimonialSchema = () => {
 
 
 export default function Home() {
-  const autoplayPlugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
+  const autoplayPlugin = useRef(Autoplay({ delay: 2, stopOnInteraction: true }));
   return (
     <div className="flex flex-col">
       <TestimonialSchema />
@@ -180,7 +180,7 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-16 text-center">
-            <Button asChild size="lg" variant="secondary">
+            <Button asChild size="lg" className="border border-black">
               <Link href="/tools">
                 See All 29 Tools <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
