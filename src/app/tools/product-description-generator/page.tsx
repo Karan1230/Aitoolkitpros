@@ -22,6 +22,37 @@ const benefits = [
     "Create a consistent brand voice across all products."
 ];
 
+const faqs = [
+    {
+        question: "1. Is this tool free to use?",
+        answer: "Yes, it's 100% free. You can generate as many product descriptions as you need without any limits or subscriptions."
+    },
+    {
+        question: "2. Is the generated content unique?",
+        answer: "The AI generates a unique description based on your specific inputs. We recommend reviewing and tweaking it to perfectly match your brand's voice."
+    },
+    {
+        question: "3. What e-commerce platforms can I use this for?",
+        answer: "The descriptions are suitable for all major platforms like Shopify, WooCommerce, Amazon, Flipkart, Etsy, and more."
+    },
+    {
+        question: "4. How does the 'SEO-optimized' tone work?",
+        answer: "When you select the 'SEO-optimized' tone, the AI will naturally weave in relevant keywords based on your product name and category to help your product page rank better in search engine results."
+    },
+    {
+        question: "5. Can I specify a target audience?",
+        answer: "Yes. Providing a target audience (e.g., 'students', 'busy professionals', 'eco-conscious shoppers') helps the AI tailor the language and benefits to resonate with that specific group."
+    },
+    {
+        question: "6. What should I include in the 'Key Features' section?",
+        answer: "List the most important features of your product, one per line. The AI will then transform these features into benefits for the customer in the final description."
+    },
+    {
+        question: "7. Can I generate descriptions in different languages?",
+        answer: "While this tool is currently optimized for English, many of our other writing tools support multiple languages. This feature may be added in the future!"
+    }
+];
+
 export default function ProductDescriptionGeneratorPage() {
   return (
     <div className="container py-12 md:py-20">
@@ -70,25 +101,21 @@ export default function ProductDescriptionGeneratorPage() {
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>Is this tool free to use?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes, it's 100% free. You can generate as many product descriptions as you need without any limits or subscriptions.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>Is the generated content unique?</AccordionTrigger>
-                            <AccordionContent>
-                            The AI generates a unique description based on your specific inputs. We recommend reviewing and tweaking it to perfectly match your brand's voice.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger>What e-commerce platforms can I use this for?</AccordionTrigger>
-                            <AccordionContent>
-                            The descriptions are suitable for all major platforms like Shopify, WooCommerce, Amazon, Flipkart, Etsy, and more.
-                            </AccordionContent>
-                        </AccordionItem>
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, index) => (
+                             <AccordionItem 
+                                value={`item-${index + 1}`} 
+                                key={index} 
+                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+                            >
+                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="px-6 pb-6">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </CardContent>
             </Card>

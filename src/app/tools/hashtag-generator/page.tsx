@@ -22,6 +22,37 @@ const benefits = [
     "Discover trending and niche hashtags in your industry."
 ];
 
+const faqs = [
+    {
+        question: "1. Is this tool free?",
+        answer: "Yes, our AI Hashtag Generator is 100% free to use. There are no limits on how many times you can use it."
+    },
+    {
+        question: "2. Why do I need to select a platform?",
+        answer: "Different platforms have different hashtag best practices. For example, Instagram favors a larger number of hashtags, while Twitter/X is more effective with just a few. The AI optimizes its suggestions based on your choice."
+    },
+    {
+        question: "3. What's the difference between hashtag styles?",
+        answer: "'Short & Popular' gives you high-traffic hashtags that reach a broad audience. 'Long-Tail & Niche' provides more specific hashtags to target a dedicated community. 'Mixed' offers a balance of both for a well-rounded strategy."
+    },
+    {
+        question: "4. How many hashtags does the tool generate?",
+        answer: "The tool generates a list of at least 20 relevant hashtags, providing you with a comprehensive set of options to use in your posts."
+    },
+    {
+        question: "5. Can I just copy and paste the hashtags?",
+        answer: "Yes. After the hashtags are generated, you can use the 'Copy' button to copy all of them to your clipboard, formatted with spaces, ready to be pasted directly into your social media post."
+    },
+    {
+        question: "6. How does the AI find the best hashtags?",
+        answer: "The AI analyzes your topic and cross-references it with current trends and data from the selected social media platform to find hashtags that are relevant, have good engagement, and match your chosen style."
+    },
+    {
+        question: "7. Should I use all the generated hashtags?",
+        answer: "Not necessarily. We recommend choosing the most relevant hashtags from the generated list that best fit your specific post. Quality is often more important than quantity."
+    }
+];
+
 export default function HashtagGeneratorPage() {
   return (
     <div className="container py-12 md:py-20">
@@ -70,25 +101,21 @@ export default function HashtagGeneratorPage() {
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>Is this tool free?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes, our AI Hashtag Generator is 100% free to use. There are no limits on how many times you can use it.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>Why do I need to select a platform?</AccordionTrigger>
-                            <AccordionContent>
-                            Different platforms have different hashtag best practices. For example, Instagram favors a larger number of hashtags, while Twitter/X is more effective with just a few. The AI optimizes its suggestions based on your choice.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger>What's the difference between hashtag styles?</AccordionTrigger>
-                            <AccordionContent>
-                            "Short & Popular" gives you high-traffic hashtags that reach a broad audience. "Long-Tail & Niche" provides more specific hashtags to target a dedicated community. "Mixed" offers a balance of both for a well-rounded strategy.
-                            </AccordionContent>
-                        </AccordionItem>
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, index) => (
+                             <AccordionItem 
+                                value={`item-${index + 1}`} 
+                                key={index} 
+                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+                            >
+                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="px-6 pb-6">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </CardContent>
             </Card>

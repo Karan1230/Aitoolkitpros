@@ -22,6 +22,37 @@ const benefits = [
     "Download high-quality files for web and print."
 ];
 
+const faqs = [
+    {
+        question: "1. Is this logo maker really free?",
+        answer: "Yes, it's 100% free. You can generate and download as many logos as you like without any hidden charges."
+    },
+    {
+        question: "2. Can I use the logos for my business?",
+        answer: "Absolutely. The logos are royalty-free, and you can use them for any commercial or personal project."
+    },
+    {
+        question: "3. What files will I get when I download?",
+        answer: "When you click to download a logo, you will receive a ZIP file containing two versions: a standard JPEG on a white background and a PNG with a transparent background."
+    },
+    {
+        question: "4. Does the AI understand my industry?",
+        answer: "Yes, when you provide your industry (e.g., 'Technology', 'Cafe', 'Fitness'), the AI uses that information to generate more relevant symbols, fonts, and styles for your logo."
+    },
+    {
+        question: "5. Can I get a logo with a transparent background?",
+        answer: "Yes! Every logo you download comes with a standard version on a white background and a PNG version with a transparent background, perfect for use on websites, videos, and other colored backgrounds."
+    },
+    {
+        question: "6. What if I don't like the generated logos?",
+        answer: "If you're not satisfied, try refining your inputs. Use different keywords for your industry, experiment with other color descriptions, or select a new style. Generating new batches is free and unlimited."
+    },
+    {
+        question: "7. Do I need any design skills to use this tool?",
+        answer: "Not at all. The AI Logo Maker is designed for everyone, especially entrepreneurs and small business owners who don't have a design background. The tool handles all the design principles for you."
+    }
+];
+
 export default function AiLogoMakerPage() {
   return (
     <div className="container py-12 md:py-20">
@@ -70,25 +101,21 @@ export default function AiLogoMakerPage() {
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>Is this logo maker really free?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes, it's 100% free. You can generate and download as many logos as you like without any hidden charges.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>Can I use the logos for my business?</AccordionTrigger>
-                            <AccordionContent>
-                            Absolutely. The logos are royalty-free, and you can use them for any commercial or personal project.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger>What files will I get when I download?</AccordionTrigger>
-                            <AccordionContent>
-                             When you click to download a logo, you will receive a ZIP file containing two versions: a standard JPEG on a white background and a PNG with a transparent background.
-                            </AccordionContent>
-                        </AccordionItem>
+                     <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, index) => (
+                             <AccordionItem 
+                                value={`item-${index + 1}`} 
+                                key={index} 
+                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+                            >
+                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="px-6 pb-6">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </CardContent>
             </Card>

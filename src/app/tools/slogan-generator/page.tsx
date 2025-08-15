@@ -22,6 +22,37 @@ const benefits = [
     "Define your brand's message with clarity."
 ];
 
+const faqs = [
+    {
+        question: "1. Is this tool free?",
+        answer: "Yes, our AI Slogan Generator is 100% free to use, with no limits on generations."
+    },
+    {
+        question: "2. Can I use the generated slogans for my business?",
+        answer: "Absolutely. The generated slogans are royalty-free and can be used for any commercial or personal branding."
+    },
+    {
+        question: "3. What is 'SEO-Friendly'?",
+        answer: "Enabling the 'SEO-Friendly' option will prompt the AI to include relevant keywords from your industry and product details, which can help with online visibility."
+    },
+    {
+        question: "4. How many slogans does it generate?",
+        answer: "The tool generates a list of at least 15 unique slogans and taglines for every request, giving you a wide variety of options to choose from."
+    },
+    {
+        question: "5. Can I get slogans in different languages?",
+        answer: "Yes, the tool supports over 20 languages. Just select your desired language from the menu, and the AI will generate slogans in that language."
+    },
+    {
+        question: "6. How can I get the best results?",
+        answer: "Provide as much detail as you can. A clear 'Key Message' and specific 'Product/Service Details' will help the AI generate more relevant and impactful slogans."
+    },
+    {
+        question: "7. What's the difference between a slogan and a tagline?",
+        answer: "While often used interchangeably, a tagline is a more permanent representation of the brand (e.g., Nike's 'Just Do It'), while a slogan can be specific to a product or campaign. Our tool can generate both."
+    }
+];
+
 export default function SloganGeneratorPage() {
   return (
     <div className="container py-12 md:py-20">
@@ -70,25 +101,21 @@ export default function SloganGeneratorPage() {
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>Is this tool free?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes, our AI Slogan Generator is 100% free to use, with no limits on generations.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>Can I use the generated slogans for my business?</AccordionTrigger>
-                            <AccordionContent>
-                            Absolutely. The generated slogans are royalty-free and can be used for any commercial or personal branding.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger>What is "SEO-Friendly"?</AccordionTrigger>
-                            <AccordionContent>
-                            Enabling the "SEO-Friendly" option will prompt the AI to include relevant keywords from your industry and product details, which can help with online visibility.
-                            </AccordionContent>
-                        </AccordionItem>
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, index) => (
+                             <AccordionItem 
+                                value={`item-${index + 1}`} 
+                                key={index} 
+                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+                            >
+                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="px-6 pb-6">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </CardContent>
             </Card>

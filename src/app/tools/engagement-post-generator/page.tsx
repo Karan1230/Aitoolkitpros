@@ -22,6 +22,37 @@ const benefits = [
     "Keep your social media feed fresh and engaging."
 ];
 
+const faqs = [
+    {
+        question: "1. Is this tool free?",
+        answer: "Yes, our AI Engagement Post Ideas Generator is 100% free to use."
+    },
+    {
+        question: "2. Are the ideas optimized for each platform?",
+        answer: "Yes. The AI considers the style and best practices for the platform you select (e.g., Instagram, TikTok, Facebook) to create more effective and engaging post ideas."
+    },
+    {
+        question: "3. Can I use this for any niche?",
+        answer: "Absolutely. The tool is designed to be versatile and can generate ideas for a wide range of industries, hobbies, and topics."
+    },
+    {
+        question: "4. What does the output include?",
+        answer: "For each idea, the tool generates the core concept, a suggested caption to go with it, and a list of relevant hashtags to help increase visibility."
+    },
+    {
+        question: "5. How many ideas does it generate?",
+        answer: "The tool generates a list of 5 unique post ideas at a time, giving you a variety of options to choose from for your content calendar."
+    },
+    {
+        question: "6. What are the different 'Content Types'?",
+        answer: "You can choose from different types of engagement posts, such as asking a 'Question' to your audience, creating a 'Poll', launching a 'Challenge', or sharing a helpful 'Tip'. This helps tailor the output to your specific goal."
+    },
+    {
+        question: "7. Can I download the generated ideas?",
+        answer: "Yes. After generating the ideas, you can use the 'Download All' button to save a text file containing all the generated post ideas, captions, and hashtags."
+    }
+];
+
 export default function EngagementPostGeneratorPage() {
   return (
     <div className="container py-12 md:py-20">
@@ -70,25 +101,21 @@ export default function EngagementPostGeneratorPage() {
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>Is this tool free?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes, our AI Engagement Post Ideas Generator is 100% free to use.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>Are the ideas optimized for each platform?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes. The AI considers the style and best practices for the platform you select to create more effective and engaging post ideas.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger>Can I use this for any niche?</AccordionTrigger>
-                            <AccordionContent>
-                            Absolutely. The tool is designed to be versatile and can generate ideas for a wide range of industries, hobbies, and topics.
-                            </AccordionContent>
-                        </AccordionItem>
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, index) => (
+                             <AccordionItem 
+                                value={`item-${index + 1}`} 
+                                key={index} 
+                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+                            >
+                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="px-6 pb-6">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </CardContent>
             </Card>

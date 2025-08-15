@@ -22,6 +22,37 @@ const benefits = [
     "Choose from multiple tones to match your style."
 ];
 
+const faqs = [
+    {
+        question: "1. Is this tool free to use?",
+        answer: "Yes, it's 100% free. You can generate as many jokes and roasts as you like without any limits."
+    },
+    {
+        question: "2. What does 'Family-Friendly' do?",
+        answer: "Enabling the 'Family-Friendly' option instructs the AI to avoid generating content with adult themes, profanity, or dark humor, making it suitable for all audiences."
+    },
+    {
+        question: "3. Can I use these jokes commercially?",
+        answer: "Absolutely. The generated content is royalty-free and can be used for social media, videos, stand-up routines, or any other project."
+    },
+    {
+        question: "4. What's the difference between 'Roast' and 'Joke' mode?",
+        answer: "'Roast' mode generates witty insults about the topic, in the style of a comedy roast. 'Joke' mode generates classic one-liners and short jokes about the topic. 'Mixed' gives you a combination of both."
+    },
+    {
+        question: "5. Can I choose the comedic tone?",
+        answer: "Yes. You can select from various tones like 'Sarcastic', 'Savage', 'Light/Friendly', or 'Dark Humor' to match the style of comedy you're looking for. Note that 'Dark Humor' is only available when 'Family-Friendly' is turned off."
+    },
+    {
+        question: "6. How many results do I get?",
+        answer: "The tool generates a list of 10 unique roasts or jokes for each request, giving you plenty of material to choose from."
+    },
+    {
+        question: "7. Does the AI understand jokes about specific people?",
+        answer: "You can enter a name or a type of person (e.g., 'my friend who is a doctor') as the topic. The AI will generate jokes based on common stereotypes and situations associated with that topic. It does not have knowledge of private individuals."
+    }
+];
+
 export default function RoastJokeGeneratorPage() {
   return (
     <div className="container py-12 md:py-20">
@@ -70,25 +101,21 @@ export default function RoastJokeGeneratorPage() {
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>Is this tool free to use?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes, it's 100% free. You can generate as many jokes and roasts as you like without any limits.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>What does "Family-Friendly" do?</AccordionTrigger>
-                            <AccordionContent>
-                             Enabling the "Family-Friendly" option instructs the AI to avoid generating content with adult themes, profanity, or dark humor, making it suitable for all audiences.
-                            </AccordionContent>
-                        </AccordionItem>
-                         <AccordionItem value="item-3">
-                            <AccordionTrigger>Can I use these jokes commercially?</AccordionTrigger>
-                            <AccordionContent>
-                            Absolutely. The generated content is royalty-free and can be used for social media, videos, or any other project.
-                            </AccordionContent>
-                        </AccordionItem>
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, index) => (
+                             <AccordionItem 
+                                value={`item-${index + 1}`} 
+                                key={index} 
+                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+                            >
+                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="px-6 pb-6">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </CardContent>
             </Card>

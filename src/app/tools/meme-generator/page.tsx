@@ -22,6 +22,37 @@ const benefits = [
     "Turn your ideas into humorous images."
 ];
 
+const faqs = [
+    {
+        question: "1. Is it really free?",
+        answer: "Yes, our AI Meme Generator is 100% free to use. There are no hidden costs or subscriptions."
+    },
+    {
+        question: "2. Can I use my own images?",
+        answer: "Absolutely! You can upload your own image, and the AI will add a witty caption to it."
+    },
+    {
+        question: "3. What kind of topics work best?",
+        answer: "Literally anything! Current events, relatable situations, or inside jokes work great. The more creative you are, the funnier the result."
+    },
+    {
+        question: "4. What if I don't upload an image?",
+        answer: "If you don't upload an image, the AI will generate one for you based on your topic. It will create a relevant and humorous image to go along with the meme text."
+    },
+    {
+        question: "5. Can I use the generated memes on my social media?",
+        answer: "Yes! The memes are royalty-free. Feel free to download them and share them on Instagram, Twitter/X, Facebook, or anywhere else."
+    },
+    {
+        question: "6. Does the AI add the text directly onto the image?",
+        answer: "Yes, the AI generates a final image with the meme text overlaid in a classic, bold, and easy-to-read meme font."
+    },
+    {
+        question: "7. How long does it take to create a meme?",
+        answer: "It's super fast! The entire process, from entering your topic to downloading the final image, usually takes less than 30 seconds."
+    }
+];
+
 export default function MemeGeneratorPage() {
   return (
     <div className="container py-12 md:py-20">
@@ -70,25 +101,21 @@ export default function MemeGeneratorPage() {
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>Is it really free?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes, our AI Meme Generator is 100% free to use. There are no hidden costs or subscriptions.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>Can I use my own images?</AccordionTrigger>
-                            <AccordionContent>
-                            Absolutely! You can upload your own image, and the AI will add a witty caption to it.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger>What kind of topics work best?</AccordionTrigger>
-                            <AccordionContent>
-                            Literally anything! Current events, relatable situations, or inside jokes work great. The more creative you are, the funnier the result.
-                            </AccordionContent>
-                        </AccordionItem>
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, index) => (
+                             <AccordionItem 
+                                value={`item-${index + 1}`} 
+                                key={index} 
+                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+                            >
+                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="px-6 pb-6">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </CardContent>
             </Card>

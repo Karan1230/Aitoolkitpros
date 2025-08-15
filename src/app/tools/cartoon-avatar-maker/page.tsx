@@ -22,6 +22,37 @@ const benefits = [
     "Download high-resolution, transparent PNGs."
 ];
 
+const faqs = [
+    {
+        question: "1. Is this tool really free?",
+        answer: "Yes, our AI Avatar Maker is 100% free to use. There are no hidden fees or subscriptions."
+    },
+    {
+        question: "2. What kind of photo works best?",
+        answer: "For the best results, use a clear, well-lit, front-facing portrait where your facial features are easily visible."
+    },
+    {
+        question: "3. Is my data safe?",
+        answer: "Yes, your privacy is important. We don't store your uploaded photos. They are sent to the AI for processing and the result is returned directly to you."
+    },
+    {
+        question: "4. What styles can I choose from?",
+        answer: "You can choose from a variety of artistic styles, including 2D Cartoon, 3D Avatar, Anime, Pixar Style, Comic Book, and more. Experiment to find the one you like best!"
+    },
+    {
+        question: "5. Can I customize the background?",
+        answer: "Yes. You can choose a transparent background, a solid color of your choice, or even describe a custom scene (e.g., 'a futuristic city at night') for the AI to generate."
+    },
+    {
+        question: "6. What file format will my avatar be in?",
+        answer: "All generated avatars are provided as high-quality PNG files. PNGs are perfect for web use and support transparent backgrounds."
+    },
+    {
+        question: "7. Will the avatar look like me?",
+        answer: "The AI is designed to preserve the key facial features and likeness of the person in the photo while transforming it into the selected artistic style. The better the quality of the input photo, the better the likeness."
+    }
+];
+
 export default function CartoonAvatarMakerPage() {
   return (
     <div className="container py-12 md:py-20">
@@ -71,25 +102,21 @@ export default function CartoonAvatarMakerPage() {
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>Is this tool really free?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes, our AI Avatar Maker is 100% free to use. There are no hidden fees or subscriptions.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>What kind of photo works best?</AccordionTrigger>
-                            <AccordionContent>
-                            For the best results, use a clear, well-lit, front-facing portrait where your facial features are easily visible.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger>Is my data safe?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes, your privacy is important. We don't store your uploaded photos. They are sent to the AI for processing and the result is returned directly to you.
-                            </AccordionContent>
-                        </AccordionItem>
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, index) => (
+                             <AccordionItem 
+                                value={`item-${index + 1}`} 
+                                key={index} 
+                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+                            >
+                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="px-6 pb-6">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </CardContent>
             </Card>

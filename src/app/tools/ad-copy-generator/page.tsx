@@ -22,6 +22,37 @@ const benefits = [
     "Save time and money on copywriting."
 ];
 
+const faqs = [
+    {
+        question: "1. Is this tool free to use?",
+        answer: "Yes, our AI Ad Copy Generator is 100% free to use."
+    },
+    {
+        question: "2. Is the ad copy optimized for each platform?",
+        answer: "Yes. The AI considers the typical character limits, style, and best practices for the platform you select to create more effective ad copy."
+    },
+    {
+        question: "3. Can I use this for any product or service?",
+        answer: "Absolutely. The tool is designed to be versatile and can generate ad copy for a wide range of industries and offerings."
+    },
+    {
+        question: "4. What languages does the ad copy generator support?",
+        answer: "You can generate ad copy in over 20 languages. Simply select your desired language from the dropdown menu before generating the copy."
+    },
+    {
+        question: "5. Can I generate copy for A/B testing?",
+        answer: "Yes! The tool generates multiple unique ad variations with different headlines and body text, making it perfect for A/B testing to see which message resonates best with your audience."
+    },
+    {
+        question: "6. How can I get the best results?",
+        answer: "For the best results, be as specific as possible in the 'Product Details' and 'Key Selling Points' fields. The more context you give the AI, the more relevant and persuasive the generated ad copy will be."
+    },
+    {
+        question: "7. Is the generated content original?",
+        answer: "Yes, the AI creates new ad copy from scratch based on your inputs. While the ideas are unique, we always recommend reviewing the copy to ensure it perfectly aligns with your brand's voice."
+    }
+];
+
 export default function AdCopyGeneratorPage() {
   return (
     <div className="container py-12 md:py-20">
@@ -70,25 +101,21 @@ export default function AdCopyGeneratorPage() {
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>Is this tool free?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes, our AI Ad Copy Generator is 100% free to use.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>Is the ad copy optimized for each platform?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes. The AI considers the typical character limits, style, and best practices for the platform you select to create more effective ad copy.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger>Can I use this for any product or service?</AccordionTrigger>
-                            <AccordionContent>
-                            Absolutely. The tool is designed to be versatile and can generate ad copy for a wide range of industries and offerings.
-                            </AccordionContent>
-                        </AccordionItem>
+                   <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, index) => (
+                            <AccordionItem 
+                                value={`item-${index + 1}`} 
+                                key={index} 
+                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+                            >
+                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="px-6 pb-6">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </CardContent>
             </Card>

@@ -21,6 +21,37 @@ const benefits = [
     "Save time and overcome creative blocks."
 ];
 
+const faqs = [
+    {
+        question: "1. Which social media platforms is this for?",
+        answer: "The generated posts are suitable for all major platforms like Instagram, Facebook, X (formerly Twitter), LinkedIn, and more."
+    },
+    {
+        question: "2. Is there a limit to how many posts I can generate?",
+        answer: "No, this tool is completely free and you can generate as many posts as you need."
+    },
+    {
+        question: "3. Can I customize the generated content?",
+        answer: "Absolutely! We recommend using the generated post as a starting point and adding your own personal touch or brand voice."
+    },
+    {
+        question: "4. Does the AI generate hashtags automatically?",
+        answer: "Yes, the AI analyzes your topic and automatically includes a set of relevant hashtags within the generated post to help increase its visibility and reach."
+    },
+    {
+        question: "5. Can I generate posts in different languages?",
+        answer: "Yes. Our tool supports over 20 languages. Simply select your desired language from the dropdown menu, and the AI will create the post in that language."
+    },
+    {
+        question: "6. How long are the generated posts?",
+        answer: "The AI aims to create posts of an optimal length for social media—long enough to be informative or engaging, but short enough to be easily readable in a feed."
+    },
+    {
+        question: "7. How can I get the best results?",
+        answer: "Provide a clear and concise topic. For example, instead of just 'coffee,' try 'the benefits of drinking black coffee in the morning.' The more specific you are, the better the result."
+    }
+];
+
 export default function SocialMediaPostGeneratorPage() {
   return (
     <div className="container py-12 md:py-20">
@@ -69,25 +100,21 @@ export default function SocialMediaPostGeneratorPage() {
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>Which social media platforms is this for?</AccordionTrigger>
-                            <AccordionContent>
-                            The generated posts are suitable for all major platforms like Instagram, Facebook, X (formerly Twitter), LinkedIn, and more.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>Is there a limit to how many posts I can generate?</AccordionTrigger>
-                            <AccordionContent>
-                            No, this tool is completely free and you can generate as many posts as you need.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger>Can I customize the generated content?</AccordionTrigger>
-                            <AccordionContent>
-                            Absolutely! We recommend using the generated post as a starting point and adding your own personal touch or brand voice.
-                            </AccordionContent>
-                        </AccordionItem>
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, index) => (
+                             <AccordionItem 
+                                value={`item-${index + 1}`} 
+                                key={index} 
+                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+                            >
+                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="px-6 pb-6">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </CardContent>
             </Card>

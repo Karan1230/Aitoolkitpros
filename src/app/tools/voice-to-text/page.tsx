@@ -22,6 +22,37 @@ const benefits = [
     "Save time on manual transcription."
 ];
 
+const faqs = [
+    {
+        question: "1. What audio formats are supported for upload?",
+        answer: "You can upload files in various formats, including MP3, WAV, FLAC, M4A, and MP4. The tool is designed to be highly flexible."
+    },
+    {
+        question: "2. How accurate is the transcription?",
+        answer: "Our tool uses a state-of-the-art AI model to provide highly accurate transcriptions. Accuracy is best with clear audio and minimal background noise."
+    },
+    {
+        question: "3. Is my audio stored on your servers?",
+        answer: "No. Your audio is sent directly to the AI provider for transcription and is not stored on our servers. We are committed to your privacy."
+    },
+    {
+        question: "4. Can the tool transcribe and translate at the same time?",
+        answer: "Yes, that's one of its most powerful features! The AI first transcribes the audio into text and then translates that text into your selected target language, all in one step."
+    },
+    {
+        question: "5. What is the maximum file size I can upload?",
+        answer: "To ensure fast and reliable service for all users, the maximum file size for each audio file is currently limited to 10MB."
+    },
+    {
+        question: "6. Can I transcribe multiple files at once?",
+        answer: "Yes, you can select and upload multiple audio files at the same time. The tool will process them in parallel and display the transcription for each file as it becomes available."
+    },
+    {
+        question: "7. How should I record my audio for the best results?",
+        answer: "For the highest accuracy, record in a quiet environment using a decent quality microphone. Speak clearly and try to minimize overlapping speakers."
+    }
+];
+
 export default function VoiceToTextPage() {
   return (
     <div className="container py-12 md:py-20">
@@ -70,25 +101,21 @@ export default function VoiceToTextPage() {
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>What audio formats are supported?</AccordionTrigger>
-                            <AccordionContent>
-                            The direct recording feature uses the standard format your browser provides (usually WEBM or MP4). The underlying AI supports a wide range of formats like MP3, WAV, FLAC, and more.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>How accurate is the transcription?</AccordionTrigger>
-                            <AccordionContent>
-                            Our tool uses a state-of-the-art AI model to provide highly accurate transcriptions. Accuracy is best with clear audio and minimal background noise.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger>Is my audio stored on your servers?</AccordionTrigger>
-                            <AccordionContent>
-                            No. Your audio is sent directly to the AI provider for transcription and is not stored on our servers. We are committed to your privacy.
-                            </AccordionContent>
-                        </AccordionItem>
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, index) => (
+                             <AccordionItem 
+                                value={`item-${index + 1}`} 
+                                key={index} 
+                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+                            >
+                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="px-6 pb-6">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </CardContent>
             </Card>

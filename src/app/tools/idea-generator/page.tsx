@@ -21,6 +21,37 @@ const benefits = [
     "Explore marketing angles you haven't considered."
 ];
 
+const faqs = [
+    {
+        question: "1. Is this tool free?",
+        answer: "Yes, our AI Idea Generator is completely free to use. Generate as many ideas as you need without any limits."
+    },
+    {
+        question: "2. What kind of topics can I use?",
+        answer: "You can enter any topic, industry, niche, or keyword. The AI works best with clear concepts but can also generate creative ideas from abstract topics."
+    },
+    {
+        question: "3. Are the generated ideas unique?",
+        answer: "The AI generates ideas based on your specific input, so they are tailored to your request. While the concepts may not be entirely new to the world, they offer a unique combination and perspective."
+    },
+    {
+        question: "4. What are the different 'Idea Types'?",
+        answer: "You can select the category of ideas you need, such as 'Business Idea', 'Marketing Idea', 'Content Idea', or 'Startup Idea'. This helps the AI focus its creativity on your specific goal."
+    },
+    {
+        question: "5. How many ideas will I get?",
+        answer: "The tool generates a list of at least 10 creative ideas for each request, giving you plenty of inspiration to work with."
+    },
+    {
+        question: "6. Can I generate ideas in other languages?",
+        answer: "Yes! Our tool supports over 20 languages. You can select your preferred language, and the AI will generate ideas in that language."
+    },
+    {
+        question: "7. How can I use the generated ideas?",
+        answer: "You can use them as a starting point for a new business, a topic for your next blog post or video, a new feature for your product, or a theme for your next marketing campaign. The possibilities are endless!"
+    }
+];
+
 export default function IdeaGeneratorPage() {
   return (
     <div className="container py-12 md:py-20">
@@ -69,25 +100,21 @@ export default function IdeaGeneratorPage() {
                     <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>Is this tool free?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes, our AI Idea Generator is completely free to use. Generate as many ideas as you need without any limits.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>What kind of topics can I use?</AccordionTrigger>
-                            <AccordionContent>
-                            You can enter any topic, industry, niche, or keyword. The AI works best with clear concepts but can also generate creative ideas from abstract topics.
-                            </AccordionContent>
-                        </AccordionItem>
-                         <AccordionItem value="item-3">
-                            <AccordionTrigger>Are the generated ideas unique?</AccordionTrigger>
-                            <AccordionContent>
-                            The AI generates ideas based on your specific input, so they are tailored to your request. While the concepts may not be entirely new to the world, they offer a unique combination and perspective.
-                            </AccordionContent>
-                        </AccordionItem>
+                     <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, index) => (
+                             <AccordionItem 
+                                value={`item-${index + 1}`} 
+                                key={index} 
+                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
+                            >
+                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="px-6 pb-6">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </CardContent>
             </Card>
