@@ -1,144 +1,181 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { ArrowRight, AudioLines, FileText, ImageIcon, Laugh, Search, Wrench } from "lucide-react";
+import { ArrowRight, BrainCircuit, CheckCircle, Paintbrush, PenLine, Search, Sparkles, Wand2 } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { allTools, toolCategories } from "@/lib/tools";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import Image from "next/image";
 
-const toolCategories = [
+const featuredTools = allTools.filter(t => ["AI Script Writer", "AI Image Generator", "Text-to-Speech Converter", "AI Logo Maker", "Hashtag Generator", "Product Description Generator"].includes(t.name));
+
+const faqs = [
   {
-    name: "Content Tools",
-    icon: <FileText className="h-8 w-8 text-primary" />,
-    description: "AI writers for scripts, articles, and social media.",
+    question: "Are all the AI tools on this website free to use?",
+    answer: "Yes, absolutely! All tools available on AI Toolkit Pro are 100% free to use. We believe in making powerful AI technology accessible to everyone without any hidden costs, subscriptions, or sign-ups."
   },
   {
-    name: "Image Tools",
-    icon: <ImageIcon className="h-8 w-8 text-primary" />,
-    description: "Generate and edit images with the power of AI.",
+    question: "Can I use the generated content for commercial purposes?",
+    answer: "Generally, yes. The content you generate (e.g., images, scripts, logos) is royalty-free. However, we recommend checking the terms of the underlying AI models for any specific restrictions, as they may vary."
   },
   {
-    name: "Audio Tools",
-    icon: <AudioLines className="h-8 w-8 text-primary" />,
-    description: "Create voiceovers and transcribe audio effortlessly.",
+    question: "Which languages do the AI tools support?",
+    answer: "Many of our tools, especially those for text generation and translation, support a wide variety of languages. You can typically select your desired language from a dropdown menu within the tool itself."
   },
   {
-    name: "Fun Tools",
-    icon: <Laugh className="h-8 w-8 text-primary" />,
-    description: "Generate memes, quotes, and more for entertainment.",
-  },
-  {
-    name: "Utilities",
-    icon: <Wrench className="h-8 w-8 text-primary" />,
-    description: "Handy tools for translation, analysis, and quizzes.",
-  },
+    question: "Is my data safe when using these tools?",
+    answer: "Your privacy is our priority. We do not store your inputs (like text prompts or uploaded images) on our servers. Your data is sent to the respective third-party AI provider for processing and the result is returned directly to you."
+  }
 ];
-
-const featuredTools = [
-  {
-    name: "AI Script Writer",
-    description: "Generate engaging scripts for videos, podcasts, and more.",
-    href: "/tools/ai-script-writer",
-    icon: <FileText className="h-6 w-6" />,
-  },
-  {
-    name: "AI Image Generator",
-    description: "Turn your text prompts into stunning visual art.",
-    href: "/tools/ai-image-generator",
-    icon: <ImageIcon className="h-6 w-6" />,
-  },
-  {
-    name: "Text-to-Speech Converter",
-    description: "Convert any text into natural-sounding audio.",
-    href: "/tools/text-to-speech",
-    icon: <AudioLines className="h-6 w-6" />,
-  },
-  {
-    name: "Voice-to-Text Converter",
-    description: "Transcribe speech from audio files with high accuracy.",
-    href: "/tools/voice-to-text",
-    icon: <Wrench className="h-6 w-6" />,
-  },
-];
-
-const ToolCard = ({ name, description, href, icon }: { name: string; description: string; href: string; icon: ReactNode }) => (
-  <Link href={href} className="group">
-    <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary">
-      <CardHeader className="flex flex-row items-center gap-4 pb-2">
-        <div className="rounded-lg bg-primary/10 p-3 text-primary">
-          {icon}
-        </div>
-        <CardTitle className="font-headline text-xl">{name}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="text-muted-foreground">{description}</p>
-      </CardContent>
-    </Card>
-  </Link>
-);
-
 
 export default function Home() {
   return (
     <div className="flex flex-col">
-      <section className="py-24 md:py-32 lg:py-40 text-center bg-card">
-        <div className="container px-4 md:px-6">
+      {/* Hero Section */}
+      <section className="relative py-24 md:py-32 lg:py-40 text-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-background">
+         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat [mask-image:linear-gradient(to_bottom,white_5%,transparent_90%)]"></div>
+        <div className="container px-4 md:px-6 relative">
           <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
-            Unlock Your Creativity with <span className="text-primary">AI Toolkit Pro</span>
+            Unlock Creativity with Free AI Tools in Seconds
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
-            Your all-in-one suite of free AI tools. No subscriptions, no sign-ups. Just pure creative power at your fingertips.
+            Generate ideas, write content, design logos, create scripts, and more – all powered by AI.
           </p>
-          <div className="mt-8 max-w-lg mx-auto">
-            <div className="relative">
-              <Input
-                type="search"
-                placeholder="Find a tool (e.g., 'image generator')"
-                className="w-full h-12 pl-12 pr-4 text-lg rounded-full"
-              />
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-6 w-6 text-muted-foreground" />
-            </div>
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button asChild size="lg" className="rounded-full bg-accent hover:bg-accent/90">
+              <Link href="/tools">
+                Explore All Tools <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="rounded-full">
+              <Link href="/tools/idea-generator">
+                Generate Idea Now <Sparkles className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
 
+      {/* Featured Categories Section */}
       <section id="categories" className="py-20 md:py-28">
         <div className="container px-4 md:px-6">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">Explore by Category</h2>
           <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
             Find the perfect AI tool for any task, organized for your convenience.
           </p>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {toolCategories.map((category) => (
-              <Card key={category.name} className="text-center p-6">
-                <div className="flex justify-center mb-4">{category.icon}</div>
-                <h3 className="font-headline text-xl font-semibold">{category.name}</h3>
-                <p className="mt-2 text-muted-foreground text-sm">{category.description}</p>
-              </Card>
+              <Link href={`/tools#${category.id}`} key={category.name} className="group">
+                <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary p-6 text-center">
+                  <div className="flex justify-center mb-4">{category.icon}</div>
+                  <h3 className="font-headline text-xl font-semibold">{category.name}</h3>
+                  <p className="mt-2 text-muted-foreground text-sm">{category.description}</p>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="featured-tools" className="py-20 md:py-28 bg-card">
+      {/* Popular Tools Section */}
+      <section id="popular-tools" className="py-20 md:py-28 bg-card">
         <div className="container px-4 md:px-6">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">Featured AI Tools</h2>
+          <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">Most Popular AI Tools</h2>
           <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
             Get started with our most popular tools, designed for power and simplicity.
           </p>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredTools.map((tool) => (
-              <ToolCard key={tool.name} {...tool} />
+              <Link href={tool.href} key={tool.name} className="group flex">
+                <Card className="w-full transition-all duration-300 hover:shadow-xl hover:border-primary flex flex-col">
+                  <CardHeader className="flex flex-row items-center gap-4 pb-4">
+                    <div className="p-3 rounded-lg bg-primary/10 text-primary">
+                      {tool.icon}
+                    </div>
+                    <CardTitle className="font-headline text-xl">{tool.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <CardDescription>{tool.description.split('.')[0] + '.'}</CardDescription>
+                  </CardContent>
+                  <div className="p-6 pt-0">
+                    <div className="text-sm font-semibold text-primary group-hover:text-accent flex items-center">
+                      Try Now <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </div>
+                </Card>
+              </Link>
             ))}
           </div>
           <div className="mt-16 text-center">
             <Button asChild size="lg" className="rounded-full bg-accent hover:bg-accent/90">
               <Link href="/tools">
-                See All Tools <ArrowRight className="ml-2 h-5 w-5" />
+                See All 29 Tools <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
         </div>
       </section>
+      
+      {/* How It Works Section */}
+      <section className="py-20 md:py-28">
+        <div className="container">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">How Our AI Tools Work</h2>
+          <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
+              Achieve amazing results in three simple steps.
+          </p>
+          <div className="mt-12 grid md:grid-cols-3 gap-8 text-center">
+            <Card className="p-8">
+                <div className="flex justify-center mb-4">
+                    <div className="p-4 rounded-full bg-primary/10">
+                        <PenLine className="h-10 w-10 text-primary" />
+                    </div>
+                </div>
+                <h3 className="font-headline text-xl font-bold">1. Select Tool & Enter Input</h3>
+                <p className="text-muted-foreground mt-2">Choose from our suite of 29 specialized AI tools and provide your prompt, text, or image.</p>
+            </Card>
+            <Card className="p-8">
+                 <div className="flex justify-center mb-4">
+                    <div className="p-4 rounded-full bg-primary/10">
+                        <BrainCircuit className="h-10 w-10 text-primary" />
+                    </div>
+                </div>
+                <h3 className="font-headline text-xl font-bold">2. AI Generates Results</h3>
+                <p className="text-muted-foreground mt-2">Our advanced AI gets to work instantly, processing your request to generate high-quality content.</p>
+            </Card>
+            <Card className="p-8">
+                 <div className="flex justify-center mb-4">
+                    <div className="p-4 rounded-full bg-primary/10">
+                        <CheckCircle className="h-10 w-10 text-primary" />
+                    </div>
+                </div>
+                <h3 className="font-headline text-xl font-bold">3. Copy, Download, or Share</h3>
+                <p className="text-muted-foreground mt-2">Your results are ready in seconds. Copy the text, download the image, or share your new creation.</p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQs Section */}
+      <section className="py-20 md:py-28 bg-card">
+        <div className="container max-w-3xl">
+           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">Frequently Asked Questions</h2>
+           <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
+              Have questions? We've got answers. Here are some common queries about our platform.
+           </p>
+           <Accordion type="single" collapsible className="w-full mt-12">
+            {faqs.map((faq, index) => (
+              <AccordionItem value={`item-${index + 1}`} key={index}>
+                <AccordionTrigger className="text-lg text-left">{faq.question}</AccordionTrigger>
+                <AccordionContent className="text-base text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
     </div>
   );
 }

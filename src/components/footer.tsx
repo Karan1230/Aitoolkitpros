@@ -1,39 +1,54 @@
 import Link from 'next/link';
 import { Logo } from './icons';
+import { Input } from './ui/input';
+import { Button } from './ui/button';
+import { Send } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="border-t bg-card">
-      <div className="container flex flex-col items-center justify-between gap-6 py-8 md:flex-row">
-        <div className="flex flex-col items-center gap-2 md:items-start">
-          <Link href="/" className="flex items-center gap-2">
-            <Logo className="h-8 w-8 text-primary" />
-            <span className="font-headline text-xl font-bold">AI Toolkit Pro</span>
-          </Link>
-          <p className="text-sm text-muted-foreground">© {currentYear} AI Toolkit Pro. All rights reserved.</p>
+      <div className="container py-12">
+        <div className="grid md:grid-cols-3 gap-12">
+          <div className="flex flex-col gap-2 items-start">
+            <Link href="/" className="flex items-center gap-2 mb-2">
+              <Logo className="h-8 w-8 text-primary" />
+              <span className="font-headline text-xl font-bold">AI Toolkit Pro</span>
+            </Link>
+            <p className="text-sm text-muted-foreground">© {currentYear} AI Toolkit Pro. All rights reserved.</p>
+            <p className="text-sm text-muted-foreground mt-2">
+              Your hub for free AI tools for creativity, business, content, and fun. Explore tools in multiple languages.
+            </p>
+          </div>
+          <div className="md:col-span-2 grid grid-cols-2 sm:grid-cols-4 gap-8">
+            <div>
+                <h4 className="font-headline font-semibold mb-3">Quick Links</h4>
+                <nav className="flex flex-col gap-2">
+                    <Link href="/tools" className="text-sm text-muted-foreground hover:text-primary">All Tools</Link>
+                    <Link href="/blog" className="text-sm text-muted-foreground hover:text-primary">Blog</Link>
+                    <Link href="/about" className="text-sm text-muted-foreground hover:text-primary">About Us</Link>
+                    <Link href="/contact" className="text-sm text-muted-foreground hover:text-primary">Contact</Link>
+                </nav>
+            </div>
+             <div>
+                <h4 className="font-headline font-semibold mb-3">Legal</h4>
+                <nav className="flex flex-col gap-2">
+                    <Link href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary">Privacy Policy</Link>
+                    <Link href="/terms-and-conditions" className="text-sm text-muted-foreground hover:text-primary">Terms & Conditions</Link>
+                </nav>
+            </div>
+            <div className="col-span-2 sm:col-span-2">
+              <h4 className="font-headline font-semibold mb-3">Stay Updated with New AI Tools</h4>
+              <form className="flex w-full max-w-sm items-center space-x-2">
+                <Input type="email" placeholder="Email" />
+                <Button type="submit" size="icon" className="bg-accent hover:bg-accent/90">
+                    <Send className="h-4 w-4" />
+                </Button>
+             </form>
+            </div>
+          </div>
         </div>
-        <nav className="flex flex-wrap justify-center gap-4 md:gap-6">
-          <Link href="/about" className="text-sm font-medium text-muted-foreground hover:text-primary">
-            About Us
-          </Link>
-          <Link href="/blog" className="text-sm font-medium text-muted-foreground hover:text-primary">
-            Blog
-          </Link>
-          <Link href="/contact" className="text-sm font-medium text-muted-foreground hover:text-primary">
-            Contact
-          </Link>
-          <Link href="/tools" className="text-sm font-medium text-muted-foreground hover:text-primary">
-            All Tools
-          </Link>
-          <Link href="/privacy-policy" className="text-sm font-medium text-muted-foreground hover:text-primary">
-            Privacy Policy
-          </Link>
-          <Link href="/terms-and-conditions" className="text-sm font-medium text-muted-foreground hover:text-primary">
-            Terms &amp; Conditions
-          </Link>
-        </nav>
       </div>
     </footer>
   );
