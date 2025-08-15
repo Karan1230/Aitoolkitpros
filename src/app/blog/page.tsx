@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Search, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BlogSidebar } from '@/components/blog-sidebar';
+import { cn } from '@/lib/utils';
 
 // export const metadata: Metadata = {
 //   title: 'Blog | AI Toolkit Pro',
@@ -26,6 +27,7 @@ export default function BlogPage() {
   const [filter, setFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [visiblePosts, setVisiblePosts] = useState(POSTS_PER_PAGE);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const categories = ['All', ...Array.from(new Set(allPosts.map(post => post.category)))];
   
@@ -65,11 +67,13 @@ export default function BlogPage() {
               <Input
                 type="search"
                 placeholder="Search articles..."
-                className="w-full h-12 pl-12 pr-4 text-lg rounded-full"
+                className="w-full h-12 pl-12 pr-4 text-lg rounded-full transition-all duration-300 focus:ring-2 focus:ring-primary/50"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
               />
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-6 w-6 text-muted-foreground" />
+              <Search className={cn("absolute left-4 top-1/2 -translate-y-1/2 h-6 w-6 text-muted-foreground transition-all duration-300", isSearchFocused && "translate-x-full opacity-0")} />
             </div>
           </div>
       </div>
