@@ -2,7 +2,7 @@
 'use client';
 
 import { useState } from 'react';
-import { type Metadata } from 'next';
+import type { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -24,12 +24,18 @@ const POSTS_PER_PAGE = 6;
 export default function BlogPage() {
   const allPosts = getAllPosts();
   const [filter, setFilter] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const [visiblePosts, setVisiblePosts] = useState(POSTS_PER_PAGE);
 
   const categories = ['All', ...Array.from(new Set(allPosts.map(post => post.category)))];
   
-  const featuredPost = allPosts[0];
-  const recentPosts = allPosts.slice(1);
+  const searchedPosts = allPosts.filter(post => 
+    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const featuredPost = searchQuery ? null : searchedPosts[0];
+  const recentPosts = searchQuery ? searchedPosts : searchedPosts.slice(1);
 
   const filteredPosts = filter === 'All'
     ? recentPosts
@@ -38,6 +44,11 @@ export default function BlogPage() {
   const loadMorePosts = () => {
     setVisiblePosts(prev => prev + POSTS_PER_PAGE);
   };
+  
+  const handleFilterChange = (category: string) => {
+    setFilter(category);
+    setVisiblePosts(POSTS_PER_PAGE);
+  }
 
   return (
     <div className="container py-12 md:py-20">
@@ -55,6 +66,8 @@ export default function BlogPage() {
                 type="search"
                 placeholder="Search articles..."
                 className="w-full h-12 pl-12 pr-4 text-lg rounded-full"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-6 w-6 text-muted-foreground" />
             </div>
@@ -66,31 +79,35 @@ export default function BlogPage() {
         <div className="lg:col-span-3">
 
             {/* Featured Post */}
-            <h2 className="font-headline text-3xl font-bold mb-8">Featured Post</h2>
-            <Link href={`/blog/${featuredPost.slug}`} className="group block mb-16">
-                 <Card className="w-full transition-all duration-300 hover:shadow-lg hover:border-primary">
-                    <div className="grid md:grid-cols-2">
-                        <div className="p-8">
-                            <Badge variant="secondary" className="w-fit mb-4">{featuredPost.category}</Badge>
-                            <CardTitle className="font-headline text-3xl mb-4 group-hover:text-primary">{featuredPost.title}</CardTitle>
-                            <CardDescription className="mb-4">{featuredPost.description}</CardDescription>
-                             <div className="text-sm text-muted-foreground">
-                                <span>{format(new Date(featuredPost.datePublished), 'MMMM d, yyyy')}</span> by <span>{featuredPost.author}</span>
+            {featuredPost && (
+                <>
+                <h2 className="font-headline text-3xl font-bold mb-8">Featured Post</h2>
+                <Link href={`/blog/${featuredPost.slug}`} className="group block mb-16">
+                    <Card className="w-full transition-all duration-300 hover:shadow-lg hover:border-primary">
+                        <div className="grid md:grid-cols-2">
+                            <div className="p-8">
+                                <Badge variant="secondary" className="w-fit mb-4">{featuredPost.category}</Badge>
+                                <CardTitle className="font-headline text-3xl mb-4 group-hover:text-primary">{featuredPost.title}</CardTitle>
+                                <CardDescription className="mb-4">{featuredPost.description}</CardDescription>
+                                <div className="text-sm text-muted-foreground">
+                                    <span>{format(new Date(featuredPost.datePublished), 'MMMM d, yyyy')}</span> by <span>{featuredPost.author}</span>
+                                </div>
+                            </div>
+                            <div className="relative min-h-[250px] md:min-h-full">
+                                <Image
+                                    src={featuredPost.featuredImage}
+                                    alt={featuredPost.title}
+                                    fill
+                                    className="object-cover rounded-r-lg"
+                                    data-ai-hint={featuredPost.dataAiHint}
+                                    priority
+                                />
                             </div>
                         </div>
-                         <div className="relative min-h-[250px] md:min-h-full">
-                             <Image
-                                src={featuredPost.featuredImage}
-                                alt={featuredPost.title}
-                                fill
-                                className="object-cover rounded-r-lg"
-                                data-ai-hint={featuredPost.dataAiHint}
-                                priority
-                            />
-                         </div>
-                    </div>
-                </Card>
-            </Link>
+                    </Card>
+                </Link>
+                </>
+            )}
 
           {/* Category Filters */}
             <div className="mb-8 flex flex-wrap gap-2">
@@ -98,10 +115,7 @@ export default function BlogPage() {
                 <Button
                     key={category}
                     variant={filter === category ? 'default' : 'outline'}
-                    onClick={() => {
-                        setFilter(category);
-                        setVisiblePosts(POSTS_PER_PAGE); // Reset pagination on filter change
-                    }}
+                    onClick={() => handleFilterChange(category)}
                 >
                     {category}
                 </Button>
@@ -135,6 +149,14 @@ export default function BlogPage() {
               </Link>
             ))}
           </div>
+
+          {filteredPosts.length === 0 && (
+            <div className="text-center py-16 text-muted-foreground">
+              <Search className="h-12 w-12 mx-auto mb-4" />
+              <p>No posts found for "{searchQuery}".</p>
+              <p>Try searching for something else.</p>
+            </div>
+          )}
 
           {/* Load More Button */}
           {visiblePosts < filteredPosts.length && (
