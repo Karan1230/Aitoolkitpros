@@ -46,6 +46,7 @@ export function Footer() {
                 <nav className="flex flex-col gap-2">
                     <Link href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary">Privacy Policy</Link>
                     <Link href="/terms-and-conditions" className="text-sm text-muted-foreground hover:text-primary">Terms & Conditions</Link>
+                    <Link href="/copyright-disclaimer" className="text-sm text-muted-foreground hover:text-primary">Copyright Disclaimer</Link>
                 </nav>
             </div>
             <div className="col-span-2 sm:col-span-2">
