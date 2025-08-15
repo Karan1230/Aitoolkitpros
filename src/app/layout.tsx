@@ -64,7 +64,7 @@ export default function RootLayout({
       <body className={cn('min-h-screen bg-background font-body antialiased', inter.variable, spaceGrotesk.variable)}>
         <div className="relative flex min-h-screen flex-col bg-gradient-bg">
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 pt-4 md:pt-8">{children}</main>
           <Footer />
         </div>
         <Toaster />
