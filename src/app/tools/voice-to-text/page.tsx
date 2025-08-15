@@ -61,9 +61,11 @@ export default function VoiceToTextPage() {
             <h1 className="font-headline text-4xl md:text-5xl font-bold">
                 Voice-to-Text Converter
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-                Effortlessly transcribe your speech into text. Record your voice directly or upload an audio file to get a fast and accurate transcription. Our free AI voice-to-text converter is ideal for transcribing interviews, meetings, and voice notes. Improve accessibility by creating transcripts for your audio content and save significant time on manual transcription. Get fast, accurate results without any sign-up required.
-            </p>
+            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+              <p className="text-lg text-muted-foreground">
+                Effortlessly transcribe your speech into text. Upload an audio file to get a <strong>fast and accurate transcription</strong>. Our <strong>free AI voice-to-text converter</strong> is ideal for transcribing interviews, meetings, and voice notes. This <strong>audio to text converter</strong> can also translate the transcription into multiple languages. Improve accessibility by creating <strong>transcripts for audio content</strong> and save significant time on <strong>manual transcription</strong>. Get fast, accurate results without any sign-up required.
+              </p>
+            </div>
 
             <div className="mt-8">
                 <VoiceToTextClient />

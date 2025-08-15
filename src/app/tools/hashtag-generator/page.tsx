@@ -61,9 +61,11 @@ export default function HashtagGeneratorPage() {
             <h1 className="font-headline text-4xl md:text-5xl font-bold">
                 AI Hashtag Generator
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-                Enter a topic and let our AI generate the perfect hashtags to boost your social media presence. Our free AI hashtag generator helps you find relevant, trending, and niche-specific hashtags for Instagram, TikTok, YouTube, and more. Increase your post's visibility, attract your target audience, and save time on research. Discover the best hashtags for your content and watch your reach grow.
-            </p>
+            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+              <p className="text-lg text-muted-foreground">
+                Enter a topic and let our <strong>AI hashtag generator</strong> generate the perfect hashtags to boost your social media presence. Our <strong>free hashtag tool</strong> helps you find <strong>relevant hashtags</strong>, <strong>trending hashtags</strong>, and <strong>niche-specific hashtags</strong> for Instagram, TikTok, YouTube, and more. Increase your post's visibility, attract your target audience, and save time on <strong>hashtag research</strong>. Discover the <strong>best hashtags</strong> for your content and watch your reach grow.
+              </p>
+            </div>
 
             <div className="mt-8">
                 <HashtagGeneratorClient />

@@ -60,9 +60,11 @@ export default function AiScriptWriterPage() {
             <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
                 AI Script Writer
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-                Generate high-quality, engaging scripts for any purpose. Just provide a prompt, and let our AI handle the rest. Our AI script writer is perfect for creating content for YouTube videos, podcasts, and presentations. Overcome writer's block, save time on brainstorming, and structure your ideas professionally. This free tool helps you generate compelling narratives and dialogues for various formats and topics, making content creation faster and more efficient.
-            </p>
+            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+              <p className="text-lg text-muted-foreground">
+                Generate high-quality, engaging scripts for any purpose. Just provide a prompt, and let our <strong>AI script writer</strong> handle the rest. Our <strong>AI content writer</strong> is perfect for creating content for YouTube videos, podcasts, and presentations. Overcome writer's block, save time on brainstorming, and structure your ideas professionally with this <strong>scriptwriting assistant AI</strong>. This free <strong>AI for creative writing</strong> tool helps you generate compelling narratives and dialogues for various formats and topics, making content creation faster and more efficient. It is the <strong>best AI scriptwriting tool</strong> for creators.
+              </p>
+            </div>
 
             <div className="mt-8">
                 <AiScriptWriterClient />

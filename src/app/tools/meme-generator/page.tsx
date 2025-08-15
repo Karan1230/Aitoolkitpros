@@ -61,9 +61,11 @@ export default function MemeGeneratorPage() {
             <h1 className="font-headline text-4xl md:text-5xl font-bold">
                 AI Meme Generator
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-                Unleash your inner comedian. Describe a topic or upload an image, and let our AI create the perfect meme for you. Our free AI meme generator helps you create hilarious, shareable memes from text or images. Go viral with your creativity and generate funny content for social media without any graphic design skills. Turn your ideas into humorous images and entertain your audience instantly.
-            </p>
+            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+              <p className="text-lg text-muted-foreground">
+                Unleash your inner comedian. Describe a topic or upload an image, and let our <strong>AI meme generator</strong> create the perfect meme for you. Our <strong>free meme maker</strong> helps you create hilarious, <strong>shareable memes</strong> from text or images. Go viral with your creativity and <strong>generate funny content</strong> for social media without any graphic design skills. Turn your ideas into humorous images and entertain your audience instantly. This is the <strong>best meme generator</strong> for modern creators.
+              </p>
+            </div>
 
             <div className="mt-8">
                 <MemeGeneratorClient />

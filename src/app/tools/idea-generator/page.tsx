@@ -60,9 +60,11 @@ export default function IdeaGeneratorPage() {
             <h1 className="font-headline text-4xl md:text-5xl font-bold">
                 AI Idea Generator
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-                Stuck in a creative rut? Enter a topic and let our AI generate a list of innovative ideas to get you started. Our free AI idea generator helps you brainstorm creative concepts for business, marketing, and content. Overcome creative blocks, discover new opportunities, and spark your next big project in any language. Get instant inspiration for your startup, blog, or social media campaign.
-            </p>
+            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+              <p className="text-lg text-muted-foreground">
+                Stuck in a creative rut? Enter a topic and let our <strong>AI idea generator</strong> generate a list of innovative ideas to get you started. Our <strong>free AI tool</strong> helps you brainstorm <strong>creative concepts</strong> for <strong>business ideas</strong>, <strong>marketing ideas</strong>, and <strong>content ideas</strong>. Overcome creative blocks, discover new opportunities, and spark your next big project in any language. Get instant inspiration for your startup, blog, or social media campaign.
+              </p>
+            </div>
 
             <div className="mt-8">
                 <IdeaGeneratorClient />

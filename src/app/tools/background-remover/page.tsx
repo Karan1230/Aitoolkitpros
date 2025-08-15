@@ -61,9 +61,11 @@ export default function BackgroundRemoverPage() {
             <h1 className="font-headline text-4xl md:text-5xl font-bold">
                 AI Image Background Remover
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-                Upload any image and let our AI automatically remove the background. It's fast, free, and incredibly simple. Our AI image background remover helps you create transparent PNGs, add custom color backgrounds, and save time on manual photo editing. This free tool is perfect for e-commerce product photos, social media posts, and graphic design projects. Get professional results instantly with our easy-to-use background eraser.
-            </p>
+            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+              <p className="text-lg text-muted-foreground">
+                Upload any image and let our <strong>AI background remover</strong> automatically remove the background. It's fast, free, and incredibly simple. Our <strong>background eraser AI</strong> helps you create <strong>transparent background</strong> PNGs, add custom color backgrounds, and save time on manual photo editing. This <strong>free background removal tool</strong> is perfect for e-commerce product photos, social media posts, and graphic design projects. Get professional results instantly with the <strong>best background remover tool</strong>.
+              </p>
+            </div>
 
             <div className="mt-8">
                 <BackgroundRemoverClient />

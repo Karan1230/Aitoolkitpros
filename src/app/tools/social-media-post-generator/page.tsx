@@ -60,9 +60,11 @@ export default function SocialMediaPostGeneratorPage() {
             <h1 className="font-headline text-4xl md:text-5xl font-bold">
                 Social Media Post Generator
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-                Enter a topic and let our AI create engaging posts for your social media channels, complete with hashtags. Our free AI social media post generator helps you create compelling content in seconds. Get relevant hashtags to boost your reach on Instagram, Facebook, Twitter, and LinkedIn. Save time, overcome creative blocks, and keep your social media feed active and engaging with our easy-to-use tool.
-            </p>
+            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+              <p className="text-lg text-muted-foreground">
+                Enter a topic and let our <strong>AI social media post generator</strong> create engaging posts for your social media channels, complete with hashtags. Our <strong>free AI caption generator</strong> helps you create <strong>compelling content</strong> in seconds. Get <strong>relevant hashtags</strong> to boost your reach on Instagram, Facebook, Twitter, and LinkedIn. Save time, overcome creative blocks, and keep your social media feed active and engaging with our <strong>easy-to-use content creator</strong>.
+              </p>
+            </div>
 
             <div className="mt-8">
                 <SocialMediaPostClient />

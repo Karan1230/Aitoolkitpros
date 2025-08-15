@@ -19,9 +19,11 @@ export default function ChatGptToolsPage() {
         <h1 className="font-headline text-4xl md:text-5xl font-bold">
           Advanced AI Assistant Tools
         </h1>
-        <p className="mt-4 text-lg text-muted-foreground">
-          Powered by ChatGPT, these tools are designed to help you with a variety of tasks, from answering questions to writing better code and content. Our free AI ChatGPT tool offers a suite of features including an AI code helper, grammar corrector, and text rewriter. Get instant answers to your questions, improve your writing, and receive expert coding assistance, all in one place.
-        </p>
+        <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+          <p className="text-lg text-muted-foreground">
+            Powered by <strong>ChatGPT API</strong>, these tools are designed to help you with a variety of tasks, from answering questions to writing better code and content. Our <strong>free AI ChatGPT tool</strong> offers a suite of features including an <strong>AI code helper</strong>, <strong>grammar corrector</strong>, and <strong>text rewriter online</strong>. Get instant answers to your questions, improve your writing with our <strong>AI paraphrasing tool</strong>, and receive expert <strong>AI coding assistance</strong>, all in one place.
+          </p>
+        </div>
       </div>
 
       <Card className="mt-12 max-w-4xl mx-auto border-2 border-primary/20 shadow-lg">

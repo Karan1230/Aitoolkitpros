@@ -62,9 +62,11 @@ export default function YoutubeThumbnailGeneratorPage() {
             <h1 className="font-headline text-4xl md:text-5xl font-bold">
                 YouTube Thumbnail Generator
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-                Enter your video title and let our AI create stunning, click-worthy thumbnails that will grab your audience's attention. Our free YouTube thumbnail generator helps you design professional, eye-catching thumbnails to increase your click-through rate (CTR). Create a consistent brand look and save time on graphic design with our AI-powered tool. Generate multiple unique options in seconds and boost your video's performance.
-            </p>
+            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+              <p className="text-lg text-muted-foreground">
+                Enter your video title and let our <strong>AI thumbnail generator</strong> create stunning, <strong>click-worthy thumbnails</strong> that will grab your audience's attention. Our <strong>free YouTube thumbnail maker</strong> helps you design professional, <strong>eye-catching thumbnails</strong> to increase your <strong>click-through rate (CTR)</strong>. Create a consistent brand look and save time on graphic design with our <strong>AI-powered tool</strong>. Generate multiple unique options in seconds and boost your video's performance.
+              </p>
+            </div>
 
             <div className="mt-8">
                 <YoutubeThumbnailGeneratorClient />

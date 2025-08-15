@@ -61,9 +61,11 @@ export default function CustomIconGeneratorPage() {
             <h1 className="font-headline text-4xl md:text-5xl font-bold">
                 AI Custom Icon Generator
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-                Describe the icon you need, and let our AI design it in various styles. Perfect for websites, apps, and presentations. Our free AI custom icon generator helps you create unique, high-quality icons from text descriptions. Choose from styles like flat, 3D, and outline to match your brand. Download high-resolution PNGs for your web and app projects without needing any design skills.
-            </p>
+            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+              <p className="text-lg text-muted-foreground">
+                Describe the icon you need, and let our <strong>AI custom icon generator</strong> design it in various styles. Perfect for websites, apps, and presentations. Our <strong>free AI icon generator</strong> helps you create <strong>unique icons</strong> from text descriptions. Choose from styles like <strong>flat icon design</strong>, 3D, and outline to match your brand. Download high-resolution PNGs for your web and app projects without needing any design skills. This is the <strong>best AI icon generator</strong> for developers and designers.
+              </p>
+            </div>
 
             <div className="mt-8">
                 <CustomIconGeneratorClient />

@@ -37,7 +37,7 @@ const faqs = [
     },
     {
         question: "4. How does the AI generate personalized suggestions?",
-        answer: "The AI analyzes the interests, age, occasion, and price range you provide to cross-reference with a vast database of gift ideas, ensuring the suggestions are relevant and thoughtful."
+        answer: "The AI analyzes the interests, age, occasion, and price range you provide to cross-reference it with a vast database of gift ideas, ensuring the suggestions are relevant and thoughtful."
     },
     {
         question: "5. How many gift ideas will I get?",
@@ -61,9 +61,11 @@ export default function GiftSuggestionToolPage() {
             <h1 className="font-headline text-4xl md:text-5xl font-bold">
                 AI Gift Suggestion Tool
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-                Never struggle to find the perfect gift again. Describe the recipient and occasion, and let our AI suggest thoughtful presents. Our free AI gift suggestion tool provides personalized gift ideas for any occasion, age, or interest. Find the perfect present for birthdays, anniversaries, and holidays, all tailored to your budget. Save time and surprise your loved ones with unique and thoughtful gifts recommended by our smart suggestion engine.
-            </p>
+            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+              <p className="text-lg text-muted-foreground">
+                Never struggle to find the perfect gift again. Describe the recipient and occasion, and let our <strong>AI gift suggestion tool</strong> suggest thoughtful presents. Our <strong>free AI gift finder</strong> provides <strong>personalized gift ideas</strong> for any occasion, age, or interest. Find the <strong>perfect present</strong> for birthdays, anniversaries, and holidays, all tailored to your budget. Save time and surprise your loved ones with unique and thoughtful gifts recommended by our <strong>smart suggestion engine</strong>.
+              </p>
+            </div>
 
             <div className="mt-8">
                 <GiftSuggestionToolClient />

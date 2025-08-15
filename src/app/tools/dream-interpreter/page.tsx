@@ -61,9 +61,11 @@ export default function DreamInterpreterPage() {
             <h1 className="font-headline text-4xl md:text-5xl font-bold">
                 AI Dream Interpreter
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-                Describe your dream in any language, and our AI will provide a thoughtful interpretation to help you understand its meaning. Our free AI dream interpreter offers instant analysis of symbols, emotions, and context to unlock the secrets of your subconscious. Gain insights from psychological and spiritual perspectives, with interpretations available in over 100 languages. Start understanding your dreams today with our easy-to-use tool.
-            </p>
+            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+              <p className="text-lg text-muted-foreground">
+                Describe your dream in any language, and our <strong>AI dream interpreter</strong> will provide a thoughtful interpretation to help you understand its meaning. Our <strong>free AI dream analysis</strong> tool offers instant analysis of symbols, emotions, and context to unlock the secrets of your subconscious. Gain insights into <strong>dream meanings</strong> from psychological and spiritual perspectives, with interpretations available in over 100 languages. Start your <strong>dream exploration</strong> today with our easy-to-use tool.
+              </p>
+            </div>
 
             <div className="mt-8">
                 <DreamInterpreterClient />

@@ -61,9 +61,11 @@ export default function AiRecipeMakerPage() {
             <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
                 AI Recipe Maker
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-                Don't know what to cook? Enter the ingredients you have, and let our AI create delicious recipes for you. Our free AI recipe maker helps you discover new meal ideas, reduce food waste, and save time on meal planning. Whether you have specific dietary needs or want to explore a new cuisine, this tool provides step-by-step instructions for breakfast, lunch, and dinner. Cook amazing meals with the ingredients already in your kitchen.
-            </p>
+            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+              <p className="text-lg text-muted-foreground">
+                Don't know what to cook? Enter the ingredients you have, and let our <strong>AI recipe generator</strong> create delicious recipes for you. Our free <strong>AI recipe maker</strong> helps you discover new meal ideas, reduce food waste, and save time on meal planning. Whether you have specific dietary needs or want to explore a new cuisine, this <strong>AI cooking assistant</strong> provides step-by-step instructions for breakfast, lunch, and dinner. <strong>Create recipes with AI</strong> and cook amazing meals with the ingredients already in your kitchen. Use it as your personal <strong>AI meal planner</strong>.
+              </p>
+            </div>
 
             <div className="mt-8">
                 <AiRecipeMakerClient />

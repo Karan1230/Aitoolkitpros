@@ -61,9 +61,11 @@ export default function AdCopyGeneratorPage() {
             <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
                 AI Ad Copy Generator
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-                Turn your product details into persuasive ad copy that drives clicks and conversions. Our AI ad copy generator helps you craft compelling headlines, body text, and calls-to-action (CTAs) for various platforms, including Google Ads, Facebook, and Instagram. This free tool is perfect for marketers looking to create high-converting ad copy, run effective A/B tests, and save time on copywriting. Boost your digital marketing campaigns with AI-powered ad creation.
-            </p>
+            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+              <p className="text-lg text-muted-foreground">
+                Turn your product details into persuasive <strong>high-converting ad copy</strong> that drives clicks and conversions. Our <strong>AI ad copy generator</strong> helps you craft compelling headlines, body text, and calls-to-action (CTAs) for various platforms, including our <strong>Google Ads copywriting tool</strong> and <strong>Facebook ad copy generator</strong>. This free <strong>AI-powered ad writing tool</strong> is perfect for marketers looking to create effective <strong>AI for ad creatives</strong>, run A/B tests, and save time on copywriting. Boost your digital marketing campaigns with the <strong>best AI ad copy tools</strong> available.
+              </p>
+            </div>
 
             <div className="mt-8">
                 <AdCopyGeneratorClient />
