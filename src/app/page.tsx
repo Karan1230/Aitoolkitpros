@@ -283,7 +283,7 @@ export default function Home() {
            <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
               Have questions? We've got answers. Here are some common queries about our platform.
            </p>
-           <div className="mt-12 p-2 md:p-4 rounded-lg border-2 border-primary/50 shadow-[0_8px_30px_hsl(var(--primary)/20%)] bg-primary/5">
+           <div className="mt-12 p-2 md:p-4 rounded-lg border border-primary/20 shadow-[0_8px_30px_hsl(var(--primary)/20%)] bg-primary/5">
             <Accordion type="single" collapsible className="w-full space-y-2">
                 {faqs.map((faq, index) => (
                 <AccordionItem 
