@@ -283,7 +283,7 @@ export default function Home() {
            <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
               Have questions? We've got answers. Here are some common queries about our platform.
            </p>
-           <div className="mt-12 p-4 rounded-lg bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 shadow-inner">
+           <div className="mt-12 p-4 rounded-lg border-2 border-primary shadow-[0_8px_30px_rgb(var(--primary-rgb)/20%)]">
             <Accordion type="single" collapsible className="w-full space-y-4">
                 {faqs.map((faq, index) => (
                 <AccordionItem 
@@ -291,12 +291,12 @@ export default function Home() {
                     key={index} 
                     className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
                 >
-                    <AccordionTrigger className="text-lg text-left px-6 hover:no-underline">
-                    <span className="font-bold text-primary mr-4">{String(index + 1).padStart(2, '0')}</span>
-                    {faq.question}
+                    <AccordionTrigger className="text-lg text-left px-6 py-4 hover:no-underline">
+                      <span className="font-bold text-primary mr-4">{String(index + 1).padStart(2, '0')}</span>
+                      <span className="flex-1">{faq.question}</span>
                     </AccordionTrigger>
                     <AccordionContent className="px-6 pb-6">
-                    {faq.answer}
+                      {faq.answer}
                     </AccordionContent>
                 </AccordionItem>
                 ))}
