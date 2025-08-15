@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, Sparkles } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -22,9 +22,35 @@ const navItems = [
 export function Header() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== 'undefined') {
+        if (window.scrollY > lastScrollY && window.scrollY > 100) { // if scroll down hide the navbar
+          setIsVisible(false);
+        } else { // if scroll up show the navbar
+          setIsVisible(true);
+        }
+        setLastScrollY(window.scrollY); 
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', controlNavbar);
+      return () => {
+        window.removeEventListener('scroll', controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
+
 
   return (
-    <header className="sticky top-4 z-50 w-full">
+    <header className={cn(
+        "sticky top-4 z-50 w-full transition-transform duration-300",
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+    )}>
         <div className="container flex h-16 items-center rounded-2xl border border-border/40 bg-background/80 backdrop-blur-lg shadow-lg">
             <div className="mr-4 hidden md:flex">
             <Link href="/" className="mr-6 flex items-center space-x-2">
