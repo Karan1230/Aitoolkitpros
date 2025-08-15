@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import Image from 'next/image';
@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { BlogSidebar } from '@/components/blog-sidebar';
 import { cn } from '@/lib/utils';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import Autoplay from "embla-carousel-autoplay"
 
 
 // export const metadata: Metadata = {
@@ -31,6 +32,10 @@ export default function BlogPage() {
   const [visiblePosts, setVisiblePosts] = useState(POSTS_PER_PAGE);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [featuredPosts, setFeaturedPosts] = useState<Post[]>([]);
+  
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: true })
+  );
 
   useEffect(() => {
     const posts = getAllPosts();
@@ -102,10 +107,13 @@ export default function BlogPage() {
         <div className="mt-16">
           <h2 className="font-headline text-3xl font-bold mb-8 text-center">Featured Posts</h2>
           <Carousel
+            plugins={[autoplayPlugin.current]}
             opts={{
               align: "start",
               loop: true,
             }}
+            onMouseEnter={autoplayPlugin.current.stop}
+            onMouseLeave={autoplayPlugin.current.reset}
             className="w-full max-w-4xl mx-auto"
           >
             <CarouselContent>
