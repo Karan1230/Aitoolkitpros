@@ -2,7 +2,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import type { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,7 +9,7 @@ import { getAllPosts, Post } from '@/lib/posts';
 import { format } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
+import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BlogSidebar } from '@/components/blog-sidebar';
 import { cn } from '@/lib/utils';
@@ -18,18 +17,51 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Autoplay from "embla-carousel-autoplay"
 
 
-// export const metadata: Metadata = {
-//   title: 'Blog | AI Toolkit Pro',
-//   description: 'Read the latest articles, tutorials, and news from the AI Toolkit Pro team. Discover how to leverage free AI tools for your projects.',
-// };
-
 const POSTS_PER_PAGE = 6;
+
+const Pagination = ({ currentPage, totalPages, onPageChange }: { currentPage: number, totalPages: number, onPageChange: (page: number) => void }) => {
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
+
+    return (
+        <div className="flex justify-center items-center gap-2 mt-12">
+            <Button
+                variant="outline"
+                size="icon"
+                onClick={() => onPageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+            >
+                <ChevronLeft className="h-4 w-4" />
+            </Button>
+            {pageNumbers.map(number => (
+                <Button
+                    key={number}
+                    variant={currentPage === number ? 'default' : 'outline'}
+                    size="icon"
+                    onClick={() => onPageChange(number)}
+                >
+                    {number}
+                </Button>
+            ))}
+            <Button
+                variant="outline"
+                size="icon"
+                onClick={() => onPageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+            >
+                <ChevronRight className="h-4 w-4" />
+            </Button>
+        </div>
+    );
+};
 
 export default function BlogPage() {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
   const [filter, setFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [visiblePosts, setVisiblePosts] = useState(POSTS_PER_PAGE);
+  const [currentPage, setCurrentPage] = useState(1);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [featuredPosts, setFeaturedPosts] = useState<Post[]>([]);
   
@@ -67,14 +99,21 @@ export default function BlogPage() {
     ? searchedPosts
     : searchedPosts.filter(post => post.category === filter);
   
-  const loadMorePosts = () => {
-    setVisiblePosts(prev => prev + POSTS_PER_PAGE);
-  };
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+  const postsForCurrentPage = filteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
   
   const handleFilterChange = (category: string) => {
     setFilter(category);
-    setVisiblePosts(POSTS_PER_PAGE);
+    setCurrentPage(1);
   }
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div className="container py-12 md:py-20">
@@ -93,7 +132,7 @@ export default function BlogPage() {
                 placeholder="Search articles..."
                 className="w-full h-12 pl-12 pr-4 text-lg rounded-full transition-all duration-300 focus:ring-2 focus:ring-primary/50"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
               />
@@ -171,7 +210,7 @@ export default function BlogPage() {
 
           {/* Recent Posts Grid */}
           <div className="grid gap-8 md:grid-cols-2">
-            {filteredPosts.slice(0, visiblePosts).map((post) => (
+            {postsForCurrentPage.map((post) => (
               <Link href={`/blog/${post.slug}`} key={post.slug} className="group flex">
                 <Card className="w-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary flex flex-col">
                   <CardHeader className="p-0">
@@ -205,13 +244,13 @@ export default function BlogPage() {
             </div>
           )}
 
-          {/* Load More Button */}
-          {visiblePosts < filteredPosts.length && (
-            <div className="mt-12 text-center">
-                <Button onClick={loadMorePosts} size="lg" variant="secondary">
-                    Load More Posts
-                </Button>
-            </div>
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <Pagination 
+              currentPage={currentPage} 
+              totalPages={totalPages} 
+              onPageChange={handlePageChange} 
+            />
           )}
 
         </div>
