@@ -128,7 +128,7 @@ export default function Home() {
     <div className="flex flex-col">
       <TestimonialSchema />
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 lg:py-40 text-center overflow-hidden">
+      <section className="relative pt-24 pb-12 md:pt-32 lg:pt-40 text-center overflow-hidden">
         <div className="container px-4 md:px-6 relative">
           <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter gradient-text">
             Unlock Creativity with Free AI Tools in Seconds
@@ -152,7 +152,7 @@ export default function Home() {
       </section>
 
       {/* Popular Tools Section */}
-      <section id="popular-tools" className="py-20 md:py-28">
+      <section id="popular-tools" className="py-16 md:py-20">
         <div className="container px-4 md:px-6">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">Most Popular AI Tools</h2>
           <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
@@ -180,7 +180,7 @@ export default function Home() {
               </Link>
             ))}
           </div>
-          <div className="mt-16 text-center">
+          <div className="mt-12 text-center">
             <Button asChild size="lg" className="border border-black">
               <Link href="/tools">
                 See All 29 Tools <ArrowRight className="ml-2 h-5 w-5" />
@@ -191,7 +191,7 @@ export default function Home() {
       </section>
       
       {/* How It Works Section */}
-      <section className="py-20 md:py-28 bg-card/50">
+      <section className="py-16 md:py-20 bg-card/50">
         <div className="container">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">How Our AI Tools Work</h2>
           <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">

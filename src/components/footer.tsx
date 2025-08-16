@@ -60,7 +60,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-         <div className="mt-12 pt-8 border-t border-border/40 text-center text-sm text-muted-foreground">
+         <div className="mt-8 pt-6 border-t border-border/40 text-center text-sm text-muted-foreground">
              <p>© {currentYear} AI Toolkit Pro. All rights reserved.</p>
         </div>
       </div>
