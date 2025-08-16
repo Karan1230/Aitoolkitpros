@@ -17,38 +17,41 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Autoplay from "embla-carousel-autoplay"
 
 
-const POSTS_PER_PAGE = 6;
+const POSTS_PER_PAGE = 5;
 
 const Pagination = ({ currentPage, totalPages, onPageChange }: { currentPage: number, totalPages: number, onPageChange: (page: number) => void }) => {
-    const [startPage, setStartPage] = useState(1);
-    const pagesToShow = 3;
+    const pageNumbers = [];
+    const maxPagesToShow = 3;
 
-    const handleNext = () => {
-        onPageChange(Math.min(currentPage + 1, totalPages));
-        if (currentPage + 1 >= startPage + pagesToShow) {
-            setStartPage(Math.min(startPage + 1, totalPages - pagesToShow + 1));
-        }
-    };
+    let startPage = Math.max(1, currentPage - 1);
+    let endPage = Math.min(totalPages, currentPage + 1);
 
-    const handlePrev = () => {
-        onPageChange(Math.max(currentPage - 1, 1));
-         if (currentPage - 1 < startPage) {
-            setStartPage(Math.max(startPage - 1, 1));
+    if (currentPage === 1 && totalPages > 2) {
+        startPage = 1;
+        endPage = 3;
+    } else if (currentPage === totalPages && totalPages > 2) {
+        startPage = totalPages - 2;
+        endPage = totalPages;
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+        pageNumbers.push(i);
+    }
+    
+    if (totalPages <= maxPagesToShow) {
+        pageNumbers.length = 0;
+        for (let i = 1; i <= totalPages; i++) {
+            pageNumbers.push(i);
         }
-    };
-    
-    const handlePageClick = (pageNumber: number) => {
-        onPageChange(pageNumber);
-    };
-    
-    const pageNumbers = Array.from({ length: Math.min(pagesToShow, totalPages) }, (_, i) => startPage + i).filter(num => num <= totalPages);
+    }
+
 
     return (
         <div className="flex justify-center items-center gap-2 mt-12">
             <Button
                 variant="outline"
                 size="icon"
-                onClick={handlePrev}
+                onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
             >
                 <ChevronLeft className="h-4 w-4" />
@@ -58,7 +61,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: { currentPage: nu
                     key={number}
                     variant={currentPage === number ? 'default' : 'outline'}
                     size="icon"
-                    onClick={() => handlePageClick(number)}
+                    onClick={() => onPageChange(number)}
                 >
                     {number}
                 </Button>
@@ -66,7 +69,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: { currentPage: nu
             <Button
                 variant="outline"
                 size="icon"
-                onClick={handleNext}
+                onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
             >
                 <ChevronRight className="h-4 w-4" />
@@ -129,6 +132,7 @@ export default function BlogPage() {
   }
 
   const handlePageChange = (page: number) => {
+    if (page < 1 || page > totalPages) return;
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
