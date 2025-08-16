@@ -108,7 +108,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   const post = getPostBySlug(params.slug);
   const relatedPosts = getRelatedPosts(post);
   const allPostsData = getAllPosts();
-  const popularPosts = allPostsData.filter(p => p.slug !== post.slug).slice(0, 3);
+  const popularPosts = allPostsData.filter(p => p.slug !== post.slug).slice(0, 5);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const fullUrl = `${siteUrl}/blog/${post.slug}`;
 
@@ -226,28 +226,21 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             {popularPosts.length > 0 && (
                 <div className="mt-16">
                     <h2 className="font-headline text-3xl font-bold mb-8 text-center">Popular Posts</h2>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {popularPosts.map(popular => (
-                             <Link href={`/blog/${popular.slug}`} key={popular.slug} className="group flex">
-                                <Card className="w-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary flex flex-col">
-                                <CardHeader className="p-0">
-                                    <Image
-                                    src={popular.featuredImage}
-                                    alt={popular.title}
-                                    width={600}
-                                    height={300}
-                                    className="rounded-t-lg object-cover aspect-video"
-                                    data-ai-hint={popular.dataAiHint}
-                                    />
-                                </CardHeader>
-                                <CardContent className="flex flex-col flex-grow p-6">
-                                    <CardTitle className="font-headline text-xl mb-2 group-hover:text-primary">{popular.title}</CardTitle>
-                                    <CardDescription className="flex-grow text-sm">{popular.description}</CardDescription>
-                                </CardContent>
-                                </Card>
-                            </Link>
-                        ))}
-                    </div>
+                    <Card>
+                        <CardContent className="p-6 space-y-4">
+                            {popularPosts.map((popular, index) => (
+                                <Link href={`/blog/${popular.slug}`} key={popular.slug} className="group flex items-center gap-4">
+                                    <div className="text-3xl font-bold text-muted-foreground group-hover:text-primary transition-colors">
+                                        {String(index + 1).padStart(2, '0')}
+                                    </div>
+                                    <div>
+                                        <p className="font-semibold leading-tight group-hover:text-primary transition-colors">{popular.title}</p>
+                                        <p className="text-xs text-muted-foreground mt-1">{popular.category}</p>
+                                    </div>
+                                </Link>
+                            ))}
+                        </CardContent>
+                    </Card>
                 </div>
             )}
         </div>
