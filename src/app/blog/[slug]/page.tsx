@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getPostBySlug, getAllPosts, getRelatedPosts } from '@/lib/posts';
