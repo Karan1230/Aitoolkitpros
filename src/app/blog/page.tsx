@@ -20,17 +20,38 @@ import Autoplay from "embla-carousel-autoplay"
 const POSTS_PER_PAGE = 6;
 
 const Pagination = ({ currentPage, totalPages, onPageChange }: { currentPage: number, totalPages: number, onPageChange: (page: number) => void }) => {
-    const pageNumbers = [];
-    for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
-    }
+    const [startPage, setStartPage] = useState(1);
+    const pagesToShow = 3;
+
+    const handleNext = () => {
+        const newStartPage = Math.min(startPage + 1, totalPages - pagesToShow + 1);
+        setStartPage(newStartPage);
+        onPageChange(Math.min(currentPage + 1, totalPages));
+    };
+
+    const handlePrev = () => {
+        const newStartPage = Math.max(startPage - 1, 1);
+        setStartPage(newStartPage);
+        onPageChange(Math.max(currentPage - 1, 1));
+    };
+    
+    const handlePageClick = (pageNumber: number) => {
+        onPageChange(pageNumber);
+        if (pageNumber >= startPage + pagesToShow) {
+            setStartPage(pageNumber - pagesToShow + 1);
+        } else if (pageNumber < startPage) {
+            setStartPage(pageNumber);
+        }
+    };
+    
+    const pageNumbers = Array.from({ length: Math.min(pagesToShow, totalPages) }, (_, i) => startPage + i);
 
     return (
         <div className="flex justify-center items-center gap-2 mt-12">
             <Button
                 variant="outline"
                 size="icon"
-                onClick={() => onPageChange(currentPage - 1)}
+                onClick={handlePrev}
                 disabled={currentPage === 1}
             >
                 <ChevronLeft className="h-4 w-4" />
@@ -40,7 +61,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: { currentPage: nu
                     key={number}
                     variant={currentPage === number ? 'default' : 'outline'}
                     size="icon"
-                    onClick={() => onPageChange(number)}
+                    onClick={() => handlePageClick(number)}
                 >
                     {number}
                 </Button>
@@ -48,7 +69,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: { currentPage: nu
             <Button
                 variant="outline"
                 size="icon"
-                onClick={() => onPageChange(currentPage + 1)}
+                onClick={handleNext}
                 disabled={currentPage === totalPages}
             >
                 <ChevronRight className="h-4 w-4" />
