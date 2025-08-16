@@ -34,7 +34,7 @@ export default function BlogPage() {
   const [featuredPosts, setFeaturedPosts] = useState<Post[]>([]);
   
   const autoplayPlugin = useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: true })
+    Autoplay({ delay: 4000, stopOnInteraction: false })
   );
 
   useEffect(() => {
@@ -112,8 +112,6 @@ export default function BlogPage() {
               align: "start",
               loop: true,
             }}
-            onMouseEnter={autoplayPlugin.current.stop}
-            onMouseLeave={autoplayPlugin.current.reset}
             className="w-full max-w-4xl mx-auto"
           >
             <CarouselContent>
