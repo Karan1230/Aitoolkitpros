@@ -58,16 +58,16 @@ export function Header() {
                     <Logo className="h-9 w-9 text-primary" />
                     <span className="font-bold font-headline text-xl gradient-text">AI Toolkit Pro</span>
                 </Link>
-                <nav className="flex items-center space-x-1 text-sm font-medium">
+                <nav className="flex items-center space-x-2 text-sm font-medium">
                     {navItems.map((item) => (
                     <Link
                         key={item.href}
                         href={item.href}
                         className={cn(
-                            'px-3 py-2 rounded-full transition-all duration-300 ease-in-out',
-                            'hover:text-primary hover:bg-muted',
+                            'px-4 py-2 rounded-lg border border-transparent transition-all duration-300 ease-in-out',
+                            'hover:text-primary hover:border-primary/50',
                             pathname === item.href 
-                            ? 'text-primary-foreground bg-primary shadow-sm' 
+                            ? 'text-primary-foreground bg-primary shadow-sm hover:border-primary' 
                             : 'text-muted-foreground'
                         )}
                     >
@@ -92,17 +92,17 @@ export function Header() {
                     <SheetContent side="right">
                         <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
                         <SheetDescription className="sr-only">A list of links to navigate the site.</SheetDescription>
-                        <nav className="grid gap-6 text-lg font-medium mt-8">
+                        <nav className="grid gap-4 text-lg font-medium mt-8">
                             {navItems.map((item) => (
                                 <Link
                                     key={item.href}
                                     href={item.href}
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className={cn(
-                                        'flex items-center justify-center py-3 rounded-lg transition-all duration-300 ease-in-out',
+                                        'flex items-center justify-center py-3 rounded-lg border-2 transition-all duration-300 ease-in-out',
                                         pathname === item.href 
-                                        ? 'text-primary-foreground bg-primary/80 shadow-lg' 
-                                        : 'text-foreground hover:bg-muted/50'
+                                        ? 'text-primary-foreground bg-primary/80 border-primary shadow-lg' 
+                                        : 'text-foreground hover:bg-muted/50 border-muted'
                                     )}
                                 >
                                     {item.name}
@@ -114,7 +114,7 @@ export function Header() {
             </div>
 
             <div className="hidden md:flex items-center justify-end">
-                <Button asChild size="sm">
+                <Button asChild>
                     <Link href="/tools">Try AI Tools <Sparkles className="ml-2 h-4 w-4"/></Link>
                 </Button>
             </div>
