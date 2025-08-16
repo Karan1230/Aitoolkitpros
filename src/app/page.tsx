@@ -128,7 +128,7 @@ export default function Home() {
     <div className="flex flex-col">
       <TestimonialSchema />
       {/* Hero Section */}
-      <section className="relative pt-24 pb-12 md:pt-32 lg:pt-40 text-center overflow-hidden">
+      <section className="relative pt-20 pb-8 md:pt-28 lg:pt-32 text-center overflow-hidden">
         <div className="container px-4 md:px-6 relative">
           <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter gradient-text">
             Unlock Creativity with Free AI Tools in Seconds
@@ -152,7 +152,7 @@ export default function Home() {
       </section>
 
       {/* Popular Tools Section */}
-      <section id="popular-tools" className="py-16 md:py-20">
+      <section id="popular-tools" className="py-12 md:py-16">
         <div className="container px-4 md:px-6">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">Most Popular AI Tools</h2>
           <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
@@ -191,7 +191,7 @@ export default function Home() {
       </section>
       
       {/* How It Works Section */}
-      <section className="py-16 md:py-20 bg-card/50">
+      <section className="py-12 md:py-16 bg-card/50">
         <div className="container">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">How Our AI Tools Work</h2>
           <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
@@ -230,7 +230,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 md:py-28">
+      <section className="py-12 md:py-16">
         <div className="container">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">What Our Users Say</h2>
           <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
@@ -277,7 +277,7 @@ export default function Home() {
       </section>
 
       {/* FAQs Section */}
-      <section className="py-20 md:py-28 bg-card/50">
+      <section className="py-12 md:py-16 bg-card/50">
         <div className="container max-w-3xl">
            <h2 className="font-headline text-3xl md:text-4xl font-bold text-center">Frequently Asked Questions</h2>
            <p className="mt-4 max-w-2xl mx-auto text-center text-muted-foreground">
