@@ -24,27 +24,24 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: { currentPage: nu
     const pagesToShow = 3;
 
     const handleNext = () => {
-        const newStartPage = Math.min(startPage + 1, totalPages - pagesToShow + 1);
-        setStartPage(newStartPage);
         onPageChange(Math.min(currentPage + 1, totalPages));
+        if (currentPage + 1 >= startPage + pagesToShow) {
+            setStartPage(Math.min(startPage + 1, totalPages - pagesToShow + 1));
+        }
     };
 
     const handlePrev = () => {
-        const newStartPage = Math.max(startPage - 1, 1);
-        setStartPage(newStartPage);
         onPageChange(Math.max(currentPage - 1, 1));
+         if (currentPage - 1 < startPage) {
+            setStartPage(Math.max(startPage - 1, 1));
+        }
     };
     
     const handlePageClick = (pageNumber: number) => {
         onPageChange(pageNumber);
-        if (pageNumber >= startPage + pagesToShow) {
-            setStartPage(pageNumber - pagesToShow + 1);
-        } else if (pageNumber < startPage) {
-            setStartPage(pageNumber);
-        }
     };
     
-    const pageNumbers = Array.from({ length: Math.min(pagesToShow, totalPages) }, (_, i) => startPage + i);
+    const pageNumbers = Array.from({ length: Math.min(pagesToShow, totalPages) }, (_, i) => startPage + i).filter(num => num <= totalPages);
 
     return (
         <div className="flex justify-center items-center gap-2 mt-12">
