@@ -3,41 +3,13 @@ import { googleAI, GoogleAIGenerativeAIFamily } from '@genkit-ai/googleai';
 import { openAI, OpenAIModel } from 'genkitx-openai';
 import { apiKeyManager } from './api-key-manager';
 
-// This function dynamically creates a plugin configuration with the current API key.
-const getGoogleAIPlugin = () => {
-    const apiKey = apiKeyManager.getCurrentGeminiKey();
-    return googleAI({ apiKey });
-};
-
-const getOpenAIPlugin = () => {
-    const apiKey = apiKeyManager.getCurrentOpenAIKey();
-    return openAI({ apiKey });
-};
-
-// Main AI configuration
 export const ai = genkit({
     plugins: [
-        getGoogleAIPlugin(),
-        getOpenAIPlugin(),
+        googleAI(),
+        openAI(),
     ],
     model: 'googleai/gemini-2.0-flash',
 });
-
-// A helper function to re-initialize genkit with the next key if the current one fails
-const reconfigureGenkit = (provider: 'googleai' | 'openai') => {
-    if (provider === 'googleai') {
-        apiKeyManager.switchToNextGeminiKey();
-    } else {
-        apiKeyManager.switchToNextOpenAIKey();
-    }
-    ai.configure({
-        plugins: [
-            getGoogleAIPlugin(),
-            getOpenAIPlugin(),
-        ],
-        model: 'googleai/gemini-2.0-flash',
-    });
-};
 
 // Generic generate function with retry logic
 export async function generateWithRetry<T>(
@@ -50,25 +22,48 @@ export async function generateWithRetry<T>(
 ): Promise<T> {
     const provider = options.model.toString().startsWith('googleai') ? 'googleai' : 'openai';
 
-    let attempts = provider === 'googleai' 
+    let maxAttempts = provider === 'googleai' 
         ? (process.env.GEMINI_API_KEYS?.split(',').length || 1)
         : (process.env.OPENAI_API_KEYS?.split(',').length || 1);
 
-    while (attempts > 0) {
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
         try {
-            const result: any = await ai.generate(options);
+            const apiKey = provider === 'googleai' 
+                ? apiKeyManager.getCurrentGeminiKey() 
+                : apiKeyManager.getCurrentOpenAIKey();
+            
+            if (!apiKey) {
+                throw new Error(`No API key available for ${provider}.`);
+            }
+
+            const result: any = await ai.generate({
+                ...options,
+                config: {
+                    ...options.config,
+                    apiKey: apiKey,
+                },
+            });
+            
             return options.output ? result.output! : result;
+
         } catch (error) {
-            console.error(`Attempt failed for ${provider}. Error:`, error);
-            attempts--;
-            if (attempts > 0) {
-                console.log(`Switching API key for ${provider} and retrying...`);
-                reconfigureGenkit(provider);
-            } else {
-                console.error(`All API keys for ${provider} have failed.`);
+            console.error(`Attempt ${attempt + 1} failed for ${provider}. Error:`, error);
+            
+            const switched = provider === 'googleai' 
+                ? apiKeyManager.switchToNextGeminiKey() 
+                : apiKeyManager.switchToNextOpenAIKey();
+            
+            if (!switched) {
+                console.error(`All API keys for ${provider} have been exhausted.`);
+                throw new Error(`All API keys for ${provider} have been exhausted.`);
+            }
+
+            if (attempt === maxAttempts - 1) {
+                console.error(`Final attempt failed for ${provider}.`);
                 throw error;
             }
+             console.log(`Switching API key for ${provider} and retrying...`);
         }
     }
-    throw new Error(`Failed to generate content after multiple retries for ${provider}.`);
+    throw new Error(`Failed to generate content after ${maxAttempts} retries for ${provider}.`);
 }
