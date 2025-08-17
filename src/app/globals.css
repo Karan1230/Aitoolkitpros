@@ -107,7 +107,7 @@ body {
         opacity: 0;
         transform: translateY(10px) scale(0.9);
     }
-    10% {
+    1% {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
@@ -122,5 +122,5 @@ body {
 }
 
 .animate-welcome-bubble {
-    animation: welcome-bubble 2.5s ease-in-out forwards;
+    animation: welcome-bubble 10s ease-in-out forwards;
 }

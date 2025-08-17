@@ -2,20 +2,32 @@
 'use client';
 
 import { useState, useEffect, useRef, PointerEvent as ReactPointerEvent } from 'react';
-import { Bot, Send, Trash2, X } from 'lucide-react';
+import { Bot, Send, Trash2, X, Languages as LanguageIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { Input } from './ui/input';
 import { ScrollArea } from './ui/scroll-area';
 import { aiQuestionAnswering } from '@/ai/flows/ai-question-answering';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Avatar, AvatarFallback } from './ui/avatar';
 import { useToast } from '@/hooks/use-toast';
+import { languages } from '@/lib/languages';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 interface Message {
   text: string;
   sender: 'user' | 'bot';
 }
+
+const greetings: { [key: string]: string } = {
+  English: "Hi! I’m Your AI Assistant",
+  Hindi: "नमस्ते, मैं आपका AI सहायक हूँ",
+};
 
 export function ChatbotAssistant() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +38,7 @@ export function ChatbotAssistant() {
   const [isDismissed, setIsDismissed] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('English');
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -35,31 +48,31 @@ export function ChatbotAssistant() {
   const popSoundRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Session-based dismissal
     if (sessionStorage.getItem('chatbotDismissed')) {
       setIsDismissed(true);
     } else {
+        const browserLang = navigator.language.split('-')[0];
+        if (browserLang === 'hi') {
+            setSelectedLanguage('Hindi');
+        }
+
         const welcomeTimer = setTimeout(() => {
             setShowWelcome(true);
             if (popSoundRef.current) {
                 popSoundRef.current.volume = 0.5;
                 popSoundRef.current.play().catch(e => console.error("Audio play failed:", e));
             }
-            // Hide welcome message after a delay
-            setTimeout(() => setShowWelcome(false), 2500); // Show for 1.5s then fade out for 1s
         }, 1000);
         
-        return () => {
-            clearTimeout(welcomeTimer);
-        }
+        return () => clearTimeout(welcomeTimer);
     }
   }, []);
 
   useEffect(() => {
     if (isOpen) {
-      setMessages([{ sender: 'bot', text: "Hello! How can I assist you today?" }]);
+      setMessages([{ sender: 'bot', text: greetings[selectedLanguage] || greetings['English'] }]);
     }
-  }, [isOpen]);
+  }, [isOpen, selectedLanguage]);
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -121,18 +134,19 @@ export function ChatbotAssistant() {
     setIsLoading(true);
 
     try {
-      const result = await aiQuestionAnswering({ question: userMessage.text });
+      const result = await aiQuestionAnswering({ question: userMessage.text, language: selectedLanguage });
       const botMessage: Message = { text: result.answer, sender: 'bot' };
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
       console.error('Chatbot error:', error);
-      toast({
+      const errorMessage = greetings[selectedLanguage] ? `Sorry, I am having trouble connecting in ${selectedLanguage}. Please try again.` : 'Sorry, I am having trouble connecting. Please try again.';
+      const botMessage: Message = { text: errorMessage, sender: 'bot' };
+       setMessages(prev => [...prev, botMessage]);
+       toast({
         variant: 'destructive',
         title: 'Uh oh! Something went wrong.',
-        description: 'Failed to get a response. Please try again.',
+        description: 'Failed to get a response.',
       });
-       const botMessage: Message = { text: 'Sorry, I am having trouble connecting. Please try again later.', sender: 'bot' };
-       setMessages(prev => [...prev, botMessage]);
     } finally {
       setIsLoading(false);
     }
@@ -147,7 +161,6 @@ export function ChatbotAssistant() {
     <>
       <audio ref={popSoundRef} src="/sounds/pop.mp3" preload="auto"></audio>
       
-      {/* Chat Window */}
       {isOpen && (
         <div className="fixed bottom-20 right-5 z-[100]">
            <Card className="w-[350px] h-[500px] shadow-2xl flex flex-col animate-pop-in">
@@ -158,9 +171,23 @@ export function ChatbotAssistant() {
                    </div>
                     <CardTitle className="font-headline text-xl">AI Assistant</CardTitle>
                 </div>
-                <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
-                    <X className="h-5 w-5" />
-                </Button>
+                <div className="flex items-center gap-1">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon"><LanguageIcon className="h-5 w-5"/></Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            {languages.map(lang => (
+                                <DropdownMenuItem key={lang.value} onClick={() => setSelectedLanguage(lang.name)}>
+                                    {lang.name}
+                                </DropdownMenuItem>
+                            ))}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                    <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+                        <X className="h-5 w-5" />
+                    </Button>
+                </div>
               </CardHeader>
               <CardContent className="flex-1 overflow-hidden p-0">
                 <ScrollArea className="h-full p-4" ref={scrollAreaRef}>
@@ -215,7 +242,6 @@ export function ChatbotAssistant() {
         </div>
       )}
 
-      {/* Floating Button */}
       <div
         className={cn("fixed z-[100] animate-float-in", isClosing && "animate-ping")}
         style={{
@@ -228,7 +254,7 @@ export function ChatbotAssistant() {
         <div className="relative">
             {showWelcome && !isDragging && (
                 <div className="absolute bottom-full right-0 mb-2 w-max max-w-xs p-3 bg-card text-card-foreground rounded-lg shadow-lg animate-welcome-bubble">
-                    <p className="text-sm">Hi! I'm AI Assistant</p>
+                    <p className="text-sm">👉 {greetings[selectedLanguage] || greetings['English']}</p>
                 </div>
             )}
             <Button
@@ -244,7 +270,6 @@ export function ChatbotAssistant() {
         </div>
       </div>
       
-      {/* Close Target */}
       <div
         id="chatbot-close-target"
         className={cn(
