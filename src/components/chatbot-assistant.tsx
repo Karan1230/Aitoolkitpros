@@ -176,12 +176,18 @@ export function ChatbotAssistant() {
                         <DropdownMenuTrigger asChild>
                             <Button variant="ghost" size="icon"><LanguageIcon className="h-5 w-5"/></Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                            {languages.map(lang => (
-                                <DropdownMenuItem key={lang.value} onClick={() => setSelectedLanguage(lang.name)}>
-                                    {lang.name}
-                                </DropdownMenuItem>
-                            ))}
+                        <DropdownMenuContent 
+                            align="end" 
+                            className="w-[200px]"
+                            container={typeof document !== 'undefined' && document.getElementById('chatbot-card-content')}
+                        >
+                            <ScrollArea className="h-[200px]">
+                                {languages.map(lang => (
+                                    <DropdownMenuItem key={lang.value} onClick={() => setSelectedLanguage(lang.name)}>
+                                        {lang.name}
+                                    </DropdownMenuItem>
+                                ))}
+                            </ScrollArea>
                         </DropdownMenuContent>
                     </DropdownMenu>
                     <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
@@ -189,7 +195,7 @@ export function ChatbotAssistant() {
                     </Button>
                 </div>
               </CardHeader>
-              <CardContent className="flex-1 overflow-hidden p-0">
+              <CardContent id="chatbot-card-content" className="flex-1 overflow-hidden p-0 relative">
                 <ScrollArea className="h-full p-4" ref={scrollAreaRef}>
                   <div className="space-y-4">
                   {messages.map((msg, index) => (
