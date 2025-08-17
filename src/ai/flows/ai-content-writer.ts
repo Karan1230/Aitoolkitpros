@@ -66,7 +66,6 @@ const generateImagesFlow = ai.defineFlow(
             config: {
                 responseModalities: ['TEXT', 'IMAGE'],
             },
-            aspectRatio: imageDimensions as any,
         });
     });
 
@@ -88,6 +87,7 @@ const contentGenerationPrompt = ai.definePrompt({
     schema: z.object({
       ...AiContentWriterInputSchema.shape,
       imageUrls: z.array(z.string()),
+      imageUrlsJson: z.string(),
     })
   },
   output: { schema: AiContentWriterOutputSchema },
@@ -110,7 +110,7 @@ const contentGenerationPrompt = ai.definePrompt({
 5.  **Output Format:** The final output must be a single, valid HTML string.
 
 **Image Integration:**
-- You have been provided with an array of image URLs: {{jsonStringify imageUrls}}.
+- You have been provided with an array of image URLs: {{{imageUrlsJson}}}.
 - The first image, '{{imageUrls.[0]}}', must be set as the featured image.
 - Integrate the remaining images naturally throughout the article. Place each image within its own <figure> tag with a descriptive <figcaption>. Example: <figure><img src="..." alt="A descriptive alt tag"><figcaption>A descriptive caption.</figcaption></figure>
 - Ensure all images have descriptive alt text.
@@ -150,6 +150,7 @@ const contentWriterFlow = ai.defineFlow(
     const { output } = await contentGenerationPrompt({
       ...input,
       imageUrls,
+      imageUrlsJson: JSON.stringify(imageUrls),
     });
     
     if (!output) {
