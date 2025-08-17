@@ -1,3 +1,4 @@
+
 import { genkit, GenerationCommonConfig } from 'genkit';
 import { googleAI, GoogleAIGenerativeAIFamily } from '@genkit-ai/googleai';
 import { openAI, OpenAIModel } from 'genkitx-openai';
@@ -23,8 +24,8 @@ export async function generateWithRetry<T>(
     const provider = options.model.toString().startsWith('googleai') ? 'googleai' : 'openai';
 
     let maxAttempts = provider === 'googleai' 
-        ? (process.env.GEMINI_API_KEYS?.split(',').length || 1)
-        : (process.env.OPENAI_API_KEYS?.split(',').length || 1);
+        ? (process.env.GEMINI_API_KEYS?.split(',').filter(k => k).length || 1)
+        : (process.env.OPENAI_API_KEYS?.split(',').filter(k => k).length || 1);
 
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
         try {
@@ -35,6 +36,8 @@ export async function generateWithRetry<T>(
             if (!apiKey) {
                 throw new Error(`No API key available for ${provider}.`);
             }
+            
+            console.log(`[${provider}] Attempt ${attempt + 1}/${maxAttempts} using key index ${provider === 'googleai' ? apiKeyManager.currentGeminiIndex : apiKeyManager.currentOpenAIIndex}`);
 
             const result: any = await ai.generate({
                 ...options,
@@ -47,7 +50,7 @@ export async function generateWithRetry<T>(
             return options.output ? result.output! : result;
 
         } catch (error) {
-            console.error(`Attempt ${attempt + 1} failed for ${provider}. Error:`, error);
+            console.error(`Attempt ${attempt + 1} failed for ${provider}. Error:`, error instanceof Error ? error.message : String(error));
             
             const switched = provider === 'googleai' 
                 ? apiKeyManager.switchToNextGeminiKey() 
