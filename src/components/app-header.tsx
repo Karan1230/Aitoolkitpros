@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -32,17 +33,20 @@ export function AppHeader() {
             <SheetTitle>Menu</SheetTitle>
           </SheetHeader>
           <nav className="mt-8 flex flex-col gap-4">
-            <Link href="/tools" className="text-lg font-medium hover:text-primary">
+            <Link href="/tools" className="block p-4 text-lg font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
               All Tools
             </Link>
-            <Link href="/about" className="text-lg font-medium hover:text-primary">
+            <Link href="/about" className="block p-4 text-lg font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
               About
             </Link>
-            <Link href="/privacy-policy" className="text-lg font-medium hover:text-primary">
+            <Link href="/privacy-policy" className="block p-4 text-lg font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
               Privacy Policy
             </Link>
-            <Link href="/terms-and-conditions" className="text-lg font-medium hover:text-primary">
+            <Link href="/terms-and-conditions" className="block p-4 text-lg font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
               Terms & Conditions
+            </Link>
+             <Link href="/contact" className="block p-4 text-lg font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+              Contact Us
             </Link>
           </nav>
         </SheetContent>
