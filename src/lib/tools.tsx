@@ -51,13 +51,6 @@ export const toolCategories = [
 
 export const allTools: Tool[] = [
   {
-    name: "AI Content Writer",
-    description: "Generate SEO-optimized articles and blog posts with images and links.",
-    href: "/tools/ai-content-writer",
-    icon: <FileSignature className="h-8 w-8 text-primary" />,
-    category: "Content"
-  },
-  {
     name: "AI Recipe Maker",
     description: "Generate recipes from ingredients you have at home.",
     href: "/tools/ai-recipe-maker",
