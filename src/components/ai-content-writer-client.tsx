@@ -225,7 +225,7 @@ export function AiContentWriterClient() {
                         <FormLabel>Internal Links (Optional)</FormLabel>
                          <FormDescription>One URL per line. The AI will integrate these into the content.</FormDescription>
                         <FormControl>
-                            <Textarea placeholder="https://yoursite.com/page1&#10;https://yoursite.com/page2" {...field} className="min-h-[80px]" />
+                            <Textarea placeholder="https://yoursite.com/page1\nhttps://yoursite.com/page2" {...field} className="min-h-[80px]" />
                         </FormControl>
                         <FormMessage />
                         </FormItem>
@@ -239,7 +239,7 @@ export function AiContentWriterClient() {
                         <FormLabel>External Links (Optional)</FormLabel>
                          <FormDescription>One URL per line. If left blank, the AI will add relevant links.</FormDescription>
                         <FormControl>
-                            <Textarea placeholder="https://externalsite.com/source1&#10;https://externalsite.com/source2" {...field} className="min-h-[80px]" />
+                            <Textarea placeholder="https://externalsite.com/source1\nhttps://externalsite.com/source2" {...field} className="min-h-[80px]" />
                         </FormControl>
                         <FormMessage />
                         </FormItem>

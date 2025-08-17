@@ -8,7 +8,7 @@
  * - AiContentWriterOutput - The return type for the function.
  */
 
-import { ai, generateWithRetry } from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import { z } from 'genkit';
 
 const AiContentWriterInputSchema = z.object({
