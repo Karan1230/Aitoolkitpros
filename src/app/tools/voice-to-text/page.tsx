@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { VoiceToTextClient } from '@/components/voice-to-text-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function VoiceToTextPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Effortlessly transcribe your speech into text. Upload an audio file to get a <strong>fast and accurate transcription</strong>. Our <strong>free AI voice-to-text converter</strong> is ideal for transcribing interviews, meetings, and voice notes. This <strong>audio to text converter</strong> can also translate the transcription into multiple languages. Improve accessibility by creating <strong>transcripts for audio content</strong> and save significant time on <strong>manual transcription</strong>. Get fast, accurate results without any sign-up required.
+                Effortlessly transcribe speech into text. Upload an audio file to get a fast and accurate transcription, ideal for interviews, meetings, and voice notes.
               </p>
             </div>
 

@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { IdeaGeneratorClient } from '@/components/idea-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -62,7 +63,7 @@ export default function IdeaGeneratorPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Stuck in a creative rut? Enter a topic and let our <strong>AI idea generator</strong> generate a list of innovative ideas to get you started. Our <strong>free AI tool</strong> helps you brainstorm <strong>creative concepts</strong> for <strong>business ideas</strong>, <strong>marketing ideas</strong>, and <strong>content ideas</strong>. Overcome creative blocks, discover new opportunities, and spark your next big project in any language. Get instant inspiration for your startup, blog, or social media campaign.
+                Stuck in a creative rut? Enter a topic and let our AI generate a list of innovative ideas for business, content, or marketing to get you started.
               </p>
             </div>
 

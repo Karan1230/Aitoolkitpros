@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { ReelShortsScriptWriterClient } from '@/components/reel-shorts-script-writer-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function ReelShortsScriptWriterPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Turn your ideas into engaging, <strong>short-form video scripts</strong> designed to go viral on TikTok, Reels, and YouTube Shorts. Our <strong>free AI Reel script writer</strong> helps you generate <strong>catchy hooks</strong>, structured content, and effective calls-to-action in seconds. Create <strong>viral video scripts</strong> and save time on brainstorming with the best <strong>YouTube Shorts script generator</strong>. This tool is perfect for content creators looking to boost their social media presence.
+                Turn your ideas into engaging, short-form video scripts designed to go viral on TikTok, Reels, and YouTube Shorts. Get catchy hooks and structured content instantly.
               </p>
             </div>
 

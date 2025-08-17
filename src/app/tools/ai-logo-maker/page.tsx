@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { AiLogoMakerClient } from '@/components/ai-logo-maker-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function AiLogoMakerPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Describe your brand, and let our AI design the perfect logo for you. It's fast, free, and surprisingly creative. Our <strong>AI logo maker</strong> generates unique, <strong>professional logos</strong> for your business in seconds. Whether you need a design for your startup, website, or social media, this <strong>free logo generator AI</strong> helps you create a high-quality brand identity without needing any design skills. Download your <strong>custom logo generator AI</strong> files in various formats and start building your brand today. This is the <strong>best AI logo maker</strong> for entrepreneurs.
+                Describe your brand, and let our AI design the perfect logo for you. It's fast, free, and surprisingly creative, giving you a professional brand identity in seconds.
               </p>
             </div>
 

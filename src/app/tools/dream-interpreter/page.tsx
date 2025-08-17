@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { DreamInterpreterClient } from '@/components/dream-interpreter-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function DreamInterpreterPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Describe your dream in any language, and our <strong>AI dream interpreter</strong> will provide a thoughtful interpretation to help you understand its meaning. Our <strong>free AI dream analysis</strong> tool offers instant analysis of symbols, emotions, and context to unlock the secrets of your subconscious. Gain insights into <strong>dream meanings</strong> from psychological and spiritual perspectives, with interpretations available in over 100 languages. Start your <strong>dream exploration</strong> today with our easy-to-use tool.
+                Describe your dream in any language, and our AI will provide a thoughtful interpretation to help you understand its meaning, symbols, emotions, and context.
               </p>
             </div>
 

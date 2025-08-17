@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { EngagementPostGeneratorClient } from '@/components/engagement-post-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function EngagementPostGeneratorPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Never run out of content ideas. Generate <strong>engaging posts</strong> with captions and hashtags to keep your audience hooked. Our <strong>free AI engagement post ideas generator</strong> helps you create creative content for Instagram, Facebook, TikTok, and more. Boost your <strong>social media engagement</strong> by generating questions, polls, and challenges that <strong>spark conversations</strong>. Get instant captions and hashtags to keep your feed fresh and exciting. This is the ultimate <strong>social media content generator</strong>.
+                Never run out of content ideas. Generate engaging posts with captions and hashtags to keep your audience hooked on Instagram, TikTok, and other platforms.
               </p>
             </div>
 

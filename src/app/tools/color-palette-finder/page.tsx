@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { ColorPaletteFinderClient } from '@/components/color-palette-finder-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function ColorPaletteFinderPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Describe your idea, and let our <strong>AI color palette finder</strong> generate the perfect color palette. It's the ideal <strong>color scheme generator</strong> for designers, marketers, and creators. Our <strong>free AI tool</strong> helps you create <strong>harmonious color schemes</strong> from any text description. Generate <strong>matching colors</strong> for your website, brand, or design projects in any language. Discover unique palettes and instantly copy <strong>HEX codes</strong> for your favorite design tools. This is the <strong>best color palette generator</strong> for instant inspiration.
+                Describe your idea, and let our AI generate the perfect color palette. An ideal tool for designers, marketers, and creators looking for harmonious color schemes.
               </p>
             </div>
 

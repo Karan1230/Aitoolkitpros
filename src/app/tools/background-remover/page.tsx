@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { BackgroundRemoverClient } from '@/components/background-remover-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function BackgroundRemoverPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Upload any image and let our <strong>AI background remover</strong> automatically remove the background. It's fast, free, and incredibly simple. Our <strong>background eraser AI</strong> helps you create <strong>transparent background</strong> PNGs, add custom color backgrounds, and save time on manual photo editing. This <strong>free background removal tool</strong> is perfect for e-commerce product photos, social media posts, and graphic design projects. Get professional results instantly with the <strong>best background remover tool</strong>.
+                Upload any image and let our AI automatically remove the background. It's fast, free, and incredibly simple, creating transparent PNGs for any project in seconds.
               </p>
             </div>
 

@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { SocialMediaPostClient } from '@/components/social-media-post-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -62,7 +63,7 @@ export default function SocialMediaPostGeneratorPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Enter a topic and let our <strong>AI social media post generator</strong> create engaging posts for your social media channels, complete with hashtags. Our <strong>free AI caption generator</strong> helps you create <strong>compelling content</strong> in seconds. Get <strong>relevant hashtags</strong> to boost your reach on Instagram, Facebook, Twitter, and LinkedIn. Save time, overcome creative blocks, and keep your social media feed active and engaging with our <strong>easy-to-use content creator</strong>.
+                Enter a topic and let our AI create engaging posts for your social media channels, complete with relevant hashtags to boost reach and save you time.
               </p>
             </div>
 

@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { QuizGeneratorClient } from '@/components/quiz-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function ExamQuestionGeneratorPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Create custom <strong>practice exams</strong> on any topic in seconds. Just specify your requirements and let the <strong>AI exam builder</strong> build your test. Our <strong>free AI exam question generator</strong> helps you create <strong>practice quizzes</strong> by choosing the difficulty, question type, and language. This <strong>AI test maker</strong> is perfect for students preparing for exams and teachers creating <strong>study materials</strong>. Save time and enhance learning with our <strong>automated exam generator</strong>.
+                Create custom practice exams on any topic in seconds. Perfect for students and teachers who need to generate study materials and assess knowledge quickly and efficiently.
               </p>
             </div>
 

@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { CartoonAvatarMakerClient } from '@/components/cartoon-avatar-maker-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function CartoonAvatarMakerPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Upload your photo and let our <strong>AI cartoon maker</strong> transform it into a stunning avatar in your favorite style. Our <strong>free AI avatar maker</strong> allows you to create <strong>unique profile pictures</strong> for social media, gaming, or personal branding. Choose from various styles like <strong>anime avatar AI</strong>, 3D, and comic book to get a <strong>professional look</strong> without any artistic skills. Download high-resolution, transparent PNGs and express your personality online with a <strong>custom avatar from photo</strong>.
+                Upload your photo and let our AI transform it into a stunning avatar. Choose from various styles like anime, 3D, or comic book to get a unique profile picture.
               </p>
             </div>
 

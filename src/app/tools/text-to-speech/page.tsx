@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { TextToSpeechClient } from '@/components/text-to-speech-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -64,7 +65,7 @@ export default function TextToSpeechPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Bring your text to life with <strong>realistic AI voices</strong>. Paste your text, choose a voice, and generate <strong>high-quality audio</strong> in seconds. Our <strong>free AI text-to-speech</strong> (TTS) tool converts text into <strong>natural-sounding speech</strong>, perfect for <strong>AI voiceovers</strong>, accessibility, and content creation. Create audio for videos, listen to articles on the go, and prototype voice applications with our easy-to-use <strong>text to voice converter</strong>. You can also transcribe audio to text using our <Link href="/tools/voice-to-text" className="text-primary hover:underline">Voice-to-Text Converter</Link>.
+                Bring your text to life with realistic AI voices. Paste your text, choose a voice, and generate high-quality audio in seconds for voiceovers, accessibility, and more.
               </p>
             </div>
 

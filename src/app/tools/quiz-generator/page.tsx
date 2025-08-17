@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { QuizGeneratorClient } from '@/components/quiz-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -62,7 +63,7 @@ export default function QuizGeneratorPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Create <strong>custom quizzes</strong> on any topic in seconds. Just specify your requirements and let the <strong>AI quiz generator</strong> build your quiz. Our <strong>free quiz maker</strong> helps you create <strong>engaging educational content</strong> by choosing the difficulty, question type, and language. This tool is perfect for teachers, students, and trivia enthusiasts who want to quickly assess knowledge, create <strong>online quizzes</strong>, or generate questions for games.
+                Create custom quizzes on any topic in seconds. Perfect for teachers, students, and trivia enthusiasts who want to generate engaging questions with answers and explanations.
               </p>
             </div>
 

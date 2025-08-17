@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { GiftSuggestionToolClient } from '@/components/gift-suggestion-tool-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function GiftSuggestionToolPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Never struggle to find the perfect gift again. Describe the recipient and occasion, and let our <strong>AI gift suggestion tool</strong> suggest thoughtful presents. Our <strong>free AI gift finder</strong> provides <strong>personalized gift ideas</strong> for any occasion, age, or interest. Find the <strong>perfect present</strong> for birthdays, anniversaries, and holidays, all tailored to your budget. Save time and surprise your loved ones with unique and thoughtful gifts recommended by our <strong>smart suggestion engine</strong>.
+                Never struggle to find the perfect gift again. Describe the recipient and occasion, and our AI will suggest thoughtful presents tailored to their interests and your budget.
               </p>
             </div>
 

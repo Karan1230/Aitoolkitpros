@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { StoryPlotGeneratorClient } from '@/components/story-plot-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function StoryPlotGeneratorPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Never stare at a blank page again. Generate <strong>unique story ideas</strong>, complete with characters, settings, conflict, and resolution. Our <strong>free AI story plot generator</strong> helps you overcome writer's block by providing endless inspiration. Develop <strong>complex characters</strong>, create detailed settings, and structure your narrative with a clear <strong>plot outline</strong>. Explore different genres and story angles to kickstart your next novel or script with this amazing <strong>AI story writer</strong>.
+                Never stare at a blank page again. Generate unique story ideas, complete with characters, settings, conflict, and resolution for any genre to kickstart your writing.
               </p>
             </div>
 

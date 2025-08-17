@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { AiImageGeneratorClient } from '@/components/ai-image-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function AiImageGeneratorPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                  Transform your words into breathtaking images. Describe what you want to see, and our <strong>AI image generator</strong> will bring it to life in seconds. This <strong>free AI image generator</strong> allows you to create high-quality, <strong>royalty-free images</strong> from text prompts. Whether you need visuals for your blog, social media, or creative projects, this tool helps you <strong>generate stunning art</strong>, illustrations, and photos instantly. Unleash your creativity and visualize any concept without needing artistic skills. This is one of the <strong>best AI image tools</strong> for creators.
+                  Transform your words into breathtaking images. Describe what you want to see, and our AI image generator will bring your vision to life in seconds.
               </p>
             </div>
 

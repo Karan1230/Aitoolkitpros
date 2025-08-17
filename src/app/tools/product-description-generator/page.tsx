@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { ProductDescriptionGeneratorClient } from '@/components/product-description-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -64,7 +65,7 @@ export default function ProductDescriptionGeneratorPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Turn product features into compelling descriptions that sell. Let our <strong>AI product description generator</strong> craft the perfect copy for your e-commerce store. Our free AI tool creates <strong>high-converting copy</strong> and <strong>SEO-friendly descriptions</strong> for any product. Increase conversions with <strong>persuasive product descriptions</strong>, improve your SEO with keyword-rich content, and save hours of writing time. Maintain a consistent brand voice and watch your sales grow with our <strong>e-commerce copy generator</strong>. Need a catchy slogan for your brand? Try our <Link href="/tools/slogan-generator" className="text-primary hover:underline">Slogan Generator</Link>.
+                Turn product features into compelling descriptions that sell. Let our AI craft the perfect, SEO-friendly copy for your e-commerce store and boost your conversions.
               </p>
             </div>
 

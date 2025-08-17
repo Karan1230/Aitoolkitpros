@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { MemeGeneratorClient } from '@/components/meme-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function MemeGeneratorPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Unleash your inner comedian. Describe a topic or upload an image, and let our <strong>AI meme generator</strong> create the perfect meme for you. Our <strong>free meme maker</strong> helps you create hilarious, <strong>shareable memes</strong> from text or images. Go viral with your creativity and <strong>generate funny content</strong> for social media without any graphic design skills. Turn your ideas into humorous images and entertain your audience instantly. This is the <strong>best meme generator</strong> for modern creators.
+                Unleash your inner comedian. Describe a topic or upload an image, and let our AI create the perfect, shareable meme for you in seconds.
               </p>
             </div>
 

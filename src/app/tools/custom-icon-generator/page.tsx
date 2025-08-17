@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { CustomIconGeneratorClient } from '@/components/custom-icon-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function CustomIconGeneratorPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Describe the icon you need, and let our <strong>AI custom icon generator</strong> design it in various styles. Perfect for websites, apps, and presentations. Our <strong>free AI icon generator</strong> helps you create <strong>unique icons</strong> from text descriptions. Choose from styles like <strong>flat icon design</strong>, 3D, and outline to match your brand. Download high-resolution PNGs for your web and app projects without needing any design skills. This is the <strong>best AI icon generator</strong> for developers and designers.
+                Describe the icon you need, and our AI will design it in various styles. Perfect for creating unique, high-quality icons for websites, apps, and presentations.
               </p>
             </div>
 

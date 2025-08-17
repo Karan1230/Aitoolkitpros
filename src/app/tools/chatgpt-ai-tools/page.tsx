@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -22,7 +23,7 @@ export default function ChatGptToolsPage() {
         </h1>
         <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
           <p className="text-lg text-muted-foreground">
-            Powered by an advanced <strong>AI ChatBot Assistant</strong>, these tools are designed to help you with a variety of tasks, from answering questions to writing better code and content. Our <strong>free AI assistant tool</strong> offers a suite of features including an <strong>AI code helper</strong>, <strong>grammar corrector</strong>, and <strong>text rewriter online</strong>. Get instant answers to your questions, improve your writing with our <strong>AI paraphrasing tool</strong>, and receive expert <strong>AI coding assistance</strong>, all in one place. For more specific writing needs, try our <Link href="/tools/ai-script-writer" className="text-primary hover:underline">AI Script Writer</Link>.
+            A powerful suite of tools to help with various tasks. Get instant answers, AI coding assistance, grammar correction, and text rewriting, all in one place.
           </p>
         </div>
       </div>

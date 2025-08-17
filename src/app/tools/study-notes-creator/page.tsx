@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { StudyNotesCreatorClient } from '@/components/study-notes-creator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -63,7 +64,7 @@ export default function StudyNotesCreatorPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Paste any text and let our <strong>AI study notes creator</strong> create clear, concise, and easy-to-understand study notes for you. Our <strong>free AI summarizer</strong> helps you summarize long articles, documents, and textbooks instantly. Get <strong>key points and summaries</strong> in any language, saving you hours of reading and note-taking. Improve your focus by studying only the most important concepts with the <strong>best study tool</strong> and quickly grasp the main ideas of any text.
+                Paste any text and let our AI create clear, concise, and easy-to-understand study notes for you, summarizing key points and saving you hours of work.
               </p>
             </div>
 

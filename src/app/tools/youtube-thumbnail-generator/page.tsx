@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { YoutubeThumbnailGeneratorClient } from '@/components/youtube-thumbnail-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -64,7 +65,7 @@ export default function YoutubeThumbnailGeneratorPage() {
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
               <p className="text-lg text-muted-foreground">
-                Enter your video title and let our <strong>AI thumbnail generator</strong> create stunning, <strong>click-worthy thumbnails</strong> that will grab your audience's attention. Our <strong>free YouTube thumbnail maker</strong> helps you design professional, <strong>eye-catching thumbnails</strong> to increase your <strong>click-through rate (CTR)</strong>. Create a consistent brand look and save time on graphic design with our <strong>AI-powered tool</strong>. Generate multiple unique options in seconds and boost your video's performance.
+                Enter your video title and let our AI create stunning, click-worthy thumbnails that will grab your audience's attention and increase your click-through rate (CTR).
               </p>
             </div>
 
