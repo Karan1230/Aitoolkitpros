@@ -1,5 +1,4 @@
-
-import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine } from 'lucide-react';
+import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export interface Tool {
@@ -51,6 +50,13 @@ export const toolCategories = [
 
 
 export const allTools: Tool[] = [
+  {
+    name: "AI Content Writer",
+    description: "Generate SEO-optimized articles and blog posts with images and links.",
+    href: "/tools/ai-content-writer",
+    icon: <FileSignature className="h-8 w-8 text-primary" />,
+    category: "Content"
+  },
   {
     name: "AI Recipe Maker",
     description: "Generate recipes from ingredients you have at home.",
