@@ -8,7 +8,7 @@
  * - ProductDescriptionGeneratorOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const ProductDescriptionGeneratorInputSchema = z.object({
@@ -48,7 +48,7 @@ export async function productDescriptionGenerator(input: ProductDescriptionGener
   
   Generate the product description now.`;
 
-  const llmResponse = await generateWithRetry<ProductDescriptionGeneratorOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -56,5 +56,5 @@ export async function productDescriptionGenerator(input: ProductDescriptionGener
     }
   });
 
-  return llmResponse;
+  return output!;
 }

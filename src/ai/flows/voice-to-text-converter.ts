@@ -7,7 +7,7 @@
  * - VoiceToTextConverterOutput - The return type for the voiceToTextConverter function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 import { textTranslator } from './text-translator';
 
@@ -33,7 +33,7 @@ const TranscriptionOutputSchema = z.object({
 
 export async function voiceToTextConverter(input: VoiceToTextConverterInput): Promise<VoiceToTextConverterOutput> {
   // 1. Transcribe the audio
-  const { transcription } = await generateWithRetry<{ transcription: string }>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt: `Please transcribe the following audio file into text.\n\nAudio: {{media url=${input.audioDataUri}}}`,
     output: {
@@ -41,6 +41,8 @@ export async function voiceToTextConverter(input: VoiceToTextConverterInput): Pr
     }
   });
   
+  const transcription = output?.transcription;
+
   if (!transcription) {
       throw new Error("Failed to transcribe audio.");
   }

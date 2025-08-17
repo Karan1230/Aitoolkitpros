@@ -8,7 +8,7 @@
  * - CodingHelpAssistantOutput - The return type for the codingHelpAssistant function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const CodingHelpAssistantInputSchema = z.object({
@@ -22,12 +22,12 @@ const CodingHelpAssistantOutputSchema = z.object({
 export type CodingHelpAssistantOutput = z.infer<typeof CodingHelpAssistantOutputSchema>;
 
 export async function codingHelpAssistant(input: CodingHelpAssistantInput): Promise<CodingHelpAssistantOutput> {
-  const llmResponse = await generateWithRetry<CodingHelpAssistantOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt: `You are a coding help assistant. Provide a helpful response to the following prompt. If it's a code snippet, explain the issue and provide a corrected version. Use markdown for code blocks.\n\n${input.prompt}`,
     output: {
       schema: CodingHelpAssistantOutputSchema,
     }
   });
-  return llmResponse;
+  return output!;
 }

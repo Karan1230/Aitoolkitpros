@@ -8,7 +8,7 @@
  * - CartoonAvatarMakerOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const CartoonAvatarMakerInputSchema = z.object({
@@ -57,7 +57,7 @@ export async function cartoonAvatarMaker({ imageDataUri, style, background }: Ca
     ];
 
     const imagePromises = Array(4).fill(null).map(() => 
-        generateWithRetry<{ media?: { url: string } }>({
+        ai.generate({
             model: 'googleai/gemini-2.0-flash-preview-image-generation',
             prompt: fullPrompt,
             config: {

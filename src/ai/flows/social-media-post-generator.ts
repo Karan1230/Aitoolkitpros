@@ -7,7 +7,7 @@
  * - SocialMediaPostGeneratorOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const SocialMediaPostGeneratorInputSchema = z.object({
@@ -22,7 +22,7 @@ const SocialMediaPostGeneratorOutputSchema = z.object({
 export type SocialMediaPostGeneratorOutput = z.infer<typeof SocialMediaPostGeneratorOutputSchema>;
 
 export async function socialMediaPostGenerator(input: SocialMediaPostGeneratorInput): Promise<SocialMediaPostGeneratorOutput> {
-    const llmResponse = await generateWithRetry<SocialMediaPostGeneratorOutput>({
+    const { output } = await ai.generate({
       model: 'googleai/gemini-2.0-flash',
       prompt: `Generate a social media post in ${input.language} about "${input.topic}". Include relevant hashtags.`,
       output: {
@@ -30,5 +30,5 @@ export async function socialMediaPostGenerator(input: SocialMediaPostGeneratorIn
       }
     });
 
-    return llmResponse;
+    return output!;
 }

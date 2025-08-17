@@ -8,7 +8,7 @@
  * - IdeaGeneratorOutput - The return type for the ideaGenerator function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const IdeaGeneratorInputSchema = z.object({
@@ -30,7 +30,7 @@ export async function ideaGenerator(input: IdeaGeneratorInput): Promise<IdeaGene
     
     Please provide the ideas as a simple list.`;
     
-    const llmResponse = await generateWithRetry<IdeaGeneratorOutput>({
+    const { output } = await ai.generate({
         model: 'googleai/gemini-2.0-flash',
         prompt,
         output: {
@@ -38,5 +38,5 @@ export async function ideaGenerator(input: IdeaGeneratorInput): Promise<IdeaGene
         }
     });
 
-    return llmResponse;
+    return output!;
 }

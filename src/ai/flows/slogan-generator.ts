@@ -8,7 +8,7 @@
  * - SloganGeneratorOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const SloganGeneratorInputSchema = z.object({
@@ -46,7 +46,7 @@ export async function sloganGenerator(input: SloganGeneratorInput): Promise<Slog
   
   Generate the list of slogans now.`;
 
-  const llmResponse = await generateWithRetry<SloganGeneratorOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -54,5 +54,5 @@ export async function sloganGenerator(input: SloganGeneratorInput): Promise<Slog
     }
   });
 
-  return llmResponse;
+  return output!;
 }

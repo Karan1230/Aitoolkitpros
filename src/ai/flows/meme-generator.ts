@@ -8,7 +8,7 @@
  * - MemeGeneratorOutput - The return type for the memeGenerator function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const MemeGeneratorInputSchema = z.object({
@@ -36,7 +36,7 @@ export async function memeGenerator(input: MemeGeneratorInput): Promise<MemeGene
         prompt.unshift({ media: { url: input.imageDataUri } });
     }
 
-    const { media } = await generateWithRetry<{ media?: { url: string } }>({
+    const { media } = await ai.generate({
         model: 'googleai/gemini-2.0-flash-preview-image-generation',
         prompt,
         config: {

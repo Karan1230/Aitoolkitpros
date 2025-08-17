@@ -8,7 +8,7 @@
  * - GiftSuggestionGeneratorOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const GiftIdeaSchema = z.object({
@@ -49,7 +49,7 @@ export async function giftSuggestionGenerator(input: GiftSuggestionGeneratorInpu
   
   Generate the gift suggestions now.`;
   
-  const llmResponse = await generateWithRetry<GiftSuggestionGeneratorOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -57,5 +57,5 @@ export async function giftSuggestionGenerator(input: GiftSuggestionGeneratorInpu
     }
   });
 
-  return llmResponse;
+  return output!;
 }

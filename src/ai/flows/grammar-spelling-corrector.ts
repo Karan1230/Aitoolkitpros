@@ -8,7 +8,7 @@
  * - GrammarSpellingCorrectorOutput - The return type for the grammarSpellingCorrector function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const GrammarSpellingCorrectorInputSchema = z.object({
@@ -22,7 +22,7 @@ const GrammarSpellingCorrectorOutputSchema = z.object({
 export type GrammarSpellingCorrectorOutput = z.infer<typeof GrammarSpellingCorrectorOutputSchema>;
 
 export async function grammarSpellingCorrector(input: GrammarSpellingCorrectorInput): Promise<GrammarSpellingCorrectorOutput> {
-  const llmResponse = await generateWithRetry<GrammarSpellingCorrectorOutput>({
+  const { output } = await ai.generate({
       model: 'googleai/gemini-2.0-flash',
       prompt: `Correct the grammar and spelling of the following text:\n\n${input.text}`,
       output: {
@@ -30,5 +30,5 @@ export async function grammarSpellingCorrector(input: GrammarSpellingCorrectorIn
       }
     });
 
-    return llmResponse;
+    return output!;
 }

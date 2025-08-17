@@ -10,7 +10,6 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import { generateWithRetry } from '../genkit';
 
 const AdCopySchema = z.object({
   headline: z.string().describe('The main headline for the ad.'),
@@ -34,7 +33,7 @@ const AdCopyGeneratorOutputSchema = z.object({
 export type AdCopyGeneratorOutput = z.infer<typeof AdCopyGeneratorOutputSchema>;
 
 export async function adCopyGenerator(input: AdCopyGeneratorInput): Promise<AdCopyGeneratorOutput> {
-  const llmResponse = await generateWithRetry({
+  const { output } = await ai.generate({
       model: 'googleai/gemini-2.0-flash',
       prompt: `You are an expert digital marketing copywriter. Generate 5 distinct and compelling ad copy variations in ${input.language} based on the following criteria.
 
@@ -63,5 +62,5 @@ export async function adCopyGenerator(input: AdCopyGeneratorInput): Promise<AdCo
       }
   });
 
-  return llmResponse;
+  return output!;
 }

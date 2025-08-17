@@ -8,7 +8,7 @@
  * - HoroscopeGeneratorOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const HoroscopeGeneratorInputSchema = z.object({
@@ -44,7 +44,7 @@ export async function horoscopeGenerator(input: HoroscopeGeneratorInput): Promis
   
   Generate the horoscope now.`;
   
-  const llmResponse = await generateWithRetry<HoroscopeGeneratorOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -52,5 +52,5 @@ export async function horoscopeGenerator(input: HoroscopeGeneratorInput): Promis
     }
   });
 
-  return llmResponse;
+  return output!;
 }

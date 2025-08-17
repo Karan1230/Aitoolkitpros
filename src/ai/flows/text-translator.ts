@@ -7,7 +7,7 @@
  * - TextTranslatorOutput - The return type for the flow.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const TextTranslatorInputSchema = z.object({
@@ -24,7 +24,7 @@ export type TextTranslatorOutput = z.infer<typeof TextTranslatorOutputSchema>;
 export async function textTranslator(input: TextTranslatorInput): Promise<TextTranslatorOutput> {
   const prompt = `Translate the following text into ${input.targetLanguage}:\n\n---\n\n${input.text}\n\n---\n\nTranslated Text:`;
   
-  const llmResponse = await generateWithRetry<TextTranslatorOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -32,5 +32,5 @@ export async function textTranslator(input: TextTranslatorInput): Promise<TextTr
     }
   });
 
-  return llmResponse;
+  return output!;
 }

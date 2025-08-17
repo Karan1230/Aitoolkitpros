@@ -8,7 +8,7 @@
  * - AiLogoGeneratorOutput - The return type for the aiLogoGenerator function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const AiLogoGeneratorInputSchema = z.object({
@@ -37,7 +37,7 @@ Style: ${input.style}.
 Colors: ${input.colors}.
 The logo should be on a solid, plain white background, be clean, modern, and easily recognizable. Do not include any extra text other than the brand name and slogan.`;
 
-    const { media } = await generateWithRetry<{ media?: { url: string } }>({
+    const { media } = await ai.generate({
       model: 'googleai/gemini-2.0-flash-preview-image-generation',
       prompt: fullPrompt,
       config: {
@@ -57,7 +57,7 @@ async function removeLogoBackground(imageUrl: string): Promise<string> {
       { media: { url: imageUrl } }
     ];
 
-    const { media } = await generateWithRetry<{ media?: { url: string } }>({
+    const { media } = await ai.generate({
       model: 'googleai/gemini-2.0-flash-preview-image-generation',
       prompt,
       config: {

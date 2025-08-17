@@ -8,7 +8,7 @@
  * - TextToSpeechConverterOutput - The return type for the textToSpeechConverter function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 import wav from 'wav';
 
@@ -29,7 +29,7 @@ export async function textToSpeechConverter(input: TextToSpeechConverterInput): 
   let audioDataUri: string;
 
   if (input.model === 'googleai/gemini-2.5-flash-preview-tts') {
-      const { media } = await generateWithRetry<{ media?: { url: string } }>({
+      const { media } = await ai.generate({
           model: input.model as any,
           config: {
               responseModalities: ['AUDIO'],

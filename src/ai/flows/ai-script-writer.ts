@@ -9,7 +9,7 @@
  */
 
 import {z} from 'genkit';
-import { generateWithRetry } from '../genkit';
+import { ai } from '../genkit';
 import { textTranslator } from './text-translator';
 
 const AiScriptWriterInputSchema = z.object({
@@ -40,7 +40,7 @@ export async function aiScriptWriter(input: AiScriptWriterInput): Promise<AiScri
   
   Generate the script now.`;
   
-  const scriptOutput = await generateWithRetry<AiScriptWriterOutput>({
+  const { output: scriptOutput } = await ai.generate({
       model: 'googleai/gemini-2.0-flash',
       prompt,
       output: {

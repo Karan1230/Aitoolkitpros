@@ -8,7 +8,7 @@
  * - AiRecipeMakerOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const RecipeSchema = z.object({
@@ -61,7 +61,7 @@ export async function aiRecipeMaker(input: AiRecipeMakerInput): Promise<AiRecipe
   
   Generate the recipes now.`;
 
-  const llmResponse = await generateWithRetry<AiRecipeMakerOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -69,5 +69,5 @@ export async function aiRecipeMaker(input: AiRecipeMakerInput): Promise<AiRecipe
     }
   });
 
-  return llmResponse;
+  return output!;
 }

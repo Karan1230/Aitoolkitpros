@@ -8,7 +8,7 @@
  * - QuizGeneratorOutput - The return type for the quizGenerator function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const QuestionSchema = z.object({
@@ -43,7 +43,7 @@ export async function quizGenerator(input: QuizGeneratorInput): Promise<QuizGene
   For each question, provide the question itself, the options (if MCQ), the correct answer, and a brief explanation for the answer.
   Ensure the output is a valid JSON object matching the defined schema.`;
   
-  const llmResponse = await generateWithRetry<QuizGeneratorOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -51,5 +51,5 @@ export async function quizGenerator(input: QuizGeneratorInput): Promise<QuizGene
     }
   });
 
-  return llmResponse;
+  return output!;
 }

@@ -8,7 +8,7 @@
  * - RoastJokeGeneratorOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const RoastJokeGeneratorInputSchema = z.object({
@@ -44,7 +44,7 @@ export async function roastJokeGenerator(input: RoastJokeGeneratorInput): Promis
   
   Generate the list of 10 items now.`;
   
-  const llmResponse = await generateWithRetry<RoastJokeGeneratorOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -52,5 +52,5 @@ export async function roastJokeGenerator(input: RoastJokeGeneratorInput): Promis
     }
   });
 
-  return llmResponse;
+  return output!;
 }

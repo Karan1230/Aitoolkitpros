@@ -8,7 +8,7 @@
  * - DreamInterpreterOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 import { textTranslator } from './text-translator';
 
@@ -41,7 +41,7 @@ export async function dreamInterpreter({ dreamDescription, outputLanguage }: Dre
   
   Generate the interpretation now.`;
 
-  const englishInterpretation = await generateWithRetry<DreamInterpreterOutput>({
+  const { output: englishInterpretation } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {

@@ -8,7 +8,7 @@
  * - CourseOutlineGeneratorOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const LessonSchema = z.object({
@@ -53,7 +53,7 @@ export async function courseOutlineGenerator(input: CourseOutlineGeneratorInput)
   
   Generate the course outline now.`;
 
-  const llmResponse = await generateWithRetry<CourseOutlineGeneratorOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -61,5 +61,5 @@ export async function courseOutlineGenerator(input: CourseOutlineGeneratorInput)
     }
   });
 
-  return llmResponse;
+  return output!;
 }

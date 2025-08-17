@@ -8,7 +8,7 @@
  * - StudyNotesCreatorOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const StudyNotesCreatorInputSchema = z.object({
@@ -39,7 +39,7 @@ export async function studyNotesCreator(input: StudyNotesCreatorInput): Promise<
   
   Generate the study notes now.`;
 
-  const llmResponse = await generateWithRetry<StudyNotesCreatorOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -47,5 +47,5 @@ export async function studyNotesCreator(input: StudyNotesCreatorInput): Promise<
     }
   });
 
-  return llmResponse;
+  return output!;
 }

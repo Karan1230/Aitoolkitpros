@@ -8,7 +8,7 @@
  * - AiImageGeneratorOutput - The return type for the aiImageGenerator function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const AiImageGeneratorInputSchema = z.object({
@@ -37,7 +37,7 @@ export async function aiImageGenerator(input: AiImageGeneratorInput): Promise<Ai
     const isGemini = input.model.startsWith('googleai/');
 
     const imagePromises = Array(4).fill(null).map(() => 
-        generateWithRetry<{ media?: { url: string } }>({
+        ai.generate({
             model: input.model as any,
             prompt: fullPrompt,
             ...(isGemini ? {
@@ -48,9 +48,6 @@ export async function aiImageGenerator(input: AiImageGeneratorInput): Promise<Ai
               config: {
               }
             }),
-            // Aspect ratio is not a standard config for genkit's generate, it's a custom param
-            // that needs to be handled by the model adapter if supported. Assuming it is for now.
-            // If not, it needs to be part of the prompt.
         })
     );
     

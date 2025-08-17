@@ -8,7 +8,7 @@
  * - EngagementPostGeneratorOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const PostIdeaSchema = z.object({
@@ -45,7 +45,7 @@ export async function engagementPostGenerator(input: EngagementPostGeneratorInpu
   
   Generate the engagement post ideas now.`;
   
-  const llmResponse = await generateWithRetry<EngagementPostGeneratorOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -53,5 +53,5 @@ export async function engagementPostGenerator(input: EngagementPostGeneratorInpu
     }
   });
 
-  return llmResponse;
+  return output!;
 }

@@ -8,7 +8,7 @@
  * - StoryPlotGeneratorOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const StoryPlotGeneratorInputSchema = z.object({
@@ -57,7 +57,7 @@ export async function storyPlotGenerator(input: StoryPlotGeneratorInput): Promis
   
   Ensure the entire output is creative, well-structured, and adheres to the requested genre. Generate the story plot now.`;
 
-  const llmResponse = await generateWithRetry<StoryPlotGeneratorOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -65,5 +65,5 @@ export async function storyPlotGenerator(input: StoryPlotGeneratorInput): Promis
     }
   });
 
-  return llmResponse;
+  return output!;
 }

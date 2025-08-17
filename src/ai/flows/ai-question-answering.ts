@@ -8,7 +8,7 @@
  * - AiQuestionAnsweringOutput - The return type for the aiQuestionAnswering function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const AiQuestionAnsweringInputSchema = z.object({
@@ -22,7 +22,7 @@ const AiQuestionAnsweringOutputSchema = z.object({
 export type AiQuestionAnsweringOutput = z.infer<typeof AiQuestionAnsweringOutputSchema>;
 
 export async function aiQuestionAnswering(input: AiQuestionAnsweringInput): Promise<AiQuestionAnsweringOutput> {
-  const llmResponse = await generateWithRetry<AiQuestionAnsweringOutput>({
+  const { output } = await ai.generate({
       model: 'googleai/gemini-2.0-flash',
       prompt: `Answer the following question: ${input.question}`,
       output: {
@@ -30,5 +30,5 @@ export async function aiQuestionAnswering(input: AiQuestionAnsweringInput): Prom
       }
     });
 
-    return llmResponse;
+    return output!;
 }

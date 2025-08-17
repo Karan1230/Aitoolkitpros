@@ -8,7 +8,7 @@
  * - ColorPaletteFinderOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const PaletteSchema = z.object({
@@ -45,7 +45,7 @@ export async function colorPaletteFinder(input: ColorPaletteFinderInput): Promis
   
   Generate the color palettes now.`;
 
-  const llmResponse = await generateWithRetry<ColorPaletteFinderOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -53,5 +53,5 @@ export async function colorPaletteFinder(input: ColorPaletteFinderInput): Promis
     }
   });
 
-  return llmResponse;
+  return output!;
 }

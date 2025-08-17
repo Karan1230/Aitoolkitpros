@@ -8,7 +8,7 @@
  * - HashtagGeneratorOutput - The return type for the function.
  */
 
-import { generateWithRetry } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const HashtagGeneratorInputSchema = z.object({
@@ -41,7 +41,7 @@ export async function hashtagGenerator(input: HashtagGeneratorInput): Promise<Ha
   
   Generate the list of hashtags now.`;
 
-  const llmResponse = await generateWithRetry<HashtagGeneratorOutput>({
+  const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
     prompt,
     output: {
@@ -49,5 +49,5 @@ export async function hashtagGenerator(input: HashtagGeneratorInput): Promise<Ha
     }
   });
 
-  return llmResponse;
+  return output!;
 }
