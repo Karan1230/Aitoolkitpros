@@ -1,9 +1,11 @@
+
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { AppHeader } from '@/components/app-header';
+import { ChatbotAssistant } from '@/components/chatbot-assistant';
 
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -67,6 +69,7 @@ export default function RootLayout({
           <main className="flex-1 pt-16">{children}</main>
         </div>
         <Toaster />
+        <ChatbotAssistant />
       </body>
     </html>
   );
