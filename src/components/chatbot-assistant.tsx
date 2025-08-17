@@ -39,16 +39,18 @@ export function ChatbotAssistant() {
     if (sessionStorage.getItem('chatbotDismissed')) {
       setIsDismissed(true);
     } else {
-        const timer = setTimeout(() => setShowWelcome(true), 1500);
-        const popTimer = setTimeout(() => {
+        const welcomeTimer = setTimeout(() => {
+            setShowWelcome(true);
             if (popSoundRef.current) {
                 popSoundRef.current.volume = 0.5;
                 popSoundRef.current.play().catch(e => console.error("Audio play failed:", e));
             }
+            // Hide welcome message after a delay
+            setTimeout(() => setShowWelcome(false), 2500); // Show for 1.5s then fade out for 1s
         }, 1000);
+        
         return () => {
-            clearTimeout(timer);
-            clearTimeout(popTimer);
+            clearTimeout(welcomeTimer);
         }
     }
   }, []);
@@ -225,8 +227,8 @@ export function ChatbotAssistant() {
       >
         <div className="relative">
             {showWelcome && !isDragging && (
-                <div className="absolute bottom-full right-0 mb-2 w-max max-w-xs p-3 bg-card text-card-foreground rounded-lg shadow-lg animate-pop-in">
-                    <p className="text-sm">Hi! I'm your chatbot assistant.</p>
+                <div className="absolute bottom-full right-0 mb-2 w-max max-w-xs p-3 bg-card text-card-foreground rounded-lg shadow-lg animate-welcome-bubble">
+                    <p className="text-sm">Hi! I'm AI Assistant</p>
                 </div>
             )}
             <Button
