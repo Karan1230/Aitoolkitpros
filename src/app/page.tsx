@@ -37,7 +37,7 @@ const testimonials = [
 const INITIAL_TOOL_COUNT = 8;
 
 export default function Home() {
-  const autoplayPlugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
+  const autoplayPlugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: false }));
   const [visibleTools, setVisibleTools] = useState(INITIAL_TOOL_COUNT);
 
   const loadMoreTools = () => {
