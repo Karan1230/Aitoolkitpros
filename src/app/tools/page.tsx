@@ -12,17 +12,8 @@ export const metadata: Metadata = {
 export default function AllToolsPage() {
   return (
     <div className="container py-12 md:py-20">
-      <div className="text-center max-w-3xl mx-auto">
-        <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
-          All AI Tools
-        </h1>
-        <p className="mt-6 text-lg text-muted-foreground">
-          Explore our full suite of AI-powered tools designed to be simple, powerful, and completely free. Find the perfect assistant for your next creative project.
-        </p>
-      </div>
-
       {toolCategories.map((category) => (
-        <section key={category.id} className="mt-16">
+        <section key={category.id} className="mt-8 first:mt-0">
           <div className="flex items-center gap-4 mb-8">
             <div className="p-3 rounded-full bg-primary/10">
               {category.icon}
