@@ -8,7 +8,7 @@
  * - ProductDescriptionGeneratorOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const ProductDescriptionGeneratorInputSchema = z.object({
@@ -26,45 +26,35 @@ const ProductDescriptionGeneratorOutputSchema = z.object({
 export type ProductDescriptionGeneratorOutput = z.infer<typeof ProductDescriptionGeneratorOutputSchema>;
 
 export async function productDescriptionGenerator(input: ProductDescriptionGeneratorInput): Promise<ProductDescriptionGeneratorOutput> {
-  return productDescriptionGeneratorFlow(input);
+  const prompt = `You are an expert e-commerce copywriter. Generate a compelling, well-structured, and persuasive product description for an online store.
+
+  **Product Details:**
+  - Product Name: ${input.productName}
+  - Category: ${input.category}
+  - Key Features:
+  ${input.features}
+  - Target Audience: ${input.targetAudience}
+  
+  **Tone:** ${input.tone}
+  
+  **Instructions:**
+  1.  Start with a captivating opening that grabs the reader's attention.
+  2.  Highlight the key benefits of the features provided.
+  3.  Use persuasive language to encourage a purchase.
+  4.  Incorporate relevant keywords naturally for SEO, based on the product name and category.
+  5.  Structure the description with clear headings and bullet points for readability.
+  6.  End with a strong call to action.
+  7.  The description should be suitable for platforms like Amazon, Shopify, or Flipkart.
+  
+  Generate the product description now.`;
+
+  const llmResponse = await generateWithRetry<ProductDescriptionGeneratorOutput>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt,
+    output: {
+      schema: ProductDescriptionGeneratorOutputSchema,
+    }
+  });
+
+  return llmResponse;
 }
-
-const productDescriptionPrompt = ai.definePrompt({
-  name: 'productDescriptionPrompt',
-  input: {schema: ProductDescriptionGeneratorInputSchema},
-  output: {schema: ProductDescriptionGeneratorOutputSchema},
-  prompt: `You are an expert e-commerce copywriter. Generate a compelling, well-structured, and persuasive product description for an online store.
-
-**Product Details:**
-- Product Name: {{{productName}}}
-- Category: {{{category}}}
-- Key Features:
-{{{features}}}
-- Target Audience: {{{targetAudience}}}
-
-**Tone:** {{tone}}
-
-**Instructions:**
-1.  Start with a captivating opening that grabs the reader's attention.
-2.  Highlight the key benefits of the features provided.
-3.  Use persuasive language to encourage a purchase.
-4.  Incorporate relevant keywords naturally for SEO, based on the product name and category.
-5.  Structure the description with clear headings and bullet points for readability.
-6.  End with a strong call to action.
-7.  The description should be suitable for platforms like Amazon, Shopify, or Flipkart.
-
-Generate the product description now.`,
-});
-
-
-const productDescriptionGeneratorFlow = ai.defineFlow(
-  {
-    name: 'productDescriptionGeneratorFlow',
-    inputSchema: ProductDescriptionGeneratorInputSchema,
-    outputSchema: ProductDescriptionGeneratorOutputSchema,
-  },
-  async (input) => {
-    const {output} = await productDescriptionPrompt(input);
-    return output!;
-  }
-);

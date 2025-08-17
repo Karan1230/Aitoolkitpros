@@ -8,7 +8,7 @@
  * - ReelShortsScriptWriterOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const ScriptSchema = z.object({
@@ -33,42 +33,32 @@ const ReelShortsScriptWriterOutputSchema = z.object({
 export type ReelShortsScriptWriterOutput = z.infer<typeof ReelShortsScriptWriterOutputSchema>;
 
 export async function reelShortsScriptWriter(input: ReelShortsScriptWriterInput): Promise<ReelShortsScriptWriterOutput> {
-  return reelShortsScriptWriterFlow(input);
+  const prompt = `You are an expert viral video script writer. Generate 3 distinct and compelling short-form (15-60 seconds) video scripts in ${input.language} based on the following criteria.
+
+  **Platform:** ${input.platform}
+  **Tone:** ${input.tone}
+  
+  **Topic/Idea:**
+  ${input.topic}
+  
+  **Instructions for each script:**
+  1.  **Hook:** Create a powerful hook for the first 3-5 seconds to grab the viewer's attention immediately.
+  2.  **Main Content:** Write the core message or story. Break it down into simple, scannable scenes or points.
+  3.  **Call-to-Action (CTA):** Provide a clear and strong CTA to encourage likes, comments, shares, or another desired action.
+  4.  **Caption:** Write a compelling caption for the post.
+  5.  **Hashtags:** Suggest a list of relevant and effective hashtags.
+  
+  Tailor each script to be effective for the specified **platform** and **tone**. Ensure each of the 3 scripts is a unique take on the topic.
+  
+  Generate the scripts now.`;
+  
+  const llmResponse = await generateWithRetry<ReelShortsScriptWriterOutput>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt,
+    output: {
+      schema: ReelShortsScriptWriterOutputSchema,
+    }
+  });
+
+  return llmResponse;
 }
-
-const scriptPrompt = ai.definePrompt({
-  name: 'reelShortsScriptWriterPrompt',
-  input: {schema: ReelShortsScriptWriterInputSchema},
-  output: {schema: ReelShortsScriptWriterOutputSchema},
-  prompt: `You are an expert viral video script writer. Generate 3 distinct and compelling short-form (15-60 seconds) video scripts in {{language}} based on the following criteria.
-
-**Platform:** {{platform}}
-**Tone:** {{tone}}
-
-**Topic/Idea:**
-{{{topic}}}
-
-**Instructions for each script:**
-1.  **Hook:** Create a powerful hook for the first 3-5 seconds to grab the viewer's attention immediately.
-2.  **Main Content:** Write the core message or story. Break it down into simple, scannable scenes or points.
-3.  **Call-to-Action (CTA):** Provide a clear and strong CTA to encourage likes, comments, shares, or another desired action.
-4.  **Caption:** Write a compelling caption for the post.
-5.  **Hashtags:** Suggest a list of relevant and effective hashtags.
-
-Tailor each script to be effective for the specified **platform** and **tone**. Ensure each of the 3 scripts is a unique take on the topic.
-
-Generate the scripts now.`,
-});
-
-
-const reelShortsScriptWriterFlow = ai.defineFlow(
-  {
-    name: 'reelShortsScriptWriterFlow',
-    inputSchema: ReelShortsScriptWriterInputSchema,
-    outputSchema: ReelShortsScriptWriterOutputSchema,
-  },
-  async (input) => {
-    const {output} = await scriptPrompt(input);
-    return output!;
-  }
-);

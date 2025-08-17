@@ -7,9 +7,9 @@
  * - VoiceToTextConverterOutput - The return type for the voiceToTextConverter function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
-import { textTranslatorFlow } from './text-translator';
+import { textTranslator } from './text-translator';
 
 const VoiceToTextConverterInputSchema = z.object({
   audioDataUri: z
@@ -26,41 +26,32 @@ const VoiceToTextConverterOutputSchema = z.object({
 });
 export type VoiceToTextConverterOutput = z.infer<typeof VoiceToTextConverterOutputSchema>;
 
-export async function voiceToTextConverter(input: VoiceToTextConverterInput): Promise<VoiceToTextConverterOutput> {
-  return voiceToTextConverterFlow(input);
-}
 
-const transcriptionPrompt = ai.definePrompt({
-    name: 'transcriptionPrompt',
-    input: { schema: z.object({ audioDataUri: z.string() }) },
-    output: { schema: z.object({ transcription: z.string() }) },
-    prompt: `Please transcribe the following audio file into text.
-
-Audio: {{media url=audioDataUri}}`,
+const TranscriptionOutputSchema = z.object({
+  transcription: z.string(),
 });
 
-
-const voiceToTextConverterFlow = ai.defineFlow(
-  {
-    name: 'voiceToTextConverterFlow',
-    inputSchema: VoiceToTextConverterInputSchema,
-    outputSchema: VoiceToTextConverterOutputSchema,
-  },
-  async input => {
-    // 1. Transcribe the audio
-    const { output: transcriptionOutput } = await transcriptionPrompt({ audioDataUri: input.audioDataUri });
-    if (!transcriptionOutput?.transcription) {
-        throw new Error("Failed to transcribe audio.");
+export async function voiceToTextConverter(input: VoiceToTextConverterInput): Promise<VoiceToTextConverterOutput> {
+  // 1. Transcribe the audio
+  const { transcription } = await generateWithRetry<{ transcription: string }>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt: `Please transcribe the following audio file into text.\n\nAudio: {{media url=${input.audioDataUri}}}`,
+    output: {
+        schema: TranscriptionOutputSchema,
     }
-
-    // 2. Translate the transcription
-    const translationResult = await textTranslatorFlow({
-        text: transcriptionOutput.transcription,
-        targetLanguage: input.targetLanguage
-    });
-
-    return {
-        translatedText: translationResult.translatedText
-    };
+  });
+  
+  if (!transcription) {
+      throw new Error("Failed to transcribe audio.");
   }
-);
+
+  // 2. Translate the transcription
+  const translationResult = await textTranslator({
+      text: transcription,
+      targetLanguage: input.targetLanguage
+  });
+
+  return {
+      translatedText: translationResult.translatedText
+  };
+}

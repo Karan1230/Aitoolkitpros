@@ -8,7 +8,7 @@
  * - TextToSpeechConverterOutput - The return type for the textToSpeechConverter function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 import wav from 'wav';
 
@@ -26,7 +26,36 @@ const TextToSpeechConverterOutputSchema = z.object({
 export type TextToSpeechConverterOutput = z.infer<typeof TextToSpeechConverterOutputSchema>;
 
 export async function textToSpeechConverter(input: TextToSpeechConverterInput): Promise<TextToSpeechConverterOutput> {
-  return textToSpeechConverterFlow(input);
+  let audioDataUri: string;
+
+  if (input.model === 'googleai/gemini-2.5-flash-preview-tts') {
+      const { media } = await generateWithRetry<{ media?: { url: string } }>({
+          model: input.model as any,
+          config: {
+              responseModalities: ['AUDIO'],
+              speechConfig: {
+                voiceConfig: {
+                    prebuiltVoiceConfig: { voiceName: input.voice || 'Algenib' },
+                },
+                languageCode: input.languageCode || 'en-US',
+              },
+          },
+          prompt: input.text,
+      });
+
+      if (!media) {
+          throw new Error('no media returned from Google AI');
+      }
+      const audioBuffer = Buffer.from(
+          media.url.substring(media.url.indexOf(',') + 1),
+          'base64'
+      );
+      audioDataUri = 'data:audio/wav;base64,' + (await toWav(audioBuffer));
+  } else {
+      throw new Error(`Unsupported model: ${input.model}`);
+  }
+
+  return { audioDataUri };
 }
 
 async function toWav(
@@ -55,45 +84,3 @@ async function toWav(
     writer.end();
   });
 }
-
-
-const textToSpeechConverterFlow = ai.defineFlow(
-  {
-    name: 'textToSpeechConverterFlow',
-    inputSchema: TextToSpeechConverterInputSchema,
-    outputSchema: TextToSpeechConverterOutputSchema,
-  },
-  async (input) => {
-    let audioDataUri: string;
-
-    if (input.model === 'googleai/gemini-2.5-flash-preview-tts') {
-        const { media } = await ai.generate({
-            model: input.model as any,
-            config: {
-                responseModalities: ['AUDIO'],
-                speechConfig: {
-                  voiceConfig: {
-                      prebuiltVoiceConfig: { voiceName: input.voice || 'Algenib' },
-                  },
-                  languageCode: input.languageCode || 'en-US',
-                },
-            },
-            prompt: input.text,
-        });
-
-        if (!media) {
-            throw new Error('no media returned from Google AI');
-        }
-        const audioBuffer = Buffer.from(
-            media.url.substring(media.url.indexOf(',') + 1),
-            'base64'
-        );
-        audioDataUri = 'data:audio/wav;base64,' + (await toWav(audioBuffer));
-    } else {
-        throw new Error(`Unsupported model: ${input.model}`);
-    }
-
-
-    return { audioDataUri };
-  }
-);

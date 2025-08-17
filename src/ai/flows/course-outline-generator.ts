@@ -8,7 +8,7 @@
  * - CourseOutlineGeneratorOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const LessonSchema = z.object({
@@ -37,39 +37,29 @@ const CourseOutlineGeneratorOutputSchema = z.object({
 export type CourseOutlineGeneratorOutput = z.infer<typeof CourseOutlineGeneratorOutputSchema>;
 
 export async function courseOutlineGenerator(input: CourseOutlineGeneratorInput): Promise<CourseOutlineGeneratorOutput> {
-  return courseOutlineGeneratorFlow(input);
+  const prompt = `You are an expert curriculum designer and instructional designer. Create a comprehensive and well-structured online course outline in ${input.language} based on the following criteria.
+
+  **Course Topic:** ${input.topic}
+  **Target Level:** ${input.level}
+  **Estimated Duration:** ${input.duration}
+  
+  **Instructions:**
+  1.  Generate a compelling **courseTitle** that is clear and attractive.
+  2.  Write a brief, engaging **courseDescription** that explains what the course is about and who it's for.
+  3.  Structure the course into logical **modules**. Each module should have a clear title.
+  4.  Within each module, break down the content into specific **lessons**. Each lesson should have a title and a list of key **keyPoints** (3-5 points) that will be covered.
+  5.  The number of modules and lessons should be appropriate for the specified course **duration** and **level**.
+  6.  Ensure the content progresses logically from basic concepts to more advanced ones, suitable for the target **level**.
+  
+  Generate the course outline now.`;
+
+  const llmResponse = await generateWithRetry<CourseOutlineGeneratorOutput>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt,
+    output: {
+      schema: CourseOutlineGeneratorOutputSchema,
+    }
+  });
+
+  return llmResponse;
 }
-
-const courseOutlinePrompt = ai.definePrompt({
-  name: 'courseOutlinePrompt',
-  input: {schema: CourseOutlineGeneratorInputSchema},
-  output: {schema: CourseOutlineGeneratorOutputSchema},
-  prompt: `You are an expert curriculum designer and instructional designer. Create a comprehensive and well-structured online course outline in {{language}} based on the following criteria.
-
-**Course Topic:** {{{topic}}}
-**Target Level:** {{level}}
-**Estimated Duration:** {{duration}}
-
-**Instructions:**
-1.  Generate a compelling **courseTitle** that is clear and attractive.
-2.  Write a brief, engaging **courseDescription** that explains what the course is about and who it's for.
-3.  Structure the course into logical **modules**. Each module should have a clear title.
-4.  Within each module, break down the content into specific **lessons**. Each lesson should have a title and a list of key **keyPoints** (3-5 points) that will be covered.
-5.  The number of modules and lessons should be appropriate for the specified course **duration** and **level**.
-6.  Ensure the content progresses logically from basic concepts to more advanced ones, suitable for the target **level**.
-
-Generate the course outline now.`,
-});
-
-
-const courseOutlineGeneratorFlow = ai.defineFlow(
-  {
-    name: 'courseOutlineGeneratorFlow',
-    inputSchema: CourseOutlineGeneratorInputSchema,
-    outputSchema: CourseOutlineGeneratorOutputSchema,
-  },
-  async (input) => {
-    const {output} = await courseOutlinePrompt(input);
-    return output!;
-  }
-);

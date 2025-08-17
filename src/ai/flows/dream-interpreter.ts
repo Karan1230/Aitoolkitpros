@@ -8,9 +8,9 @@
  * - DreamInterpreterOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
-import { textTranslatorFlow } from './text-translator';
+import { textTranslator } from './text-translator';
 
 const DreamInterpreterInputSchema = z.object({
   dreamDescription: z.string().describe('The detailed description of the dream.'),
@@ -23,57 +23,46 @@ const DreamInterpreterOutputSchema = z.object({
 });
 export type DreamInterpreterOutput = z.infer<typeof DreamInterpreterOutputSchema>;
 
-export async function dreamInterpreter(input: DreamInterpreterInput): Promise<DreamInterpreterOutput> {
-  return dreamInterpreterFlow(input);
-}
+export async function dreamInterpreter({ dreamDescription, outputLanguage }: DreamInterpreterInput): Promise<DreamInterpreterOutput> {
+  // 1. Generate the interpretation in English for consistency and quality.
+  const prompt = `You are an expert dream interpreter with knowledge of psychology, mythology, and cultural symbolism. Analyze the following dream description and provide a comprehensive interpretation.
 
-const interpretationPrompt = ai.definePrompt({
-  name: 'dreamInterpretationPrompt',
-  input: {schema: z.object({ dreamDescription: z.string() }) },
-  output: {schema: DreamInterpreterOutputSchema},
-  prompt: `You are an expert dream interpreter with knowledge of psychology, mythology, and cultural symbolism. Analyze the following dream description and provide a comprehensive interpretation.
+  Dream Description:
+  ${dreamDescription}
+  
+  **Instructions:**
+  1.  **Symbol Analysis:** Identify the key symbols in the dream and explain their potential meanings.
+  2.  **Emotional Context:** Analyze the emotional tone of the dream (e.g., fear, joy, confusion) and what it might signify.
+  3.  **Provide Meanings:** Offer insights from different perspectives:
+      - **Psychological:** Connect the dream to potential subconscious thoughts, anxieties, or desires.
+      - **Cultural/Spiritual:** Discuss any relevant archetypes, myths, or spiritual meanings associated with the dream elements.
+  4.  **Concluding Thought:** End with a summary or a question for self-reflection.
+  5.  Generate the interpretation in English.
+  
+  Generate the interpretation now.`;
 
-Dream Description:
-{{{dreamDescription}}}
-
-**Instructions:**
-1.  **Symbol Analysis:** Identify the key symbols in the dream and explain their potential meanings.
-2.  **Emotional Context:** Analyze the emotional tone of the dream (e.g., fear, joy, confusion) and what it might signify.
-3.  **Provide Meanings:** Offer insights from different perspectives:
-    - **Psychological:** Connect the dream to potential subconscious thoughts, anxieties, or desires.
-    - **Cultural/Spiritual:** Discuss any relevant archetypes, myths, or spiritual meanings associated with the dream elements.
-4.  **Concluding Thought:** End with a summary or a question for self-reflection.
-5.  Generate the interpretation in English.
-
-Generate the interpretation now.`,
-});
-
-
-const dreamInterpreterFlow = ai.defineFlow(
-  {
-    name: 'dreamInterpreterFlow',
-    inputSchema: DreamInterpreterInputSchema,
-    outputSchema: DreamInterpreterOutputSchema,
-  },
-  async ({ dreamDescription, outputLanguage }) => {
-    // 1. Generate the interpretation in English for consistency and quality.
-    const {output: englishInterpretation} = await interpretationPrompt({ dreamDescription });
-    
-    if (!englishInterpretation?.interpretation) {
-        throw new Error("Failed to generate an interpretation.");
+  const englishInterpretation = await generateWithRetry<DreamInterpreterOutput>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt,
+    output: {
+      schema: DreamInterpreterOutputSchema
     }
-
-    // 2. Translate to the desired output language if it's not English.
-    if (outputLanguage !== 'English') {
-        const translationResult = await textTranslatorFlow({
-            text: englishInterpretation.interpretation,
-            targetLanguage: outputLanguage
-        });
-        return {
-            interpretation: translationResult.translatedText
-        };
-    }
+  });
     
-    return englishInterpretation;
+  if (!englishInterpretation?.interpretation) {
+      throw new Error("Failed to generate an interpretation.");
   }
-);
+
+  // 2. Translate to the desired output language if it's not English.
+  if (outputLanguage !== 'English') {
+      const translationResult = await textTranslator({
+          text: englishInterpretation.interpretation,
+          targetLanguage: outputLanguage
+      });
+      return {
+          interpretation: translationResult.translatedText
+      };
+  }
+    
+  return englishInterpretation;
+}

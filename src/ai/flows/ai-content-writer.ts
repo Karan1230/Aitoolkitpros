@@ -8,7 +8,7 @@
  * - AiContentWriterOutput - The return type for the function.
  */
 
-import { ai } from '@/ai/genkit';
+import { ai, generateWithRetry } from '@/ai/genkit';
 import { z } from 'genkit';
 
 const AiContentWriterInputSchema = z.object({
@@ -39,68 +39,41 @@ export type AiContentWriterOutput = z.infer<typeof AiContentWriterOutputSchema>;
 
 
 export async function aiContentWriter(input: AiContentWriterInput): Promise<AiContentWriterOutput> {
-  return contentWriterFlow(input);
-}
-
-// Helper flow to generate images
-const generateImagesFlow = ai.defineFlow(
-  {
-    name: 'generateImagesForContentFlow',
-    inputSchema: z.object({
-      title: z.string(),
-      imageCount: z.number(),
-      imageStyle: z.string(),
-      imageDimensions: z.string(),
-    }),
-    outputSchema: z.array(z.string()),
-  },
-  async ({ title, imageCount, imageStyle, imageDimensions }) => {
-    const imagePromises = Array(imageCount).fill(null).map((_, i) => {
-        const prompt = i === 0 
-            ? `Create a high-quality, professional featured image for an article titled "${title}". Style: ${imageStyle}.`
-            : `Create a relevant, high-quality image for an article about "${title}". Style: ${imageStyle}.`;
-        
-        return ai.generate({
-            model: 'googleai/gemini-2.0-flash-preview-image-generation',
-            prompt,
-            config: {
-                responseModalities: ['TEXT', 'IMAGE'],
-            },
-        });
-    });
-
-    const results = await Promise.all(imagePromises);
-    const imageUrls = results.map(result => result.media?.url).filter((url): url is string => !!url);
+  // Step 1: Generate all images in parallel.
+  const imagePromises = Array(input.imageCount).fill(null).map((_, i) => {
+    const prompt = i === 0 
+        ? `Create a high-quality, professional featured image for an article titled "${input.title}". Style: ${input.imageStyle}.`
+        : `Create a relevant, high-quality image for an article about "${input.title}". Style: ${input.imageStyle}.`;
     
-    if (imageUrls.length < imageCount) {
-        throw new Error("Failed to generate the required number of images.");
-    }
+    return generateWithRetry<{ media?: { url: string } }>({
+        model: 'googleai/gemini-2.0-flash-preview-image-generation',
+        prompt,
+        config: {
+            responseModalities: ['TEXT', 'IMAGE'],
+        },
+    });
+  });
 
-    return imageUrls;
+  const results = await Promise.all(imagePromises);
+  const imageUrls = results.map(result => result.media?.url).filter((url): url is string => !!url);
+  
+  if (imageUrls.length < input.imageCount) {
+      throw new Error("Failed to generate the required number of images.");
   }
-);
+  
+  const imageUrlsJson = JSON.stringify(imageUrls);
 
+  // Step 2: Generate the article content with the image URLs provided.
+  const contentGenerationPrompt = `You are an expert content writer and SEO specialist. Generate a high-quality, comprehensive ${input.contentType} in ${input.language} based on the following detailed requirements.
 
-const contentGenerationPrompt = ai.definePrompt({
-  name: 'contentWriterPrompt',
-  input: {
-    schema: z.object({
-      ...AiContentWriterInputSchema.shape,
-      imageUrls: z.array(z.string()),
-      imageUrlsJson: z.string(),
-    })
-  },
-  output: { schema: AiContentWriterOutputSchema },
-  prompt: `You are an expert content writer and SEO specialist. Generate a high-quality, comprehensive {{contentType}} in {{language}} based on the following detailed requirements.
-
-**Primary Topic/Keywords:** {{{title}}}
-**Target Word Count:** Approximately {{wordCount}} words.
-**Writing Style:** {{writingStyle}}
-**Readability Level:** {{readability}}
-**Article Type:** {{articleType}}
-**Tone of Voice:** {{tone}}
-**Point of View:** {{pointOfView}}
-**Target Country for Localization:** {{targetCountry}}
+**Primary Topic/Keywords:** ${input.title}
+**Target Word Count:** Approximately ${input.wordCount} words.
+**Writing Style:** ${input.writingStyle}
+**Readability Level:** ${input.readability}
+**Article Type:** ${input.articleType}
+**Tone of Voice:** ${input.tone}
+**Point of View:** ${input.pointOfView}
+**Target Country for Localization:** ${input.targetCountry}
 
 **Content Structure and Formatting:**
 1.  **Title:** Create a compelling, SEO-optimized title based on the user's input. Store it in the 'generatedTitle' output field.
@@ -110,56 +83,29 @@ const contentGenerationPrompt = ai.definePrompt({
 5.  **Output Format:** The final output must be a single, valid HTML string.
 
 **Image Integration:**
-- You have been provided with an array of image URLs: {{{imageUrlsJson}}}.
-- The first image, '{{imageUrls.[0]}}', must be set as the featured image.
+- You have been provided with an array of image URLs: ${imageUrlsJson}.
+- The first image, '${imageUrls[0]}', must be set as the featured image.
 - Integrate the remaining images naturally throughout the article. Place each image within its own <figure> tag with a descriptive <figcaption>. Example: <figure><img src="..." alt="A descriptive alt tag"><figcaption>A descriptive caption.</figcaption></figure>
 - Ensure all images have descriptive alt text.
 
 **Linking:**
-{{#if internalLinks}}
-- **Internal Links:** The user has provided the following internal links. Integrate them naturally into the content where they are most relevant:
-{{{internalLinks}}}
-{{/if}}
-{{#if externalLinks}}
-- **External Links:** The user has provided the following external links. Integrate them naturally where relevant:
-{{{externalLinks}}}
-{{else}}
-- **AI-Generated External Links:** The user has not provided external links. Find opportunities to link to 2-3 high-authority, relevant external sources to add credibility.
-{{/if}}
+${input.internalLinks ? `- **Internal Links:** The user has provided the following internal links. Integrate them naturally into the content where they are most relevant:\n${input.internalLinks}` : ''}
+${input.externalLinks ? `- **External Links:** The user has provided the following external links. Integrate them naturally where relevant:\n${input.externalLinks}` : '- **AI-Generated External Links:** The user has not provided external links. Find opportunities to link to 2-3 high-authority, relevant external sources to add credibility.'}
 
-Generate the full HTML content now and provide the output in the specified JSON format.`,
-});
+Generate the full HTML content now and provide the output in the specified JSON format.`;
 
-
-const contentWriterFlow = ai.defineFlow(
-  {
-    name: 'contentWriterFlow',
-    inputSchema: AiContentWriterInputSchema,
-    outputSchema: AiContentWriterOutputSchema,
-  },
-  async (input) => {
-    // Step 1: Generate all images in parallel.
-    const imageUrls = await generateImagesFlow({
-      title: input.title,
-      imageCount: input.imageCount,
-      imageStyle: input.imageStyle,
-      imageDimensions: input.imageDimensions,
-    });
-    
-    // Step 2: Generate the article content with the image URLs provided.
-    const { output } = await contentGenerationPrompt({
-      ...input,
-      imageUrls,
-      imageUrlsJson: JSON.stringify(imageUrls),
-    });
-    
-    if (!output) {
-      throw new Error("Failed to generate content.");
-    }
-    
-    return {
-        ...output,
-        featuredImageUrl: imageUrls[0], // Ensure the featured image URL from the generated list is in the final output
-    };
+  const output = await generateWithRetry<AiContentWriterOutput>({
+      model: 'googleai/gemini-2.0-flash',
+      prompt: contentGenerationPrompt,
+      output: { schema: AiContentWriterOutputSchema },
+  });
+  
+  if (!output) {
+    throw new Error("Failed to generate content.");
   }
-);
+  
+  return {
+      ...output,
+      featuredImageUrl: imageUrls[0], // Ensure the featured image URL from the generated list is in the final output
+  };
+}

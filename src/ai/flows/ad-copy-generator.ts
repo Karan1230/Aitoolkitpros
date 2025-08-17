@@ -10,6 +10,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { generateWithRetry } from '../genkit';
 
 const AdCopySchema = z.object({
   headline: z.string().describe('The main headline for the ad.'),
@@ -33,46 +34,34 @@ const AdCopyGeneratorOutputSchema = z.object({
 export type AdCopyGeneratorOutput = z.infer<typeof AdCopyGeneratorOutputSchema>;
 
 export async function adCopyGenerator(input: AdCopyGeneratorInput): Promise<AdCopyGeneratorOutput> {
-  return adCopyGeneratorFlow(input);
+  const llmResponse = await generateWithRetry({
+      model: 'googleai/gemini-2.0-flash',
+      prompt: `You are an expert digital marketing copywriter. Generate 5 distinct and compelling ad copy variations in ${input.language} based on the following criteria.
+
+      **Ad Platform:** ${input.platform}
+      **Tone:** ${input.tone}
+      
+      **Product/Service Details:**
+      ${input.productDetails}
+      
+      **Target Audience:**
+      ${input.targetAudience}
+      
+      **Key Selling Points:**
+      ${input.keyPoints}
+      
+      
+      **Instructions:**
+      1.  For each variation, generate a **headline**, a **main text**, and a strong **call-to-action (CTA)**.
+      2.  Tailor the copy to be effective for the specified **platform**, respecting its typical character limits and style. For example, Google Ads should be concise, while Facebook Ads can be more descriptive.
+      3.  Ensure each ad copy variation is unique and highlights different angles of the key selling points.
+      4.  Adhere strictly to the requested **tone**.
+      
+      Generate the ad copies now.`,
+      output: {
+          schema: AdCopyGeneratorOutputSchema,
+      }
+  });
+
+  return llmResponse;
 }
-
-const adCopyPrompt = ai.definePrompt({
-  name: 'adCopyPrompt',
-  input: {schema: AdCopyGeneratorInputSchema},
-  output: {schema: AdCopyGeneratorOutputSchema},
-  prompt: `You are an expert digital marketing copywriter. Generate 5 distinct and compelling ad copy variations in {{language}} based on the following criteria.
-
-**Ad Platform:** {{platform}}
-**Tone:** {{tone}}
-
-**Product/Service Details:**
-{{{productDetails}}}
-
-**Target Audience:**
-{{{targetAudience}}}
-
-**Key Selling Points:**
-{{{keyPoints}}}
-
-
-**Instructions:**
-1.  For each variation, generate a **headline**, a **main text**, and a strong **call-to-action (CTA)**.
-2.  Tailor the copy to be effective for the specified **platform**, respecting its typical character limits and style. For example, Google Ads should be concise, while Facebook Ads can be more descriptive.
-3.  Ensure each ad copy variation is unique and highlights different angles of the key selling points.
-4.  Adhere strictly to the requested **tone**.
-
-Generate the ad copies now.`,
-});
-
-
-const adCopyGeneratorFlow = ai.defineFlow(
-  {
-    name: 'adCopyGeneratorFlow',
-    inputSchema: AdCopyGeneratorInputSchema,
-    outputSchema: AdCopyGeneratorOutputSchema,
-  },
-  async (input) => {
-    const {output} = await adCopyPrompt(input);
-    return output!;
-  }
-);

@@ -8,7 +8,7 @@
  * - GiftSuggestionGeneratorOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const GiftIdeaSchema = z.object({
@@ -32,40 +32,30 @@ const GiftSuggestionGeneratorOutputSchema = z.object({
 export type GiftSuggestionGeneratorOutput = z.infer<typeof GiftSuggestionGeneratorOutputSchema>;
 
 export async function giftSuggestionGenerator(input: GiftSuggestionGeneratorInput): Promise<GiftSuggestionGeneratorOutput> {
-  return giftSuggestionGeneratorFlow(input);
+  const prompt = `You are an expert gift advisor. Generate a list of 10 thoughtful and creative gift suggestions in ${input.language} based on the following criteria.
+
+  **Occasion:** ${input.occasion}
+  **Age Range:** ${input.age}
+  **Price Range:** ${input.priceRange}
+  
+  **Recipient's Interests & Hobbies:**
+  ${input.interests}
+  
+  **Instructions:**
+  1.  Generate 10 unique gift ideas.
+  2.  For each idea, provide a **name**, a short **description** explaining why it's a suitable gift, and a relevant **category**.
+  3.  Ensure the suggestions are highly relevant to the recipient's interests and the specified occasion.
+  4.  Do not include links to purchase the items. Just provide the gift ideas.
+  
+  Generate the gift suggestions now.`;
+  
+  const llmResponse = await generateWithRetry<GiftSuggestionGeneratorOutput>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt,
+    output: {
+      schema: GiftSuggestionGeneratorOutputSchema,
+    }
+  });
+
+  return llmResponse;
 }
-
-const giftSuggestionPrompt = ai.definePrompt({
-  name: 'giftSuggestionPrompt',
-  input: {schema: GiftSuggestionGeneratorInputSchema},
-  output: {schema: GiftSuggestionGeneratorOutputSchema},
-  prompt: `You are an expert gift advisor. Generate a list of 10 thoughtful and creative gift suggestions in {{language}} based on the following criteria.
-
-**Occasion:** {{occasion}}
-**Age Range:** {{age}}
-**Price Range:** {{priceRange}}
-
-**Recipient's Interests & Hobbies:**
-{{{interests}}}
-
-**Instructions:**
-1.  Generate 10 unique gift ideas.
-2.  For each idea, provide a **name**, a short **description** explaining why it's a suitable gift, and a relevant **category**.
-3.  Ensure the suggestions are highly relevant to the recipient's interests and the specified occasion.
-4.  Do not include links to purchase the items. Just provide the gift ideas.
-
-Generate the gift suggestions now.`,
-});
-
-
-const giftSuggestionGeneratorFlow = ai.defineFlow(
-  {
-    name: 'giftSuggestionGeneratorFlow',
-    inputSchema: GiftSuggestionGeneratorInputSchema,
-    outputSchema: GiftSuggestionGeneratorOutputSchema,
-  },
-  async (input) => {
-    const {output} = await giftSuggestionPrompt(input);
-    return output!;
-  }
-);

@@ -8,7 +8,7 @@
  * - StoryPlotGeneratorOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const StoryPlotGeneratorInputSchema = z.object({
@@ -34,52 +34,36 @@ const StoryPlotGeneratorOutputSchema = z.object({
 export type StoryPlotGeneratorOutput = z.infer<typeof StoryPlotGeneratorOutputSchema>;
 
 export async function storyPlotGenerator(input: StoryPlotGeneratorInput): Promise<StoryPlotGeneratorOutput> {
-  return storyPlotGeneratorFlow(input);
+  const prompt = `You are an expert storyteller and plot generator. Create a compelling and unique story plot based on the following user requirements.
+
+  **Genre:** ${input.genre}
+  **Desired Plot Length/Detail:** ${input.length}
+  
+  ${input.characters ? `**User-defined Characters:** ${input.characters}` : ''}
+  ${input.setting ? `**User-defined Setting:** ${input.setting}` : ''}
+  ${input.theme ? `**User-defined Theme:** ${input.theme}` : ''}
+  
+  **Instructions:**
+  1.  Generate a catchy and relevant **title** for the story.
+  2.  Write a concise **logline** (a one-sentence summary).
+  3.  Describe the **main characters**, giving each a name and a brief, interesting description.
+  4.  Detail the **setting** (time and place).
+  5.  Clearly outline the central **conflict** or problem.
+  6.  Provide a potential **resolution** or ending for the story.
+  7.  Based on the selected "length", provide an appropriate plot summary or outline in the **outline** field.
+      - If "Short idea": Provide a one-paragraph summary.
+      - If "Detailed plot": Provide a multi-paragraph, detailed summary of the plot from beginning to end.
+      - If "Chapter outline": Provide a list of chapter-by-chapter plot points.
+  
+  Ensure the entire output is creative, well-structured, and adheres to the requested genre. Generate the story plot now.`;
+
+  const llmResponse = await generateWithRetry<StoryPlotGeneratorOutput>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt,
+    output: {
+      schema: StoryPlotGeneratorOutputSchema,
+    }
+  });
+
+  return llmResponse;
 }
-
-const storyPlotPrompt = ai.definePrompt({
-  name: 'storyPlotPrompt',
-  input: {schema: StoryPlotGeneratorInputSchema},
-  output: {schema: StoryPlotGeneratorOutputSchema},
-  prompt: `You are an expert storyteller and plot generator. Create a compelling and unique story plot based on the following user requirements.
-
-**Genre:** {{genre}}
-**Desired Plot Length/Detail:** {{length}}
-
-{{#if characters}}
-**User-defined Characters:** {{{characters}}}
-{{/if}}
-{{#if setting}}
-**User-defined Setting:** {{{setting}}}
-{{/if}}
-{{#if theme}}
-**User-defined Theme:** {{{theme}}}
-{{/if}}
-
-**Instructions:**
-1.  Generate a catchy and relevant **title** for the story.
-2.  Write a concise **logline** (a one-sentence summary).
-3.  Describe the **main characters**, giving each a name and a brief, interesting description.
-4.  Detail the **setting** (time and place).
-5.  Clearly outline the central **conflict** or problem.
-6.  Provide a potential **resolution** or ending for the story.
-7.  Based on the selected "length", provide an appropriate plot summary or outline in the **outline** field.
-    - If "Short idea": Provide a one-paragraph summary.
-    - If "Detailed plot": Provide a multi-paragraph, detailed summary of the plot from beginning to end.
-    - If "Chapter outline": Provide a list of chapter-by-chapter plot points.
-
-Ensure the entire output is creative, well-structured, and adheres to the requested genre. Generate the story plot now.`,
-});
-
-
-const storyPlotGeneratorFlow = ai.defineFlow(
-  {
-    name: 'storyPlotGeneratorFlow',
-    inputSchema: StoryPlotGeneratorInputSchema,
-    outputSchema: StoryPlotGeneratorOutputSchema,
-  },
-  async (input) => {
-    const {output} = await storyPlotPrompt(input);
-    return output!;
-  }
-);

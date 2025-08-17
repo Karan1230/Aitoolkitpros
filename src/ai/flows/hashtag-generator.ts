@@ -8,7 +8,7 @@
  * - HashtagGeneratorOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const HashtagGeneratorInputSchema = z.object({
@@ -24,40 +24,30 @@ const HashtagGeneratorOutputSchema = z.object({
 export type HashtagGeneratorOutput = z.infer<typeof HashtagGeneratorOutputSchema>;
 
 export async function hashtagGenerator(input: HashtagGeneratorInput): Promise<HashtagGeneratorOutput> {
-  return hashtagGeneratorFlow(input);
+  const prompt = `You are a social media expert specializing in hashtag strategy. Generate a list of at least 20 relevant hashtags based on the following criteria.
+
+  **Topic/Niche:** ${input.topic}
+  **Platform:** ${input.platform}
+  **Hashtag Style:** ${input.style}
+  
+  **Instructions:**
+  1.  Generate hashtags that are highly relevant to the topic.
+  2.  Optimize the hashtags for the specified platform (e.g., more general for Instagram, more niche for TikTok).
+  3.  Adhere to the requested style:
+      - If "Short & Popular," focus on high-volume, widely used hashtags.
+      - If "Long-Tail & Niche," focus on more specific, community-focused hashtags.
+      - If "Mixed," provide a healthy balance of both popular and niche hashtags.
+  4.  Ensure every item in the output array is a string that starts with the '#' symbol.
+  
+  Generate the list of hashtags now.`;
+
+  const llmResponse = await generateWithRetry<HashtagGeneratorOutput>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt,
+    output: {
+      schema: HashtagGeneratorOutputSchema,
+    }
+  });
+
+  return llmResponse;
 }
-
-const hashtagGeneratorPrompt = ai.definePrompt({
-  name: 'hashtagGeneratorPrompt',
-  input: {schema: HashtagGeneratorInputSchema},
-  output: {schema: HashtagGeneratorOutputSchema},
-  prompt: `You are a social media expert specializing in hashtag strategy. Generate a list of at least 20 relevant hashtags based on the following criteria.
-
-**Topic/Niche:** {{{topic}}}
-**Platform:** {{platform}}
-**Hashtag Style:** {{style}}
-
-**Instructions:**
-1.  Generate hashtags that are highly relevant to the topic.
-2.  Optimize the hashtags for the specified platform (e.g., more general for Instagram, more niche for TikTok).
-3.  Adhere to the requested style:
-    - If "Short & Popular," focus on high-volume, widely used hashtags.
-    - If "Long-Tail & Niche," focus on more specific, community-focused hashtags.
-    - If "Mixed," provide a healthy balance of both popular and niche hashtags.
-4.  Ensure every item in the output array is a string that starts with the '#' symbol.
-
-Generate the list of hashtags now.`,
-});
-
-
-const hashtagGeneratorFlow = ai.defineFlow(
-  {
-    name: 'hashtagGeneratorFlow',
-    inputSchema: HashtagGeneratorInputSchema,
-    outputSchema: HashtagGeneratorOutputSchema,
-  },
-  async (input) => {
-    const {output} = await hashtagGeneratorPrompt(input);
-    return output!;
-  }
-);

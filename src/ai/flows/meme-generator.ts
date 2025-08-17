@@ -8,7 +8,7 @@
  * - MemeGeneratorOutput - The return type for the memeGenerator function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const MemeGeneratorInputSchema = z.object({
@@ -28,17 +28,6 @@ const MemeGeneratorOutputSchema = z.object({
 export type MemeGeneratorOutput = z.infer<typeof MemeGeneratorOutputSchema>;
 
 export async function memeGenerator(input: MemeGeneratorInput): Promise<MemeGeneratorOutput> {
-  return memeGeneratorFlow(input);
-}
-
-const memeGeneratorFlow = ai.defineFlow(
-  {
-    name: 'memeGeneratorFlow',
-    inputSchema: MemeGeneratorInputSchema,
-    outputSchema: MemeGeneratorOutputSchema,
-  },
-  async (input) => {
-    
     const promptText = `Generate a funny meme about "${input.topic}". The meme should have witty, bold, and easy-to-read text overlaid on the image. Make it humorous and shareable.`;
 
     const prompt: any = [{ text: promptText }];
@@ -47,7 +36,7 @@ const memeGeneratorFlow = ai.defineFlow(
         prompt.unshift({ media: { url: input.imageDataUri } });
     }
 
-    const { media } = await ai.generate({
+    const { media } = await generateWithRetry<{ media?: { url: string } }>({
         model: 'googleai/gemini-2.0-flash-preview-image-generation',
         prompt,
         config: {
@@ -60,5 +49,4 @@ const memeGeneratorFlow = ai.defineFlow(
     }
     
     return { imageUrl: media.url };
-  }
-);
+}

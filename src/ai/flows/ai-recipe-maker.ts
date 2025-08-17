@@ -8,7 +8,7 @@
  * - AiRecipeMakerOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const RecipeSchema = z.object({
@@ -36,48 +36,38 @@ const AiRecipeMakerOutputSchema = z.object({
 export type AiRecipeMakerOutput = z.infer<typeof AiRecipeMakerOutputSchema>;
 
 export async function aiRecipeMaker(input: AiRecipeMakerInput): Promise<AiRecipeMakerOutput> {
-  return aiRecipeMakerFlow(input);
+  const prompt = `You are an expert chef and recipe developer. Generate 3 distinct and delicious recipes in ${input.language} based on the following criteria.
+
+  **Available Ingredients:**
+  ${input.ingredients}
+  
+  **Preferences:**
+  - Cuisine: ${input.cuisine}
+  - Meal Type: ${input.mealType}
+  - Dietary Preference: ${input.dietaryPreference}
+  
+  **Instructions:**
+  1.  Prioritize using the **Available Ingredients**. You may include a few common pantry staples (like salt, pepper, oil, water) if necessary.
+  2.  For each of the 3 recipes, provide a complete plan:
+      - A creative **title**.
+      - A short, enticing **description**.
+      - Estimated **cookingTime**.
+      - Recommended **servingSize**.
+      - A list of **ingredients** with quantities.
+      - Clear, step-by-step **instructions**.
+      - (Optional) A couple of helpful **tips** or variations.
+  3.  Ensure the recipes are tailored to the specified cuisine, meal type, and dietary preferences.
+  4.  Each recipe should be unique and appealing.
+  
+  Generate the recipes now.`;
+
+  const llmResponse = await generateWithRetry<AiRecipeMakerOutput>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt,
+    output: {
+      schema: AiRecipeMakerOutputSchema,
+    }
+  });
+
+  return llmResponse;
 }
-
-const recipePrompt = ai.definePrompt({
-  name: 'aiRecipeMakerPrompt',
-  input: {schema: AiRecipeMakerInputSchema},
-  output: {schema: AiRecipeMakerOutputSchema},
-  prompt: `You are an expert chef and recipe developer. Generate 3 distinct and delicious recipes in {{language}} based on the following criteria.
-
-**Available Ingredients:**
-{{{ingredients}}}
-
-**Preferences:**
-- Cuisine: {{cuisine}}
-- Meal Type: {{mealType}}
-- Dietary Preference: {{dietaryPreference}}
-
-**Instructions:**
-1.  Prioritize using the **Available Ingredients**. You may include a few common pantry staples (like salt, pepper, oil, water) if necessary.
-2.  For each of the 3 recipes, provide a complete plan:
-    - A creative **title**.
-    - A short, enticing **description**.
-    - Estimated **cookingTime**.
-    - Recommended **servingSize**.
-    - A list of **ingredients** with quantities.
-    - Clear, step-by-step **instructions**.
-    - (Optional) A couple of helpful **tips** or variations.
-3.  Ensure the recipes are tailored to the specified cuisine, meal type, and dietary preferences.
-4.  Each recipe should be unique and appealing.
-
-Generate the recipes now.`,
-});
-
-
-const aiRecipeMakerFlow = ai.defineFlow(
-  {
-    name: 'aiRecipeMakerFlow',
-    inputSchema: AiRecipeMakerInputSchema,
-    outputSchema: AiRecipeMakerOutputSchema,
-  },
-  async (input) => {
-    const {output} = await recipePrompt(input);
-    return output!;
-  }
-);

@@ -8,7 +8,7 @@
  * - RoastJokeGeneratorOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const RoastJokeGeneratorInputSchema = z.object({
@@ -26,41 +26,31 @@ const RoastJokeGeneratorOutputSchema = z.object({
 export type RoastJokeGeneratorOutput = z.infer<typeof RoastJokeGeneratorOutputSchema>;
 
 export async function roastJokeGenerator(input: RoastJokeGeneratorInput): Promise<RoastJokeGeneratorOutput> {
-  return roastJokeGeneratorFlow(input);
+  const safeSearchInstruction = input.safeSearch ? `6. CRITICAL: All content must be strictly family-friendly. Avoid any offensive, vulgar, or inappropriate topics. No dark humor.` : '';
+
+  const prompt = `You are an expert comedian and roast master. Generate a list of 10 funny and witty items in ${input.language} based on the following criteria.
+
+  **Mode:** ${input.mode}
+  **Tone:** ${input.tone}
+  **Topic/Subject:** ${input.topic}
+  
+  **Instructions:**
+  1.  Generate content that strictly matches the requested **mode** and **tone**.
+  2.  If the mode is "Roast," generate clever and funny insults.
+  3.  If the mode is "Joke," generate creative one-liners or short jokes.
+  4.  If the mode is "Mixed," generate a combination of both roasts and jokes.
+  5.  Ensure the content is genuinely funny and relevant to the topic.
+  ${safeSearchInstruction}
+  
+  Generate the list of 10 items now.`;
+  
+  const llmResponse = await generateWithRetry<RoastJokeGeneratorOutput>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt,
+    output: {
+      schema: RoastJokeGeneratorOutputSchema,
+    }
+  });
+
+  return llmResponse;
 }
-
-const roastJokePrompt = ai.definePrompt({
-  name: 'roastJokePrompt',
-  input: {schema: RoastJokeGeneratorInputSchema},
-  output: {schema: RoastJokeGeneratorOutputSchema},
-  prompt: `You are an expert comedian and roast master. Generate a list of 10 funny and witty items in {{language}} based on the following criteria.
-
-**Mode:** {{mode}}
-**Tone:** {{tone}}
-**Topic/Subject:** {{{topic}}}
-
-**Instructions:**
-1.  Generate content that strictly matches the requested **mode** and **tone**.
-2.  If the mode is "Roast," generate clever and funny insults.
-3.  If the mode is "Joke," generate creative one-liners or short jokes.
-4.  If the mode is "Mixed," generate a combination of both roasts and jokes.
-5.  Ensure the content is genuinely funny and relevant to the topic.
-{{#if safeSearch}}
-6.  CRITICAL: All content must be strictly family-friendly. Avoid any offensive, vulgar, or inappropriate topics. No dark humor.
-{{/if}}
-
-Generate the list of 10 items now.`,
-});
-
-
-const roastJokeGeneratorFlow = ai.defineFlow(
-  {
-    name: 'roastJokeGeneratorFlow',
-    inputSchema: RoastJokeGeneratorInputSchema,
-    outputSchema: RoastJokeGeneratorOutputSchema,
-  },
-  async (input) => {
-    const {output} = await roastJokePrompt(input);
-    return output!;
-  }
-);

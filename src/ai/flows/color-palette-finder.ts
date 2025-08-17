@@ -8,7 +8,7 @@
  * - ColorPaletteFinderOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const PaletteSchema = z.object({
@@ -29,39 +29,29 @@ const ColorPaletteFinderOutputSchema = z.object({
 export type ColorPaletteFinderOutput = z.infer<typeof ColorPaletteFinderOutputSchema>;
 
 export async function colorPaletteFinder(input: ColorPaletteFinderInput): Promise<ColorPaletteFinderOutput> {
-  return colorPaletteFinderFlow(input);
+  const prompt = `You are an expert designer and color theorist. Generate 5 distinct and harmonious color palettes based on the following user input.
+
+  **User's Inspiration (in ${input.language}):**
+  "${input.inspiration}"
+  
+  **Palette Type:** ${input.paletteType}
+  
+  **Instructions:**
+  1.  For each of the 5 palettes, create a creative **name**.
+  2.  For each palette, provide an array of 3 to 6 **colors** as hexadecimal codes (e.g., "#RRGGBB").
+  3.  Ensure the palettes are aesthetically pleasing and relevant to the user's inspiration.
+  4.  The generated colors must adhere to the principles of the requested **palette type**.
+  5.  Do not repeat palettes. Each of the 5 results should be unique.
+  
+  Generate the color palettes now.`;
+
+  const llmResponse = await generateWithRetry<ColorPaletteFinderOutput>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt,
+    output: {
+      schema: ColorPaletteFinderOutputSchema,
+    }
+  });
+
+  return llmResponse;
 }
-
-const colorPalettePrompt = ai.definePrompt({
-  name: 'colorPalettePrompt',
-  input: {schema: ColorPaletteFinderInputSchema},
-  output: {schema: ColorPaletteFinderOutputSchema},
-  prompt: `You are an expert designer and color theorist. Generate 5 distinct and harmonious color palettes based on the following user input.
-
-**User's Inspiration (in {{language}}):**
-"{{{inspiration}}}"
-
-**Palette Type:** {{paletteType}}
-
-**Instructions:**
-1.  For each of the 5 palettes, create a creative **name**.
-2.  For each palette, provide an array of 3 to 6 **colors** as hexadecimal codes (e.g., "#RRGGBB").
-3.  Ensure the palettes are aesthetically pleasing and relevant to the user's inspiration.
-4.  The generated colors must adhere to the principles of the requested **palette type**.
-5.  Do not repeat palettes. Each of the 5 results should be unique.
-
-Generate the color palettes now.`,
-});
-
-
-const colorPaletteFinderFlow = ai.defineFlow(
-  {
-    name: 'colorPaletteFinderFlow',
-    inputSchema: ColorPaletteFinderInputSchema,
-    outputSchema: ColorPaletteFinderOutputSchema,
-  },
-  async (input) => {
-    const {output} = await colorPalettePrompt(input);
-    return output!;
-  }
-);

@@ -8,9 +8,9 @@
  * - AiScriptWriterOutput - The return type for the aiScriptWriter function.
  */
 
-import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import { textTranslatorFlow } from './text-translator';
+import { generateWithRetry } from '../genkit';
+import { textTranslator } from './text-translator';
 
 const AiScriptWriterInputSchema = z.object({
   prompt: z.string().describe('A prompt describing the type of script to generate.'),
@@ -27,50 +27,41 @@ const AiScriptWriterOutputSchema = z.object({
 export type AiScriptWriterOutput = z.infer<typeof AiScriptWriterOutputSchema>;
 
 export async function aiScriptWriter(input: AiScriptWriterInput): Promise<AiScriptWriterOutput> {
-  return aiScriptWriterFlow(input);
-}
+  // 1. Generate the script in English
+  const storytellingPrompt = input.storytellingMode ? `Please ensure the script follows a clear narrative structure with a beginning, middle, and end. It should be engaging and well-structured for storytelling.` : '';
 
-const scriptGenerationPrompt = ai.definePrompt({
-  name: 'aiScriptWriterPrompt',
-  input: {schema: AiScriptWriterInputSchema},
-  output: {schema: AiScriptWriterOutputSchema},
-  prompt: `You are an expert script writer. Generate a script in English based on the following prompt and parameters.
+  const prompt = `You are an expert script writer. Generate a script in English based on the following prompt and parameters.
 
-Prompt: {{{prompt}}}
-Genre: {{genre}}
-Length: {{length}}
-
-{{#if storytellingMode}}
-Please ensure the script follows a clear narrative structure with a beginning, middle, and end. It should be engaging and well-structured for storytelling.
-{{/if}}
-
-Generate the script now.`,
-});
-
-const aiScriptWriterFlow = ai.defineFlow(
-  {
-    name: 'aiScriptWriterFlow',
-    inputSchema: AiScriptWriterInputSchema,
-    outputSchema: AiScriptWriterOutputSchema,
-  },
-  async input => {
-    // 1. Generate the script in English
-    const {output: scriptOutput} = await scriptGenerationPrompt(input);
-    if (!scriptOutput?.script) {
-        throw new Error("Failed to generate script.");
-    }
-
-    // 2. Translate the script if the target language is not English
-    if (input.language !== 'English') {
-        const translationResult = await textTranslatorFlow({
-            text: scriptOutput.script,
-            targetLanguage: input.language
-        });
-        return {
-            script: translationResult.translatedText
-        };
-    }
-
-    return scriptOutput;
+  Prompt: ${input.prompt}
+  Genre: ${input.genre}
+  Length: ${input.length}
+  
+  ${storytellingPrompt}
+  
+  Generate the script now.`;
+  
+  const scriptOutput = await generateWithRetry<AiScriptWriterOutput>({
+      model: 'googleai/gemini-2.0-flash',
+      prompt,
+      output: {
+        schema: AiScriptWriterOutputSchema,
+      }
+  });
+  
+  if (!scriptOutput?.script) {
+      throw new Error("Failed to generate script.");
   }
-);
+
+  // 2. Translate the script if the target language is not English
+  if (input.language !== 'English') {
+      const translationResult = await textTranslator({
+          text: scriptOutput.script,
+          targetLanguage: input.language
+      });
+      return {
+          script: translationResult.translatedText
+      };
+  }
+
+  return scriptOutput;
+}

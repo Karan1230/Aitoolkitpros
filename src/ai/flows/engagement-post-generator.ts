@@ -8,7 +8,7 @@
  * - EngagementPostGeneratorOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const PostIdeaSchema = z.object({
@@ -31,37 +31,27 @@ const EngagementPostGeneratorOutputSchema = z.object({
 export type EngagementPostGeneratorOutput = z.infer<typeof EngagementPostGeneratorOutputSchema>;
 
 export async function engagementPostGenerator(input: EngagementPostGeneratorInput): Promise<EngagementPostGeneratorOutput> {
-  return engagementPostGeneratorFlow(input);
+  const prompt = `You are an expert social media manager. Generate 5 creative and interaction-focused post ideas in ${input.language} based on the following criteria.
+
+  **Topic/Niche:** ${input.topic}
+  **Platform:** ${input.platform}
+  **Content Type:** ${input.contentType}
+  
+  **Instructions:**
+  1.  For each idea, generate a core **idea**, a compelling **caption**, and a list of relevant **hashtags**.
+  2.  Tailor the ideas to be highly engaging for the specified **platform** and **content type**.
+  3.  Focus on encouraging likes, comments, and shares.
+  4.  Ensure each post idea is unique and actionable.
+  
+  Generate the engagement post ideas now.`;
+  
+  const llmResponse = await generateWithRetry<EngagementPostGeneratorOutput>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt,
+    output: {
+      schema: EngagementPostGeneratorOutputSchema,
+    }
+  });
+
+  return llmResponse;
 }
-
-const engagementPostPrompt = ai.definePrompt({
-  name: 'engagementPostPrompt',
-  input: {schema: EngagementPostGeneratorInputSchema},
-  output: {schema: EngagementPostGeneratorOutputSchema},
-  prompt: `You are an expert social media manager. Generate 5 creative and interaction-focused post ideas in {{language}} based on the following criteria.
-
-**Topic/Niche:** {{{topic}}}
-**Platform:** {{platform}}
-**Content Type:** {{contentType}}
-
-**Instructions:**
-1.  For each idea, generate a core **idea**, a compelling **caption**, and a list of relevant **hashtags**.
-2.  Tailor the ideas to be highly engaging for the specified **platform** and **content type**.
-3.  Focus on encouraging likes, comments, and shares.
-4.  Ensure each post idea is unique and actionable.
-
-Generate the engagement post ideas now.`,
-});
-
-
-const engagementPostGeneratorFlow = ai.defineFlow(
-  {
-    name: 'engagementPostGeneratorFlow',
-    inputSchema: EngagementPostGeneratorInputSchema,
-    outputSchema: EngagementPostGeneratorOutputSchema,
-  },
-  async (input) => {
-    const {output} = await engagementPostPrompt(input);
-    return output!;
-  }
-);

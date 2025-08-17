@@ -8,7 +8,7 @@
  * - CustomIconGeneratorOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const CustomIconGeneratorInputSchema = z.object({
@@ -24,31 +24,19 @@ const CustomIconGeneratorOutputSchema = z.object({
 });
 export type CustomIconGeneratorOutput = z.infer<typeof CustomIconGeneratorOutputSchema>;
 
-export async function customIconGenerator(input: CustomIconGeneratorInput): Promise<CustomIconGeneratorOutput> {
-  return customIconGeneratorFlow(input);
-}
-
-const customIconGeneratorFlow = ai.defineFlow(
-  {
-    name: 'customIconGeneratorFlow',
-    inputSchema: CustomIconGeneratorInputSchema,
-    outputSchema: CustomIconGeneratorOutputSchema,
-  },
-  async ({ prompt, style, colorScheme }) => {
-    
+export async function customIconGenerator({ prompt, style, colorScheme }: CustomIconGeneratorInput): Promise<CustomIconGeneratorOutput> {
     const fullPrompt = `Create a high-quality, professional icon for: "${prompt}".
 The icon must be in a "${style}" style.
 The color scheme should be "${colorScheme}".
 The icon must be on a clean, plain white background with no shadows or extraneous elements. It should be a single, isolated graphic.`;
 
     const imagePromises = Array(4).fill(null).map(() => 
-        ai.generate({
+        generateWithRetry<{ media?: { url: string } }>({
             model: 'googleai/gemini-2.0-flash-preview-image-generation',
             prompt: fullPrompt,
             config: {
               responseModalities: ['TEXT', 'IMAGE'],
             },
-            aspectRatio: '1:1',
         })
     );
     
@@ -60,5 +48,4 @@ The icon must be on a clean, plain white background with no shadows or extraneou
     }
 
     return { imageUrls };
-  }
-);
+}

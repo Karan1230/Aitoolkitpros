@@ -8,7 +8,7 @@
  * - QuizGeneratorOutput - The return type for the quizGenerator function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const QuestionSchema = z.object({
@@ -33,33 +33,23 @@ const QuizGeneratorOutputSchema = z.object({
 export type QuizGeneratorOutput = z.infer<typeof QuizGeneratorOutputSchema>;
 
 export async function quizGenerator(input: QuizGeneratorInput): Promise<QuizGeneratorOutput> {
-  return quizGeneratorFlow(input);
+  const prompt = `You are a helpful assistant that creates quizzes. Generate a quiz in ${input.language} based on the following parameters.
+
+  Topic: ${input.topic}
+  Difficulty: ${input.difficulty}
+  Question Type: ${input.questionType}
+  Number of Questions: ${input.numQuestions}
+  
+  For each question, provide the question itself, the options (if MCQ), the correct answer, and a brief explanation for the answer.
+  Ensure the output is a valid JSON object matching the defined schema.`;
+  
+  const llmResponse = await generateWithRetry<QuizGeneratorOutput>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt,
+    output: {
+      schema: QuizGeneratorOutputSchema,
+    }
+  });
+
+  return llmResponse;
 }
-
-const quizGeneratorPrompt = ai.definePrompt({
-  name: 'quizGeneratorPrompt',
-  input: {schema: QuizGeneratorInputSchema},
-  output: {schema: QuizGeneratorOutputSchema},
-  prompt: `You are a helpful assistant that creates quizzes. Generate a quiz in {{language}} based on the following parameters.
-
-Topic: {{{topic}}}
-Difficulty: {{difficulty}}
-Question Type: {{questionType}}
-Number of Questions: {{numQuestions}}
-
-For each question, provide the question itself, the options (if MCQ), the correct answer, and a brief explanation for the answer.
-Ensure the output is a valid JSON object matching the defined schema.`,
-});
-
-
-const quizGeneratorFlow = ai.defineFlow(
-  {
-    name: 'quizGeneratorFlow',
-    inputSchema: QuizGeneratorInputSchema,
-    outputSchema: QuizGeneratorOutputSchema,
-  },
-  async (input) => {
-    const {output} = await quizGeneratorPrompt(input);
-    return output!;
-  }
-);

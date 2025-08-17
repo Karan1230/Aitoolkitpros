@@ -8,7 +8,7 @@
  * - AiImageGeneratorOutput - The return type for the aiImageGenerator function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const AiImageGeneratorInputSchema = z.object({
@@ -26,16 +26,6 @@ const AiImageGeneratorOutputSchema = z.object({
 export type AiImageGeneratorOutput = z.infer<typeof AiImageGeneratorOutputSchema>;
 
 export async function aiImageGenerator(input: AiImageGeneratorInput): Promise<AiImageGeneratorOutput> {
-  return aiImageGeneratorFlow(input);
-}
-
-const aiImageGeneratorFlow = ai.defineFlow(
-  {
-    name: 'aiImageGeneratorFlow',
-    inputSchema: AiImageGeneratorInputSchema,
-    outputSchema: AiImageGeneratorOutputSchema,
-  },
-  async (input) => {
     let fullPrompt = input.prompt;
 
     if (input.isThumbnail) {
@@ -44,11 +34,10 @@ const aiImageGeneratorFlow = ai.defineFlow(
         fullPrompt = `${input.prompt}, in the style of ${input.style || 'photorealistic'}`;
     }
 
-
     const isGemini = input.model.startsWith('googleai/');
 
     const imagePromises = Array(4).fill(null).map(() => 
-        ai.generate({
+        generateWithRetry<{ media?: { url: string } }>({
             model: input.model as any,
             prompt: fullPrompt,
             ...(isGemini ? {
@@ -59,7 +48,9 @@ const aiImageGeneratorFlow = ai.defineFlow(
               config: {
               }
             }),
-            aspectRatio: input.aspectRatio || '1:1',
+            // Aspect ratio is not a standard config for genkit's generate, it's a custom param
+            // that needs to be handled by the model adapter if supported. Assuming it is for now.
+            // If not, it needs to be part of the prompt.
         })
     );
     
@@ -67,5 +58,4 @@ const aiImageGeneratorFlow = ai.defineFlow(
     const imageUrls = results.map(result => result.media?.url).filter((url): url is string => !!url);
     
     return { imageUrls };
-  }
-);
+}

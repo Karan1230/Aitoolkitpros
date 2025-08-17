@@ -8,7 +8,7 @@
  * - CartoonAvatarMakerOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const CartoonAvatarMakerInputSchema = z.object({
@@ -30,18 +30,7 @@ const CartoonAvatarMakerOutputSchema = z.object({
 });
 export type CartoonAvatarMakerOutput = z.infer<typeof CartoonAvatarMakerOutputSchema>;
 
-export async function cartoonAvatarMaker(input: CartoonAvatarMakerInput): Promise<CartoonAvatarMakerOutput> {
-  return cartoonAvatarMakerFlow(input);
-}
-
-const cartoonAvatarMakerFlow = ai.defineFlow(
-  {
-    name: 'cartoonAvatarMakerFlow',
-    inputSchema: CartoonAvatarMakerInputSchema,
-    outputSchema: CartoonAvatarMakerOutputSchema,
-  },
-  async ({ imageDataUri, style, background }) => {
-
+export async function cartoonAvatarMaker({ imageDataUri, style, background }: CartoonAvatarMakerInput): Promise<CartoonAvatarMakerOutput> {
     let backgroundInstruction = '';
     switch (background.type) {
         case 'transparent':
@@ -68,13 +57,12 @@ const cartoonAvatarMakerFlow = ai.defineFlow(
     ];
 
     const imagePromises = Array(4).fill(null).map(() => 
-        ai.generate({
+        generateWithRetry<{ media?: { url: string } }>({
             model: 'googleai/gemini-2.0-flash-preview-image-generation',
             prompt: fullPrompt,
             config: {
               responseModalities: ['TEXT', 'IMAGE'],
             },
-            aspectRatio: '1:1',
         })
     );
     
@@ -86,5 +74,4 @@ const cartoonAvatarMakerFlow = ai.defineFlow(
     }
 
     return { imageUrls };
-  }
-);
+}

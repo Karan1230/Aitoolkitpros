@@ -8,7 +8,7 @@
  * - IdeaGeneratorOutput - The return type for the ideaGenerator function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const IdeaGeneratorInputSchema = z.object({
@@ -24,29 +24,19 @@ const IdeaGeneratorOutputSchema = z.object({
 export type IdeaGeneratorOutput = z.infer<typeof IdeaGeneratorOutputSchema>;
 
 export async function ideaGenerator(input: IdeaGeneratorInput): Promise<IdeaGeneratorOutput> {
-  return ideaGeneratorFlow(input);
+    const prompt = `You are an expert idea generator. Generate at least 10 creative and relevant "${input.ideaType}" ideas in ${input.language} based on the following topic.
+
+    Topic: ${input.topic}
+    
+    Please provide the ideas as a simple list.`;
+    
+    const llmResponse = await generateWithRetry<IdeaGeneratorOutput>({
+        model: 'googleai/gemini-2.0-flash',
+        prompt,
+        output: {
+            schema: IdeaGeneratorOutputSchema,
+        }
+    });
+
+    return llmResponse;
 }
-
-const ideaGeneratorPrompt = ai.definePrompt({
-    name: 'ideaGeneratorPrompt',
-    input: { schema: IdeaGeneratorInputSchema },
-    output: { schema: IdeaGeneratorOutputSchema },
-    prompt: `You are an expert idea generator. Generate at least 10 creative and relevant "{{ideaType}}" ideas in {{language}} based on the following topic.
-
-Topic: {{{topic}}}
-
-Please provide the ideas as a simple list.`,
-});
-
-
-const ideaGeneratorFlow = ai.defineFlow(
-  {
-    name: 'ideaGeneratorFlow',
-    inputSchema: IdeaGeneratorInputSchema,
-    outputSchema: IdeaGeneratorOutputSchema,
-  },
-  async (input) => {
-    const {output} = await ideaGeneratorPrompt(input);
-    return output!;
-  }
-);

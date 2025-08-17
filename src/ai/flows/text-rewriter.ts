@@ -7,7 +7,7 @@
  * - TextRewriterOutput - The return type for the textRewriter function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const TextRewriterInputSchema = z.object({
@@ -22,19 +22,9 @@ const TextRewriterOutputSchema = z.object({
 export type TextRewriterOutput = z.infer<typeof TextRewriterOutputSchema>;
 
 export async function textRewriter(input: TextRewriterInput): Promise<TextRewriterOutput> {
-  return textRewriterFlow(input);
-}
-
-const textRewriterFlow = ai.defineFlow(
-  {
-    name: 'textRewriterFlow',
-    inputSchema: TextRewriterInputSchema,
-    outputSchema: TextRewriterOutputSchema,
-  },
-  async (input) => {
     const prompt = `Rewrite the following text${input.tone ? ` in a ${input.tone} tone` : ''}:\n\n${input.text}`;
 
-    const llmResponse = await ai.generate({
+    const llmResponse = await generateWithRetry<TextRewriterOutput>({
       model: 'googleai/gemini-2.0-flash',
       prompt,
       output: {
@@ -42,6 +32,5 @@ const textRewriterFlow = ai.defineFlow(
       },
     });
 
-    return llmResponse.output!;
-  }
-);
+    return llmResponse;
+}

@@ -8,7 +8,7 @@
  * - BackgroundRemoverOutput - The return type for the backgroundRemover function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const BackgroundRemoverInputSchema = z.object({
@@ -27,17 +27,6 @@ const BackgroundRemoverOutputSchema = z.object({
 export type BackgroundRemoverOutput = z.infer<typeof BackgroundRemoverOutputSchema>;
 
 export async function backgroundRemover(input: BackgroundRemoverInput): Promise<BackgroundRemoverOutput> {
-  return backgroundRemoverFlow(input);
-}
-
-const backgroundRemoverFlow = ai.defineFlow(
-  {
-    name: 'backgroundRemoverFlow',
-    inputSchema: BackgroundRemoverInputSchema,
-    outputSchema: BackgroundRemoverOutputSchema,
-  },
-  async (input) => {
-    
     const promptText = `Please identify the main subject in the provided image and remove the background completely. Replace the background with ${input.background}. The output should be a clean PNG with the isolated subject.`;
 
     const prompt = [
@@ -45,7 +34,7 @@ const backgroundRemoverFlow = ai.defineFlow(
         { media: { url: input.imageDataUri } }
     ];
 
-    const { media } = await ai.generate({
+    const { media } = await generateWithRetry<{ media?: { url: string } }>({
         model: 'googleai/gemini-2.0-flash-preview-image-generation',
         prompt,
         config: {
@@ -58,5 +47,4 @@ const backgroundRemoverFlow = ai.defineFlow(
     }
     
     return { imageUrl: media.url };
-  }
-);
+}

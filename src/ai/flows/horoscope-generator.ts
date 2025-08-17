@@ -8,7 +8,7 @@
  * - HoroscopeGeneratorOutput - The return type for the function.
  */
 
-import {ai} from '@/ai/genkit';
+import { generateWithRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const HoroscopeGeneratorInputSchema = z.object({
@@ -28,39 +28,29 @@ const HoroscopeGeneratorOutputSchema = z.object({
 export type HoroscopeGeneratorOutput = z.infer<typeof HoroscopeGeneratorOutputSchema>;
 
 export async function horoscopeGenerator(input: HoroscopeGeneratorInput): Promise<HoroscopeGeneratorOutput> {
-  return horoscopeGeneratorFlow(input);
+  const prompt = `You are an expert astrologer. Generate a personalized, insightful, and positive horoscope in ${input.language} for the following zodiac sign.
+
+  **Zodiac Sign:** ${input.zodiacSign}
+  **Timeframe:** ${input.timeframe}
+  
+  **Instructions:**
+  1.  Generate a detailed prediction for each of the following categories:
+      - **Love & Relationships**
+      - **Career & Finance**
+      - **Health & Wellness**
+  2.  Provide a **Lucky Number** and a **Lucky Color** for the specified timeframe.
+  3.  The tone should be encouraging, positive, and engaging.
+  4.  Ensure the predictions are tailored to the specified timeframe.
+  
+  Generate the horoscope now.`;
+  
+  const llmResponse = await generateWithRetry<HoroscopeGeneratorOutput>({
+    model: 'googleai/gemini-2.0-flash',
+    prompt,
+    output: {
+      schema: HoroscopeGeneratorOutputSchema,
+    }
+  });
+
+  return llmResponse;
 }
-
-const horoscopePrompt = ai.definePrompt({
-  name: 'horoscopePrompt',
-  input: {schema: HoroscopeGeneratorInputSchema},
-  output: {schema: HoroscopeGeneratorOutputSchema},
-  prompt: `You are an expert astrologer. Generate a personalized, insightful, and positive horoscope in {{language}} for the following zodiac sign.
-
-**Zodiac Sign:** {{zodiacSign}}
-**Timeframe:** {{timeframe}}
-
-**Instructions:**
-1.  Generate a detailed prediction for each of the following categories:
-    - **Love & Relationships**
-    - **Career & Finance**
-    - **Health & Wellness**
-2.  Provide a **Lucky Number** and a **Lucky Color** for the specified timeframe.
-3.  The tone should be encouraging, positive, and engaging.
-4.  Ensure the predictions are tailored to the specified timeframe.
-
-Generate the horoscope now.`,
-});
-
-
-const horoscopeGeneratorFlow = ai.defineFlow(
-  {
-    name: 'horoscopeGeneratorFlow',
-    inputSchema: HoroscopeGeneratorInputSchema,
-    outputSchema: HoroscopeGeneratorOutputSchema,
-  },
-  async (input) => {
-    const {output} = await horoscopePrompt(input);
-    return output!;
-  }
-);
