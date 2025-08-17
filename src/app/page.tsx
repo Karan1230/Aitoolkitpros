@@ -1,37 +1,14 @@
 'use client';
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, BrainCircuit, CheckCircle, PenLine, Sparkles, Star } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { CheckCircle, PenLine } from "lucide-react";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { allTools } from "@/lib/tools";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
-
-const featuredTools = allTools.filter(t => ["AI Script Writer", "AI Image Generator", "Text-to-Speech Converter", "AI Logo Maker", "Hashtag Generator", "Product Description Generator"].includes(t.name));
-
-const faqs = [
-  {
-    question: "1. Are all the AI tools on this app free to use?",
-    answer: "Yes, absolutely! All tools available on AI Toolkit Pro are 100% free to use. We believe in making powerful AI technology accessible to everyone without any hidden costs, subscriptions, or sign-ups."
-  },
-  {
-    question: "2. Can I use the generated content for commercial purposes?",
-    answer: "Generally, yes. The content you generate (e.g., images, scripts, logos) is royalty-free. However, we recommend checking the terms of the underlying AI models for any specific restrictions, as they may vary."
-  },
-  {
-    question: "3. Which languages do the AI tools support?",
-    answer: "Many of our tools, especially those for text generation and translation, support a wide variety of languages. You can typically select your desired language from a dropdown menu within the tool itself."
-  },
-  {
-    question: "4. Is my data safe when using these tools?",
-    answer: "Your privacy is our priority. We do not store your inputs (like text prompts or uploaded images) on our servers. Your data is sent to the respective third-party AI provider for processing and the result is returned directly to you."
-  }
-];
 
 const testimonials = [
     {
@@ -57,28 +34,23 @@ const testimonials = [
     }
 ];
 
+const INITIAL_TOOL_COUNT = 8;
+
 export default function Home() {
   const autoplayPlugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
+  const [visibleTools, setVisibleTools] = useState(INITIAL_TOOL_COUNT);
+
+  const loadMoreTools = () => {
+    setVisibleTools(prev => Math.min(prev + INITIAL_TOOL_COUNT, allTools.length));
+  };
+
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="pt-16 pb-8 text-center">
-        <div className="container px-6">
-          <h1 className="font-headline text-4xl md:text-5xl font-bold tracking-tighter gradient-text">
-            Unlock Creativity with Free AI Tools
-          </h1>
-          <p className="mt-4 max-w-xl mx-auto text-lg text-muted-foreground">
-            Generate ideas, write content, design logos, create scripts, and more with our suite of free AI tools.
-          </p>
-        </div>
-      </section>
-
-      {/* Popular Tools Section */}
-      <section id="popular-tools" className="py-8">
-        <div className="container px-6">
-          <h2 className="font-headline text-2xl font-bold text-left mb-4">Popular Tools</h2>
+      {/* Tools Section */}
+      <section id="tools" className="py-8">
+        <div className="container px-4">
           <div className="grid grid-cols-2 gap-4">
-            {featuredTools.slice(0, 4).map((tool) => (
+            {allTools.slice(0, visibleTools).map((tool) => (
               <Link href={tool.href} key={tool.name} className="group flex">
                 <Card className="w-full transition-all duration-300 hover:bg-white/5 flex flex-col shadow-lg">
                   <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
@@ -91,13 +63,18 @@ export default function Home() {
               </Link>
             ))}
           </div>
+          {visibleTools < allTools.length && (
+            <div className="mt-6 text-center">
+              <Button onClick={loadMoreTools}>Load More Tools</Button>
+            </div>
+          )}
         </div>
       </section>
       
       {/* How It Works Section */}
       <section className="py-8">
-        <div className="container px-6">
-           <h2 className="font-headline text-2xl font-bold text-left mb-4">How It Works</h2>
+        <div className="container px-4">
+           <h2 className="font-headline text-2xl font-bold text-center mb-4">How to Use</h2>
           <div className="grid grid-cols-3 gap-3 text-center">
             <Card className="p-4 bg-secondary">
                 <div className="flex justify-center mb-2">
@@ -107,7 +84,7 @@ export default function Home() {
             </Card>
             <Card className="p-4 bg-secondary">
                  <div className="flex justify-center mb-2">
-                    <BrainCircuit className="h-6 w-6 text-primary" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-primary"><path d="M9.064 2.147a10.965 10.965 0 0 1 5.872 0C18.353 3.341 20 6.035 20 8c0 .784-.13 1.54-.368 2.246l-1.332 4.024a2 2 0 0 1-3.23.95l-3.07-3.07A2 2 0 0 1 12 11a2 2 0 0 1 .157-.768l3.07-3.07a2 2 0 0 1-.95-3.23L10.254 2.6c-.696-.233-1.462-.361-2.246-.361 0-1.965 1.647-4.659 4.056-5.853Z"/><path d="M12 13a2 2 0 0 1 .768.157l3.07 3.07a2 2 0 0 1 .95 3.23l-4.024 1.332A10.965 10.965 0 0 1 16 20c-1.965 0-4.659-1.647-5.853-4.056a10.965 10.965 0 0 1 0-5.872C11.341 6.647 14.035 5 16 5c.784 0 1.54.13 2.246.368l1.332 4.024a2 2 0 0 1-3.23.95l-3.07-3.07A2 2 0 0 1 13 12a2 2 0 0 1-.768.157Z"/></svg>
                 </div>
                 <h3 className="font-semibold text-xs">2. AI Generates</h3>
             </Card>
@@ -123,8 +100,8 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <section className="py-8">
-        <div className="container px-6">
-           <h2 className="font-headline text-2xl font-bold text-left mb-4">What Users Say</h2>
+        <div className="container px-4">
+           <h2 className="font-headline text-2xl font-bold text-center mb-4">What Users Say</h2>
           <Carousel
              plugins={[autoplayPlugin.current]}
              opts={{
@@ -157,30 +134,6 @@ export default function Home() {
           </Carousel>
         </div>
       </section>
-
-      {/* FAQs Section */}
-      <section className="py-8">
-        <div className="container px-6">
-           <h2 className="font-headline text-2xl font-bold text-left mb-4">FAQs</h2>
-           <Accordion type="single" collapsible className="w-full space-y-2">
-                {faqs.map((faq, index) => (
-                <AccordionItem 
-                    value={`item-${index + 1}`} 
-                    key={index} 
-                    className="bg-secondary border-none rounded-xl"
-                >
-                    <AccordionTrigger className="text-sm text-left px-4 py-3 hover:no-underline">
-                      <span className="flex-1">{faq.question.substring(faq.question.indexOf('.') + 2)}</span>
-                    </AccordionTrigger>
-                    <AccordionContent className="px-4 pb-4 text-muted-foreground text-sm">
-                      {faq.answer}
-                    </AccordionContent>
-                </AccordionItem>
-                ))}
-            </Accordion>
-        </div>
-      </section>
-
     </div>
   );
 }

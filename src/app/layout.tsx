@@ -3,7 +3,8 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
-import { BottomNav } from '@/components/bottom-nav';
+import { AppHeader } from '@/components/app-header';
+
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space-grotesk' });
@@ -62,8 +63,8 @@ export default function RootLayout({
       </head>
       <body className={cn('min-h-screen bg-background font-body antialiased dark', inter.variable, spaceGrotesk.variable)}>
         <div className="relative flex min-h-screen flex-col">
-          <main className="flex-1 pb-24">{children}</main>
-          <BottomNav />
+          <AppHeader />
+          <main className="flex-1 pt-16">{children}</main>
         </div>
         <Toaster />
       </body>
