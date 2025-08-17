@@ -3,13 +3,6 @@ import { type Metadata } from 'next';
 import { GiftSuggestionToolClient } from '@/components/gift-suggestion-tool-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-
 
 export const metadata: Metadata = {
   title: 'Free AI Gift Suggestion Tool | Find the Perfect Gift',
@@ -21,37 +14,6 @@ const benefits = [
     "Save time searching for the perfect present.",
     "Get ideas for any budget or occasion.",
     "Surprise your loved ones with thoughtful gifts."
-];
-
-const faqs = [
-    {
-        question: "1. Is this tool free?",
-        answer: "Yes, our AI Gift Suggestion Tool is 100% free to use."
-    },
-    {
-        question: "2. Does the tool provide links to buy the gifts?",
-        answer: "No, the tool focuses on providing creative ideas. It does not provide direct links to products to ensure the suggestions are unbiased and to encourage you to shop at your favorite stores."
-    },
-    {
-        question: "3. Can I use this for any occasion?",
-        answer: "Absolutely. The tool is perfect for birthdays, anniversaries, holidays like Christmas or Diwali, or just to find a nice surprise for someone."
-    },
-    {
-        question: "4. How does the AI generate personalized suggestions?",
-        answer: "The AI analyzes the interests, age, occasion, and price range you provide to cross-reference it with a vast database of gift ideas, ensuring the suggestions are relevant and thoughtful."
-    },
-    {
-        question: "5. How many gift ideas will I get?",
-        answer: "The tool generates a list of 10 unique gift ideas for each request, giving you a wide range of options to consider."
-    },
-    {
-        question: "6. Can I save the gift ideas for later?",
-        answer: "Yes. You can use the 'Copy All' or 'Download' buttons to save the entire list of suggestions to a text file on your device for future reference."
-    },
-    {
-        question: "7. What if the recipient's interests are very niche?",
-        answer: "Be as descriptive as possible! The more specific you are about their interests (e.g., 'loves 1980s sci-fi movies and collects vintage cameras'), the more tailored and creative the AI's suggestions will be."
-    }
 ];
 
 export default function GiftSuggestionToolPage() {
@@ -96,30 +58,6 @@ export default function GiftSuggestionToolPage() {
                             <span>{benefit}</span>
                         </div>
                     ))}
-                </CardContent>
-            </Card>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <Accordion type="single" collapsible className="w-full space-y-4">
-                        {faqs.map((faq, index) => (
-                             <AccordionItem 
-                                value={`item-${index + 1}`} 
-                                key={index} 
-                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
-                            >
-                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
-                                    {faq.question}
-                                </AccordionTrigger>
-                                <AccordionContent className="px-6 pb-6">
-                                    {faq.answer}
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
-                    </Accordion>
                 </CardContent>
             </Card>
         </div>

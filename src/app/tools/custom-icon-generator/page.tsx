@@ -3,13 +3,6 @@ import { type Metadata } from 'next';
 import { CustomIconGeneratorClient } from '@/components/custom-icon-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-
 
 export const metadata: Metadata = {
   title: 'Free AI Custom Icon Generator | Create Unique Icons Instantly',
@@ -21,37 +14,6 @@ const benefits = [
     "No design skills needed to get professional icons.",
     "Generate multiple styles to find the perfect look.",
     "Download high-resolution PNGs for web and apps."
-];
-
-const faqs = [
-    {
-        question: "1. Is this tool really free?",
-        answer: "Yes, our AI Icon Generator is 100% free. You can generate and download icons without any hidden costs."
-    },
-    {
-        question: "2. Can I use these icons for my business?",
-        answer: "Absolutely. The icons you generate are royalty-free, and you can use them for any commercial or personal project."
-    },
-    {
-        question: "3. What format are the icons downloaded in?",
-        answer: "The icons are provided as high-quality PNG files with a transparent background, making them easy to use in any design."
-    },
-    {
-        question: "4. What kind of prompts work best for generating icons?",
-        answer: "Simple and clear descriptions work best. Focus on the main object and its key characteristics. For example, instead of a long sentence, try 'A friendly rocket ship with three fins'."
-    },
-    {
-        question: "5. How many icons are generated at once?",
-        answer: "The tool generates a batch of 4 unique icon variations for each prompt, giving you multiple options to choose from."
-    },
-    {
-        question: "6. Can I specify the color of the icon?",
-        answer: "Yes. You can describe the desired color scheme in the 'Color Scheme' input box (e.g., 'shades of blue and white', 'warm sunset colors') to guide the AI's color choices."
-    },
-    {
-        question: "7. What styles of icons can I create?",
-        answer: "You can choose from a wide range of popular styles, including Flat, 3D, Outline, Glyph, Cartoon, and Minimalist, to ensure the icon matches your project's aesthetic."
-    }
 ];
 
 export default function CustomIconGeneratorPage() {
@@ -96,30 +58,6 @@ export default function CustomIconGeneratorPage() {
                             <span>{benefit}</span>
                         </div>
                     ))}
-                </CardContent>
-            </Card>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <Accordion type="single" collapsible className="w-full space-y-4">
-                        {faqs.map((faq, index) => (
-                             <AccordionItem 
-                                value={`item-${index + 1}`} 
-                                key={index} 
-                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
-                            >
-                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
-                                    {faq.question}
-                                </AccordionTrigger>
-                                <AccordionContent className="px-6 pb-6">
-                                    {faq.answer}
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
-                    </Accordion>
                 </CardContent>
             </Card>
         </div>

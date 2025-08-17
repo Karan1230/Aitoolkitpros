@@ -3,13 +3,6 @@ import { type Metadata } from 'next';
 import { CourseOutlineGeneratorClient } from '@/components/course-outline-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-
 
 export const metadata: Metadata = {
   title: 'Free AI Course Outline Generator | Create Course Structures Instantly',
@@ -21,37 +14,6 @@ const benefits = [
     "Save hours of planning and curriculum design.",
     "Generate logical modules and lesson plans.",
     "Get a clear roadmap for your educational content."
-];
-
-const faqs = [
-    {
-        question: "1. Is this tool free?",
-        answer: "Yes, the AI Course Outline Generator is 100% free to use. There are no hidden fees or subscriptions."
-    },
-    {
-        question: "2. Can I use this for any subject?",
-        answer: "Absolutely. The tool is designed to be versatile and can generate course outlines for any subject, from academic topics like 'Quantum Physics' to practical skills like 'Digital Marketing'."
-    },
-    {
-        question: "3. Is the generated outline ready to use?",
-        answer: "The generated outline provides a strong foundation. We always recommend reviewing it and adding your own expertise, examples, and activities to make the course truly yours."
-    },
-    {
-        question: "4. How detailed is the outline?",
-        answer: "The outline includes a course title, a description, and a full structure of modules. Each module contains multiple lessons, and each lesson comes with 3-5 key talking points to cover."
-    },
-    {
-        question: "5. Can I specify the course length and difficulty?",
-        answer: "Yes. You can select the target audience level (e.g., Beginner, Advanced) and the estimated duration of the course. The AI will adjust the depth and breadth of the content accordingly."
-    },
-    {
-        question: "6. Can I download the generated outline?",
-        answer: "Yes. Once the outline is generated, you can copy the entire structure to your clipboard or download it as a .txt file for easy editing and integration into your lesson planning software."
-    },
-    {
-        question: "7. Does this tool work in other languages?",
-        answer: "Yes, you can generate a course outline in over 20 languages, making it a valuable tool for international educators and content creators."
-    }
 ];
 
 export default function CourseOutlineGeneratorPage() {
@@ -96,30 +58,6 @@ export default function CourseOutlineGeneratorPage() {
                             <span>{benefit}</span>
                         </div>
                     ))}
-                </CardContent>
-            </Card>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <Accordion type="single" collapsible className="w-full space-y-4">
-                        {faqs.map((faq, index) => (
-                             <AccordionItem 
-                                value={`item-${index + 1}`} 
-                                key={index} 
-                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
-                            >
-                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
-                                    {faq.question}
-                                </AccordionTrigger>
-                                <AccordionContent className="px-6 pb-6">
-                                    {faq.answer}
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
-                    </Accordion>
                 </CardContent>
             </Card>
         </div>

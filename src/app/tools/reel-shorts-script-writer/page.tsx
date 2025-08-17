@@ -3,13 +3,6 @@ import { type Metadata } from 'next';
 import { ReelShortsScriptWriterClient } from '@/components/reel-shorts-script-writer-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-
 
 export const metadata: Metadata = {
   title: 'Free AI Reel/Shorts Script Writer | Go Viral Instantly',
@@ -21,37 +14,6 @@ const benefits = [
     "Get attention-grabbing hooks for your videos.",
     "Receive structured content ideas with a clear CTA.",
     "Save time brainstorming and writing scripts."
-];
-
-const faqs = [
-    {
-        question: "1. Is this tool free?",
-        answer: "Yes, our AI Reel/Shorts Script Writer is 100% free to use."
-    },
-    {
-        question: "2. Are the scripts optimized for each platform?",
-        answer: "Yes. The AI considers the typical pacing, style, and trends for the platform you select (TikTok, Instagram Reels, YouTube Shorts) to create more effective scripts."
-    },
-    {
-        question: "3. Can I use this for any topic?",
-        answer: "Absolutely. The tool is versatile and can generate scripts for a wide range of niches, from educational content and DIY tutorials to funny skits and trending challenges."
-    },
-    {
-        question: "4. What does a generated script include?",
-        answer: "Each generated script provides a powerful hook for the first 3 seconds, the main content broken down into simple scenes or points, a clear call-to-action (CTA), a suggested post caption, and a list of relevant hashtags."
-    },
-    {
-        question: "5. How long are the generated scripts?",
-        answer: "The scripts are designed for short-form video, typically ranging from 15 to 60 seconds in length, which is ideal for these platforms."
-    },
-    {
-        question: "6. How many script ideas do I get?",
-        answer: "The tool generates 3 distinct script variations for each topic you enter, giving you multiple creative angles to choose from."
-    },
-    {
-        question: "7. Can I edit the scripts after they are generated?",
-        answer: "Yes. We encourage you to use the generated scripts as a starting point. You can copy the text and then edit it to add your own personality, humor, and unique voice."
-    }
 ];
 
 export default function ReelShortsScriptWriterPage() {
@@ -96,30 +58,6 @@ export default function ReelShortsScriptWriterPage() {
                             <span>{benefit}</span>
                         </div>
                     ))}
-                </CardContent>
-            </Card>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <Accordion type="single" collapsible className="w-full space-y-4">
-                        {faqs.map((faq, index) => (
-                             <AccordionItem 
-                                value={`item-${index + 1}`} 
-                                key={index} 
-                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
-                            >
-                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
-                                    {faq.question}
-                                </AccordionTrigger>
-                                <AccordionContent className="px-6 pb-6">
-                                    {faq.answer}
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
-                    </Accordion>
                 </CardContent>
             </Card>
         </div>

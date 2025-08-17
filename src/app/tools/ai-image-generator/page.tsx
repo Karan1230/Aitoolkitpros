@@ -3,13 +3,6 @@ import { type Metadata } from 'next';
 import { AiImageGeneratorClient } from '@/components/ai-image-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-
 
 export const metadata: Metadata = {
   title: 'Free AI Image Generator | Create Art from Text',
@@ -21,37 +14,6 @@ const benefits = [
     "Generate unique assets for blogs and social media.",
     "Visualize concepts and ideas in seconds.",
     "Create royalty-free images for any project."
-];
-
-const faqs = [
-    {
-        question: "1. Is it really free?",
-        answer: "Yes, our AI Image Generator is 100% free to use. There are no hidden costs or subscriptions."
-    },
-    {
-        question: "2. Can I use the images commercially?",
-        answer: "The images generated are royalty-free. You are free to use them for personal and commercial projects, but please check the terms of the underlying AI models for any specific restrictions."
-    },
-    {
-        question: "3. What kind of prompts work best?",
-        answer: "Detailed and specific prompts yield the best results. For example, instead of 'a dog', try 'a photo of a golden retriever puppy playing in a field of flowers during sunset'."
-    },
-    {
-        question: "4. What image resolutions are available?",
-        answer: "The AI generates high-resolution images suitable for most web and print applications. The exact dimensions can be controlled by selecting an aspect ratio like 1:1 (square), 16:9 (widescreen), or 9:16 (vertical)."
-    },
-    {
-        question: "5. Can the AI create images of people or celebrities?",
-        answer: "The AI can generate images of people, but for ethical reasons and to respect privacy, it is generally restricted from creating images of specific, named individuals, including celebrities."
-    },
-    {
-        question: "6. How long does it take to generate an image?",
-        answer: "Image generation is a complex process, but our tool is optimized for speed. Most images are generated within 10-30 seconds, depending on the complexity of the prompt and server load."
-    },
-    {
-        question: "7. Are my prompts and generated images private?",
-        answer: "Yes. We value your privacy. We do not store your text prompts or the images you generate on our servers. Your creations are yours alone."
-    }
 ];
 
 export default function AiImageGeneratorPage() {
@@ -95,30 +57,6 @@ export default function AiImageGeneratorPage() {
                             <span>{benefit}</span>
                         </div>
                     ))}
-                </CardContent>
-            </Card>
-
-            <Card className="bg-card/50">
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <Accordion type="single" collapsible className="w-full space-y-4">
-                        {faqs.map((faq, index) => (
-                             <AccordionItem 
-                                value={`item-${index + 1}`} 
-                                key={index} 
-                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
-                            >
-                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
-                                    {faq.question}
-                                </AccordionTrigger>
-                                <AccordionContent className="px-6 pb-6">
-                                    {faq.answer}
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
-                    </Accordion>
                 </CardContent>
             </Card>
         </div>

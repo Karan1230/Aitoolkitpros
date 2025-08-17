@@ -3,12 +3,6 @@ import { type Metadata } from 'next';
 import { QuizGeneratorClient } from '@/components/quiz-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
 
 export const metadata: Metadata = {
   title: 'Free AI Exam Question Generator | Create Practice Quizzes',
@@ -21,38 +15,6 @@ const benefits = [
     "Quickly create study materials for exams.",
     "Save time on creating educational content."
 ];
-
-const faqs = [
-    {
-        question: "1. Is this tool completely free?",
-        answer: "Yes, the AI Exam Question Generator is 100% free to use with no hidden charges or subscriptions."
-    },
-    {
-        question: "2. What types of questions can I generate?",
-        answer: "You can generate Multiple Choice Questions (MCQ), True/False, and Fill in the Blank questions."
-    },
-    {
-        question: "3. Can I use the generated quizzes for my school or institution?",
-        answer: "Yes, the content generated is royalty-free. You can use it for educational materials, presentations, or any other personal or commercial project."
-    },
-    {
-        question: "4. Does the tool provide explanations for the answers?",
-        answer: "Yes! Each question comes with the correct answer and a brief explanation, making it an excellent tool for learning and understanding the material."
-    },
-    {
-        question: "5. Can I set the difficulty of the questions?",
-        answer: "Absolutely. You can choose between 'Easy,' 'Medium,' and 'Hard' difficulty levels to create an exam that is appropriate for your needs."
-    },
-    {
-        question: "6. How many questions can I generate at once?",
-        answer: "You can generate anywhere from 1 to 20 questions at a time using the slider. This allows you to create short quizzes or longer practice exams."
-    },
-    {
-        question: "7. What subjects can I create exams for?",
-        answer: "You can create an exam for virtually any subject. The AI has a broad knowledge base, from history and science to programming and literature."
-    }
-];
-
 
 export default function ExamQuestionGeneratorPage() {
   return (
@@ -96,30 +58,6 @@ export default function ExamQuestionGeneratorPage() {
                             <span>{benefit}</span>
                         </div>
                     ))}
-                </CardContent>
-            </Card>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <Accordion type="single" collapsible className="w-full space-y-4">
-                        {faqs.map((faq, index) => (
-                             <AccordionItem 
-                                value={`item-${index + 1}`} 
-                                key={index} 
-                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
-                            >
-                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
-                                    {faq.question}
-                                </AccordionTrigger>
-                                <AccordionContent className="px-6 pb-6">
-                                    {faq.answer}
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
-                    </Accordion>
                 </CardContent>
             </Card>
         </div>

@@ -3,13 +3,6 @@ import { type Metadata } from 'next';
 import { AiScriptWriterClient } from '@/components/ai-script-writer-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Free AI Script Writer | Generate Scripts for Videos & More',
@@ -21,37 +14,6 @@ const benefits = [
     "Save hours of brainstorming and writing time.",
     "Structure your content professionally.",
     "Generate ideas for various formats and topics."
-];
-
-const faqs = [
-    {
-        question: "1. Is this tool free to use?",
-        answer: "Absolutely. The AI Script Writer is completely free, with no usage limits or subscriptions required."
-    },
-    {
-        question: "2. What kind of scripts can I generate?",
-        answer: "You can generate scripts for a wide variety of content, including YouTube videos, short films, podcast episodes, social media skits, ad copy, and more."
-    },
-    {
-        question: "3. Is the generated content unique?",
-        answer: "Yes, the AI generates unique content based on your specific prompt. However, we always recommend reviewing and adding your personal touch to make it truly yours."
-    },
-    {
-        question: "4. What is 'Storytelling Mode'?",
-        answer: "When enabled, Storytelling Mode instructs the AI to focus on creating a well-structured narrative. The generated script will have a clearer beginning, middle, and end, making it ideal for content that tells a story."
-    },
-    {
-        question: "5. Can the AI write in different languages?",
-        answer: "Yes. Our tool supports over 20 languages. You can write your prompt in English and select a different output language, and the AI will generate and translate the script for you."
-    },
-    {
-        question: "6. How long can the generated scripts be?",
-        answer: "You can choose the desired length, from a short concept to a medium-length script or a full-length draft. The AI will adjust the level of detail and content accordingly."
-    },
-    {
-        question: "7. Can I use the generated scripts for commercial projects?",
-        answer: "Yes, the scripts you generate are royalty-free. You are free to use them for personal and commercial projects, including monetized YouTube channels and professional podcasts."
-    }
 ];
 
 export default function AiScriptWriterPage() {
@@ -95,30 +57,6 @@ export default function AiScriptWriterPage() {
                             <span>{benefit}</span>
                         </div>
                     ))}
-                </CardContent>
-            </Card>
-
-            <Card className="bg-card/50">
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">Frequently Asked Questions</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <Accordion type="single" collapsible className="w-full space-y-4">
-                        {faqs.map((faq, index) => (
-                             <AccordionItem 
-                                value={`item-${index + 1}`} 
-                                key={index} 
-                                className="bg-background/50 border rounded-lg transition-all duration-300 data-[state=open]:border-primary data-[state=open]:shadow-lg data-[state=open]:shadow-primary/10"
-                            >
-                                <AccordionTrigger className="text-left px-6 hover:no-underline font-semibold">
-                                    {faq.question}
-                                </AccordionTrigger>
-                                <AccordionContent className="px-6 pb-6">
-                                    {faq.answer}
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
-                    </Accordion>
                 </CardContent>
             </Card>
         </div>
