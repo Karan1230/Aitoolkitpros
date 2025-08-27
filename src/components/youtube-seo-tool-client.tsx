@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { youtubeSeoTool } from '@/ai/flows/youtube-seo-tool';
-import type { YoutubeSeoToolOutput } from '@/ai/flows/youtube-seo-tool';
+import { YoutubeSeoToolInputSchema, type YoutubeSeoToolOutput } from '@/ai/schemas/youtube-seo-tool-schemas';
 import {
   Bar,
   BarChart,
@@ -22,16 +22,14 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
-import { Sparkles, Copy, Download, Video, Clapperboard, Search, Hash, FileText, Bot, ThumbsUp, Eye, MessageSquare, Check } from 'lucide-react';
+import { Sparkles, Copy, Download, Video, Clapperboard, Search, Hash, FileText, Bot, ThumbsUp, Eye, MessageSquare, Check, Users } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart';
 import { cn } from '@/lib/utils';
 import { Skeleton } from './ui/skeleton';
+import { Label } from './ui/label';
 
-const formSchema = z.object({
-  analysisType: z.enum(['video', 'channel', 'keyword']),
-  query: z.string().min(5, 'Input must be at least 5 characters.'),
-});
+const formSchema = YoutubeSeoToolInputSchema;
 
 export function YoutubeSeoToolClient() {
   const [report, setReport] = useState<YoutubeSeoToolOutput | null>(null);
