@@ -1,5 +1,5 @@
 
-import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus, BookImage, Clapperboard, MonitorPlay, Wand2, History, Voicemail } from 'lucide-react';
+import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus, BookImage, Clapperboard, MonitorPlay, Wand2, History, Voicemail, Music } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export interface Tool {
@@ -51,6 +51,13 @@ export const toolCategories = [
 
 
 export const allTools: Tool[] = [
+  {
+    name: "AI Song Generator",
+    description: "Generate original songs with vocals and instrumentals from text.",
+    href: "/tools/ai-song-generator",
+    icon: <Music className="h-8 w-8 text-primary" />,
+    category: "Audio",
+  },
   {
     name: "AI Voice Cloning",
     description: "Clone any voice from an audio sample using AI.",
