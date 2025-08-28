@@ -59,6 +59,13 @@ export const allTools: Tool[] = [
     category: "Image",
   },
   {
+    name: "Flux Pro Image Generator",
+    description: "Harness the power of Flux Pro for fast, high-quality image generation.",
+    href: "/tools/flux-pro-image-generator",
+    icon: <ImagePlus className="h-8 w-8 text-primary" />,
+    category: "Image"
+  },
+  {
     name: "Flux Image Generator",
     description: "Harness the power of Flux for fast, high-quality image generation.",
     href: "/tools/flux-image-generator",
