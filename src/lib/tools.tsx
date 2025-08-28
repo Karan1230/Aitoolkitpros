@@ -1,5 +1,5 @@
 
-import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus } from 'lucide-react';
+import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus, BookImage } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export interface Tool {
@@ -51,6 +51,13 @@ export const toolCategories = [
 
 
 export const allTools: Tool[] = [
+  {
+    name: "AI Comics Generator",
+    description: "Create comic strips from text prompts, complete with characters and scenes.",
+    href: "/tools/ai-comics-generator",
+    icon: <BookImage className="h-8 w-8 text-primary" />,
+    category: "Image",
+  },
   {
     name: "Flux Image Generator",
     description: "Harness the power of Flux for fast, high-quality image generation.",
