@@ -92,23 +92,23 @@ export function AppHeader() {
           <SheetHeader>
             <SheetTitle>Menu</SheetTitle>
           </SheetHeader>
-          <nav className="mt-8 flex flex-col gap-4">
-            <Link onClick={handleLinkClick} href="/tools" className="block p-4 text-lg font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+          <nav className="mt-8 flex flex-col gap-3">
+            <Link onClick={handleLinkClick} href="/tools" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
               All Tools
             </Link>
-            <Link onClick={handleLinkClick} href="/about" className="block p-4 text-lg font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+            <Link onClick={handleLinkClick} href="/about" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
               About
             </Link>
-            <Link onClick={handleLinkClick} href="/privacy-policy" className="block p-4 text-lg font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+            <Link onClick={handleLinkClick} href="/privacy-policy" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
               Privacy Policy
             </Link>
-            <Link onClick={handleLinkClick} href="/terms-and-conditions" className="block p-4 text-lg font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+            <Link onClick={handleLinkClick} href="/terms-and-conditions" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
               Terms & Conditions
             </Link>
-             <Link onClick={handleLinkClick} href="/contact" className="block p-4 text-lg font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+             <Link onClick={handleLinkClick} href="/contact" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
               Contact Us
             </Link>
-             <Link onClick={handleLinkClick} href="/copyright-disclaimer" className="block p-4 text-lg font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+             <Link onClick={handleLinkClick} href="/copyright-disclaimer" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
               Copyright Disclaimer
             </Link>
           </nav>
