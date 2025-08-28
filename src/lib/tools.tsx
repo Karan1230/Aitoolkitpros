@@ -1,5 +1,5 @@
 
-import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus, BookImage, Clapperboard, MonitorPlay } from 'lucide-react';
+import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus, BookImage, Clapperboard, MonitorPlay, Wand2 } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export interface Tool {
@@ -170,7 +170,14 @@ export const allTools: Tool[] = [
     icon: <ImageIcon className="h-8 w-8 text-primary" />,
     category: "Image"
   },
-    {
+  {
+    name: "AI Image Editor",
+    description: "Edit your images using simple text prompts.",
+    href: "/tools/ai-image-editor",
+    icon: <Wand2 className="h-8 w-8 text-primary" />,
+    category: "Image"
+  },
+  {
     name: "AI Background Remover",
     description: "Automatically remove the background from any image with a single click.",
     href: "/tools/background-remover",
