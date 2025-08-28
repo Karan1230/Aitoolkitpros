@@ -260,11 +260,4 @@ export const allTools: Tool[] = [
     icon: <BookCopy className="h-8 w-8 text-primary" />,
     category: "Education"
   },
-  {
-    name: "AI YouTube SEO Tool",
-    description: "Get AI-powered SEO suggestions for your YouTube videos.",
-    href: "/tools/youtube-seo-tool",
-    icon: <Youtube className="h-8 w-8 text-primary" />,
-    category: "Business"
-  },
 ];
