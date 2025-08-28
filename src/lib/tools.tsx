@@ -1,5 +1,5 @@
 
-import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box } from 'lucide-react';
+import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export interface Tool {
@@ -70,6 +70,13 @@ export const allTools: Tool[] = [
     description: "Convert your 2D images into detailed 3D models with our free AI-powered tool.",
     href: "/tools/image-to-3d-model",
     icon: <Box className="h-8 w-8 text-primary" />,
+    category: "Image"
+  },
+  {
+    name: "AI Image Upscaler",
+    description: "Enhance and enlarge your images to a higher resolution without losing quality.",
+    href: "/tools/image-upscaler",
+    icon: <Scaling className="h-8 w-8 text-primary" />,
     category: "Image"
   },
   {
