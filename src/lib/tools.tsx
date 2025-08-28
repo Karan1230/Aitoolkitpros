@@ -1,5 +1,5 @@
 
-import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2 } from 'lucide-react';
+import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export interface Tool {
@@ -84,6 +84,13 @@ export const allTools: Tool[] = [
     description: 'Swap faces between two images for fun and creative projects.',
     href: '/tools/image-face-swap',
     icon: <Users2 className="h-8 w-8 text-primary" />,
+    category: 'Image',
+  },
+  {
+    name: 'Video Face Swap',
+    description: 'Swap faces in a video with a face from an image.',
+    href: '/tools/video-face-swap',
+    icon: <VideoIcon className="h-8 w-8 text-primary" />,
     category: 'Image',
   },
   {
