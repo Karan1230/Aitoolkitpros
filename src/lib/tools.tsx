@@ -51,6 +51,13 @@ export const toolCategories = [
 
 export const allTools: Tool[] = [
   {
+    name: "AI Image to Video Generator",
+    description: "Turn a static image into a dynamic, animated video clip.",
+    href: "/tools/image-to-video-generator",
+    icon: <Video className="h-8 w-8 text-primary" />,
+    category: "Image"
+  },
+  {
     name: "AI Recipe Maker",
     description: "Generate recipes from ingredients you have at home.",
     href: "/tools/ai-recipe-maker",
