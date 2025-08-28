@@ -1,5 +1,5 @@
 
-import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus, BookImage } from 'lucide-react';
+import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus, BookImage, Clapperboard } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export interface Tool {
@@ -78,6 +78,13 @@ export const allTools: Tool[] = [
     href: "/tools/ltx-ai-video-generator",
     icon: <Video className="h-8 w-8 text-primary" />,
     category: "Image"
+  },
+   {
+    name: "AI Reel/Shorts Generator",
+    description: "Instantly create engaging, short-form videos for Reels, TikTok, and YouTube.",
+    href: "/tools/ai-reel-shorts-generator",
+    icon: <Clapperboard className="h-8 w-8 text-primary" />,
+    category: "Content"
   },
   {
     name: "AI Image to Video Generator",
