@@ -1,5 +1,5 @@
 
-import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus, BookImage, Clapperboard, MonitorPlay, Wand2, History, Voicemail, Music, HeartPulse } from 'lucide-react';
+import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus, BookImage, Clapperboard, MonitorPlay, Wand2, History, Voicemail, Music, HeartPulse, Shirt } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export interface Tool {
@@ -51,6 +51,13 @@ export const toolCategories = [
 
 
 export const allTools: Tool[] = [
+  {
+    name: "Virtual Try-On",
+    description: "Virtually try on different outfits using our free AI-powered tool.",
+    href: "/tools/virtual-try-on",
+    icon: <Shirt className="h-8 w-8 text-primary" />,
+    category: "Fun",
+  },
   {
     name: "Heart Attack Prediction",
     description: "Predict the likelihood of a heart attack based on health data. Not medical advice.",
