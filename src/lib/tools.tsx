@@ -1,4 +1,5 @@
-import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature } from 'lucide-react';
+
+import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export interface Tool {
@@ -62,6 +63,13 @@ export const allTools: Tool[] = [
     description: "Turn a static image into a dynamic, animated video clip.",
     href: "/tools/image-to-video-generator",
     icon: <Video className="h-8 w-8 text-primary" />,
+    category: "Image"
+  },
+   {
+    name: "Image to 3D Model Converter",
+    description: "Convert your 2D images into detailed 3D models with our free AI-powered tool.",
+    href: "/tools/image-to-3d-model",
+    icon: <Box className="h-8 w-8 text-primary" />,
     category: "Image"
   },
   {
