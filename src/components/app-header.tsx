@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Search } from "lucide-react";
+import { Menu, Search, Star } from "lucide-react";
 import { Logo } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
@@ -147,32 +147,46 @@ export function AppHeader() {
             </Button>
             </SheetTrigger>
             <SheetContent 
-            side="right" 
-            className="w-[300px]"
+              side="right" 
+              className="w-[300px] flex flex-col"
             >
-            <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
-            </SheetHeader>
-            <nav className="mt-8 flex flex-col gap-3">
-                <Link onClick={handleLinkClick} href="/tools" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                All Tools
-                </Link>
-                <Link onClick={handleLinkClick} href="/about" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                About
-                </Link>
-                <Link onClick={handleLinkClick} href="/privacy-policy" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                Privacy Policy
-                </Link>
-                <Link onClick={handleLinkClick} href="/terms-and-conditions" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                Terms & Conditions
-                </Link>
-                <Link onClick={handleLinkClick} href="/contact" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                Contact Us
-                </Link>
-                <Link onClick={handleLinkClick} href="/copyright-disclaimer" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                Copyright Disclaimer
-                </Link>
-            </nav>
+              <SheetHeader>
+                  <SheetTitle>Menu</SheetTitle>
+              </SheetHeader>
+              <div className="flex-grow">
+                <nav className="mt-8 flex flex-col gap-3">
+                    <Link onClick={handleLinkClick} href="/tools" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+                    All Tools
+                    </Link>
+                    <Link onClick={handleLinkClick} href="/about" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+                    About
+                    </Link>
+                    <Link onClick={handleLinkClick} href="/privacy-policy" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+                    Privacy Policy
+                    </Link>
+                    <Link onClick={handleLinkClick} href="/terms-and-conditions" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+                    Terms & Conditions
+                    </Link>
+                    <Link onClick={handleLinkClick} href="/contact" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+                    Contact Us
+                    </Link>
+                    <Link onClick={handleLinkClick} href="/copyright-disclaimer" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+                    Copyright Disclaimer
+                    </Link>
+                </nav>
+              </div>
+              <div className="mt-auto text-center text-xs text-muted-foreground space-y-2">
+                  <div className="flex items-center justify-center gap-1">
+                      <Star className="w-3 h-3 text-yellow-400 fill-yellow-400"/>
+                      <Star className="w-3 h-3 text-yellow-400 fill-yellow-400"/>
+                      <Star className="w-3 h-3 text-yellow-400 fill-yellow-400"/>
+                      <Star className="w-3 h-3 text-yellow-400 fill-yellow-400"/>
+                      <Star className="w-3 h-3 text-yellow-400 fill-yellow-400"/>
+                  </div>
+                  <p>Rated 4.9/5 by 1,000+ users</p>
+                  <p>Developed by Sharthaksoftech</p>
+                  <p>&copy; {new Date().getFullYear()} AI Toolkit Pro. All rights reserved.</p>
+              </div>
             </SheetContent>
         </Sheet>
       </div>
