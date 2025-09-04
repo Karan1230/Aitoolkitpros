@@ -11,17 +11,16 @@ import {
   Wrench,
   Settings,
   LineChart,
-  Package2,
 } from 'lucide-react';
 import { Logo } from './icons';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
     { href: '/admin/dashboard', icon: Home, label: 'Dashboard' },
-    { href: '/admin/tools', icon: Wrench, label: 'Tools' },
-    { href: '/admin/users', icon: Users, label: 'Users' },
+    { href: '/admin/tools', icon: Wrench, label: 'Tools Management' },
+    { href: '/admin/users', icon: Users, label: 'User Management' },
     { href: '/admin/analytics', icon: LineChart, label: 'Analytics' },
-    { href: '/admin/settings', icon: Settings, label: 'Settings' },
+    { href: '/admin/settings', icon: Settings, label: 'App Settings' },
 ];
 
 export function AdminSidebar() {
