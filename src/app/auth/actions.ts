@@ -9,6 +9,7 @@ import { z } from 'zod'
 export async function signIn(formData: FormData) {
   const identifier = formData.get('identifier') as string;
   const password = formData.get('password') as string;
+  const redirectTo = formData.get('redirectTo') as string || '/';
   const supabase = createClient();
 
   // Check if identifier is an email
@@ -46,7 +47,7 @@ export async function signIn(formData: FormData) {
     return redirect('/login?message=Could not authenticate user');
   }
 
-  return redirect('/');
+  return redirect(redirectTo);
 }
 
 export async function signUp(formData: FormData) {

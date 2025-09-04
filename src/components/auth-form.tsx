@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useForm, useFormState } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { useSearchParams } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
 import { signIn, signUp, signInWithGoogle } from '@/app/auth/actions'
@@ -54,6 +54,7 @@ export function AuthForm() {
   const [isLogin, setIsLogin] = useState(true)
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null)
   const searchParams = useSearchParams()
+  const pathname = usePathname();
   const message = searchParams.get('message')
 
   const { register: registerLogin, handleSubmit: handleLoginSubmit } = useForm({ resolver: zodResolver(loginSchema) });
@@ -65,11 +66,14 @@ export function AuthForm() {
       setAvatarPreview(URL.createObjectURL(file))
     }
   }
+
+  const redirectTo = pathname === '/admin' ? '/admin/dashboard' : '/';
   
   return (
     <div>
       {isLogin ? (
         <form action={signIn} className="space-y-4">
+           <input type="hidden" name="redirectTo" value={redirectTo} />
           <div className="space-y-2">
             <Label htmlFor="identifier">Email or Username</Label>
             <Input id="identifier" name="identifier" placeholder="you@example.com" required />
