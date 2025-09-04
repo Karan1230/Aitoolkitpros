@@ -82,10 +82,10 @@ export default function Home() {
       <section className="py-16 md:py-24 text-center">
         <div className="container">
           <h1 className="font-headline text-4xl md:text-6xl font-bold gradient-text animate-float-in">
-            All-in-One AI Toolkit for Creators
+            AI Toolkit Pro
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-base md:text-lg text-muted-foreground animate-float-in" style={{ animationDelay: '0.1s' }}>
-            Unlock a full suite of free AI tools designed to help you write, design, and market better. From SEO-friendly content to stunning visuals, level up your creative workflow.
+            Your ultimate suite of free AI tools. Generate ad copy, create scripts, design logos, find SEO keywords, and much more. Boost your productivity with our all-in-one toolkit.
           </p>
           <div className="mt-8 flex justify-center gap-4 animate-float-in" style={{ animationDelay: '0.2s' }}>
             <Button asChild size="lg">
