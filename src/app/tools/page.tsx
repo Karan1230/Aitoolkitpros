@@ -86,6 +86,13 @@ export default function AllToolsPage() {
             </p>
         </div>
 
+        {/* Ad Placeholder */}
+        <div className="mb-12">
+          <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+            <span className="text-muted-foreground text-sm">Demo Ad (728x90)</span>
+          </div>
+        </div>
+
         {toolCategories.map((category) => {
           // Filter tools based on the category name and its associated mappings
           const filteredTools = allTools

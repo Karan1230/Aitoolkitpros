@@ -11,6 +11,7 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import Autoplay from "embla-carousel-autoplay";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import Image from "next/image";
 
 const testimonials = [
     {
@@ -131,6 +132,15 @@ export default function Home() {
         </div>
       </section>
       
+      {/* Ad Placeholder */}
+      <section className="py-8">
+        <div className="container px-4">
+          <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+            <span className="text-muted-foreground text-sm">Demo Ad (728x90)</span>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section className="py-16">
         <div className="container px-4">

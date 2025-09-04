@@ -116,6 +116,11 @@ export default function AdCopyGeneratorPage() {
                   </CardContent>
               </Card>
 
+              {/* Ad Placeholder */}
+              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+              </div>
+
                <Card className="bg-card/50">
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
