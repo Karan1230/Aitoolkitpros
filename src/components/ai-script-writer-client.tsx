@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -100,7 +101,7 @@ export function AiScriptWriterClient() {
               name="prompt"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-lg font-semibold">Script Prompt</FormLabel>
+                  <FormLabel className="font-semibold">Script Prompt</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="e.g., A 5-minute YouTube video script about the history of coffee"
@@ -119,7 +120,7 @@ export function AiScriptWriterClient() {
                 name="language"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel className="text-lg font-semibold">Language</FormLabel>
+                    <FormLabel className="font-semibold">Language</FormLabel>
                      <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                             <SelectTrigger>
@@ -144,7 +145,7 @@ export function AiScriptWriterClient() {
                 name="genre"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel className="text-lg font-semibold">Genre</FormLabel>
+                    <FormLabel className="font-semibold">Genre</FormLabel>
                      <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                             <SelectTrigger>
@@ -169,7 +170,7 @@ export function AiScriptWriterClient() {
                 name="length"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel className="text-lg font-semibold">Length</FormLabel>
+                    <FormLabel className="font-semibold">Length</FormLabel>
                      <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                             <SelectTrigger>

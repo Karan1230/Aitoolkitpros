@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,8 +15,8 @@ export default function AllToolsPage() {
     <div className="container py-12 md:py-20">
       {toolCategories.map((category) => (
         <section key={category.id} className="mt-8 first:mt-0">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="p-3 rounded-full bg-primary/10">
+          <div className="flex flex-col md:flex-row md:items-center gap-4 mb-8">
+            <div className="p-3 rounded-full bg-primary/10 w-fit">
               {category.icon}
             </div>
             <div>
@@ -23,7 +24,7 @@ export default function AllToolsPage() {
               <p className="text-muted-foreground">{category.description}</p>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {allTools
               .filter(tool => tool.category === category.name || (category.name === "Writing & Content" && tool.category === "Content") || (category.name === "Design & Image" && tool.category === "Image") || (category.name === "Business & Marketing" && tool.category === "Business") || (category.name === "Education & Learning" && tool.category === "Education") || (category.name === "Audio & Voice" && tool.category === "Audio") || (category.name === "Fun & Lifestyle" && tool.category === "Fun"))
               .sort((a, b) => a.name.localeCompare(b.name))

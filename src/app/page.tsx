@@ -178,7 +178,7 @@ export default function Home() {
                     style={{ animationDelay: `${index * 0.1}s`}}
                 >
                     <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
-                    <AccordionContent className="text-base">
+                    <AccordionContent className="text-base text-muted-foreground">
                         {faq.answer}
                     </AccordionContent>
                 </AccordionItem>

@@ -43,12 +43,13 @@ function SearchDialog() {
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <Button
-                variant="ghost"
-                className="justify-start text-muted-foreground"
+                variant="outline"
+                className="justify-start text-muted-foreground w-full md:w-auto"
                 onClick={() => setIsOpen(true)}
             >
                 <Search className="h-5 w-5 mr-2" />
-                Search tools...
+                <span className="hidden md:inline-block">Search tools...</span>
+                <span className="inline-block md:hidden">Search...</span>
             </Button>
             <DialogContent className="sm:max-w-xl">
                 <DialogHeader>
@@ -137,20 +138,20 @@ export function AppHeader() {
         )}
         
         <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-            <SheetTrigger asChild>
-            <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Open menu</span>
-            </Button>
+            <SheetTrigger asChild className="md:hidden">
+                <Button variant="ghost" size="icon">
+                    <Menu className="h-6 w-6" />
+                    <span className="sr-only">Open menu</span>
+                </Button>
             </SheetTrigger>
             <SheetContent 
               side="right" 
-              className="w-[300px] flex flex-col"
+              className="w-[300px] flex flex-col md:hidden"
             >
               <SheetHeader>
                   <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
-               <div className="md:hidden mt-4">
+               <div className="mt-4">
                  <SearchDialog />
                </div>
               <div className="flex-grow">

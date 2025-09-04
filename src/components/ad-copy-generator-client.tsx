@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -87,7 +88,7 @@ export function AdCopyGeneratorClient() {
               name="productDetails"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-lg font-semibold">Product/Service Details</FormLabel>
+                  <FormLabel className="font-semibold">Product/Service Details</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="e.g., A subscription box for gourmet coffee beans, sourced ethically from around the world."

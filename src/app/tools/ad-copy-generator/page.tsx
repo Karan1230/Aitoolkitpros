@@ -19,7 +19,7 @@ const benefits = [
 export default function AdCopyGeneratorPage() {
   return (
     <div className="container py-12 md:py-20">
-      <div className="grid lg:grid-cols-5 gap-12">
+      <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
         <div className="lg:col-span-3">
             <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
                 AI Ad Copy Generator
@@ -39,7 +39,7 @@ export default function AdCopyGeneratorPage() {
                 <CardHeader>
                     <CardTitle className="font-headline text-2xl">How to Use</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-4 text-sm md:text-base">
                     <p><strong>1. Enter Details:</strong> Provide product info, your target audience, and key selling points.</p>
                     <p><strong>2. Select Platform & Tone:</strong> Choose the ad platform and the tone of voice for your copy.</p>
                     <p><strong>3. Generate:</strong> Click the "Generate Ad Copy" button to get multiple ad variations.</p>
@@ -55,7 +55,7 @@ export default function AdCopyGeneratorPage() {
                     {benefits.map((benefit, index) => (
                         <div key={index} className="flex items-start">
                             <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
-                            <span>{benefit}</span>
+                            <span className="text-sm md:text-base">{benefit}</span>
                         </div>
                     ))}
                 </CardContent>
