@@ -20,12 +20,14 @@ import {
 import { useRouter } from 'next/navigation';
 import type { User } from '@supabase/supabase-js';
 import { LogOut, User as UserIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface UserNavProps {
     user: User;
+    isMobile?: boolean;
 }
 
-export function UserNav({ user }: UserNavProps) {
+export function UserNav({ user, isMobile = false }: UserNavProps) {
   const router = useRouter();
   const supabase = createClient();
 
@@ -39,15 +41,29 @@ export function UserNav({ user }: UserNavProps) {
     return parts[0].substring(0, 2).toUpperCase();
   }
 
+  const triggerClasses = isMobile
+    ? "flex items-center justify-start p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300 w-full"
+    : "relative h-8 w-8 rounded-full";
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-          <Avatar className="h-9 w-9">
-            <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email || 'User'} />
-            <AvatarFallback>{user.email ? getInitials(user.email) : <UserIcon/>}</AvatarFallback>
-          </Avatar>
-        </Button>
+        {isMobile ? (
+             <button className={triggerClasses}>
+                <Avatar className="h-8 w-8 mr-3">
+                    <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email || 'User'} />
+                    <AvatarFallback>{user.email ? getInitials(user.email) : <UserIcon/>}</AvatarFallback>
+                </Avatar>
+                My Account
+             </button>
+        ) : (
+            <Button variant="ghost" className={triggerClasses}>
+                <Avatar className="h-9 w-9">
+                    <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email || 'User'} />
+                    <AvatarFallback>{user.email ? getInitials(user.email) : <UserIcon/>}</AvatarFallback>
+                </Avatar>
+            </Button>
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">

@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Search, Star } from "lucide-react";
+import { Menu, Search, Star, User } from "lucide-react";
 import { Logo } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,7 +24,7 @@ import { allTools } from "@/lib/tools";
 import { ScrollArea } from "./ui/scroll-area";
 import { UserNav } from "./user-nav";
 import { createClient } from "@/lib/supabase/client";
-import type { User } from "@supabase/supabase-js";
+import type { User as SupabaseUser } from "@supabase/supabase-js";
 
 function SearchDialog() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -90,7 +90,7 @@ function SearchDialog() {
 
 export function AppHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const supabase = createClient();
 
@@ -130,13 +130,6 @@ export function AppHeader() {
             <SearchDialog />
         </div>
         
-        {!isLoading && (
-            user ? <UserNav user={user} /> : 
-            <Button asChild>
-                <Link href="/login">Login</Link>
-            </Button>
-        )}
-        
         <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
                 <Button variant="ghost" size="icon">
@@ -156,6 +149,15 @@ export function AppHeader() {
                </div>
               <div className="flex-grow">
                 <nav className="mt-8 flex flex-col gap-3">
+                    {user ? (
+                        <div onClick={handleLinkClick}>
+                           <UserNav user={user} isMobile={true}/>
+                        </div>
+                    ) : (
+                        <Link onClick={handleLinkClick} href="/login" className="flex items-center p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+                           <User className="mr-2 h-5 w-5" /> Login / Sign Up
+                        </Link>
+                    )}
                     <Link onClick={handleLinkClick} href="/tools" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
                     All Tools
                     </Link>
