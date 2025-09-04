@@ -47,6 +47,12 @@ export const toolCategories = [
     icon: <Laugh className="h-8 w-8 text-primary" />,
     description: "Generate memes, horoscopes, recipes and more.",
   },
+  {
+    name: "Assistant",
+    id: "assistant",
+    icon: <Bot className="h-8 w-8 text-primary" />,
+    description: "Get answers, coding help, and grammar corrections.",
+  },
 ];
 
 
