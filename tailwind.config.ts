@@ -20,6 +20,7 @@ export default {
     extend: {
       boxShadow: {
         'soft': '0 4px 12px 0 rgba(0, 0, 0, 0.07)',
+        '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       },
       backgroundImage: {
         'gradient-bg': 'radial-gradient(circle at top left, hsl(var(--primary) / 0.1), transparent 40%), radial-gradient(circle at bottom right, hsl(var(--accent) / 0.1), transparent 40%)',

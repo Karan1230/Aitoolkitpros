@@ -1,8 +1,9 @@
+
 'use client';
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, PenLine } from "lucide-react";
+import { ArrowRight, CheckCircle, PenLine } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { allTools } from "@/lib/tools";
@@ -46,74 +47,69 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
+      <section className="py-16 md:py-24 text-center">
+        <div className="container">
+          <h1 className="font-headline text-4xl md:text-6xl font-bold gradient-text animate-float-in">
+            All-in-One AI Toolkit for Creators
+          </h1>
+          <p className="mt-4 max-w-2xl mx-auto text-base md:text-lg text-muted-foreground animate-float-in" style={{ animationDelay: '0.1s' }}>
+            Unlock a full suite of free AI tools designed to help you write, design, and market better. From SEO-friendly content to stunning visuals, level up your creative workflow.
+          </p>
+          <div className="mt-8 flex justify-center gap-4 animate-float-in" style={{ animationDelay: '0.2s' }}>
+            <Button asChild size="lg">
+              <Link href="/tools">
+                Browse All Tools <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Tools Section */}
-      <section id="tools" className="py-8">
+      <section id="tools" className="py-12">
         <div className="container px-4">
-          <div className="grid grid-cols-2 gap-4">
-            {allTools.slice(0, visibleTools).map((tool) => (
-              <Link href={tool.href} key={tool.name} className="group flex">
-                <Card className="w-full transition-all duration-300 hover:bg-white/5 flex flex-col shadow-lg">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            <span className="gradient-text">Popular AI Tools</span>
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {allTools.slice(0, visibleTools).map((tool, index) => (
+              <Link href={tool.href} key={tool.name} className="group flex animate-float-in" style={{ animationDelay: `${0.1 + index * 0.05}s`}}>
+                <Card className="w-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
                   <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
-                     <div className="p-3 mb-2 rounded-lg bg-primary/10 text-primary">
+                     <div className="p-3 mb-3 rounded-lg bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
                       {tool.icon}
                     </div>
                     <p className="font-semibold text-sm">{tool.name}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{tool.category}</p>
                   </CardContent>
                 </Card>
               </Link>
             ))}
           </div>
           {visibleTools < allTools.length && (
-            <div className="mt-6 text-center">
-              <Button onClick={loadMoreTools}>Load More Tools</Button>
+            <div className="mt-10 text-center">
+              <Button onClick={loadMoreTools} variant="secondary" size="lg">Load More Tools</Button>
             </div>
           )}
         </div>
       </section>
       
-      {/* How It Works Section */}
-      <section className="py-8">
-        <div className="container px-4">
-           <h2 className="font-headline text-2xl font-bold text-center mb-4">How to Use</h2>
-          <div className="grid grid-cols-3 gap-3 text-center">
-            <Card className="p-4 bg-secondary">
-                <div className="flex justify-center mb-2">
-                    <PenLine className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="font-semibold text-xs">1. Select Tool</h3>
-            </Card>
-            <Card className="p-4 bg-secondary">
-                 <div className="flex justify-center mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-primary"><path d="M9.064 2.147a10.965 10.965 0 0 1 5.872 0C18.353 3.341 20 6.035 20 8c0 .784-.13 1.54-.368 2.246l-1.332 4.024a2 2 0 0 1-3.23.95l-3.07-3.07A2 2 0 0 1 12 11a2 2 0 0 1 .157-.768l3.07-3.07a2 2 0 0 1-.95-3.23L10.254 2.6c-.696-.233-1.462-.361-2.246-.361 0-1.965 1.647-4.659 4.056-5.853Z"/><path d="M12 13a2 2 0 0 1 .768.157l3.07 3.07a2 2 0 0 1 .95 3.23l-4.024 1.332A10.965 10.965 0 0 1 16 20c-1.965 0-4.659-1.647-5.853-4.056a10.965 10.965 0 0 1 0-5.872C11.341 6.647 14.035 5 16 5c.784 0 1.54.13 2.246.368l1.332 4.024a2 2 0 0 1-3.23.95l-3.07-3.07A2 2 0 0 1 13 12a2 2 0 0 1-.768.157Z"/></svg>
-                </div>
-                <h3 className="font-semibold text-xs">2. AI Generates</h3>
-            </Card>
-            <Card className="p-4 bg-secondary">
-                 <div className="flex justify-center mb-2">
-                    <CheckCircle className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="font-semibold text-xs">3. Use Result</h3>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials Section */}
-      <section className="py-8">
+      <section className="py-16">
         <div className="container px-4">
-           <h2 className="font-headline text-2xl font-bold text-center mb-4">What Users Say</h2>
+           <h2 className="font-headline text-3xl font-bold text-center mb-8">What Our Users Say</h2>
           <Carousel
              plugins={[autoplayPlugin.current]}
              opts={{
               align: "start",
               loop: true,
             }}
-            className="w-full"
+            className="w-full max-w-4xl mx-auto"
           >
             <CarouselContent className="-ml-4">
               {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-4">
-                    <Card className="h-full flex flex-col bg-secondary shadow-lg">
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                    <Card className="h-full flex flex-col bg-card/50 backdrop-blur-sm shadow-lg">
                       <CardContent className="p-6 flex-grow flex flex-col justify-center">
                         <p className="text-muted-foreground italic text-sm mb-4 flex-grow">"{testimonial.quote}"</p>
                         <div className="flex items-center gap-3">

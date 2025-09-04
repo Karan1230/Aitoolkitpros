@@ -13,12 +13,13 @@ const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space
 
 export const metadata: Metadata = {
   title: {
-    default: 'AI Toolkit Pro - Free All-in-One AI Tools',
+    default: 'AI Toolkit Pro - Free All-in-One AI Tools for Content, SEO & Design',
     template: '%s | AI Toolkit Pro',
   },
-  description: 'A collection of free, easy-to-use AI tools including script writers, image generators, text-to-speech, and more. No login required.',
+  description: 'Your ultimate suite of free AI tools. Generate ad copy, create scripts, design logos, find SEO keywords, and much more. Boost your productivity with our all-in-one toolkit.',
+  keywords: ['ai tools', 'free ai tools', 'content generator', 'seo tools', 'image generator', 'ai script writer', 'adsense friendly'],
   openGraph: {
-    title: 'AI Toolkit Pro - Free All-in-One AI Tools',
+    title: 'AI Toolkit Pro - Free All-in-One AI Tools for Content, SEO & Design',
     description: 'Instantly access a suite of AI-powered tools for content creation, image editing, and audio processing. 100% free, no subscriptions.',
     url: 'https://your-domain.com',
     siteName: 'AI Toolkit Pro',
@@ -71,7 +72,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
       </head>
       <body className={cn('min-h-screen bg-background font-body antialiased dark', inter.variable, spaceGrotesk.variable)}>
-        <div className="relative flex min-h-screen flex-col">
+        <div className="relative flex min-h-screen flex-col bg-gradient-bg">
           <AppHeader />
           <main className="flex-1 pt-16">{children}</main>
         </div>
