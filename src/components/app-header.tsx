@@ -151,6 +151,9 @@ export function AppHeader() {
                </div>
               <div className="flex-grow">
                 <nav className="mt-8 flex flex-col gap-3">
+                    <Link onClick={handleLinkClick} href="/" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+                    Home
+                    </Link>
                     <Link onClick={handleLinkClick} href="/tools" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
                     All Tools
                     </Link>
