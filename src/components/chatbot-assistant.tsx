@@ -30,6 +30,7 @@ const greetings: { [key: string]: string } = {
 };
 
 export function ChatbotAssistant() {
+  const [isClient, setIsClient] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [position, setPosition] = useState({ x: 20, y: 20 });
@@ -48,6 +49,7 @@ export function ChatbotAssistant() {
   const popSoundRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    setIsClient(true);
     if (sessionStorage.getItem('chatbotDismissed')) {
       setIsDismissed(true);
     } else {
@@ -153,7 +155,7 @@ export function ChatbotAssistant() {
   };
 
 
-  if (isDismissed) {
+  if (!isClient || isDismissed) {
     return null;
   }
 
