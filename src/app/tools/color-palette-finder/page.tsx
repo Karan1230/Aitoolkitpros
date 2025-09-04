@@ -4,6 +4,8 @@ import { ColorPaletteFinderClient } from '@/components/color-palette-finder-clie
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Color Palette Finder | Generate Color Schemes Instantly',
@@ -17,9 +19,47 @@ const benefits = [
     "Instantly copy HEX codes for use in any design tool."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI color palette finder?",
+        answer: "An AI color palette finder is a tool that generates harmonious color schemes based on a text description you provide. You can describe a mood, a scene, or a concept (like 'calm ocean sunset'), and the AI will create multiple matching color palettes for you."
+    },
+    {
+        question: "How does the color scheme generator work?",
+        answer: "The AI analyzes the keywords and concepts in your description and uses its understanding of color theory and associations to generate palettes. It can create different types of schemes, such as analogous (colors next to each other on the color wheel) or complementary (opposite colors), to ensure the combinations are aesthetically pleasing."
+    },
+    {
+        question: "Is this color palette generator free?",
+        answer: "Yes, our AI color palette generator is completely free to use. It's designed to help designers, developers, and creators find the perfect colors for their projects without any cost."
+    },
+    {
+        question: "Can I use this to create a brand color palette?",
+        answer: "Absolutely. This is an excellent brand color palette generator. By describing your brand's values, industry, and desired feel, you can generate professional color schemes that will help you build a strong and cohesive brand identity."
+    },
+    {
+        question: "What is a HEX code and how do I use it?",
+        answer: "A HEX code is a six-digit code used to represent a specific color in digital design (e.g., #FFFFFF for white). Our tool allows you to instantly copy the HEX code for any color in the generated palette. You can then paste this code into any design software, like Adobe Photoshop, Figma, or Canva, or into your website's CSS."
+    }
+];
+
 export default function ColorPaletteFinderPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function ColorPaletteFinderPage() {
                 <p>Using our <strong>AI color scheme generator</strong> is easy. Simply describe the mood, style, or theme you're going for, and the AI will generate a selection of palettes that match your vision. This makes it an invaluable <strong>website color scheme generator</strong> for web designers who need to create a cohesive look and feel for their sites. The <strong>color palette generator from image</strong> feature also allows you to upload a photo and extract a color palette from it, which is perfect for creating designs that match a specific visual.</p>
                 <p>Whether you're working on a branding project, a website design, or a piece of art, our <strong>random color palette generator</strong> can provide you with endless inspiration. It's a versatile <strong>brand color palette generator</strong> that can help you create a strong and memorable brand identity. Stop spending hours trying to find the perfect colors and start using the power of AI. Try our <strong>color palette generator free</strong> tool today and discover a world of color possibilities.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

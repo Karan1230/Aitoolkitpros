@@ -4,6 +4,8 @@ import { QuizGeneratorClient } from '@/components/quiz-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Exam Question Generator | Create Practice Quizzes',
@@ -17,9 +19,47 @@ const benefits = [
     "Save time on creating educational content."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI exam question generator?",
+        answer: "An AI exam question generator is a tool that uses artificial intelligence to create test questions based on a specific topic. It can generate various question types, including multiple-choice (MCQ), true/false, and fill-in-the-blank, tailored to different difficulty levels."
+    },
+    {
+        question: "How can I use this AI test generator for my studies?",
+        answer: "Students can use this tool to create unlimited practice quizzes on any subject to prepare for exams. It's an excellent way to test your knowledge, identify areas for improvement, and get comfortable with different question formats. Teachers can use it to quickly create assessments for their classes."
+    },
+    {
+        question: "Is this free exam question generator really free?",
+        answer: "Yes, our AI exam question generator is completely free to use. There are no limits on the number of quizzes or questions you can create. It's designed to be a helpful resource for both students and educators."
+    },
+    {
+        question: "Does the AI question generator provide answers?",
+        answer: "Yes. For every question it creates, the AI also provides the correct answer and a brief explanation. This is crucial for learning, as it helps you understand why an answer is correct, reinforcing your knowledge."
+    },
+    {
+        question: "Can I create a multiple-choice question (MCQ) test from text?",
+        answer: "Yes, our tool functions as an AI multiple choice question generator. You can specify the topic, and the AI will generate relevant MCQs with plausible distractors, making it a powerful tool for creating effective tests."
+    }
+];
+
 export default function ExamQuestionGeneratorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function ExamQuestionGeneratorPage() {
                 <p>The versatility of our <strong>AI exam generator</strong> is one of its key features. It can be used as a <strong>math question generator</strong>, a <strong>history question generator</strong>, or for any other subject you can think of. The <strong>long answer question generator</strong> is great for assessing critical thinking skills, while the <strong>free multiple choice question generator from text</strong> is perfect for creating objective tests. This makes our tool an invaluable resource for teachers at all levels. Once the exam is done, you can create study materials with our <Link href="/tools/study-notes-creator">Study Notes Creator</Link>.</p>
                 <p>Our <strong>AI question generator free</strong> tool is designed to be user-friendly and intuitive. Simply enter your topic, choose your question types, and let the AI do the rest. The <strong>free AI question generator from text</strong> will provide you with a complete exam, including answers and explanations. Stop spending hours creating assessments and start using the power of AI to enhance your teaching. Try our <strong>AI test question generator free</strong> tool today and revolutionize the way you assess learning.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

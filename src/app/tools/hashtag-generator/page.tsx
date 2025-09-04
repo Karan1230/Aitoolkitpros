@@ -4,6 +4,8 @@ import { HashtagGeneratorClient } from '@/components/hashtag-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Hashtag Generator | Boost Your Social Media Reach',
@@ -17,9 +19,47 @@ const benefits = [
     "Discover trending and niche hashtags in your industry."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI hashtag generator?",
+        answer: "An AI hashtag generator is a tool that uses artificial intelligence to find the most relevant and effective hashtags for your social media posts. You provide a topic or keyword, and the AI generates a list of hashtags optimized to increase your content's visibility and reach."
+    },
+    {
+        question: "How does the hashtag generator AI work?",
+        answer: "The AI analyzes your topic and cross-references it with current trends and data from social media platforms. It identifies a mix of popular, niche, and related hashtags to create a balanced list that can help your post get discovered by a broader, yet relevant, audience."
+    },
+    {
+        question: "Is this a free hashtag generator for Instagram?",
+        answer: "Yes, our tool is a completely free hashtag generator that works perfectly for Instagram, as well as other platforms like TikTok, YouTube, and Twitter/X. You can generate unlimited hashtag lists without any cost."
+    },
+    {
+        question: "Why is it important to use a mix of popular and niche hashtags?",
+        answer: "Popular hashtags have high search volume but are also very competitive. Niche hashtags have lower volume but connect you with a more targeted and engaged audience. The best hashtag strategy, which our tool provides, uses a mix of both to maximize both broad reach and community engagement."
+    },
+    {
+        question: "What makes this the best hashtag generator?",
+        answer: "Our tool is considered the best hashtag generator because it offers platform-specific optimization, different style options (popular, niche, or mixed), and generates a comprehensive list of relevant hashtags in seconds. It saves you hours of manual research and helps you implement a data-driven hashtag strategy for free."
+    }
+];
+
 export default function HashtagGeneratorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function HashtagGeneratorPage() {
                 <p>The versatility of our <strong>hashtag suggestion tool</strong> is one of its key strengths. It can be used as a <strong>TikTok hashtag generator</strong> to help your videos go viral, or as a <strong>YouTube hashtag generator</strong> to improve the discoverability of your content. The <strong>hashtag finder</strong> is designed to work across all major social media platforms, so you can maintain a consistent and effective hashtag strategy. Our <strong>free hashtag generator tool</strong> is a must-have for any serious content creator. You can also generate <Link href="/tools/ad-copy-generator">ad copy</Link> to go along with your posts.</p>
                 <p>Using our <strong>hashtag creator</strong> is simple. Just enter your topic, and the AI will do the rest. The <strong>AI hashtag generator free</strong> tool will provide you with a list of hashtags that you can copy and paste directly into your posts. Stop guessing which hashtags to use and start using a data-driven approach. Try our <strong>best free hashtag generator</strong> today and see the difference it can make in your social media performance.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

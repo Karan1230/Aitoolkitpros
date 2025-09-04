@@ -4,6 +4,8 @@ import { YoutubeSeoToolClient } from '@/components/youtube-seo-tool-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI YouTube SEO Tool | Boost Your Video Rankings',
@@ -17,9 +19,47 @@ const benefits = [
     "Optimize titles, descriptions, and tags instantly."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI YouTube SEO tool?",
+        answer: "An AI YouTube SEO tool is a platform that uses artificial intelligence to analyze your YouTube content and provide data-driven recommendations to improve its ranking in search results. It can analyze videos, channels, or keywords to give you an SEO score and suggest optimized titles, descriptions, and tags."
+    },
+    {
+        question: "How does the YouTube keyword tool work?",
+        answer: "Our YouTube keyword tool analyzes top-ranking videos for a given keyword to identify the most frequently used and effective keywords. This allows you to understand what terms are helping your competitors rank, so you can incorporate them into your own strategy."
+    },
+    {
+        question: "Is this YouTube SEO tool free?",
+        answer: "Yes, our comprehensive YouTube SEO tool is completely free to use. We believe every creator should have access to the tools they need to grow their channel, which is why we offer this as the best free YouTube SEO tool available."
+    },
+    {
+        question: "What does the SEO Score mean?",
+        answer: "The SEO Score is a metric from 0 to 100 that estimates the overall SEO health of a video based on factors like title length, description quality, tag relevance, and comparison to competitor data. A higher score indicates that the video is well-optimized for YouTube's search algorithm."
+    },
+    {
+        question: "Why do I need a YouTube tag generator?",
+        answer: "Tags are a crucial part of YouTube SEO. They help YouTube's algorithm understand what your video is about and who to show it to. A good YouTube tag generator provides relevant keywords that can help your video appear in more search results and suggested video feeds, ultimately driving more views."
+    }
+];
+
 export default function YoutubeSeoToolPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function YoutubeSeoToolPage() {
                 <p>The <strong>AI YouTube title generator</strong> can help you craft compelling titles that grab attention and entice viewers to click. The <strong>YouTube description generator</strong> creates keyword-rich descriptions that help YouTube's algorithm understand what your video is about. Our <strong>YouTube tag extractor</strong> allows you to see the tags that your competitors are using, giving you a competitive edge. This makes our tool the <strong>best free YouTube tag generator</strong> on the market. Once you have your SEO strategy, write the perfect script with our <Link href="/tools/ai-script-writer">AI Script Writer</Link>.</p>
                 <p>Whether you're a seasoned YouTuber or just starting, our <strong>YouTube keyword research tool</strong> can help you grow your audience. It's a versatile <strong>YouTube SEO software</strong> that can be used to optimize individual videos or your entire channel. Stop guessing what works and start using a data-driven approach to YouTube SEO. Try our <strong>best YouTube keyword tool</strong> today and see the difference it can make in your video performance.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

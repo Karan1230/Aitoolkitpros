@@ -4,6 +4,8 @@ import { VideoFaceSwapClient } from '@/components/video-face-swap-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Video Face Swap Tool | Swap Faces in Videos Instantly',
@@ -17,9 +19,47 @@ const benefits = [
     "No complex video editing skills are required."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI video face swap tool?",
+        answer: "An AI video face swap tool uses artificial intelligence to replace a face in a video with a face from a source image. The AI analyzes the facial features, expressions, and movements in the target video and maps the new face onto it frame by frame, creating a seamless and realistic video."
+    },
+    {
+        question: "Is this free video face swap tool safe to use?",
+        answer: "Yes, our platform is safe to use. We do not store your uploaded images or videos after the processing is complete. However, we encourage all users to use this technology responsibly and ethically, and only swap faces with the consent of the individuals involved."
+    },
+    {
+        question: "How do I get the most realistic face swap video?",
+        answer: "For the best results, use a clear, high-quality photo of the source face looking directly at the camera. For the target video, choose one where the original face is also well-lit and clearly visible. The closer the angles and lighting match, the better the final result will be."
+    },
+    {
+        question: "Can I swap my face onto a movie character?",
+        answer: "Yes, you can! This is a popular and fun way to use the tool. Simply use a photo of yourself as the source image and a clip from a movie as the target video. It's a great way to create funny memes and content for social media."
+    },
+    {
+        question: "Are there any watermarks on the downloaded video?",
+        answer: "No, our AI face swap video generator is completely free and does not add any watermarks to your downloaded videos. You are free to use your creations for your personal and creative projects."
+    }
+];
+
 export default function VideoFaceSwapPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -75,6 +115,28 @@ export default function VideoFaceSwapPage() {
                 <p>The process of using our <strong>face swap in video</strong> tool is simple. First, you upload a source image with the face you want to use. Then, you upload the target video where you want to place the face. The <strong>online video face swap</strong> tool will then analyze both the image and the video and perform the swap. You'll be amazed at the results. It's a versatile <strong>face changer video</strong> tool that can be used for a wide range of creative applications, like creating content for our <Link href="/tools/meme-generator">Meme Generator</Link>.</p>
                 <p>Whether you're looking to create a funny viral video or a serious artistic piece, our <strong>face swap video online free</strong> tool has you covered. It's a powerful <strong>video face replacer</strong> that can help you create unique and engaging content. Stop using complicated video editing software and start using the power of AI to create stunning face swaps. Try our <strong>AI video face swap free</strong> tool today and let your creativity shine.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

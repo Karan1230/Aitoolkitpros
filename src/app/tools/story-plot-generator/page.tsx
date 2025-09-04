@@ -4,6 +4,8 @@ import { StoryPlotGeneratorClient } from '@/components/story-plot-generator-clie
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Story Plot Generator | Create Unique Story Ideas',
@@ -17,9 +19,47 @@ const benefits = [
     "Explore different genres and story angles."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI story plot generator?",
+        answer: "An AI story plot generator is a creative tool that uses artificial intelligence to generate unique story ideas. It can create a complete plot outline, including a title, logline, characters, setting, conflict, and resolution, based on a genre and other optional details you provide."
+    },
+    {
+        question: "How can this AI story generator help me with writer's block?",
+        answer: "This tool is the perfect antidote to writer's block. Instead of staring at a blank page, you can generate dozens of unique story ideas in seconds. It provides a solid foundation with characters and plot points that you can then develop into your own original work."
+    },
+    {
+        question: "Is this free AI story generator really free?",
+        answer: "Yes, our story plot generator is completely free to use. It's designed to be a helpful resource for writers of all levels, from hobbyists to professional authors, to spark creativity without any cost."
+    },
+    {
+        question: "Can I provide my own characters or setting?",
+        answer: "Absolutely. While the AI can generate everything for you, the tool is more powerful when you provide your own details. You can input your own character ideas, setting concepts, or themes to guide the AI in generating a plot that is more tailored to your vision."
+    },
+    {
+        question: "What's the difference between 'Detailed Plot' and 'Chapter Outline'?",
+        answer: "'Detailed Plot' provides a multi-paragraph summary of the entire story from beginning to end. 'Chapter Outline' breaks the story down into a list of chapter-by-chapter plot points, which can be very useful for structuring a novel or a long-form story."
+    }
+];
+
 export default function StoryPlotGeneratorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function StoryPlotGeneratorPage() {
                 <p>The <strong>AI story generator from prompt</strong> feature allows you to guide the creative process. You can provide a simple idea or a detailed outline, and the AI will build a story around it. This makes it a versatile <strong>AI short story generator</strong> for creating everything from flash fiction to novellas. The <strong>random story generator</strong> is perfect for when you want to be surprised with a completely new and unexpected idea. Our <strong>AI story creator</strong> is a fun and engaging way to explore your creativity. You can also generate character ideas with our <Link href="/tools/cartoon-avatar-maker">Cartoon Avatar Maker</Link>.</p>
                 <p>Whether you're writing a fantasy epic, a thrilling mystery, or a heartwarming romance, our <strong>AI novel generator</strong> can help you craft a compelling narrative. It's a powerful <strong>plot generator</strong> that can save you hours of brainstorming and outlining. Stop waiting for your muse and start creating your own inspiration with the power of AI. Try our <strong>best AI story generator free</strong> tool today and unlock your storytelling potential.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

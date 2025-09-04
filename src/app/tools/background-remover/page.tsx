@@ -4,6 +4,8 @@ import { BackgroundRemoverClient } from '@/components/background-remover-client'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Image Background Remover | Remove Backgrounds Instantly',
@@ -17,9 +19,47 @@ const benefits = [
     "Isolate subjects for graphic design projects."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI background remover?",
+        answer: "An AI background remover is a tool that uses artificial intelligence to automatically detect the main subject in a photo and erase the background, leaving you with a clean, isolated subject. You can then download the image with a transparent background or add a new one."
+    },
+    {
+        question: "How accurate is the background removal from an image?",
+        answer: "Our AI background removal tool is highly accurate. It's trained on millions of images to precisely identify foreground subjects, even with complex edges like hair or fur. For most images, it provides clean cutouts with a single click, saving you significant time compared to manual editing."
+    },
+    {
+        question: "Is this photo background remover free?",
+        answer: "Yes, our image background remover is completely free to use. There are no hidden fees, subscriptions, or watermarks. You can process as many images as you need for your projects."
+    },
+    {
+        question: "Can I add a new background to my photo?",
+        answer: "Absolutely. After you remove the background from an image, you have the option to download it with a transparent background (as a PNG file) or choose a new solid color background directly within the tool."
+    },
+    {
+        question: "What is the best use case for this free background remover?",
+        answer: "This tool is perfect for a variety of tasks, including creating professional product photos for e-commerce stores like Shopify or Amazon, designing clean profile pictures, making YouTube thumbnails, and preparing images for graphic design projects or presentations."
+    }
+];
+
 export default function BackgroundRemoverPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function BackgroundRemoverPage() {
                 <p>One of the most common uses for our tool is to <strong>remove background from image free</strong> of charge to create a transparent background. This is incredibly useful for creating product photos for e-commerce websites, as it allows you to place your product on any background you choose. The <strong>picture background remover free</strong> tool is also great for creating professional headshots and social media profile pictures. Our <strong>image background remover free</strong> service is designed to be as user-friendly as possible. After removing the background, you can <Link href="/tools/image-upscaler">upscale your image</Link> for better quality.</p>
                 <p>With our <strong>background remover AI free</strong> tool, you can also add a new background to your image. Choose from a solid color or upload your own custom background to create a unique and eye-catching visual. The <strong>free background remover from image</strong> is a versatile tool that can be used for a wide range of applications. Stop struggling with manual selection tools and start using the power of AI to create stunning images. Try our <strong>best background remover free</strong> tool today and see the difference for yourself.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

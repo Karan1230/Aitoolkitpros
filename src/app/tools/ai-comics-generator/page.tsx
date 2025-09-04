@@ -4,6 +4,8 @@ import { AiComicsGeneratorClient } from '@/components/ai-comics-generator-client
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Comics Generator | Create Your Own Comics Instantly',
@@ -17,9 +19,47 @@ const benefits = [
     "Perfect for storytellers, educators, and content creators."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI comics generator?",
+        answer: "An AI comics generator is a tool that uses artificial intelligence to turn text descriptions into visual comic strips. You can describe characters, scenes, and actions, and the AI will create the corresponding panels, making it possible for anyone to create comics without drawing skills."
+    },
+    {
+        question: "Do I need to be an artist to use the AI comic maker?",
+        answer: "Not at all! Our AI comic creator is designed for everyone, regardless of artistic ability. If you have a story to tell, you can use our tool to bring it to life visually. Just write your prompts, and the AI handles all the illustration."
+    },
+    {
+        question: "Is this AI comic generator free to use?",
+        answer: "Yes, our AI comic generator is completely free. We believe in making creative tools accessible to everyone, so you can generate as many comic strips as you like without any cost."
+    },
+    {
+        question: "Can I generate comics from text with AI for my blog or social media?",
+        answer: "Absolutely. The comics you generate are perfect for sharing on blogs, social media, or for personal projects. It's a great way to create unique, engaging content that stands out."
+    },
+    {
+        question: "What kind of stories can I create with the comic AI generator?",
+        answer: "You can create any kind of story you can imagine! From superhero adventures and sci-fi epics to slice-of-life comedies and fantasy tales. The AI is versatile and can adapt to a wide range of genres and styles. For plot ideas, you can even use our Story Plot Generator."
+    }
+];
+
 export default function AiComicsGeneratorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -77,6 +117,28 @@ export default function AiComicsGeneratorPage() {
                   <p>Whether you're looking to create a graphic novel, a webcomic, or just a short, funny strip, our <strong>AI generated comic</strong> tool has you covered. As the <strong>best AI comic generator</strong> available for free, it offers a wide range of styles and customization options. Stop dreaming about your story and start creating it. Try our <strong>AI comic generator free</strong> today and unlock a new world of visual storytelling. Your next masterpiece is just a few clicks away.</p>
               </div>
           </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
       </section>
     </>
   );

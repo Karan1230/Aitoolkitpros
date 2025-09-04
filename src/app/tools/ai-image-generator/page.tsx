@@ -4,6 +4,8 @@ import { AiImageGeneratorClient } from '@/components/ai-image-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Image Generator | Create Art from Text',
@@ -17,9 +19,47 @@ const benefits = [
     "Create royalty-free images for any project."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI image generator?",
+        answer: "An AI image generator is a tool that creates images from written descriptions, also known as prompts. You can describe anything you can imagine, and the AI will generate a unique visual representation of your text. It's a powerful way to create art, illustrations, and photos without any artistic skill."
+    },
+    {
+        question: "How does the text to image AI work?",
+        answer: "Text-to-image AI models are trained on vast datasets of images and their corresponding text descriptions. When you enter a prompt, the AI uses this knowledge to understand the concepts, styles, and objects you've described and then synthesizes a new image that matches your description."
+    },
+    {
+        question: "Is this AI image generator free to use?",
+        answer: "Yes, our AI image generator is completely free. We believe in making creative tools accessible to everyone, so you can generate high-quality images without any subscription or fees. It's a free AI image creator for all your needs."
+    },
+    {
+        question: "Can I use the generated images for commercial purposes?",
+        answer: "The images you create are generally considered royalty-free. However, the specifics can depend on the terms of the underlying AI model. We recommend reviewing our copyright disclaimer. For most use cases, like blogs, social media, and marketing, the images are safe to use."
+    },
+    {
+        question: "What makes this the best AI image generator?",
+        answer: "Our tool is considered one of the best AI image generators because it combines high-quality output, a user-friendly interface, multiple style options, and is completely free. We use advanced models to ensure you get stunning, AI-generated HD quality images every time."
+    }
+];
+
 export default function AiImageGeneratorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -75,6 +115,28 @@ export default function AiImageGeneratorPage() {
                 <p>One of the most exciting aspects of our tool is its versatility. It's not just an <strong>ai photo generator</strong>; it's a complete creative suite. You can use it as an <strong>ai cartoon generator</strong> to create fun and engaging characters, or as an <strong>ai anime generator</strong> to bring your own anime-style visions to life. The <strong>ai picture generator</strong> can also produce high-quality avatars for your online profiles, making it a powerful <strong>ai avatar generator</strong>. All of these features are available for free, making it the ultimate <strong>free ai art generator</strong>. You can even use it to design unique <Link href="/tools/custom-icon-generator">custom icons</Link> for your projects.</p>
                 <p>Quality is paramount, which is why our tool is designed to be an <strong>ai image generator hd quality</strong> platform. The images you create are high-resolution and suitable for both digital and print use. As a leading <strong>ai image generator online</strong>, we are committed to providing a seamless and enjoyable experience. Whether you need a quick graphic for a presentation or a masterpiece for your portfolio, our <strong>ai image creator</strong> is here to help. Explore the limitless potential of AI and start creating stunning visuals today with the <strong>best ai image generator free</strong> tool on the web.</p>
             </div>
+        </div>
+      </section>
+       <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

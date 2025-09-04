@@ -4,6 +4,8 @@ import { RoastJokeGeneratorClient } from '@/components/roast-joke-generator-clie
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Roast & Joke Generator | Create Funny Lines Instantly',
@@ -17,9 +19,47 @@ const benefits = [
     "Choose from multiple tones to match your style."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI roast & joke generator?",
+        answer: "An AI roast & joke generator is a creative tool that uses artificial intelligence to write funny content. You can provide a topic, name, or scenario, and the AI will generate a list of original jokes, roasts, or one-liners based on your selected mode and tone."
+    },
+    {
+        question: "How does the AI joke generator work?",
+        answer: "The AI has been trained on a vast amount of comedic material, including jokes, stand-up comedy, and roasts. It understands different comedic styles (like sarcasm, dark humor, or wholesome fun) and can apply them to the topic you provide to create relevant and funny content."
+    },
+    {
+        question: "Is this funny joke generator free to use?",
+        answer: "Yes, our roast and joke generator is completely free. You can generate unlimited lists of jokes and roasts for any occasion without any cost."
+    },
+    {
+        question: "What is 'Family-Friendly' mode?",
+        answer: "When you enable the 'Family-Friendly' (or Safe Search) mode, the AI will strictly avoid generating content that is vulgar, offensive, or otherwise inappropriate for all ages. It's perfect for when you need clean humor for a family event or a professional setting."
+    },
+    {
+        question: "Can the AI roast my friend?",
+        answer: "Yes! Simply enter your friend's name or a funny trait as the topic, select 'Roast' mode, and choose a tone. The AI will generate a list of lighthearted (or savage, depending on your choice) roasts you can use. Remember to always keep it friendly!"
+    }
+];
+
 export default function RoastJokeGeneratorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function RoastJokeGeneratorPage() {
                 <p>The <strong>random joke generator</strong> feature is perfect for when you need a quick laugh. The <strong>joke writer AI</strong> can generate jokes on any topic, from everyday life to pop culture. This makes it a great <strong>stand up comedy joke generator</strong> for aspiring comedians who need new material. The <strong>joke creator</strong> is also a fantastic tool for social media content, helping you create posts that are sure to get a reaction. Pair your jokes with a funny avatar from our <Link href="/tools/cartoon-avatar-maker">Cartoon Avatar Maker</Link>.</p>
                 <p>Whether you need a <strong>dad joke generator</strong> to entertain your kids or a <strong>dark humor joke generator</strong> to share with your friends, our tool has you covered. It's a versatile <strong>joke maker</strong> that can adapt to any comedic style. Stop struggling to come up with funny material and start using the power of AI to generate laughter on demand. Try our <strong>AI joke writer free</strong> tool today and become the life of the party.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

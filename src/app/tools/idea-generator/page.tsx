@@ -4,6 +4,8 @@ import { IdeaGeneratorClient } from '@/components/idea-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Idea Generator | Generate Business & Content Ideas',
@@ -17,9 +19,47 @@ const benefits = [
     "Explore marketing angles you haven't considered."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI idea generator?",
+        answer: "An AI idea generator is a creative tool that uses artificial intelligence to brainstorm a wide range of ideas based on a topic you provide. It can generate concepts for businesses, marketing campaigns, content like blog posts or videos, new products, and much more."
+    },
+    {
+        question: "How does the AI come up with the ideas?",
+        answer: "The AI has been trained on a massive dataset of information from the internet. It understands connections between different concepts and industries. When you provide a topic, it uses this knowledge to generate relevant, creative, and often unexpected ideas that you might not have thought of on your own."
+    },
+    {
+        question: "Is this free AI idea generator truly free?",
+        answer: "Yes, our idea generator is completely free to use with no limitations. We want to provide a powerful brainstorming partner to help entrepreneurs, marketers, and creators kickstart their next big project."
+    },
+    {
+        question: "Can I use this as a business idea generator?",
+        answer: "Absolutely. This is one of its most popular uses. Simply select 'Business Idea' as the type, and the AI will provide you with a list of potential startup concepts related to your chosen topic or industry."
+    },
+    {
+        question: "How can the content idea generator help my blog or YouTube channel?",
+        answer: "If you're feeling stuck, the content idea generator can be a lifesaver. It can provide you with a list of engaging blog post titles, video concepts, or social media topics, ensuring your content calendar is always full of fresh ideas that will interest your audience."
+    }
+];
+
 export default function IdeaGeneratorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function IdeaGeneratorPage() {
                 <p>The <strong>random idea generator</strong> feature is a great way to explore new and unexpected concepts. You can use the <strong>AI product idea generator</strong> to brainstorm new products for your e-commerce store, or the <strong>AI name generator</strong> to find the perfect name for your brand. The <strong>AI story idea generator</strong> is perfect for writers who need a creative prompt to get their next story started. Our <strong>online idea generator</strong> is a comprehensive tool that can help you in any creative endeavor. You can even generate a <Link href="/tools/ai-logo-maker">logo</Link> for your new idea.</p>
                 <p>Whether you need a <strong>blog post idea generator</strong> for your website or a <strong>YouTube video idea generator</strong> for your channel, our tool can provide you with a wealth of inspiration. The <strong>free idea generator</strong> is accessible to everyone, so you can start brainstorming right away. Stop waiting for inspiration to strike and start generating your own with the power of AI. Try our <strong>AI idea generator free</strong> tool today and unlock your creative potential.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

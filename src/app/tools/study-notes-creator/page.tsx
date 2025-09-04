@@ -4,6 +4,8 @@ import { StudyNotesCreatorClient } from '@/components/study-notes-creator-client
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Study Notes Creator | Summarize Text Instantly',
@@ -17,9 +19,47 @@ const benefits = [
     "Improve focus by studying only the important concepts."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI study notes creator?",
+        answer: "An AI study notes creator is a tool that uses artificial intelligence to summarize long pieces of text into concise, easy-to-digest notes. You can paste an article, a chapter from a textbook, or any other content, and the AI will extract the key points and main ideas for you."
+    },
+    {
+        question: "How does the AI notes generator work?",
+        answer: "The AI reads and understands the text you provide. It identifies the most important information, concepts, and definitions, and then organizes them into a structured format, such as bullet points or a paragraph summary. This saves you the time and effort of doing it manually."
+    },
+    {
+        question: "Is this AI note taking app free?",
+        answer: "Yes, our study notes creator is completely free to use. It's designed to be a helpful resource for students, researchers, and lifelong learners to make their study process more efficient without any cost."
+    },
+    {
+        question: "What is the best way to use the notes summarizer?",
+        answer: "The best way to use it is to paste the entire text you need to study. Don't worry about it being too long. The AI is designed to handle large amounts of text. Then, choose the desired length and format for your notes to get a summary that best fits your study style."
+    },
+    {
+        question: "Can the AI take notes from a lecture?",
+        answer: "While this tool works with text, you can easily use it for lectures. First, use a transcription service (like our Voice-to-Text Converter) to get a text version of the lecture. Then, paste that transcript into this tool, and the AI will create organized study notes from it."
+    }
+];
+
 export default function StudyNotesCreatorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function StudyNotesCreatorPage() {
                 <p>The <strong>AI that takes notes from lectures</strong> feature is perfect for students who want to focus on listening during class. Simply record the lecture, transcribe it, and let our tool create the notes for you. The <strong>AI notes generator from text</strong> can also be used to create study guides, flashcards, and other learning materials. Our <strong>free AI note taking app</strong> is a versatile tool that can be adapted to any learning style. You can test your knowledge with our <Link href="/tools/quiz-generator">Quiz Generator</Link>.</p>
                 <p>Whether you're preparing for an exam, writing a research paper, or just trying to learn something new, our <strong>AI notes app</strong> can help you succeed. It's a powerful <strong>AI for note taking</strong> that can help you study smarter, not harder. Stop spending hours on manual note-taking and start using the power of AI to streamline your study process. Try our <strong>best free AI note taking app</strong> today and see the difference it can make in your academic performance.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

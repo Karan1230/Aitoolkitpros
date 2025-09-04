@@ -4,6 +4,8 @@ import { ImageUpscalerClient } from '@/components/image-upscaler-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Image Upscaler | Enhance & Enlarge Images',
@@ -17,9 +19,47 @@ const benefits = [
     "No complex software needed to improve your images."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI image upscaler?",
+        answer: "An AI image upscaler is a tool that uses artificial intelligence to increase the resolution and quality of an image. Unlike traditional resizing which can make images blurry, an AI upscaler intelligently adds new details to create a sharp, clear, and high-resolution version of your original photo."
+    },
+    {
+        question: "How does the AI photo upscaler work?",
+        answer: "The AI is trained on millions of high- and low-resolution image pairs. It learns how to intelligently reconstruct details and textures when enlarging an image. This process, often called super-resolution, results in a much higher quality upscale than simple pixel stretching."
+    },
+    {
+        question: "Is this free AI image upscaler really free?",
+        answer: "Yes, our AI image upscaler is completely free to use. You can enhance and enlarge your images without any costs, subscriptions, or watermarks, making it an accessible tool for everyone."
+    },
+    {
+        question: "What is the maximum resolution I can upscale to?",
+        answer: "Our tool can significantly increase the resolution of your images, often up to 4k or higher, depending on the original file. It's perfect for turning a standard photo into a high-quality image suitable for large prints or high-definition displays."
+    },
+    {
+        question: "When should I use an AI image enhancer?",
+        answer: "You should use an AI image upscaler whenever you have a low-resolution image that you need to use in a larger format. This is common for old photos, images downloaded from the web, or pictures taken with older cameras. It's ideal for preparing images for printing, web design, or professional presentations."
+    }
+];
+
 export default function ImageUpscalerPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function ImageUpscalerPage() {
                 <p>The <strong>AI image resolution increaser</strong> technology behind our tool is what sets it apart. It doesn't just stretch the pixels; it intelligently adds new details to create a sharp and clear image. This makes it a powerful <strong>4k image upscaler</strong> for creating visuals that look great on any screen. The <strong>free online image upscaler</strong> is accessible from any device, so you can enhance your images on the go. You can also edit your images before upscaling with our <Link href="/tools/ai-image-editor">AI Image Editor</Link>.</p>
                 <p>Whether you're working with old family photos or modern digital images, our <strong>photo resolution increaser free online</strong> tool can help you achieve the best possible quality. It's a versatile <strong>picture upscaler</strong> that can be used for a wide range of applications. Stop struggling with blurry, low-resolution images and start using the power of AI to create stunning, high-definition visuals. Try our <strong>best free image upscaler</strong> today and see the difference for yourself.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

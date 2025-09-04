@@ -4,6 +4,8 @@ import { AiAdsGeneratorClient } from '@/components/ai-ads-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Video Ad Generator | Create Ads Instantly',
@@ -17,9 +19,48 @@ const benefits = [
     "Perfect for e-commerce, marketing, and dropshipping."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI ads generator?",
+        answer: "An AI ads generator is a tool that automatically creates video advertisements from minimal input, such as a product name or description. It uses artificial intelligence to generate scripts, select visuals, add voiceovers, and produce a finished video ad, saving significant time and resources."
+    },
+    {
+        question: "How long does it take to create a video with the AI ad creator?",
+        answer: "Our AI ads generator is designed for speed and efficiency. On average, it takes just 2 to 4 minutes to generate a complete, professional-quality video ad. This allows you to produce content for your campaigns very quickly."
+    },
+    {
+        question: "Can I use this AI video ad generator for dropshipping products?",
+        answer: "Yes, absolutely. This tool is perfect for creating dropshipping video ads. You can quickly generate unique and engaging video content for your products without needing to order them yourself, which is ideal for testing new items and scaling your business."
+    },
+    {
+        question: "Is this really a free AI ad generator?",
+        answer: "Yes, our AI ad generator is completely free to use. We aim to provide powerful marketing tools to everyone, from small business owners to large marketing teams, without the high cost typically associated with video production."
+    },
+    {
+        question: "What platforms can I use these AI-generated video ads on?",
+        answer: "The videos generated are optimized for all major social media platforms. You can use it as a TikTok ad generator, a Facebook video ad generator, or for Instagram Reels and YouTube Shorts. The tool can create videos in various aspect ratios to fit each platform's requirements."
+    }
+];
+
+
 export default function AiAdsGeneratorPage() {
   return (
     <>
+     <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -77,6 +118,28 @@ export default function AiAdsGeneratorPage() {
                   <p>Stop spending hours on complicated video editing software. With our <strong>AI video ad generator free</strong> tool, you can produce stunning advertisements with just a few clicks. It's the <strong>best free AI video ad generator</strong> on the market, offering a seamless experience from start to finish. Embrace the future of advertising and let our <strong>AI generate video ad</strong> content that captivates your audience and grows your business. Try the <strong>free AI ads generator</strong> today and see the difference for yourself.</p>
               </div>
           </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
       </section>
     </>
   );

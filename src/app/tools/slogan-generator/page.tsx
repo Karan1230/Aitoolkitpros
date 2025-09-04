@@ -4,6 +4,8 @@ import { SloganGeneratorClient } from '@/components/slogan-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Slogan & Tagline Generator | Create Catchy Taglines',
@@ -17,9 +19,47 @@ const benefits = [
     "Define your brand's message with clarity."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI slogan generator?",
+        answer: "An AI slogan generator is a tool that uses artificial intelligence to create short, catchy, and memorable taglines for a business, product, or campaign. You provide information about your brand, and the AI generates a list of creative slogans for you to use."
+    },
+    {
+        question: "How does the tagline generator create slogans?",
+        answer: "Our slogan maker analyzes your brand name, industry, key message, and desired tone. It then uses its understanding of language, marketing, and branding to generate slogans that are not only catchy but also aligned with your brand's identity."
+    },
+    {
+        question: "Is this slogan creator free to use?",
+        answer: "Yes, our AI slogan generator is completely free. You can generate unlimited slogans for your business or projects without any cost, making it the best slogan generator for startups and small businesses."
+    },
+    {
+        question: "What is an 'SEO-Friendly' slogan?",
+        answer: "An SEO-friendly slogan is one that incorporates relevant keywords that your target audience might use when searching for products or services like yours. By enabling this option, our business slogan generator will try to include these keywords naturally, which can help improve your online visibility."
+    },
+    {
+        question: "Can I use the generated slogan for my company?",
+        answer: "Absolutely. The slogans generated are for you to use as you see fit. They are a great starting point for your branding efforts and can be used on your website, in advertising campaigns, and on your marketing materials."
+    }
+];
+
 export default function SloganGeneratorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function SloganGeneratorPage() {
                 <p>The <strong>AI tagline generator</strong> can create slogans in a variety of styles, from professional and serious to fun and playful. This makes it a versatile <strong>company slogan generator</strong> that can be used for any type of business. The <strong>catchy slogan generator</strong> is perfect for creating taglines that will stick in your customers' minds. Our <strong>free slogan maker</strong> is a must-have for any marketer who wants to create a strong and memorable brand. You can also generate <Link href="/tools/ad-copy-generator">ad copy</Link> to use with your new slogan.</p>
                 <p>Whether you need a new slogan for your website, a tagline for a marketing campaign, or a motto for your company, our <strong>slogan generator from keywords</strong> can help you achieve your goals. It's a powerful <strong>business name and slogan generator</strong> that can help you create a cohesive brand identity. Stop struggling to come up with the perfect slogan and start using the power of AI to create a tagline that truly represents your brand. Try our <strong>slogan generator free online</strong> today and see the difference it can make.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

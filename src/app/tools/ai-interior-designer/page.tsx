@@ -4,6 +4,8 @@ import { AiInteriorDesignerClient } from '@/components/ai-interior-designer-clie
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Interior Designer | Redesign Your Space Instantly',
@@ -17,9 +19,47 @@ const benefits = [
     "Get instant inspiration for your home renovation."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI interior designer?",
+        answer: "An AI interior designer is a tool that uses artificial intelligence to generate new design concepts for a room based on a photo you upload. It allows you to visualize different styles, furniture layouts, and color schemes without any manual work."
+    },
+    {
+        question: "How does the AI room designer work?",
+        answer: "You simply upload a clear photo of your room, select the room type (e.g., bedroom, living room), and choose a design style (e.g., Modern, Industrial). The AI then analyzes your photo and re-imagines the space according to your selected style, generating a new image of the redesigned room."
+    },
+    {
+        question: "Is this AI interior design tool really free?",
+        answer: "Yes, our AI interior design generator is completely free to use. It's a great way to get professional-level design inspiration and mockups without the cost of hiring a designer."
+    },
+    {
+        question: "Can I use this for any room in my house?",
+        answer: "Absolutely! The AI room planner is versatile and can be used for any room, including living rooms, bedrooms, kitchens, bathrooms, and home offices. It's an excellent tool for planning any home renovation project."
+    },
+    {
+        question: "What is the best way to take a photo for the AI home design tool?",
+        answer: "For the best results, take a well-lit, clear photo from a corner of the room to capture as much of the space as possible. Ensure the photo is not blurry and shows the main features of the room you want to redesign."
+    }
+];
+
 export default function AiInteriorDesignerPage() {
   return (
     <>
+     <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function AiInteriorDesignerPage() {
                 <p>The magic of our <strong>AI interior design generator</strong> lies in its ability to understand and reinterpret your space. Simply upload your photo, select a style like "Modern," "Minimalist," or "Bohemian," and let the AI work its magic. The tool will generate a high-quality, realistic image of your redesigned room. This makes it an invaluable <strong>AI for interior design</strong>, saving you time and money on professional mockups. It’s also an excellent <strong>AI interior design from photo</strong> tool for real estate professionals who want to showcase the potential of a property.</p>
                 <p>The applications are endless. Use the <strong>room AI generator</strong> to experiment with bold new color palettes or to see how a piece of furniture would fit in your space. The <strong>AI room generator from photo</strong> feature is perfect for those who want a quick and easy way to explore design ideas. Our commitment is to provide the best <strong>free AI room design</strong> experience possible. Stop wondering and start visualizing with our <strong>AI interior design app free</strong> tool today. Your perfect home is just a click away.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

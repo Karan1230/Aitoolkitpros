@@ -4,6 +4,8 @@ import { AiVoiceCloningClient } from '@/components/ai-voice-cloning-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Voice Cloning Tool | Clone Voices Instantly',
@@ -17,9 +19,47 @@ const benefits = [
     "Easy to use: just upload an audio file and provide text."
 ];
 
+const faqs = [
+    {
+        question: "What is AI voice cloning?",
+        answer: "AI voice cloning is the process of creating a synthetic copy of a person's voice using artificial intelligence. By analyzing a short audio sample, the AI can learn the unique characteristics of a voice—such as tone, pitch, and accent—and then use that model to generate new speech from any text."
+    },
+    {
+        question: "How much audio do I need to clone a voice?",
+        answer: "Our voice cloning AI is highly efficient. You typically only need a short, clear audio sample of the target voice (usually a few seconds to a minute is sufficient) to create a high-quality clone. The clearer the audio, the better the result."
+    },
+    {
+        question: "Is this AI voice cloning tool free?",
+        answer: "Yes, our AI voice cloning tool is completely free to use. You can upload audio samples and generate speech in the cloned voice without any cost or subscription, making it one of the best free AI voice cloning services available."
+    },
+    {
+        question: "What are the ethical considerations of using a voice cloner?",
+        answer: "Voice cloning is a powerful technology that should be used responsibly. You should only clone voices for which you have permission. Using someone's voice without their consent for malicious purposes, such as misinformation or fraud, is unethical and may be illegal. Always prioritize ethical use."
+    },
+    {
+        question: "Can I use the cloned voice for commercial projects?",
+        answer: "As long as you have the rights to use the original voice, you can typically use the cloned voice for commercial projects like voiceovers for ads, audiobooks, or corporate videos. It is your responsibility to ensure you are not infringing on anyone's rights."
+    }
+];
+
 export default function AiVoiceCloningPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function AiVoiceCloningPage() {
                 <p>The process of using our <strong>voice cloning AI free</strong> tool is simple. First, you upload a clear audio sample of the voice you want to clone. Then, you provide the text that you want the AI to speak. The <strong>free voice cloning AI</strong> will then analyze the audio sample and generate a new audio file in the cloned voice. The result is a high-quality, natural-sounding voiceover that you can use in any of your projects. This makes it the <strong>best free AI voice cloning</strong> tool for both personal and professional use. You can also convert text to a pre-selected voice with our <Link href="/tools/text-to-speech">Text-to-Speech Converter</Link>.</p>
                 <p>Our <strong>AI voice cloning online</strong> platform is accessible from any device, so you can create custom voiceovers on the go. It's a powerful <strong>text to speech voice cloning</strong> tool that can save you time and money on professional voice actors. Stop using generic text-to-speech voices and start creating personalized audio content with our <strong>free AI voice cloning online</strong> tool. Try the <strong>best free voice cloning AI</strong> today and discover the power of custom voice generation.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

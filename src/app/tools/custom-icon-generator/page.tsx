@@ -4,6 +4,8 @@ import { CustomIconGeneratorClient } from '@/components/custom-icon-generator-cl
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Custom Icon Generator | Create Unique Icons Instantly',
@@ -12,14 +14,52 @@ export const metadata: Metadata = {
 
 const benefits = [
     "Create unique icons perfectly matched to your brand.",
-    "No design skills needed to get professional icons.",
+    "No design skills needed to get a professional icons.",
     "Generate multiple styles to find the perfect look.",
     "Download high-resolution PNGs for web and apps."
+];
+
+const faqs = [
+    {
+        question: "What is an AI custom icon generator?",
+        answer: "An AI custom icon generator is a tool that creates unique icons from your text descriptions. You describe the concept, choose a style (like 3D, Flat, or Outline), and a color scheme, and the AI generates a set of custom icons for you to use."
+    },
+    {
+        question: "Is this AI icon generator free to use?",
+        answer: "Yes, our custom icon generator is completely free. You can create and download high-resolution icons for your websites, apps, presentations, or any other project without any cost."
+    },
+    {
+        question: "Do I need to be a designer to create icons?",
+        answer: "Not at all. This tool is designed for everyone. You don't need any design skills or complex software. If you have an idea, you can describe it in text to create a professional-quality icon."
+    },
+    {
+        question: "What kind of icons can I create?",
+        answer: "You can create a wide variety of icons for any purpose. Whether you need a simple 'settings' gear icon, a complex 'friendly robot' mascot, or an abstract concept, the AI can generate it. You can also specify styles like 'Pixel Art' or 'Cartoon' for unique results."
+    },
+    {
+        question: "Can I use these icons for my business logo or app?",
+        answer: "Yes, the generated icons are perfect for use as part of a logo, as app icons, or for your website's user interface. Since they are custom-generated, you can create a cohesive and unique visual identity for your brand."
+    }
 ];
 
 export default function CustomIconGeneratorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function CustomIconGeneratorPage() {
                 <p>Using our <strong>AI icon creator</strong> is a simple process. First, you provide a text prompt describing the icon you need. Then, you can choose a style and color palette to match your brand's identity. The <strong>free icon maker</strong> will then generate a variety of icons for you to choose from. You can experiment with different prompts and styles until you find the perfect design. It's a versatile <strong>app icon generator</strong> that can be used to create icons for any type of application. You can also generate larger images with our <Link href="/tools/ai-image-generator">AI Image Generator</Link>.</p>
                 <p>Whether you need a new set of icons for your website, a custom icon for a presentation, or a unique app icon, our <strong>AI icon generator free</strong> tool has you covered. It's a powerful <strong>logo and icon generator</strong> that can help you create a cohesive and professional brand identity. Stop using generic stock icons and start creating custom designs that truly represent your brand. Try our <strong>best free AI icon generator</strong> today and experience the future of icon design.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

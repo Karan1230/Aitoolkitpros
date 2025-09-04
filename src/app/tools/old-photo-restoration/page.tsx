@@ -4,6 +4,8 @@ import { OldPhotoRestorationClient } from '@/components/old-photo-restoration-cl
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Old Photo Restoration Tool | Restore Your Photos Instantly',
@@ -17,9 +19,47 @@ const benefits = [
     "Preserve your family history for generations."
 ];
 
+const faqs = [
+    {
+        question: "What is AI old photo restoration?",
+        answer: "AI old photo restoration is a process that uses artificial intelligence to automatically repair and enhance old, damaged, or faded photographs. The AI can fix scratches, tears, and discoloration, as well as improve sharpness and detail to bring old memories back to life."
+    },
+    {
+        question: "How does the AI photo restoration tool work?",
+        answer: "You upload a scanned copy of your old photograph. The AI then analyzes the image, identifies areas of damage, and uses its training on millions of photos to intelligently reconstruct the missing or damaged parts. It enhances colors, sharpens details, and cleans up imperfections."
+    },
+    {
+        question: "Is this old photo restoration service free?",
+        answer: "Yes, our AI-powered photo restoration tool is completely free to use. You can restore your cherished family photos without any cost or need for expensive professional services."
+    },
+    {
+        question: "What kind of damage can the AI image restoration fix?",
+        answer: "The AI is effective at fixing a wide range of common issues, including scratches, small tears, fading, discoloration, and low contrast. It can also significantly improve the clarity of faces and other important details in the photograph."
+    },
+    {
+        question: "Will the result look natural?",
+        answer: "Our tool is designed to produce natural-looking results. The goal is to restore the photo to its original glory, not to make it look artificial. The AI enhances the existing details and colors in a way that is respectful to the original photograph."
+    }
+];
+
 export default function OldPhotoRestorationPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -75,6 +115,28 @@ export default function OldPhotoRestorationPage() {
                 <p>The technology behind our <strong>old photo restoration online free</strong> tool is truly remarkable. The AI is trained on millions of images to understand how to repair common issues like scratches, tears, and discoloration. It can even enhance facial details, making your ancestors' faces clearer and more recognizable. This makes it an invaluable <strong>AI photo enhancer free</strong> tool for anyone who wants to improve the quality of their old photos. The <strong>restore old photos AI free</strong> service is a great way to breathe new life into your family albums. You can even edit them further with our <Link href="/tools/ai-image-editor">AI Image Editor</Link>.</p>
                 <p>Whether you're a professional genealogist or just someone who wants to preserve their family memories, our <strong>free old photo restoration online</strong> tool is here to help. It's a versatile <strong>picture restoration</strong> tool that can handle a wide range of photo types and conditions. Stop letting your precious memories fade away and start restoring them with the power of AI. Try our <strong>AI photo restoration free</strong> tool today and see your old photos in a whole new light.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

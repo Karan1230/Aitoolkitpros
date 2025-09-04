@@ -4,6 +4,8 @@ import { AiLogoMakerClient } from '@/components/ai-logo-maker-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Logo Maker | Design Your Brand Logo Instantly',
@@ -17,9 +19,47 @@ const benefits = [
     "Download high-quality files for web and print."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI logo maker?",
+        answer: "An AI logo maker is a tool that uses artificial intelligence to generate unique logo designs based on your input. You provide your company name, industry, style preferences, and color choices, and the AI creates a variety of professional logos for you to choose from."
+    },
+    {
+        question: "Is this AI logo generator free?",
+        answer: "Yes, our AI logo maker is 100% free to use. You can generate unlimited logo designs and download your favorite ones in high-quality formats (including transparent backgrounds) without any cost."
+    },
+    {
+        question: "Do I need design skills to use this tool?",
+        answer: "Not at all! Our free AI logo maker is designed for everyone, especially entrepreneurs and small business owners who may not have design experience. The process is simple and intuitive—if you can describe your brand, you can create a logo."
+    },
+    {
+        question: "What files do I receive when I download a logo?",
+        answer: "When you download a logo, you will receive two high-resolution PNG files: one with a standard solid background and one with a transparent background. The transparent version is perfect for use on websites, marketing materials, and merchandise."
+    },
+    {
+        question: "What makes this the best free AI logo generator?",
+        answer: "Our tool stands out because it combines ease of use with professional-quality results. It doesn't just use templates; it generates truly unique logos tailored to your brand. The ability to receive multiple options and download high-resolution transparent files for free makes it the best choice for new and existing brands."
+    }
+];
+
 export default function AiLogoMakerPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function AiLogoMakerPage() {
                 <p>Using our <strong>AI logo creator</strong> is a straightforward process. First, you'll enter your brand details. Then, you'll choose a style and color palette that reflects your brand's personality. The <strong>AI logo maker from text</strong> technology will then generate a selection of custom logos for you to choose from. You can experiment with different options until you find the perfect one. Once you've made your choice, you can download high-resolution files, including a version with a transparent background, all for free. You can also create matching <Link href="/tools/custom-icon-generator">custom icons</Link> for a complete brand kit.</p>
                 <p>Whether you're launching a new startup or rebranding an existing business, our <strong>AI business logo generator</strong> is the perfect solution. It's a powerful <strong>company logo maker</strong> that delivers professional results without the professional price tag. Our commitment is to provide the <strong>best AI logo maker free</strong> of charge, helping entrepreneurs and creators build strong, memorable brands. Stop settling for generic designs and create a logo that truly represents your vision with our <strong>free logo maker AI</strong>. Your brand's new look is just a few clicks away.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

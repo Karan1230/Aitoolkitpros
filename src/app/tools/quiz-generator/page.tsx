@@ -4,6 +4,8 @@ import { QuizGeneratorClient } from '@/components/quiz-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Quiz Generator | Create Quizzes in Any Language',
@@ -17,9 +19,47 @@ const benefits = [
     "Save time on creating educational materials."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI quiz generator?",
+        answer: "An AI quiz generator is a tool that uses artificial intelligence to create quizzes on any topic you choose. You can specify the subject, difficulty level, and question type (like multiple-choice or true/false), and the AI will generate a complete quiz with questions, answers, and explanations."
+    },
+    {
+        question: "How can I use this AI question generator?",
+        answer: "This tool is incredibly versatile. Teachers can use it to create classroom tests and homework. Students can use it to generate practice quizzes for self-assessment. It's also great for creating fun trivia games for parties or social media."
+    },
+    {
+        question: "Is this quiz maker AI free to use?",
+        answer: "Yes, our AI quiz generator is completely free. There are no limits on the number of quizzes or questions you can generate, making it an excellent resource for anyone in need of educational content."
+    },
+    {
+        question: "Does the AI provide the correct answers and explanations?",
+        answer: "Yes, it does. For every question generated, the AI also provides the correct answer and a brief but clear explanation. This is essential for learning, as it helps users understand the 'why' behind the answer, not just the 'what'."
+    },
+    {
+        question: "Can I create a quiz in a different language?",
+        answer: "Absolutely. Our quiz generator supports over 100 languages. You can generate a quiz on any topic in the language of your choice, making it a valuable tool for international educators and learners."
+    }
+];
+
 export default function QuizGeneratorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function QuizGeneratorPage() {
                 <p>Using our <strong>AI quiz maker</strong> is a simple process. Just enter your topic, select the desired difficulty and question types, and the AI will do the rest. The <strong>AI multiple choice question generator</strong> is perfect for creating quick and easy assessments, while the <strong>AI question generator from text</strong> can be used to create quizzes based on specific learning materials. This makes our tool an invaluable <strong>free AI quiz generator from text</strong> for teachers who want to create customized assessments. For a full curriculum, use our <Link href="/tools/course-outline-generator">Course Outline Generator</Link>.</p>
                 <p>Whether you're creating a quiz for your students, a training module for your employees, or a fun trivia night with friends, our <strong>quiz generator from topic</strong> has you covered. It's a versatile <strong>online quiz maker for teachers free</strong> of charge and for everyone else. Stop spending hours creating quizzes manually and start using the power of AI to create engaging and effective assessments. Try our <strong>best free AI quiz generator</strong> today and see how easy it is to make learning fun.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

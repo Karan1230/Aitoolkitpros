@@ -4,6 +4,8 @@ import { EngagementPostGeneratorClient } from '@/components/engagement-post-gene
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Engagement Post Ideas Generator',
@@ -17,9 +19,47 @@ const benefits = [
     "Keep your social media feed fresh and engaging."
 ];
 
+const faqs = [
+    {
+        question: "What is an engagement post ideas generator?",
+        answer: "An engagement post ideas generator is an AI tool that creates creative and interactive post ideas for your social media channels. It helps you come up with questions, polls, and challenges that encourage your audience to like, comment, and share, boosting your overall engagement."
+    },
+    {
+        question: "How can this AI post generator increase my social media engagement?",
+        answer: "The AI is trained on what makes social media content go viral. It generates ideas specifically designed to be interactive and thought-provoking, which naturally leads to more comments, likes, and shares. It also provides relevant hashtags to increase the visibility of your posts."
+    },
+    {
+        question: "Is this social media post generator free?",
+        answer: "Yes, our engagement post generator is completely free to use. You can generate unlimited ideas for any platform without any cost, helping you maintain a vibrant and active social media presence."
+    },
+    {
+        question: "Can I generate content for platforms other than Instagram?",
+        answer: "Absolutely. Our tool is a versatile social media post creator that can generate ideas tailored for Instagram, Facebook, TikTok, Twitter/X, and LinkedIn. Simply select your desired platform to get optimized content."
+    },
+    {
+        question: "Does the AI also write the caption for the post?",
+        answer: "Yes, it does. For each idea, the AI generates not only the core concept but also a suggested caption and a list of relevant hashtags. This gives you a complete, ready-to-use post, saving you even more time."
+    }
+];
+
 export default function EngagementPostGeneratorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function EngagementPostGeneratorPage() {
                 <p>Using our <strong>AI generated social media posts</strong> is a great way to save time and effort on content creation. The <strong>social media content generator free</strong> tool can produce a week's worth of content in just a few minutes. It's a versatile <strong>social media post creator</strong> that can adapt to any brand voice or style. The <strong>Facebook post generator</strong> is perfect for creating long-form content that tells a story, while the <strong>Instagram post generator</strong> focuses on visually-driven captions that grab attention. For longer form content, try our <Link href="/tools/ai-script-writer">AI Script Writer</Link>.</p>
                 <p>Our <strong>free social media post generator</strong> is also a great tool for brainstorming and A/B testing different types of content. The <strong>AI post creator</strong> can help you identify what resonates with your audience, so you can create more of what they love. Stop struggling with content creation and start using the power of AI to grow your social media presence. Try our <strong>AI social media content generator free</strong> tool today and see the difference for yourself.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

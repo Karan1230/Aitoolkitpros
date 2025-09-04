@@ -4,6 +4,8 @@ import { AiRecipeMakerClient } from '@/components/ai-recipe-maker-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Recipe Maker | Recipes from Your Ingredients',
@@ -17,9 +19,47 @@ const benefits = [
     "Save time on meal planning and grocery lists."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI recipe maker?",
+        answer: "An AI recipe maker is a smart tool that generates recipes based on a list of ingredients you provide. It helps you figure out what to cook with the items you already have in your kitchen, making meal planning easier and reducing food waste."
+    },
+    {
+        question: "How does the AI recipe generator from ingredients work?",
+        answer: "You simply enter the ingredients you have on hand, select your preferences for cuisine, meal type, and diet, and the AI will generate several complete recipes. It creatively combines your ingredients into delicious and easy-to-follow meal ideas."
+    },
+    {
+        question: "Is this recipe generator AI free to use?",
+        answer: "Yes, our AI recipe generator is completely free. Our goal is to make cooking more accessible, creative, and less wasteful for everyone, without any cost."
+    },
+    {
+        question: "Can I use this for special diets like vegetarian or gluten-free?",
+        answer: "Absolutely. Our tool is designed to be the best AI recipe generator for various dietary needs. You can specify preferences like Vegetarian, Vegan, Gluten-Free, Low-Carb, and more to get recipes that fit your lifestyle."
+    },
+    {
+        question: "Will the AI only use the ingredients I list?",
+        answer: "The AI recipe maker will prioritize the ingredients you list. However, it may also include common pantry staples like oil, salt, pepper, and spices to complete the recipe, assuming you have them available."
+    }
+];
+
 export default function AiRecipeMakerPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function AiRecipeMakerPage() {
                 <p>The power of our <strong>recipe generator AI</strong> lies in its vast database of culinary knowledge. It can suggest recipes from various cuisines, from Italian to Thai, and for any meal type, whether it's a quick breakfast or a gourmet dinner. This <strong>free AI recipe generator</strong> is like having a cookbook that writes itself based on what's in your pantry. It’s the ultimate kitchen assistant for busy families, students, and anyone looking to simplify their cooking routine.</p>
                 <p>Using the <strong>recipe generator from ingredients</strong> is a fun and exciting way to discover new dishes. You might be surprised by the creative combinations our <strong>AI generated recipes</strong> can come up with. It’s also a great way to learn new cooking techniques and expand your culinary skills. Stop letting good food go to waste and start making delicious meals with what you have. Try our <strong>AI recipe generator free</strong> today and revolutionize the way you cook.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

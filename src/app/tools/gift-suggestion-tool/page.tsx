@@ -4,6 +4,8 @@ import { GiftSuggestionToolClient } from '@/components/gift-suggestion-tool-clie
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Gift Suggestion Tool | Find the Perfect Gift',
@@ -17,9 +19,47 @@ const benefits = [
     "Surprise your loved ones with thoughtful gifts."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI gift suggestion tool?",
+        answer: "An AI gift suggestion tool is a smart assistant that helps you find the perfect gift. You provide details about the person you're shopping for—like their interests, age, and the occasion—and the AI generates a curated list of thoughtful and creative gift ideas."
+    },
+    {
+        question: "How does the AI gift ideas generator come up with suggestions?",
+        answer: "The AI analyzes the information you provide and cross-references it with a vast database of products, trends, and gift-giving etiquette. It understands concepts and context, allowing it to suggest unique items that truly match the recipient's personality, rather than just generic gifts."
+    },
+    {
+        question: "Is this AI gift finder really free?",
+        answer: "Yes, our gift recommendation AI is completely free to use. Our goal is to make the often stressful process of gift shopping easier and more enjoyable for everyone, without any cost."
+    },
+    {
+        question: "Can I find gifts for a specific budget?",
+        answer: "Absolutely. Our tool allows you to specify a price range, from 'Under $25' to '$100 - $250' and 'Any'. The AI gift generator will then tailor its suggestions to fit within your budget, ensuring you find a great gift without overspending."
+    },
+    {
+        question: "Does the tool provide links to buy the gifts?",
+        answer: "Currently, our AI present finder focuses on generating ideas and inspiration. It provides you with the name of the gift, a description of why it's a good choice, and its category. This allows you to search for the best deal from your preferred retailers online or in-store."
+    }
+];
+
 export default function GiftSuggestionToolPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function GiftSuggestionToolPage() {
                 <p>The <strong>AI personalized gift suggestions</strong> feature is what sets our tool apart. By understanding the recipient's hobbies and passions, the <strong>AI gift recommender</strong> can suggest presents that they will truly love. It's a versatile <strong>gift idea generator free</strong> tool that can be used for friends, family, and colleagues. The <strong>AI present finder</strong> is perfect for those hard-to-shop-for people in your life.</p>
                 <p>Whether you need a <strong>Christmas gift generator</strong> to get a head start on your holiday shopping or a <strong>birthday gift idea generator</strong> for an upcoming celebration, our tool is here to help. The <strong>free gift idea generator</strong> is a great way to discover new and unique gift ideas that you might not have thought of on your own. Stop stressing about gift shopping and start using the power of AI to find the perfect present. Try our <strong>AI gift suggestion tool</strong> today and make every gift-giving occasion a success.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

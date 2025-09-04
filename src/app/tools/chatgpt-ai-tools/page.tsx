@@ -8,15 +8,55 @@ import { GrammarSpellingClient } from '@/components/grammar-spelling-client';
 import { TextRewriterClient } from '@/components/text-rewriter-client';
 import { Bot, Code, SpellCheck, PencilRuler } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Best Free AI ChatBot Assistant | Code Helper & Grammar Corrector',
   description: 'Unlock the power of AI with a free ChatBot assistant. Get answers, receive coding help with an online AI code helper, correct grammar, and rewrite text effortlessly.',
 };
 
+const faqs = [
+    {
+        question: "What is an AI ChatBot Assistant?",
+        answer: "An AI ChatBot Assistant is a collection of AI-powered tools designed to help you with various tasks. Our assistant includes an AI question answering system, a coding helper, a grammar and spelling corrector, and a text rewriter, all in one convenient interface."
+    },
+    {
+        question: "How does the AI question answering tool work?",
+        answer: "The AI question answering tool uses a large language model to understand your question and search its vast knowledge base to provide a comprehensive and accurate answer. It's perfect for research, learning, or satisfying your curiosity."
+    },
+    {
+        question: "Can the AI code helper debug my code?",
+        answer: "Yes, the AI code helper can assist with debugging. You can paste your code snippet and describe the error, and the AI will analyze it to suggest potential fixes and explain the underlying issue. It can also help you write new code or optimize existing functions."
+    },
+    {
+        question: "Is the grammar and spelling corrector better than a standard spell check?",
+        answer: "Absolutely. A standard spell check only catches misspellings. Our AI-powered grammar and spelling corrector understands context, sentence structure, and punctuation rules, allowing it to identify and fix complex grammatical errors, awkward phrasing, and more."
+    },
+    {
+        question: "What can I use the text rewriter for?",
+        answer: "The text rewriter, or paraphrasing tool, is perfect for improving the clarity and style of your writing. You can use it to rephrase sentences to avoid plagiarism, simplify complex language, or change the tone of your text to be more formal, casual, or professional."
+    }
+];
+
 export default function ChatGptToolsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
@@ -89,6 +129,28 @@ export default function ChatGptToolsPage() {
                 <p>Clear and professional writing is essential for success in any field. Our <strong>grammar and spelling corrector</strong> helps you polish your writing by identifying and correcting errors. It's a powerful tool for students, professionals, and anyone who wants to ensure their writing is error-free. The <strong>text rewriter</strong> takes it a step further, allowing you to paraphrase and rephrase your text to improve its clarity, tone, and overall impact. It's the perfect tool for creating engaging content that resonates with your audience. You can also generate longer content with our <Link href="/tools/ai-script-writer">AI Script Writer</Link>.</p>
                 <p>Our platform is designed to be the <strong>best AI assistant</strong> by offering a range of tools that work together seamlessly. The <strong>AI helper</strong> is always available to assist you with your tasks, making you more efficient and productive. Whether you're writing an essay, building an application, or researching a new topic, our <strong>AI assistant free</strong> tools are here to help. Experience the power of AI and unlock your full potential with our comprehensive suite of productivity tools.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

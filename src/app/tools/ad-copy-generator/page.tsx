@@ -4,6 +4,7 @@ import { AdCopyGeneratorClient } from '@/components/ad-copy-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export const metadata: Metadata = {
   title: 'Free AI Ad Copy Generator | Create High-Converting Ads',
@@ -17,9 +18,47 @@ const benefits = [
     "Save time and money on copywriting."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI ad copy generator?",
+        answer: "An AI ad copy generator is a tool that uses artificial intelligence to create persuasive and effective advertising text for various platforms like Google, Facebook, and Instagram. It helps marketers quickly generate multiple versions of headlines, body text, and calls-to-action, saving time and improving campaign performance."
+    },
+    {
+        question: "How can this free ad copy generator improve my ROI?",
+        answer: "Our tool improves your Return on Investment (ROI) by allowing you to rapidly A/B test numerous ad copy variations. By identifying the most effective messaging faster, you can optimize your campaigns for higher conversion rates and lower customer acquisition costs, all without spending money on professional copywriters."
+    },
+    {
+        question: "Is the generated ad copy unique and plagiarism-free?",
+        answer: "Yes, the AI generates unique ad copy based on your specific inputs, including product details, target audience, and key points. The content is original and tailored to your campaign, ensuring it is distinct from other ads."
+    },
+    {
+        question: "Can I use this tool to generate ads for any platform?",
+        answer: "Absolutely. Our ad-copy-generator is designed to create optimized content for a wide range of platforms, including Google Ads, Facebook Ads, Instagram Ads, and LinkedIn. Simply select your desired platform, and the AI will tailor the format and style accordingly."
+    },
+    {
+        question: "Do I need any marketing experience to use this ad copy generator?",
+        answer: "No, you don't need any prior marketing experience. The tool is designed to be user-friendly and intuitive. Just provide the necessary information about your product and audience, and the AI will guide you by generating professional-quality ad copy."
+    }
+];
+
 export default function AdCopyGeneratorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +115,28 @@ export default function AdCopyGeneratorPage() {
                 <p>Using our <strong>ad-copy-generator</strong> is incredibly simple. You start by inputting key details about your product or service, your target audience, and the main selling points. The AI then analyzes this information to understand your brand's voice and objectives. From there, it generates multiple ad copy variations, giving you a range of options to A/B test. This data-driven approach helps you identify what works best, improving your ROI and lowering your cost per acquisition. The tool functions as a <strong>free ad copy writer</strong>, saving you countless hours and significant budget that would otherwise be spent on manual copywriting. To further enhance your social media presence, pair your ad copy with the right hashtags using our <Link href="/tools/hashtag-generator">Hashtag Generator</Link>.</p>
                 <p>The applications are limitless. Use it as an <strong>Instagram ad copy generator</strong> to create visually-driven text that complements your images and videos. Leverage it as a <strong>Google ad copy generator</strong> to dominate search results with perfectly crafted headlines. No matter your goal—be it increasing brand awareness, driving traffic, or boosting sales—our <strong>AI ad copy generator</strong> is engineered to deliver results. Stop guessing and start generating ad copy that converts with the power of artificial intelligence.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

@@ -4,6 +4,8 @@ import { CartoonAvatarMakerClient } from '@/components/cartoon-avatar-maker-clie
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Cartoon & Avatar Maker | Turn Your Photo into Art',
@@ -17,9 +19,47 @@ const benefits = [
     "Download high-resolution, transparent PNGs."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI cartoon avatar maker?",
+        answer: "An AI cartoon avatar maker is a tool that uses artificial intelligence to transform your photo into a stylized avatar. You can choose from various artistic styles like 3D, Anime, or Comic Book, and the AI will reinterpret your picture in that style while preserving your key facial features."
+    },
+    {
+        question: "Is this AI avatar generator free?",
+        answer: "Yes, our cartoon avatar maker is completely free to use. You can upload your photo, generate avatars in different styles, and download your creations without any cost or subscription."
+    },
+    {
+        question: "What kind of photo should I upload for the best results?",
+        answer: "For the best results, upload a clear, well-lit, front-facing photo of yourself. Avoid pictures with sunglasses, heavy shadows, or obstructed faces. A clear headshot works best for the AI to capture your likeness accurately."
+    },
+    {
+        question: "Can I create an avatar with a transparent background?",
+        answer: "Absolutely! Our tool gives you the option to generate your avatar with a transparent background, which is perfect for use as a profile picture (PFP), in graphic designs, or on websites. You can also choose a solid color or a custom scene."
+    },
+    {
+        question: "How is this different from a regular cartoon filter?",
+        answer: "Unlike a simple filter that just overlays an effect, our AI avatar generator rebuilds your image from scratch in the chosen style. This results in a much more authentic and high-quality artistic interpretation, creating a true piece of digital art rather than just an edited photo."
+    }
+];
+
 export default function CartoonAvatarMakerPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -77,6 +117,28 @@ export default function CartoonAvatarMakerPage() {
                 <p>The process of creating your avatar is simple. Just upload a clear photo of yourself, and our <strong>AI avatar from photo</strong> tool will do the rest. You can use it as an <strong>anime avatar maker</strong> to create a character straight out of your favorite show, or as a <strong>3D avatar creator</strong> to generate a modern, stylized version of yourself. The <strong>free cartoon avatar maker from photo</strong> is a great way to experiment with different looks and have fun with your digital identity. You can even swap your new avatar into different scenes using our <Link href="/tools/image-face-swap">Image Face Swap</Link> tool.</p>
                 <p>Our <strong>online avatar maker</strong> is accessible from any device, so you can create your avatar on the go. It's a powerful <strong>pfp maker</strong> that can help you create a professional and eye-catching profile picture for any platform. Whether you're looking for a <strong>free avatar creator</strong> for your gaming channel or a <strong>cartoon pfp maker</strong> for your social media, our tool has you covered. Try the <strong>best free AI avatar generator</strong> today and create a digital version of yourself that is as unique as you are.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>

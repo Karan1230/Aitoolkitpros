@@ -4,6 +4,8 @@ import { ReelShortsScriptWriterClient } from '@/components/reel-shorts-script-wr
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 export const metadata: Metadata = {
   title: 'Free AI Reel/Shorts Script Writer | Go Viral Instantly',
@@ -17,9 +19,47 @@ const benefits = [
     "Save time brainstorming and writing scripts."
 ];
 
+const faqs = [
+    {
+        question: "What is an AI reel/shorts script writer?",
+        answer: "An AI reel/shorts script writer is a specialized tool that generates short-form video scripts (typically 15-60 seconds) for platforms like Instagram Reels, YouTube Shorts, and TikTok. It provides a complete script structure, including a powerful hook, main content points, and a call-to-action."
+    },
+    {
+        question: "How can this tool help me go viral?",
+        answer: "The AI is trained on the elements of viral video content. It focuses on creating a strong, attention-grabbing hook for the first 3 seconds, which is crucial for retaining viewers. It then provides a concise and engaging content structure designed to maximize watch time and interaction."
+    },
+    {
+        question: "Is this AI script generator for videos free?",
+        answer: "Yes, our reel/shorts script writer is completely free to use. You can generate unlimited script ideas for all your short-form video content without any cost."
+    },
+    {
+        question: "Can I use this for my YouTube Shorts and TikTok videos?",
+        answer: "Absolutely. The tool is optimized to generate scripts for all major short-form video platforms. You can select your target platform (Instagram Reels, YouTube Shorts, or TikTok) to get scripts that are tailored to its specific audience and style."
+    },
+    {
+        question: "Does the AI provide hashtags and a caption?",
+        answer: "Yes, it does. In addition to the script itself, the AI also generates a suggested caption for your post and a list of relevant hashtags to help increase your video's discoverability and reach."
+    }
+];
+
 export default function ReelShortsScriptWriterPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }) }}
+      />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
@@ -76,6 +116,28 @@ export default function ReelShortsScriptWriterPage() {
                 <p>Using our <strong>AI shorts script generator</strong> is incredibly simple. Just enter your video idea, and the AI will provide you with several script variations to choose from. This makes it an efficient <strong>YouTube shorts script generator</strong> for creators who want to maintain a consistent posting schedule. The <strong>Instagram reel script generator</strong> is perfect for creating content that is both entertaining and informative. Our <strong>TikTok script writer</strong> can help you tap into the latest trends and create videos that have the potential to go viral. You can even generate video content directly with our <Link href="/tools/ltx-ai-video-generator">LTX AI Video Generator</Link>.</p>
                 <p>Whether you're a seasoned content creator or just starting, our <strong>AI script generator for videos</strong> can help you take your content to the next level. It's a versatile <strong>script generator for youtube video free</strong> tool that can adapt to any niche or style. Stop struggling with writer's block and start creating amazing short-form videos with the power of AI. Try our <strong>best free AI script writer</strong> today and see the difference it can make in your content creation process.</p>
             </div>
+        </div>
+      </section>
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </>
