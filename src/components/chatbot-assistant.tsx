@@ -163,7 +163,7 @@ export function ChatbotAssistant() {
       
       {isOpen && (
         <div className="fixed bottom-4 right-4 left-4 sm:bottom-20 sm:right-5 sm:left-auto z-[100]">
-           <Card className="w-full max-w-md mx-auto sm:w-[350px] h-[calc(100vh-120px)] sm:h-[500px] shadow-2xl flex flex-col animate-pop-in">
+           <Card className="w-full max-w-md mx-auto sm:w-[350px] h-[calc(100vh-120px)] sm:h-[500px] shadow-2xl flex flex-col animate-float-in">
               <CardHeader className="flex flex-row items-center justify-between">
                 <div className="flex items-center gap-3">
                    <div className="p-2 bg-primary/10 rounded-full">
