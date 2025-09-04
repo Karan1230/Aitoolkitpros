@@ -27,7 +27,7 @@ export function AppFooter() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
               <Logo className="h-7 w-7 text-primary" />
-              <span className="font-bold text-xl">AI Toolkit Pro</span>
+              <span className="font-bold text-xl gradient-text">AI Toolkit Pro</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               A comprehensive suite of free AI-powered tools to boost creativity and productivity for creators and professionals.
