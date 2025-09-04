@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, CheckCircle, PenLine } from "lucide-react";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { allTools } from "@/lib/tools";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
@@ -67,17 +67,10 @@ const faqs = [
     }
 ]
 
-const INITIAL_TOOL_COUNT = 8;
-
 export default function Home() {
   const plugin = useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
-  const [visibleTools, setVisibleTools] = useState(INITIAL_TOOL_COUNT);
-
-  const loadMoreTools = () => {
-    setVisibleTools(prev => Math.min(prev + INITIAL_TOOL_COUNT, allTools.length));
-  };
 
   return (
     <div className="flex flex-col">
@@ -105,8 +98,8 @@ export default function Home() {
           <h2 className="font-headline text-3xl font-bold text-center mb-8">
             <span className="gradient-text">Popular AI Tools</span>
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            {allTools.slice(0, visibleTools).map((tool, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {allTools.map((tool, index) => (
               <Link href={tool.href} key={tool.name} className="group flex animate-float-in" style={{ animationDelay: `${0.1 + index * 0.05}s`}}>
                 <Card className="w-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
                   <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
@@ -120,11 +113,6 @@ export default function Home() {
               </Link>
             ))}
           </div>
-          {visibleTools < allTools.length && (
-            <div className="mt-10 text-center">
-              <Button onClick={loadMoreTools} variant="secondary" size="lg">Load More Tools</Button>
-            </div>
-          )}
         </div>
       </section>
       
