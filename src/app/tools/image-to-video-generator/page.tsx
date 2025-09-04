@@ -18,50 +18,65 @@ const benefits = [
 
 export default function ImageToVideoGeneratorPage() {
   return (
-    <div className="container py-12 md:py-20">
-      <div className="grid lg:grid-cols-5 gap-12">
-        <div className="lg:col-span-3">
-            <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
-                AI Image to Video Generator
-            </h1>
-            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
-              <p className="text-lg text-muted-foreground">
-                Bring your images to life. This tool, powered by advanced AI, lets you generate captivating videos from a single image, turning your static content into a dynamic story.
-              </p>
-            </div>
+    <>
+      <div className="container py-12 md:py-20">
+        <div className="grid lg:grid-cols-5 gap-12">
+          <div className="lg:col-span-3">
+              <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
+                  AI Image to Video Generator
+              </h1>
+              <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+                <p className="text-lg text-muted-foreground">
+                  Bring your images to life with our <strong>AI image to video generator</strong>. This tool, powered by advanced AI, lets you generate captivating videos from a single image. Turn your static content into a dynamic story with our <strong>image to video AI generator free</strong>. As the <strong>best AI image to video generator</strong>, it provides high-quality animations that are perfect for social media. Use this <strong>picture to video AI generator</strong> to create engaging content and capture your audience's attention.
+                </p>
+              </div>
 
-            <div className="mt-8">
-                <ImageToVideoGeneratorClient />
-            </div>
-        </div>
-        <div className="lg:col-span-2 space-y-8">
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">How to Use</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <p><strong>1. Upload Image:</strong> Start by uploading the image you want to animate.</p>
-                    <p><strong>2. Enter Prompt:</strong> Describe the motion you want to see in the video (e.g., "camera zooms in slowly").</p>
-                    <p><strong>3. Generate:</strong> Click the "Run" button and wait for the AI to create your video.</p>
-                    <p><strong>4. Download:</strong> Once generated, you can download the video directly from the player.</p>
-                </CardContent>
-            </Card>
+              <div className="mt-8">
+                  <ImageToVideoGeneratorClient />
+              </div>
+          </div>
+          <div className="lg:col-span-2 space-y-8">
+              <Card>
+                  <CardHeader>
+                      <CardTitle className="font-headline text-2xl">How to Use</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                      <p><strong>1. Upload Image:</strong> Start by uploading the image you want to animate.</p>
+                      <p><strong>2. Enter Prompt:</strong> Describe the motion you want to see in the video (e.g., "camera zooms in slowly").</p>
+                      <p><strong>3. Generate:</strong> Click the "Run" button and wait for the AI to create your video.</p>
+                      <p><strong>4. Download:</strong> Once generated, you can download the video directly from the player.</p>
+                  </CardContent>
+              </Card>
 
-             <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                    {benefits.map((benefit, index) => (
-                        <div key={index} className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
-                            <span>{benefit}</span>
-                        </div>
-                    ))}
-                </CardContent>
-            </Card>
+               <Card>
+                  <CardHeader>
+                      <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                      {benefits.map((benefit, index) => (
+                          <div key={index} className="flex items-start">
+                              <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                              <span>{benefit}</span>
+                          </div>
+                      ))}
+                  </CardContent>
+              </Card>
+          </div>
         </div>
       </div>
-    </div>
+      <section className="py-16">
+        <div className="container max-w-4xl">
+            <div className="prose dark:prose-invert mx-auto">
+                <h2>Animate Your Photos with an AI Image to Video Generator</h2>
+                <p>Static images are great, but video content is more engaging. An <strong>AI image to video generator</strong> is a powerful tool that can transform your still photos into dynamic, eye-catching videos. Our platform offers a state-of-the-art <strong>image to video AI generator free</strong> of charge, allowing you to create stunning animations with just a few clicks. It's the perfect solution for content creators, marketers, and anyone who wants to add a new dimension to their visuals.</p>
+                <p>Our tool is designed to be the <strong>best AI image to video generator</strong> by providing high-quality results and a user-friendly experience. The <strong>AI video generator from image</strong> technology can animate your photos in a variety of ways, from subtle movements to dramatic effects. This makes it a versatile <strong>picture to video AI generator</strong> for a wide range of applications. The <strong>image to video AI free</strong> tool is accessible to everyone, so you can start creating amazing videos right away.</p>
+
+                <h3>From Still Image to Moving Story</h3>
+                <p>The process of using our <strong>image to video maker AI</strong> is incredibly simple. Just upload your image, provide a prompt describing the desired motion, and let the AI do the rest. The <strong>photo to video AI generator free</strong> tool will create a short video clip that you can use on social media, in presentations, or on your website. It's a great way to make your content more engaging and memorable. The <strong>free AI image to video generator</strong> is also a fun tool for personal projects, allowing you to bring your favorite photos to life.</p>
+                <p>Whether you're looking to create an animated logo, a looping background, or a dynamic social media post, our <strong>make image into video AI</strong> tool has you covered. It's a powerful <strong>AI image to video free</strong> solution that can help you create professional-looking videos without any editing skills. Stop using static images and start creating dynamic content that captivates your audience. Try our <strong>image to video AI generator no watermark</strong> tool today and see the difference it can make.</p>
+            </div>
+        </div>
+      </section>
+    </>
   );
 }

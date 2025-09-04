@@ -18,51 +18,66 @@ const benefits = [
 
 export default function CartoonAvatarMakerPage() {
   return (
-    <div className="container py-12 md:py-20">
-      <div className="grid lg:grid-cols-5 gap-12">
-        <div className="lg:col-span-3">
-            <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
-                AI Cartoon & Avatar Maker
-            </h1>
-            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
-              <p className="text-lg text-muted-foreground">
-                Upload your photo and let our AI transform it into a stunning avatar. Choose from various styles like anime, 3D, or comic book to get a unique profile picture.
-              </p>
-            </div>
+    <>
+      <div className="container py-12 md:py-20">
+        <div className="grid lg:grid-cols-5 gap-12">
+          <div className="lg:col-span-3">
+              <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
+                  AI Cartoon & Avatar Maker
+              </h1>
+              <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+                <p className="text-lg text-muted-foreground">
+                  Upload your photo and let our <strong>AI cartoon avatar maker</strong> transform it into a stunning avatar. Choose from various styles like anime, 3D, or comic book to get a unique profile picture. This <strong>AI avatar generator</strong> is a free and fun way to create a digital version of yourself. Our <strong>cartoon avatar maker</strong> is perfect for social media, gaming profiles, and more. As the <strong>best AI avatar generator</strong>, it offers high-quality results in just a few clicks.
+                </p>
+              </div>
 
-            <div className="mt-8">
-                <CartoonAvatarMakerClient />
-            </div>
-        </div>
-        <div className="lg:col-span-2 space-y-8">
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">How to Use</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <p><strong>1. Upload Photo:</strong> Click to upload a clear, front-facing photo of yourself.</p>
-                    <p><strong>2. Choose Style:</strong> Select an artistic style like 3D Avatar, Anime, or Comic Book.</p>
-                    <p><strong>3. Select Background:</strong> Pick a transparent, solid color, or custom scene background.</p>
-                    <p><strong>4. Generate:</strong> Click the "Generate Avatars" button and watch the AI work its magic.</p>
-                    <p><strong>5. Download:</strong> Click your favorite avatar to download the high-resolution PNG.</p>
-                </CardContent>
-            </Card>
+              <div className="mt-8">
+                  <CartoonAvatarMakerClient />
+              </div>
+          </div>
+          <div className="lg:col-span-2 space-y-8">
+              <Card>
+                  <CardHeader>
+                      <CardTitle className="font-headline text-2xl">How to Use</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                      <p><strong>1. Upload Photo:</strong> Click to upload a clear, front-facing photo of yourself.</p>
+                      <p><strong>2. Choose Style:</strong> Select an artistic style like 3D Avatar, Anime, or Comic Book.</p>
+                      <p><strong>3. Select Background:</strong> Pick a transparent, solid color, or custom scene background.</p>
+                      <p><strong>4. Generate:</strong> Click the "Generate Avatars" button and watch the AI work its magic.</p>
+                      <p><strong>5. Download:</strong> Click your favorite avatar to download the high-resolution PNG.</p>
+                  </CardContent>
+              </Card>
 
-             <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                    {benefits.map((benefit, index) => (
-                        <div key={index} className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
-                            <span>{benefit}</span>
-                        </div>
-                    ))}
-                </CardContent>
-            </Card>
+               <Card>
+                  <CardHeader>
+                      <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                      {benefits.map((benefit, index) => (
+                          <div key={index} className="flex items-start">
+                              <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                              <span>{benefit}</span>
+                          </div>
+                      ))}
+                  </CardContent>
+              </Card>
+          </div>
         </div>
       </div>
-    </div>
+      <section className="py-16">
+        <div className="container max-w-4xl">
+            <div className="prose dark:prose-invert mx-auto">
+                <h2>Create a Digital Version of Yourself with an AI Avatar Maker</h2>
+                <p>In the digital age, your profile picture is your personal brand. An <strong>AI cartoon avatar maker</strong> is a fantastic tool for creating a unique and memorable online presence. Our platform offers a powerful <strong>AI avatar generator</strong> that can transform your photo into a stunning cartoon, 3D avatar, or anime character. It's a fun and easy way to express your personality and stand out from the crowd. This <strong>free AI avatar generator</strong> is perfect for gamers, social media users, and anyone who wants to create a personalized digital identity.</p>
+                <p>Our <strong>cartoon avatar maker</strong> is designed to be user-friendly and versatile. You can choose from a variety of styles to create an avatar that truly represents you. The <strong>AI avatar maker</strong> uses advanced algorithms to capture your likeness while applying the artistic style of your choice. As the <strong>best AI avatar generator</strong>, we are committed to providing high-quality results that you'll be proud to share. The <strong>AI avatar generator free</strong> service is accessible to everyone, so you can start creating your new look right away.</p>
+
+                <h3>From Photo to Cartoon in Seconds</h3>
+                <p>The process of creating your avatar is simple. Just upload a clear photo of yourself, and our <strong>AI avatar from photo</strong> tool will do the rest. You can use it as an <strong>anime avatar maker</strong> to create a character straight out of your favorite show, or as a <strong>3D avatar creator</strong> to generate a modern, stylized version of yourself. The <strong>free cartoon avatar maker from photo</strong> is a great way to experiment with different looks and have fun with your digital identity.</p>
+                <p>Our <strong>online avatar maker</strong> is accessible from any device, so you can create your avatar on the go. It's a powerful <strong>pfp maker</strong> that can help you create a professional and eye-catching profile picture for any platform. Whether you're looking for a <strong>free avatar creator</strong> for your gaming channel or a <strong>cartoon pfp maker</strong> for your social media, our tool has you covered. Try the <strong>best free AI avatar generator</strong> today and create a digital version of yourself that is as unique as you are.</p>
+            </div>
+        </div>
+      </section>
+    </>
   );
 }

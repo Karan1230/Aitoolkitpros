@@ -18,50 +18,65 @@ const benefits = [
 
 export default function VoiceToTextPage() {
   return (
-    <div className="container py-12 md:py-20">
-      <div className="grid lg:grid-cols-5 gap-12">
-        <div className="lg:col-span-3">
-            <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
-                Voice-to-Text Converter
-            </h1>
-            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
-              <p className="text-lg text-muted-foreground">
-                Effortlessly transcribe speech into text. Upload an audio file to get a fast and accurate transcription, ideal for interviews, meetings, and voice notes.
-              </p>
-            </div>
+    <>
+      <div className="container py-12 md:py-20">
+        <div className="grid lg:grid-cols-5 gap-12">
+          <div className="lg:col-span-3">
+              <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
+                  Voice-to-Text Converter
+              </h1>
+              <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+                <p className="text-lg text-muted-foreground">
+                  Effortlessly transcribe speech into text with our <strong>voice-to-text converter</strong>. Upload an audio file to get a fast and accurate transcription from our <strong>AI voice to text</strong> tool. This <strong>free voice to text</strong> service is ideal for interviews, meetings, and voice notes. As the <strong>best voice to text app</strong>, it provides reliable results for all your transcription needs. Use our <strong>voice to text online</strong> converter to save time and streamline your workflow.
+                </p>
+              </div>
 
-            <div className="mt-8">
-                <VoiceToTextClient />
-            </div>
-        </div>
-        <div className="lg:col-span-2 space-y-8">
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">How to Use</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <p><strong>1. Grant Permission:</strong> Allow the browser to access your microphone when prompted.</p>
-                    <p><strong>2. Start Recording:</strong> Click "Start Recording" and begin speaking clearly.</p>
-                    <p><strong>3. Stop Recording:</strong> Click "Stop Recording" when you are finished. The transcription will be generated automatically.</p>
-                    <p><strong>4. Copy Text:</strong> Copy the transcribed text for your use.</p>
-                </CardContent>
-            </Card>
+              <div className="mt-8">
+                  <VoiceToTextClient />
+              </div>
+          </div>
+          <div className="lg:col-span-2 space-y-8">
+              <Card>
+                  <CardHeader>
+                      <CardTitle className="font-headline text-2xl">How to Use</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                      <p><strong>1. Grant Permission:</strong> Allow the browser to access your microphone when prompted.</p>
+                      <p><strong>2. Start Recording:</strong> Click "Start Recording" and begin speaking clearly.</p>
+                      <p><strong>3. Stop Recording:</strong> Click "Stop Recording" when you are finished. The transcription will be generated automatically.</p>
+                      <p><strong>4. Copy Text:</strong> Copy the transcribed text for your use.</p>
+                  </CardContent>
+              </Card>
 
-             <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                    {benefits.map((benefit, index) => (
-                        <div key={index} className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
-                            <span>{benefit}</span>
-                        </div>
-                    ))}
-                </CardContent>
-            </Card>
+               <Card>
+                  <CardHeader>
+                      <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                      {benefits.map((benefit, index) => (
+                          <div key={index} className="flex items-start">
+                              <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                              <span>{benefit}</span>
+                          </div>
+                      ))}
+                  </CardContent>
+              </Card>
+          </div>
         </div>
       </div>
-    </div>
+      <section className="py-16">
+        <div className="container max-w-4xl">
+            <div className="prose dark:prose-invert mx-auto">
+                <h2>Transcribe Your Audio with a Voice-to-Text Converter</h2>
+                <p>In a world where audio and video content are king, the ability to quickly and accurately transcribe speech is more valuable than ever. A <strong>voice-to-text converter</strong> is a powerful tool that can transform your audio recordings into written text in a matter of seconds. Our platform offers a state-of-the-art <strong>AI voice to text</strong> service that is perfect for journalists, students, researchers, and anyone who needs to convert speech to text.</p>
+                <p>Our tool is designed to be the <strong>best voice to text app</strong> by providing high accuracy and a user-friendly interface. The <strong>free voice to text</strong> service is accessible to everyone, allowing you to transcribe your audio without any cost. Simply upload your audio file, and our <strong>voice to text online</strong> converter will do the rest. It's a versatile <strong>speech to text converter</strong> that can handle a wide range of audio qualities and accents.</p>
+
+                <h3>From Spoken Word to Written Text in an Instant</h3>
+                <p>The <strong>audio to text converter</strong> technology behind our tool uses advanced machine learning to recognize and transcribe speech with incredible precision. This makes it a reliable <strong>transcribe audio to text free</strong> tool for creating accurate transcripts of interviews, meetings, and lectures. The <strong>voice to text converter online free</strong> service is also a great way to create captions for your videos, making your content more accessible to a wider audience.</p>
+                <p>Whether you need to <strong>convert audio to text</strong> for a professional project or a personal one, our tool has you covered. It's a powerful <strong>mp3 to text</strong> converter that can handle a variety of audio formats. Stop spending hours on manual transcription and start using the power of AI to convert your speech to text. Try our <strong>best free voice to text app</strong> today and experience the future of transcription.</p>
+            </div>
+        </div>
+      </section>
+    </>
   );
 }

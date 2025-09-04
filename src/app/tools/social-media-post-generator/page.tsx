@@ -18,50 +18,65 @@ const benefits = [
 
 export default function SocialMediaPostGeneratorPage() {
   return (
-    <div className="container py-12 md:py-20">
-      <div className="grid lg:grid-cols-5 gap-12">
-        <div className="lg:col-span-3">
-            <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
-                Social Media Post Generator
-            </h1>
-            <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
-              <p className="text-lg text-muted-foreground">
-                Enter a topic and let our AI create engaging posts for your social media channels, complete with relevant hashtags to boost reach and save you time.
-              </p>
-            </div>
+    <>
+      <div className="container py-12 md:py-20">
+        <div className="grid lg:grid-cols-5 gap-12">
+          <div className="lg:col-span-3">
+              <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
+                  Social Media Post Generator
+              </h1>
+              <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
+                <p className="text-lg text-muted-foreground">
+                  Enter a topic and let our <strong>social media post generator</strong> create engaging posts for your channels. This <strong>AI social media post generator</strong> includes relevant hashtags to boost reach and save you time. As the <strong>best AI social media post generator</strong>, it helps you craft compelling content for platforms like Instagram, Facebook, and Twitter. Use our <strong>free social media post generator</strong> to keep your online presence active and engaging.
+                </p>
+              </div>
 
-            <div className="mt-8">
-                <SocialMediaPostClient />
-            </div>
-        </div>
-        <div className="lg:col-span-2 space-y-8">
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">How to Use</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <p><strong>1. Enter a Topic:</strong> Provide a keyword or a brief description of what you want to post about.</p>
-                    <p><strong>2. Select Language:</strong> Choose the language for your post.</p>
-                    <p><strong>3. Generate:</strong> Click the "Generate Post" button and let the AI work its magic.</p>
-                    <p><strong>4. Copy & Paste:</strong> Use the copy button and paste the content directly to your social media platform.</p>
-                </CardContent>
-            </Card>
+              <div className="mt-8">
+                  <SocialMediaPostClient />
+              </div>
+          </div>
+          <div className="lg:col-span-2 space-y-8">
+              <Card>
+                  <CardHeader>
+                      <CardTitle className="font-headline text-2xl">How to Use</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                      <p><strong>1. Enter a Topic:</strong> Provide a keyword or a brief description of what you want to post about.</p>
+                      <p><strong>2. Select Language:</strong> Choose the language for your post.</p>
+                      <p><strong>3. Generate:</strong> Click the "Generate Post" button and let the AI work its magic.</p>
+                      <p><strong>4. Copy & Paste:</strong> Use the copy button and paste the content directly to your social media platform.</p>
+                  </CardContent>
+              </Card>
 
-             <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                    {benefits.map((benefit, index) => (
-                        <div key={index} className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
-                            <span>{benefit}</span>
-                        </div>
-                    ))}
-                </CardContent>
-            </Card>
+               <Card>
+                  <CardHeader>
+                      <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                      {benefits.map((benefit, index) => (
+                          <div key={index} className="flex items-start">
+                              <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                              <span>{benefit}</span>
+                          </div>
+                      ))}
+                  </CardContent>
+              </Card>
+          </div>
         </div>
       </div>
-    </div>
+      <section className="py-16">
+        <div className="container max-w-4xl">
+            <div className="prose dark:prose-invert mx-auto">
+                <h2>Supercharge Your Social Media with an AI Post Generator</h2>
+                <p>Consistency is key to a successful social media strategy, but creating fresh and engaging content every day can be a challenge. A <strong>social media post generator</strong> is an essential tool for any marketer, business owner, or influencer who wants to maintain an active online presence. Our platform offers a powerful <strong>AI social media post generator</strong> that can create high-quality content for a variety of platforms, from Instagram to LinkedIn.</p>
+                <p>Our tool is designed to be the <strong>best AI social media post generator</strong> by providing relevant, creative, and optimized content. The <strong>AI content generator for social media</strong> can help you brainstorm ideas, write compelling captions, and even suggest relevant hashtags to increase your reach. The <strong>free AI social media post generator</strong> is a great way to save time and effort on content creation, so you can focus on what you do best: running your business.</p>
+
+                <h3>Create Engaging Content for Any Platform</h3>
+                <p>The versatility of our <strong>AI generated social media posts</strong> is one of its greatest strengths. You can use it as an <strong>Instagram post generator</strong> to create visually-driven content, a <strong>Facebook post generator</strong> for more in-depth posts, or a <strong>LinkedIn post generator</strong> for professional updates. The <strong>Twitter post generator</strong> is perfect for crafting short and snappy messages that grab attention. Our <strong>social media content generator free</strong> tool is a one-stop-shop for all your content needs.</p>
+                <p>Using our <strong>AI post creator</strong> is simple. Just enter a topic or a keyword, and the AI will generate a variety of post ideas for you to choose from. This makes it an invaluable <strong>social media post creator</strong> for anyone who needs to produce a high volume of content. Stop struggling with content creation and start using the power of AI to build a strong and engaging online presence. Try our <strong>AI social media content generator free</strong> tool today and see the results for yourself.</p>
+            </div>
+        </div>
+      </section>
+    </>
   );
 }
