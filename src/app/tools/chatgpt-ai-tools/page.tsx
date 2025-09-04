@@ -18,7 +18,7 @@ export default function ChatGptToolsPage() {
   return (
     <div className="container py-12 md:py-20">
       <div className="max-w-4xl mx-auto text-center">
-        <h1 className="font-headline text-4xl md:text-5xl font-bold">
+        <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
           AI ChatBot Assistant
         </h1>
         <div className="mt-4 p-6 rounded-lg bg-muted/50 border">

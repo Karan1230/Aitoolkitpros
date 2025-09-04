@@ -1,3 +1,4 @@
+
 import { type Metadata } from 'next';
 import { LtxAiVideoGeneratorClient } from '@/components/ltx-ai-video-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,7 +21,7 @@ export default function LtxAiVideoGeneratorPage() {
     <div className="container py-12 md:py-20">
       <div className="grid lg:grid-cols-5 gap-12">
         <div className="lg:col-span-3">
-            <h1 className="font-headline text-4xl md:text-5xl font-bold">
+            <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
                 LTX AI Video Generator
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">

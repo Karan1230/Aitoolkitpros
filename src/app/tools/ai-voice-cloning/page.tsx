@@ -21,7 +21,7 @@ export default function AiVoiceCloningPage() {
     <div className="container py-12 md:py-20">
       <div className="grid lg:grid-cols-5 gap-12">
         <div className="lg:col-span-3">
-            <h1 className="font-headline text-4xl md:text-5xl font-bold">
+            <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
                 AI Voice Cloning
             </h1>
             <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
