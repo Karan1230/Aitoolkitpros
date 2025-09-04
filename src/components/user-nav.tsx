@@ -1,4 +1,6 @@
 
+'use client'
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -8,30 +10,21 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { createClient } from "@/lib/supabase/server"
-import { redirect } from "next/navigation"
+import { signOut } from "@/app/auth/actions"
+import type { User } from "@supabase/supabase-js"
+import Link from "next/link"
 
-export async function UserNav() {
-  const supabase = createClient()
+interface UserNavProps {
+    user: User | null;
+}
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  const signOut = async () => {
-    'use server'
-    const supabase = createClient()
-    await supabase.auth.signOut()
-    return redirect('/')
-  }
-
+export function UserNav({ user }: UserNavProps) {
   if (!user) {
     return (
       <Button asChild>
-        <a href="/login">Login</a>
+        <Link href="/login">Login</Link>
       </Button>
     )
   }
@@ -41,7 +34,7 @@ export async function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={user.user_metadata.avatar_url} alt="@shadcn" />
+            {user.user_metadata.avatar_url && <AvatarImage src={user.user_metadata.avatar_url} alt="User avatar" />}
             <AvatarFallback>{user.email?.[0].toUpperCase()}</AvatarFallback>
           </Avatar>
         </Button>
@@ -49,7 +42,7 @@ export async function UserNav() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{user.user_metadata.name}</p>
+            <p className="text-sm font-medium leading-none">{user.user_metadata.full_name || user.email}</p>
             <p className="text-xs leading-none text-muted-foreground">
               {user.email}
             </p>
@@ -66,7 +59,7 @@ export async function UserNav() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <form action={signOut}>
-            <button className="w-full">
+            <button className="w-full text-left">
                 <DropdownMenuItem>
                     Log out
                 </DropdownMenuItem>

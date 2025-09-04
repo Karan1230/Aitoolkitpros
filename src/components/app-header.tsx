@@ -12,7 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -23,6 +23,8 @@ import { Input } from "@/components/ui/input";
 import { allTools } from "@/lib/tools";
 import { ScrollArea } from "./ui/scroll-area";
 import { UserNav } from "./user-nav";
+import { createClient } from "@/lib/supabase/client";
+import type { User } from "@supabase/supabase-js";
 
 function SearchDialog() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -88,6 +90,29 @@ function SearchDialog() {
 
 export function AppHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    const supabase = createClient();
+    const fetchUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+      setLoading(false);
+    };
+
+    fetchUser();
+
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, []);
   
   const handleLinkClick = () => {
     setIsMenuOpen(false);
@@ -105,7 +130,7 @@ export function AppHeader() {
             <SearchDialog />
         </div>
         
-        <UserNav />
+        {!loading && <UserNav user={user} />}
 
         <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
