@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { AppHeader } from '@/components/app-header';
 import { ChatbotAssistant } from '@/components/chatbot-assistant';
+import { AppFooter } from '@/components/app-footer';
 
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -16,8 +17,8 @@ export const metadata: Metadata = {
     default: 'AI Toolkit Pro - Free All-in-One AI Tools for Content, SEO & Design',
     template: '%s | AI Toolkit Pro',
   },
-  description: 'Your ultimate suite of free AI tools. Generate ad copy, create scripts, design logos, find SEO keywords, and much more. Boost your productivity with our all-in-one toolkit.',
-  keywords: ['ai tools', 'free ai tools', 'content generator', 'seo tools', 'image generator', 'ai script writer', 'adsense friendly'],
+  description: 'Your ultimate suite of free AI tools. Generate ad copy, create scripts, design logos, find SEO keywords, and much more. Boost your productivity with our all-in-one toolkit, fully AdSense friendly and SEO optimized.',
+  keywords: ['ai tools', 'free ai tools', 'content generator', 'seo tools', 'image generator', 'ai script writer', 'adsense friendly', 'ai ad copy generator', 'free logo maker', 'youtube seo tool'],
   openGraph: {
     title: 'AI Toolkit Pro - Free All-in-One AI Tools for Content, SEO & Design',
     description: 'Instantly access a suite of AI-powered tools for content creation, image editing, and audio processing. 100% free, no subscriptions.',
@@ -75,6 +76,7 @@ export default function RootLayout({
         <div className="relative flex min-h-screen flex-col bg-gradient-bg">
           <AppHeader />
           <main className="flex-1 pt-16">{children}</main>
+          <AppFooter />
         </div>
         <Toaster />
         <ChatbotAssistant />
