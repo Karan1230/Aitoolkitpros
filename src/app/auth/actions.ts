@@ -92,6 +92,7 @@ export async function signUp(formData: FormData) {
         mobile_number: mobileNumber,
         country,
         avatar_url,
+        email,
       },
     },
   })
