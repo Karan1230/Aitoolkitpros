@@ -100,6 +100,13 @@ export default function AiSongGeneratorPage() {
                 </p>
               </div>
 
+               {/* Ad Placeholder */}
+              <div className="my-8">
+                <div className="mx-auto w-full h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <AiSongGeneratorClient />
               </div>
@@ -116,6 +123,11 @@ export default function AiSongGeneratorPage() {
                   </CardContent>
               </Card>
 
+              {/* Ad Placeholder */}
+              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+              </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -129,6 +141,11 @@ export default function AiSongGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
+
+               {/* Ad Placeholder */}
+              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+              </div>
           </div>
         </div>
       </div>
@@ -137,10 +154,26 @@ export default function AiSongGeneratorPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Create Your Own Music with an AI Song Generator</h2>
                 <p>Have you ever wanted to create your own music but didn't know where to start? An <strong>AI song generator</strong> is the perfect tool for aspiring musicians and content creators. Our platform offers a powerful <strong>AI music generator</strong> that can turn your text prompts into complete songs, complete with vocals and instrumentation. This makes it the <strong>best AI music generator</strong> for anyone looking to create original music without any prior experience. You can learn more about generative music on <a href="https://en.wikipedia.org/wiki/Generative_music" target="_blank" rel="noopener noreferrer">Wikipedia</a>.</p>
+
+                 {/* Ad Placeholder */}
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+                
                 <p>The <strong>AI song generator from text</strong> technology is a game-changer. You can simply describe the mood, genre, and lyrics of the song you want to create, and the AI will do the rest. This <strong>AI song writer</strong> is like having a professional songwriter and composer at your fingertips. Our <strong>AI generated music free</strong> tool is perfect for creating background music for videos, podcasts, or any other creative project. It’s a versatile <strong>AI song creator</strong> that can produce music in a wide range of styles. If you need a script for your music video, try our <Link href="/tools/ai-script-writer">AI Script Writer</Link>.</p>
 
                 <h3>From Lyrics to Melody in Minutes</h3>
                 <p>Our <strong>AI lyric generator</strong> can even help you write the words to your song. If you have a theme or an idea, the AI can generate lyrics that fit your vision. This makes our platform a comprehensive <strong>free AI music generator from text</strong>. The <strong>AI voice generator singing</strong> feature adds a human touch to your creations, making them sound professional and polished. As the <strong>best free AI music generator</strong>, we are committed to providing a high-quality, user-friendly experience. You can also clone a specific voice with our <Link href="/tools/ai-voice-cloning">AI Voice Cloning</Link> tool.</p>
+                
+                 {/* Ad Placeholder */}
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Whether you're a seasoned musician looking for a new source of inspiration or a complete beginner who wants to experiment with music, our <strong>AI song generator with vocals</strong> is the perfect tool for you. The <strong>AI music creator</strong> is designed to be intuitive and easy to use, so you can start creating music right away. Try our <strong>AI song generator free online no sign up</strong> tool today and unleash your inner musician. Your next hit song is just a few clicks away.</p>
             </div>
         </div>
