@@ -70,7 +70,9 @@ const faqs = [
 const INITIAL_TOOL_COUNT = 8;
 
 export default function Home() {
-  const autoplayPlugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: false }));
+  const plugin = useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: true })
+  );
   const [visibleTools, setVisibleTools] = useState(INITIAL_TOOL_COUNT);
 
   const loadMoreTools = () => {
@@ -131,12 +133,14 @@ export default function Home() {
         <div className="container px-4">
            <h2 className="font-headline text-3xl font-bold text-center mb-8">What Our Users Say</h2>
           <Carousel
-             plugins={[autoplayPlugin.current]}
+             plugins={[plugin.current]}
              opts={{
               align: "start",
               loop: true,
             }}
             className="w-full max-w-4xl mx-auto"
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
           >
             <CarouselContent className="-ml-4">
               {testimonials.map((testimonial, index) => (
