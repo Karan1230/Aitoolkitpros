@@ -18,60 +18,51 @@ export async function middleware(request: NextRequest) {
           return request.cookies.get(name)?.value
         },
         set(name: string, value: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value,
-            ...options,
-          })
+          request.cookies.set({ name, value, ...options })
           response = NextResponse.next({
             request: {
               headers: request.headers,
             },
           })
-          response.cookies.set({
-            name,
-            value,
-            ...options,
-          })
+          response.cookies.set({ name, value, ...options })
         },
         remove(name: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
+          request.cookies.set({ name, value: '', ...options })
           response = NextResponse.next({
             request: {
               headers: request.headers,
             },
           })
-          response.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
+          response.cookies.set({ name, value: '', ...options })
         },
       },
     }
   )
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { data: { session } } = await supabase.auth.getSession()
 
-  // if user is not signed in and the current path is not /admin/login, redirect the user to /admin/login
-  if (!user && !request.nextUrl.pathname.startsWith('/admin/login')) {
-    return NextResponse.redirect(new URL('/admin/login', request.url))
+  const { pathname } = request.nextUrl;
+
+  // Protect admin routes
+  if (pathname.startsWith('/admin')) {
+    if (!session) {
+      return NextResponse.redirect(new URL('/login', request.url))
+    }
+    // You can add role checks here in the future
+    // const { data: profile } = await supabase.from('profiles').select('role').eq('id', session.user.id).single()
+    // if (profile?.role !== 'admin') {
+    //   return NextResponse.redirect(new URL('/', request.url))
+    // }
   }
 
-   // if user is signed in and the current path is /admin/login, redirect the user to /admin/dashboard
-   if (user && request.nextUrl.pathname.startsWith('/admin/login')) {
-    return NextResponse.redirect(new URL('/admin/dashboard', request.url))
+  // Redirect authenticated users from login page
+  if (session && pathname === '/login') {
+    return NextResponse.redirect(new URL('/', request.url))
   }
 
   return response
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/login'],
 }

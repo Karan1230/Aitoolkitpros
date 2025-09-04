@@ -18,11 +18,13 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { allTools } from "@/lib/tools";
 import { ScrollArea } from "./ui/scroll-area";
+import { UserNav } from "./user-nav";
+import { createClient } from "@/lib/supabase/client";
+import type { User } from "@supabase/supabase-js";
 
 function SearchDialog() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -33,15 +35,22 @@ function SearchDialog() {
         tool.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    const handleLinkClick = () => {
+        setIsOpen(false);
+        setSearchQuery('');
+    };
+
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger asChild>
-                <Button variant="ghost" size="icon">
-                    <Search className="h-6 w-6" />
-                    <span className="sr-only">Search</span>
-                </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <Button
+                variant="ghost"
+                className="justify-start text-muted-foreground"
+                onClick={() => setIsOpen(true)}
+            >
+                <Search className="h-5 w-5 mr-2" />
+                Search tools...
+            </Button>
+            <DialogContent className="sm:max-w-xl">
                 <DialogHeader>
                     <DialogTitle>Search Tools</DialogTitle>
                 </DialogHeader>
@@ -50,6 +59,7 @@ function SearchDialog() {
                         placeholder="Type to search for a tool..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
+                        autoFocus
                     />
                     <ScrollArea className="h-72 mt-4">
                         <div className="space-y-2">
@@ -57,14 +67,19 @@ function SearchDialog() {
                             <Link
                                 href={tool.href}
                                 key={tool.name}
-                                className="block p-2 rounded-md hover:bg-muted"
-                                onClick={() => setIsOpen(false)}
+                                className="block p-3 rounded-md hover:bg-muted"
+                                onClick={handleLinkClick}
                             >
                                 <div className="font-semibold">{tool.name}</div>
                                 <p className="text-sm text-muted-foreground">{tool.description}</p>
                             </Link>
                         ))}
                         </div>
+                         {filteredTools.length === 0 && (
+                            <div className="text-center py-10 text-muted-foreground">
+                                No tools found for "{searchQuery}"
+                            </div>
+                        )}
                     </ScrollArea>
                 </div>
             </DialogContent>
@@ -72,76 +87,58 @@ function SearchDialog() {
     );
 }
 
-
 export function AppHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const supabase = createClient();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+        const { data: { session } } = await supabase.auth.getSession();
+        setUser(session?.user ?? null);
+        setIsLoading(false);
+    };
+
+    fetchUser();
+
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
+
+    return () => {
+      authListener?.subscription.unsubscribe();
+    };
+  }, [supabase.auth]);
   
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
 
-  const handleTouchStart = (e: globalThis.TouchEvent) => {
-    const touch = e.touches[0];
-    // Open gesture: only care if touch starts on the right 25% of the screen
-    if (!isMenuOpen && touch.clientX < window.innerWidth * 0.75) {
-      touchStartRef.current = null;
-      return;
-    }
-    // Close gesture: can start anywhere
-    touchStartRef.current = { x: touch.clientX, y: touch.clientY, time: Date.now() };
-  };
-
-  const handleTouchMove = (e: globalThis.TouchEvent) => {
-    if (!touchStartRef.current) return;
-
-    const touch = e.touches[0];
-    const dx = touch.clientX - touchStartRef.current.x;
-    const dy = touch.clientY - touchStartRef.current.y;
-
-    // Ignore vertical swipes
-    if (Math.abs(dy) > Math.abs(dx)) {
-      return;
-    }
-
-    const duration = Date.now() - touchStartRef.current.time;
-    
-    // Swipe left to open
-    if (!isMenuOpen && dx < -50 && duration < 500) {
-      setIsMenuOpen(true);
-      touchStartRef.current = null;
-    }
-    
-    // Swipe right to close
-    if (isMenuOpen && dx > 50 && duration < 500) {
-      setIsMenuOpen(false);
-      touchStartRef.current = null;
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('touchstart', handleTouchStart);
-    window.addEventListener('touchmove', handleTouchMove);
-
-    return () => {
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
-    };
-  }, [isMenuOpen]);
-
-
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center justify-between border-b bg-background/95 px-4 backdrop-blur-sm">
       <Link href="/" className="flex items-center gap-2">
         <Logo className="h-6 w-6 text-primary" />
-        <span className="font-bold text-lg">AI Toolkit Pro</span>
+        <span className="font-bold text-lg hidden sm:inline-block">AI Toolkit Pro</span>
       </Link>
       
       <div className="flex items-center gap-2">
-        <SearchDialog />
+        <div className="hidden md:block">
+            <SearchDialog />
+        </div>
+        
+        {!isLoading && (
+            user ? <UserNav user={user} /> : 
+            <Button asChild>
+                <Link href="/login">Login</Link>
+            </Button>
+        )}
+        
         <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(true)}>
+            <Button variant="ghost" size="icon">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Open menu</span>
             </Button>
@@ -153,6 +150,9 @@ export function AppHeader() {
               <SheetHeader>
                   <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
+               <div className="md:hidden mt-4">
+                 <SearchDialog />
+               </div>
               <div className="flex-grow">
                 <nav className="mt-8 flex flex-col gap-3">
                     <Link onClick={handleLinkClick} href="/tools" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
