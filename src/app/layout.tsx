@@ -5,7 +5,6 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { AppHeader } from '@/components/app-header';
-import { ChatbotAssistant } from '@/components/chatbot-assistant';
 import { AppFooter } from '@/components/app-footer';
 
 
@@ -77,7 +76,6 @@ export default function RootLayout({
           <AppFooter />
         </div>
         <Toaster />
-        <ChatbotAssistant />
       </body>
     </html>
   );
