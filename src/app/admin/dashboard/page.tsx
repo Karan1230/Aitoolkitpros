@@ -47,8 +47,10 @@ export default async function DashboardPage() {
                             <CardTitle>SEO Optimization</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-sm text-muted-foreground mb-4">Placeholder for SEO management tools.</p>
-                            <Button variant="outline" disabled>Manage SEO</Button>
+                            <p className="text-sm text-muted-foreground mb-4">Use the YouTube SEO tool to optimize video content.</p>
+                            <Button asChild variant="outline">
+                                <Link href="/tools/youtube-seo-tool">Manage SEO</Link>
+                            </Button>
                         </CardContent>
                     </Card>
                 </div>
