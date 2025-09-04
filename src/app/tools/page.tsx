@@ -58,6 +58,18 @@ const schema = {
   }
 };
 
+const NativeAdPlaceholder = () => (
+    <div className="group flex">
+        <Card className="w-full transition-all duration-300 flex flex-col bg-muted/50 backdrop-blur-sm border-dashed">
+            <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
+                <div className="w-full h-full min-h-[150px] flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Native Ad</span>
+                </div>
+            </CardContent>
+        </Card>
+    </div>
+);
+
 export default function AllToolsPage() {
   // A mapping for broader category matching
   const categoryMap: { [key: string]: string[] } = {
@@ -89,7 +101,7 @@ export default function AllToolsPage() {
         {/* Ad Placeholder */}
         <div className="mb-12">
           <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-            <span className="text-muted-foreground text-sm">Demo Ad (728x90)</span>
+            <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
           </div>
         </div>
 
@@ -108,6 +120,35 @@ export default function AllToolsPage() {
             return null;
           }
           
+          const itemsWithAds: JSX.Element[] = [];
+          filteredTools.forEach((tool, index) => {
+            itemsWithAds.push(
+              <Link href={tool.href} key={tool.name + tool.href} className="group flex">
+                <Card className="w-full transition-all duration-300 hover:shadow-xl hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
+                  <CardHeader>
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 rounded-lg bg-primary/10 text-primary w-fit">
+                        {tool.icon}
+                      </div>
+                      <CardTitle className="font-headline text-xl group-hover:text-primary transition-colors">{tool.name}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <CardDescription>{tool.description}</CardDescription>
+                  </CardContent>
+                  <div className="p-6 pt-0">
+                    <div className="text-sm font-semibold text-primary group-hover:text-accent flex items-center">
+                      Use Tool <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            );
+            if ((index + 1) % 2 === 0) {
+              itemsWithAds.push(<NativeAdPlaceholder key={`ad-${category.id}-${index}`} />);
+            }
+          });
+
           return (
             <section key={category.id} className="mt-12 first:mt-0">
               <div className="flex flex-col md:flex-row md:items-center gap-4 mb-8">
@@ -120,28 +161,7 @@ export default function AllToolsPage() {
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                {filteredTools.map((tool) => (
-                    <Link href={tool.href} key={tool.name + tool.href} className="group flex">
-                      <Card className="w-full transition-all duration-300 hover:shadow-xl hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
-                        <CardHeader>
-                          <div className="flex items-center gap-4">
-                            <div className="p-3 rounded-lg bg-primary/10 text-primary w-fit">
-                              {tool.icon}
-                            </div>
-                            <CardTitle className="font-headline text-xl group-hover:text-primary transition-colors">{tool.name}</CardTitle>
-                          </div>
-                        </CardHeader>
-                        <CardContent className="flex-grow">
-                          <CardDescription>{tool.description}</CardDescription>
-                        </CardContent>
-                        <div className="p-6 pt-0">
-                          <div className="text-sm font-semibold text-primary group-hover:text-accent flex items-center">
-                            Use Tool <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                          </div>
-                        </div>
-                      </Card>
-                    </Link>
-                  ))}
+                {itemsWithAds}
               </div>
             </section>
           );

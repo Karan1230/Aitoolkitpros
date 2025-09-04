@@ -148,6 +148,12 @@ export default function AdCopyGeneratorPage() {
                 <p>Using our <strong>ad-copy-generator</strong> is incredibly simple. You start by inputting key details about your product or service, your target audience, and the main selling points. The AI then analyzes this information to understand your brand's voice and objectives. From there, it generates multiple ad copy variations, giving you a range of options to A/B test. This data-driven approach helps you identify what works best, improving your ROI and lowering your cost per acquisition. The tool functions as a <strong>free ad copy writer</strong>, saving you countless hours and significant budget that would otherwise be spent on manual copywriting. To further enhance your social media presence, pair your ad copy with the right hashtags using our <Link href="/tools/hashtag-generator">Hashtag Generator</Link>.</p>
                 <p>The applications are limitless. Use it as an <strong>Instagram ad copy generator</strong> to create visually-driven text that complements your images and videos. Leverage it as a <strong>Google ad copy generator</strong> to dominate search results with perfectly crafted headlines. No matter your goal—be it increasing brand awareness, driving traffic, or boosting sales—our <strong>AI ad copy generator</strong> is engineered to deliver results. Stop guessing and start generating ad copy that converts with the power of artificial intelligence. If you have any questions, feel free to <Link href="/contact">contact us</Link>.</p>
             </div>
+             {/* Ad Placeholder */}
+            <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+            </div>
         </div>
       </section>
       <section className="py-16 md:py-24">

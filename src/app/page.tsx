@@ -80,6 +80,18 @@ export default function Home() {
   const handleLoadMore = () => {
     setVisibleToolsCount(prevCount => prevCount + TOOLS_TO_LOAD);
   };
+  
+  const NativeAdPlaceholder = () => (
+    <div className="flex animate-float-in">
+        <Card className="w-full transition-all duration-300 flex flex-col bg-muted/50 backdrop-blur-sm border-dashed">
+            <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
+                <div className="w-full h-full min-h-[100px] flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Native Ad</span>
+                </div>
+            </CardContent>
+        </Card>
+    </div>
+  );
 
   return (
     <div className="flex flex-col">
@@ -100,6 +112,15 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+      {/* Banner Ad Placeholder */}
+      <section className="py-8">
+        <div className="container px-4">
+          <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+            <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+          </div>
+        </div>
+      </section>
 
       {/* Tools Section */}
       <section id="tools" className="py-12">
@@ -108,19 +129,27 @@ export default function Home() {
             <span className="gradient-text">Popular AI Tools</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {allTools.slice(0, visibleToolsCount).map((tool, index) => (
-              <Link href={tool.href} key={tool.name} className="group flex animate-float-in" style={{ animationDelay: `${0.1 + index * 0.05}s`}}>
-                <Card className="w-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
-                  <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
-                    <div className="p-3 mb-3 rounded-lg bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
-                      {tool.icon}
-                    </div>
-                    <p className="font-semibold text-sm">{tool.name}</p>
-                    <p className="text-xs text-muted-foreground mt-1">{tool.category}</p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+            {allTools.slice(0, visibleToolsCount).reduce((acc, tool, index) => {
+              acc.push(
+                <Link href={tool.href} key={tool.name} className="group flex animate-float-in" style={{ animationDelay: `${0.1 + index * 0.05}s`}}>
+                  <Card className="w-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
+                    <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
+                      <div className="p-3 mb-3 rounded-lg bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
+                        {tool.icon}
+                      </div>
+                      <p className="font-semibold text-sm">{tool.name}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{tool.category}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+
+              if ((index + 1) % 3 === 0) {
+                acc.push(<NativeAdPlaceholder key={`ad-${index}`} />);
+              }
+
+              return acc;
+            }, [] as JSX.Element[])}
           </div>
           {visibleToolsCount < allTools.length && (
             <div className="mt-8 text-center">
@@ -129,15 +158,6 @@ export default function Home() {
               </Button>
             </div>
           )}
-        </div>
-      </section>
-      
-      {/* Ad Placeholder */}
-      <section className="py-8">
-        <div className="container px-4">
-          <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-            <span className="text-muted-foreground text-sm">Demo Ad (728x90)</span>
-          </div>
         </div>
       </section>
 
@@ -177,6 +197,15 @@ export default function Home() {
               ))}
             </CarouselContent>
           </Carousel>
+        </div>
+      </section>
+
+      {/* Banner Ad Placeholder */}
+      <section className="py-8">
+        <div className="container px-4">
+          <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+            <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+          </div>
         </div>
       </section>
 
