@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Search, Star, User } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import { Logo } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,7 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -22,9 +22,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { allTools } from "@/lib/tools";
 import { ScrollArea } from "./ui/scroll-area";
-import { UserNav } from "./user-nav";
-import { createClient } from "@/lib/supabase/client";
-import type { User as SupabaseUser } from "@supabase/supabase-js";
 
 function SearchDialog() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -90,29 +87,6 @@ function SearchDialog() {
 
 export function AppHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [user, setUser] = useState<SupabaseUser | null>(null);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-    const supabase = createClient();
-    const fetchUser = async () => {
-        const { data: { session } } = await supabase.auth.getSession();
-        setUser(session?.user ?? null);
-    };
-
-    fetchUser();
-
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUser(session?.user ?? null);
-      }
-    );
-
-    return () => {
-      authListener?.subscription.unsubscribe();
-    };
-  }, []);
   
   const handleLinkClick = () => {
     setIsMenuOpen(false);
@@ -149,17 +123,6 @@ export function AppHeader() {
                </div>
               <div className="flex-grow">
                 <nav className="mt-8 flex flex-col gap-3">
-                    {isClient && (
-                        user ? (
-                            <div onClick={handleLinkClick}>
-                               <UserNav user={user} isMobile={true}/>
-                            </div>
-                        ) : (
-                            <Link onClick={handleLinkClick} href="/login" className="flex items-center p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                               <User className="mr-2 h-5 w-5" /> Login / Sign Up
-                            </Link>
-                        )
-                    )}
                     <Link onClick={handleLinkClick} href="/tools" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
                     All Tools
                     </Link>
@@ -181,15 +144,6 @@ export function AppHeader() {
                 </nav>
               </div>
               <div className="mt-auto text-center text-xs text-muted-foreground space-y-2">
-                  <div className="flex items-center justify-center gap-1">
-                      <Star className="w-3 h-3 text-yellow-400 fill-yellow-400"/>
-                      <Star className="w-3 h-3 text-yellow-400 fill-yellow-400"/>
-                      <Star className="w-3 h-3 text-yellow-400 fill-yellow-400"/>
-                      <Star className="w-3 h-3 text-yellow-400 fill-yellow-400"/>
-                      <Star className="w-3 h-3 text-yellow-400 fill-yellow-400"/>
-                  </div>
-                  <p>Rated 4.9/5 by 1,000+ users</p>
-                  <p>Developed by Sharthaksoftech</p>
                   <p>&copy; {new Date().getFullYear()} AI Toolkit Pro. All rights reserved.</p>
               </div>
             </SheetContent>
