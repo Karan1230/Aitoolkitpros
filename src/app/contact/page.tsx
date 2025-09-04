@@ -1,14 +1,27 @@
+
 import { type Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, MessageSquare, Send } from 'lucide-react';
+import { Send } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Contact Us',
+  title: 'Contact Us | AI Toolkit Pro',
   description: 'Get in touch with the AI Toolkit Pro team. We welcome your questions, feedback, and suggestions.',
+  keywords: ['contact ai toolkit', 'ai tools support', 'feedback', 'feature request'],
+   openGraph: {
+    title: 'Contact Us | AI Toolkit Pro',
+    description: 'We welcome your questions, feedback, and suggestions. Get in touch with our team.',
+    url: 'https://www.aitoolkitpro.com/contact',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Contact AI Toolkit Pro',
+    description: 'Have a question or suggestion? We\'d love to hear from you.',
+  },
 };
 
 const schema = {

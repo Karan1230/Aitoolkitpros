@@ -4,8 +4,20 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Target, Zap } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us',
+  title: 'About Us | AI Toolkit Pro',
   description: 'Learn about the mission and vision behind AI Toolkit Pro, your free all-in-one platform for AI-powered tools.',
+  keywords: ['about ai toolkit pro', 'ai tools mission', 'free ai tools', 'ai for creators', 'democratize ai'],
+  openGraph: {
+    title: 'About Us | AI Toolkit Pro',
+    description: 'Learn about our mission to democratize access to powerful AI tools for everyone.',
+    url: 'https://www.aitoolkitpro.com/about',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'About AI Toolkit Pro',
+    description: 'Discover the team and vision behind the free suite of AI tools.',
+  },
 };
 
 const schema = {

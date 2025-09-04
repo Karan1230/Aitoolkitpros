@@ -1,10 +1,22 @@
 
 import { type Metadata } from 'next';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy',
-  description: 'Read the Privacy Policy for AI Toolkit Pro to understand how we handle your data and protect your privacy.',
+  title: 'Privacy Policy | AI Toolkit Pro',
+  description: 'Read the Privacy Policy for AI Toolkit Pro to understand how we handle your data and protect your privacy when you use our free AI tools.',
+  keywords: ['privacy policy', 'data protection', 'user privacy', 'ai tools privacy'],
+  openGraph: {
+    title: 'Privacy Policy | AI Toolkit Pro',
+    description: 'Understand how we handle your data and protect your privacy.',
+    url: 'https://www.aitoolkitpro.com/privacy-policy',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Privacy Policy | AI Toolkit Pro',
+    description: 'Our commitment to your privacy.',
+  },
 };
 
 const schema = {

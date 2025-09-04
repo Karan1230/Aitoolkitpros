@@ -3,7 +3,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, CheckCircle, PenLine } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { allTools } from "@/lib/tools";
@@ -81,136 +81,118 @@ export default function Home() {
   };
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: `
-          {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "AI Toolkit Pro",
-            "url": "https://www.aitoolkitpro.com",
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": "https://www.aitoolkitpro.com/tools?q={search_term_string}",
-              "query-input": "required name=search_term_string"
-            }
-          }
-        `}}
-      />
-      <div className="flex flex-col">
-        <section className="py-16 md:py-24 text-center">
-          <div className="container">
-            <h1 className="font-headline text-4xl md:text-6xl font-bold gradient-text animate-float-in">
-              AI Toolkit Pro
-            </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-base md:text-lg text-muted-foreground animate-float-in" style={{ animationDelay: '0.1s' }}>
-              Your ultimate suite of free AI tools. Generate ad copy, create scripts, design logos, find SEO keywords, and much more. Boost your productivity with our all-in-one toolkit.
-            </p>
-            <div className="mt-8 flex justify-center gap-4 animate-float-in" style={{ animationDelay: '0.2s' }}>
-              <Button asChild size="lg">
-                <Link href="/tools">
-                  Browse All Tools <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
+    <div className="flex flex-col">
+      <section className="py-16 md:py-24 text-center">
+        <div className="container">
+          <h1 className="font-headline text-4xl md:text-6xl font-bold gradient-text animate-float-in">
+            AI Toolkit Pro
+          </h1>
+          <p className="mt-4 max-w-2xl mx-auto text-base md:text-lg text-muted-foreground animate-float-in" style={{ animationDelay: '0.1s' }}>
+            Your ultimate suite of free AI tools. Generate ad copy, create scripts, design logos, find SEO keywords, and much more. Boost your productivity with our all-in-one toolkit.
+          </p>
+          <div className="mt-8 flex justify-center gap-4 animate-float-in" style={{ animationDelay: '0.2s' }}>
+            <Button asChild size="lg">
+              <Link href="/tools">
+                Browse All Tools <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Tools Section */}
+      <section id="tools" className="py-12">
+        <div className="container px-4">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            <span className="gradient-text">Popular AI Tools</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {allTools.slice(0, visibleToolsCount).map((tool, index) => (
+              <Link href={tool.href} key={tool.name} className="group flex animate-float-in" style={{ animationDelay: `${0.1 + index * 0.05}s`}}>
+                <Card className="w-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
+                  <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
+                    <div className="p-3 mb-3 rounded-lg bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
+                      {tool.icon}
+                    </div>
+                    <p className="font-semibold text-sm">{tool.name}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{tool.category}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+          {visibleToolsCount < allTools.length && (
+            <div className="mt-8 text-center">
+              <Button onClick={handleLoadMore} size="lg" variant="outline">
+                Load More Tools
               </Button>
             </div>
-          </div>
-        </section>
-
-        {/* Tools Section */}
-        <section id="tools" className="py-12">
-          <div className="container px-4">
-            <h2 className="font-headline text-3xl font-bold text-center mb-8">
-              <span className="gradient-text">Popular AI Tools</span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {allTools.slice(0, visibleToolsCount).map((tool, index) => (
-                <Link href={tool.href} key={tool.name} className="group flex animate-float-in" style={{ animationDelay: `${0.1 + index * 0.05}s`}}>
-                  <Card className="w-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
-                    <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
-                      <div className="p-3 mb-3 rounded-lg bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
-                        {tool.icon}
-                      </div>
-                      <p className="font-semibold text-sm">{tool.name}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{tool.category}</p>
-                    </CardContent>
-                  </Card>
-                </Link>
+          )}
+        </div>
+      </section>
+      
+      {/* Testimonials Section */}
+      <section className="py-16">
+        <div className="container px-4">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">What Our Users Say</h2>
+          <Carousel
+            plugins={[plugin.current]}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full max-w-4xl mx-auto"
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
+          >
+            <CarouselContent className="-ml-4">
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                    <Card className="h-full flex flex-col bg-card/50 backdrop-blur-sm shadow-lg">
+                      <CardContent className="p-6 flex-grow flex flex-col justify-center">
+                        <p className="text-muted-foreground italic text-sm mb-4 flex-grow">"{testimonial.quote}"</p>
+                        <div className="flex items-center gap-3">
+                            <Avatar className="w-10 h-10 border-2 border-primary/20">
+                                <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                                <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                            <div>
+                                <h4 className="font-bold text-sm">{testimonial.name}</h4>
+                                <p className="text-xs text-muted-foreground">{testimonial.title}</p>
+                            </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                </CarouselItem>
               ))}
-            </div>
-            {visibleToolsCount < allTools.length && (
-              <div className="mt-8 text-center">
-                <Button onClick={handleLoadMore} size="lg" variant="outline">
-                  Load More Tools
-                </Button>
-              </div>
-            )}
-          </div>
-        </section>
-        
-        {/* Testimonials Section */}
-        <section className="py-16">
-          <div className="container px-4">
-            <h2 className="font-headline text-3xl font-bold text-center mb-8">What Our Users Say</h2>
-            <Carousel
-              plugins={[plugin.current]}
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full max-w-4xl mx-auto"
-              onMouseEnter={plugin.current.stop}
-              onMouseLeave={plugin.current.reset}
-            >
-              <CarouselContent className="-ml-4">
-                {testimonials.map((testimonial, index) => (
-                  <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                      <Card className="h-full flex flex-col bg-card/50 backdrop-blur-sm shadow-lg">
-                        <CardContent className="p-6 flex-grow flex flex-col justify-center">
-                          <p className="text-muted-foreground italic text-sm mb-4 flex-grow">"{testimonial.quote}"</p>
-                          <div className="flex items-center gap-3">
-                              <Avatar className="w-10 h-10 border-2 border-primary/20">
-                                  <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                                  <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                              </Avatar>
-                              <div>
-                                  <h4 className="font-bold text-sm">{testimonial.name}</h4>
-                                  <p className="text-xs text-muted-foreground">{testimonial.title}</p>
-                              </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          </div>
-        </section>
+            </CarouselContent>
+          </Carousel>
+        </div>
+      </section>
 
-        {/* FAQ Section */}
-        <section className="py-16 md:py-24">
-          <div className="container max-w-3xl">
-            <h2 className="font-headline text-3xl font-bold text-center mb-8">
-              Frequently Asked Questions
-            </h2>
-            <Accordion type="single" collapsible className="w-full space-y-4">
-              {faqs.map((faq, index) => (
-                  <AccordionItem 
-                      value={`item-${index}`} 
-                      key={index}
-                      className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
-                      style={{ animationDelay: `${index * 0.1}s`}}
-                  >
-                      <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
-                      <AccordionContent className="text-base text-muted-foreground">
-                          {faq.answer}
-                      </AccordionContent>
-                  </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
-      </div>
-    </>
+      {/* FAQ Section */}
+      <section className="py-16 md:py-24">
+        <div className="container max-w-3xl">
+          <h2 className="font-headline text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+                <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl px-6 animate-pop-in"
+                    style={{ animationDelay: `${index * 0.1}s`}}
+                >
+                    <AccordionTrigger className="font-headline text-lg text-left hover:no-underline">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                        {faq.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+    </div>
   );
 }

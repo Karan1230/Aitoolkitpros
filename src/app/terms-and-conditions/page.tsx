@@ -3,8 +3,20 @@ import { type Metadata } from 'next';
 import { Card, CardContent } from '@/components/ui/card';
 
 export const metadata: Metadata = {
-  title: 'Terms and Conditions',
-  description: 'Please read our Terms and Conditions carefully before using the tools provided by AI Toolkit Pro.',
+  title: 'Terms and Conditions | AI Toolkit Pro',
+  description: 'Please read our Terms and Conditions carefully before using the tools provided by AI Toolkit Pro. Your use of the service constitutes acceptance of these terms.',
+  keywords: ['terms and conditions', 'terms of service', 'website terms', 'ai tools terms'],
+   openGraph: {
+    title: 'Terms and Conditions | AI Toolkit Pro',
+    description: 'Read the terms and conditions for using our free AI tools.',
+    url: 'https://www.aitoolkitpro.com/terms-and-conditions',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Terms and Conditions | AI Toolkit Pro',
+    description: 'Our terms of service.',
+  },
 };
 
 const schema = {

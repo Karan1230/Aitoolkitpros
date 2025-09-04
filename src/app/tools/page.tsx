@@ -6,8 +6,20 @@ import { ArrowRight } from 'lucide-react';
 import { allTools, toolCategories } from '@/lib/tools';
 
 export const metadata: Metadata = {
-  title: 'All AI Tools',
-  description: 'Browse our complete collection of free AI tools for content creation, image generation, audio processing, and more. Find the perfect tool for your needs.',
+  title: 'All AI Tools | Free AI Toolkit',
+  description: 'Browse our complete collection of free AI tools for content creation, image generation, audio processing, business, and more. Find the perfect tool for your needs.',
+  keywords: ['all ai tools', 'ai tool directory', 'free ai tools', 'content creation tools', 'design tools', 'marketing tools', 'business tools'],
+  openGraph: {
+    title: 'Complete Directory of Free AI Tools | AI Toolkit Pro',
+    description: 'Explore all the free AI-powered tools offered by AI Toolkit Pro, categorized for easy browsing.',
+    url: 'https://www.aitoolkitpro.com/tools',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'All AI Tools on AI Toolkit Pro',
+    description: 'Browse our extensive collection of free AI tools.',
+  },
 };
 
 const schema = {
@@ -65,6 +77,15 @@ export default function AllToolsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <div className="container py-12 md:py-20">
+        <div className="text-center mb-12">
+            <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
+                All AI Tools
+            </h1>
+            <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
+                Explore our full suite of free AI tools, designed to help you create, innovate, and grow.
+            </p>
+        </div>
+
         {toolCategories.map((category) => {
           // Filter tools based on the category name and its associated mappings
           const filteredTools = allTools
@@ -81,7 +102,7 @@ export default function AllToolsPage() {
           }
           
           return (
-            <section key={category.id} className="mt-8 first:mt-0">
+            <section key={category.id} className="mt-12 first:mt-0">
               <div className="flex flex-col md:flex-row md:items-center gap-4 mb-8">
                 <div className="p-3 rounded-full bg-primary/10 w-fit">
                   {category.icon}

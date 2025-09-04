@@ -5,6 +5,18 @@ import { Card, CardContent } from '@/components/ui/card';
 export const metadata: Metadata = {
   title: 'Copyright Disclaimer | AI Toolkit Pro',
   description: 'Official copyright disclaimer for AI Toolkit Pro. Learn about content ownership, fair use, and responsibilities regarding AI-generated materials.',
+  keywords: ['copyright', 'disclaimer', 'fair use', 'ai generated content', 'content ownership'],
+  openGraph: {
+    title: 'Copyright Disclaimer | AI Toolkit Pro',
+    description: 'Learn about content ownership, fair use, and responsibilities regarding AI-generated materials.',
+    url: 'https://www.aitoolkitpro.com/copyright-disclaimer',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Copyright Disclaimer | AI Toolkit Pro',
+    description: 'Read our copyright disclaimer regarding AI-generated content.',
+  },
 };
 
 const schema = {
