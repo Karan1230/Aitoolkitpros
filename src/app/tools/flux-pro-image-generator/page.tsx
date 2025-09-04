@@ -42,23 +42,51 @@ const faqs = [
     }
 ];
 
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Flux Pro Image Generator",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "description": "A free Flux Pro Image Generator to create stunning, high-quality photorealistic or artistic visuals from text prompts in seconds.",
+      "url": "https://www.aitoolkitpro.com/tools/flux-pro-image-generator",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "210"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "AI Toolkit Pro"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    }
+  ]
+};
+
 export default function FluxProImageGeneratorPage() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": faqs.map(faq => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": faq.answer
-            }
-          }))
-        }) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">

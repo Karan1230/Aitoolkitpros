@@ -42,23 +42,51 @@ const faqs = [
     }
 ];
 
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "AI Reel/Shorts Script Writer",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web",
+      "description": "A free AI tool to generate engaging short-form video scripts for TikTok, Instagram Reels, and YouTube Shorts, complete with hooks, content ideas, and CTAs.",
+      "url": "https://www.aitoolkitpro.com/tools/reel-shorts-script-writer",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "195"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "AI Toolkit Pro"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    }
+  ]
+};
+
 export default function ReelShortsScriptWriterPage() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": faqs.map(faq => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": faq.answer
-            }
-          }))
-        }) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">

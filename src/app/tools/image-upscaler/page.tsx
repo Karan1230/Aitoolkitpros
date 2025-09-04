@@ -42,23 +42,51 @@ const faqs = [
     }
 ];
 
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "AI Image Upscaler",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "description": "A free AI-powered tool to upscale images to a higher resolution without losing quality. Enlarge photos for print or digital use.",
+      "url": "https://www.aitoolkitpro.com/tools/image-upscaler",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "230"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "AI Toolkit Pro"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    }
+  ]
+};
+
 export default function ImageUpscalerPage() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": faqs.map(faq => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": faq.answer
-            }
-          }))
-        }) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">

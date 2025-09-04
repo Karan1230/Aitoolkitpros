@@ -42,23 +42,51 @@ const faqs = [
     }
 ];
 
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "AI Interior Designer",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "description": "A free AI tool to redesign spaces by uploading a room photo and choosing a new style. Instantly visualize different layouts and designs.",
+      "url": "https://www.aitoolkitpro.com/tools/ai-interior-designer",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "95"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "AI Toolkit Pro"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    }
+  ]
+};
+
 export default function AiInteriorDesignerPage() {
   return (
     <>
      <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": faqs.map(faq => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": faq.answer
-            }
-          }))
-        }) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">

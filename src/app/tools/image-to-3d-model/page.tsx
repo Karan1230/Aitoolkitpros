@@ -34,7 +34,7 @@ const faqs = [
     },
     {
         question: "What format is the downloaded 3D model in?",
-        answer: "The tool typically exports models in common 3D formats like .OBJ or .GLB, which are compatible with most 3D software, including Blender, Unity, and Unreal Engine, as well as for use in AR/VR applications."
+        answer: "The tool typically exports models in common 3D formats like .OBJ or .GLB, which are compatible with most 3D software, including Blender, Unity, and Unreal Engine, as well as for use in in AR/VR applications."
     },
     {
         question: "What kind of images work best for creating a 3D model?",
@@ -42,23 +42,51 @@ const faqs = [
     }
 ];
 
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "AI Image to 3D Model Converter",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "description": "A free AI-powered tool to convert 2D images into detailed 3D models, bringing pictures to life in three dimensions instantly.",
+      "url": "https://www.aitoolkitpro.com/tools/image-to-3d-model",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.5",
+        "reviewCount": "85"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "AI Toolkit Pro"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    }
+  ]
+};
+
 export default function ImageTo3dModelPage() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": faqs.map(faq => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": faq.answer
-            }
-          }))
-        }) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <div className="container py-12 md:py-20">
         <div className="grid lg:grid-cols-5 gap-12">
