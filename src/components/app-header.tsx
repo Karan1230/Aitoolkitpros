@@ -22,6 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { allTools } from "@/lib/tools";
 import { ScrollArea } from "./ui/scroll-area";
+import { UserNav } from "./user-nav";
 
 function SearchDialog() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -104,6 +105,8 @@ export function AppHeader() {
             <SearchDialog />
         </div>
         
+        <UserNav />
+
         <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
                 <Button variant="ghost" size="icon">
