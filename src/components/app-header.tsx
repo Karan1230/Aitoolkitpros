@@ -91,14 +91,14 @@ function SearchDialog() {
 export function AppHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState<SupabaseUser | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const supabase = createClient();
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+    const supabase = createClient();
     const fetchUser = async () => {
         const { data: { session } } = await supabase.auth.getSession();
         setUser(session?.user ?? null);
-        setIsLoading(false);
     };
 
     fetchUser();
@@ -112,7 +112,7 @@ export function AppHeader() {
     return () => {
       authListener?.subscription.unsubscribe();
     };
-  }, [supabase.auth]);
+  }, []);
   
   const handleLinkClick = () => {
     setIsMenuOpen(false);
@@ -149,14 +149,16 @@ export function AppHeader() {
                </div>
               <div className="flex-grow">
                 <nav className="mt-8 flex flex-col gap-3">
-                    {user ? (
-                        <div onClick={handleLinkClick}>
-                           <UserNav user={user} isMobile={true}/>
-                        </div>
-                    ) : (
-                        <Link onClick={handleLinkClick} href="/login" className="flex items-center p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                           <User className="mr-2 h-5 w-5" /> Login / Sign Up
-                        </Link>
+                    {isClient && (
+                        user ? (
+                            <div onClick={handleLinkClick}>
+                               <UserNav user={user} isMobile={true}/>
+                            </div>
+                        ) : (
+                            <Link onClick={handleLinkClick} href="/login" className="flex items-center p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
+                               <User className="mr-2 h-5 w-5" /> Login / Sign Up
+                            </Link>
+                        )
                     )}
                     <Link onClick={handleLinkClick} href="/tools" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
                     All Tools
