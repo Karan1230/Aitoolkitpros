@@ -30,7 +30,7 @@ const greetings: { [key: string]: string } = {
 };
 
 export function ChatbotAssistant() {
-  const [isClient, setIsClient] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [position, setPosition] = useState({ x: 20, y: 20 });
@@ -49,7 +49,8 @@ export function ChatbotAssistant() {
   const popSoundRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    setIsClient(true);
+    setIsMounted(true);
+
     if (sessionStorage.getItem('chatbotDismissed')) {
       setIsDismissed(true);
     } else {
@@ -69,7 +70,7 @@ export function ChatbotAssistant() {
         return () => clearTimeout(welcomeTimer);
     }
   }, []);
-
+  
   useEffect(() => {
     if (isOpen) {
       setMessages([{ sender: 'bot', text: greetings[selectedLanguage] || greetings['English'] }]);
@@ -155,7 +156,7 @@ export function ChatbotAssistant() {
   };
 
 
-  if (!isClient || isDismissed) {
+  if (!isMounted || isDismissed) {
     return null;
   }
 
