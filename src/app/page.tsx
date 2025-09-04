@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, CheckCircle, PenLine } from "lucide-react";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { allTools } from "@/lib/tools";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
@@ -67,10 +67,18 @@ const faqs = [
     }
 ]
 
+const INITIAL_VISIBLE_TOOLS = 9;
+const TOOLS_TO_LOAD = 9;
+
 export default function Home() {
   const plugin = useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
+  const [visibleToolsCount, setVisibleToolsCount] = useState(INITIAL_VISIBLE_TOOLS);
+
+  const handleLoadMore = () => {
+    setVisibleToolsCount(prevCount => prevCount + TOOLS_TO_LOAD);
+  };
 
   return (
     <div className="flex flex-col">
@@ -99,7 +107,7 @@ export default function Home() {
             <span className="gradient-text">Popular AI Tools</span>
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            {allTools.map((tool, index) => (
+            {allTools.slice(0, visibleToolsCount).map((tool, index) => (
               <Link href={tool.href} key={tool.name} className="group flex animate-float-in" style={{ animationDelay: `${0.1 + index * 0.05}s`}}>
                 <Card className="w-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
                   <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
@@ -113,6 +121,13 @@ export default function Home() {
               </Link>
             ))}
           </div>
+          {visibleToolsCount < allTools.length && (
+            <div className="mt-8 text-center">
+              <Button onClick={handleLoadMore} size="lg" variant="outline">
+                Load More Tools
+              </Button>
+            </div>
+          )}
         </div>
       </section>
       
