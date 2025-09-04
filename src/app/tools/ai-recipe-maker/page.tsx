@@ -3,6 +3,7 @@ import { type Metadata } from 'next';
 import { AiRecipeMakerClient } from '@/components/ai-recipe-maker-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Free AI Recipe Maker | Recipes from Your Ingredients',
@@ -68,8 +69,8 @@ export default function AiRecipeMakerPage() {
         <div className="container max-w-4xl">
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Transform Your Kitchen with an AI Recipe Maker</h2>
-                <p>How many times have you stared into your fridge, full of ingredients, yet feeling like you have nothing to cook? An <strong>AI recipe maker</strong> is the perfect solution to this common dilemma. Our innovative tool acts as your personal chef, taking the ingredients you already have and transforming them into delicious, easy-to-follow recipes. This not only sparks creativity in the kitchen but also helps you reduce food waste and save money. It’s a smart, sustainable way to approach meal planning.</p>
-                <p>Our platform features the <strong>best AI recipe generator</strong> because it is designed with the user in mind. The <strong>AI recipe generator from ingredients</strong> is incredibly intuitive; simply list what you have on hand, and the AI will provide a variety of meal ideas. You can also customize the results based on your dietary preferences, such as vegetarian, gluten-free, or low-carb. This makes it a versatile <strong>recipe generator by ingredients free</strong> tool that caters to your specific needs.</p>
+                <p>How many times have you stared into your fridge, full of ingredients, yet feeling like you have nothing to cook? An <strong>AI recipe maker</strong> is the perfect solution to this common dilemma. Our innovative tool acts as your personal chef, taking the ingredients you already have and transforming them into delicious, easy-to-follow recipes. This not only sparks creativity in the kitchen but also helps you reduce food waste and save money. It’s a smart, sustainable way to approach meal planning, a concept championed by organizations like <a href="https://www.feedingamerica.org/our-work/reduce-food-waste" target="_blank" rel="noopener noreferrer">Feeding America</a>.</p>
+                <p>Our platform features the <strong>best AI recipe generator</strong> because it is designed with the user in mind. The <strong>AI recipe generator from ingredients</strong> is incredibly intuitive; simply list what you have on hand, and the AI will provide a variety of meal ideas. You can also customize the results based on your dietary preferences, such as vegetarian, gluten-free, or low-carb. This makes it a versatile <strong>recipe generator by ingredients free</strong> tool that caters to your specific needs. Need a gift for a foodie friend? Try our <Link href="/tools/gift-suggestion-tool">Gift Suggestion Tool</Link>.</p>
                 
                 <h3>Endless Culinary Inspiration at Your Fingertips</h3>
                 <p>The power of our <strong>recipe generator AI</strong> lies in its vast database of culinary knowledge. It can suggest recipes from various cuisines, from Italian to Thai, and for any meal type, whether it's a quick breakfast or a gourmet dinner. This <strong>free AI recipe generator</strong> is like having a cookbook that writes itself based on what's in your pantry. It’s the ultimate kitchen assistant for busy families, students, and anyone looking to simplify their cooking routine.</p>

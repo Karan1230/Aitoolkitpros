@@ -3,6 +3,7 @@ import { type Metadata } from 'next';
 import { ColorPaletteFinderClient } from '@/components/color-palette-finder-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Free AI Color Palette Finder | Generate Color Schemes Instantly',
@@ -68,8 +69,8 @@ export default function ColorPaletteFinderPage() {
         <div className="container max-w-4xl">
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Find the Perfect Colors with an AI Color Palette Finder</h2>
-                <p>Color is a powerful tool in design, capable of evoking emotions and conveying messages. However, finding the right color combination can be a challenging task. An <strong>AI color palette finder</strong> is a revolutionary tool that simplifies this process. Our platform offers a powerful <strong>AI color palette generator</strong> that can create beautiful and harmonious color schemes from a simple text description. It's the perfect tool for designers, artists, and anyone who wants to create visually appealing projects.</p>
-                <p>Our tool is designed to be the <strong>best color palette generator</strong> by offering a wide range of options and a user-friendly interface. The <strong>color scheme generator</strong> can create palettes based on different color theories, such as complementary, analogous, and triadic. This ensures that the colors you choose are not only beautiful but also harmonious. The <strong>free color palette generator</strong> is accessible to everyone, making professional color design available to all.</p>
+                <p>Color is a powerful tool in design, capable of evoking emotions and conveying messages. However, finding the right color combination can be a challenging task. An <strong>AI color palette finder</strong> is a revolutionary tool that simplifies this process. Our platform offers a powerful <strong>AI color palette generator</strong> that can create beautiful and harmonious color schemes from a simple text description. It's the perfect tool for designers, artists, and anyone who wants to create visually appealing projects. For a deep dive into color theory, check out <a href="https://www.colormatters.com/color-and-design/basic-color-theory" target="_blank" rel="noopener noreferrer">ColorMatters</a>.</p>
+                <p>Our tool is designed to be the <strong>best color palette generator</strong> by offering a wide range of options and a user-friendly interface. The <strong>color scheme generator</strong> can create palettes based on different color theories, such as complementary, analogous, and triadic. This ensures that the colors you choose are not only beautiful but also harmonious. The <strong>free color palette generator</strong> is accessible to everyone, making professional color design available to all. Once you have your palette, create a matching <Link href="/tools/ai-logo-maker">logo</Link> for your brand.</p>
 
                 <h3>From Idea to Color Palette in Seconds</h3>
                 <p>Using our <strong>AI color scheme generator</strong> is easy. Simply describe the mood, style, or theme you're going for, and the AI will generate a selection of palettes that match your vision. This makes it an invaluable <strong>website color scheme generator</strong> for web designers who need to create a cohesive look and feel for their sites. The <strong>color palette generator from image</strong> feature also allows you to upload a photo and extract a color palette from it, which is perfect for creating designs that match a specific visual.</p>

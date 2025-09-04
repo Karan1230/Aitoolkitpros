@@ -3,6 +3,7 @@ import { type Metadata } from 'next';
 import { GiftSuggestionToolClient } from '@/components/gift-suggestion-tool-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Free AI Gift Suggestion Tool | Find the Perfect Gift',
@@ -68,8 +69,8 @@ export default function GiftSuggestionToolPage() {
         <div className="container max-w-4xl">
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Find the Perfect Present with an AI Gift Suggestion Tool</h2>
-                <p>Finding the perfect gift can be a stressful experience. An <strong>AI gift suggestion tool</strong> is designed to make this process easy and enjoyable. Our platform offers a powerful <strong>AI gift ideas generator</strong> that can help you find the ideal present for any person and any occasion. Whether you're shopping for a birthday, anniversary, or holiday, our <strong>gift recommendation AI</strong> is here to help you make a thoughtful choice.</p>
-                <p>Our tool is more than just a simple gift finder; it's a sophisticated <strong>AI gift finder</strong> that takes into account the recipient's interests, age, and your budget. The <strong>AI gift generator</strong> provides a curated list of suggestions, complete with descriptions and categories, to help you make an informed decision. This makes it the <strong>best AI gift finder</strong> for anyone who wants to give a meaningful and personalized gift.</p>
+                <p>Finding the perfect gift can be a stressful experience. An <strong>AI gift suggestion tool</strong> is designed to make this process easy and enjoyable. Our platform offers a powerful <strong>AI gift ideas generator</strong> that can help you find the ideal present for any person and any occasion. Whether you're shopping for a birthday, anniversary, or holiday, our <strong>gift recommendation AI</strong> is here to help you make a thoughtful choice. For great gift guides, check out sites like <a href="https://www.thespruce.com/gifts-4162914" target="_blank" rel="noopener noreferrer">The Spruce</a>.</p>
+                <p>Our tool is more than just a simple gift finder; it's a sophisticated <strong>AI gift finder</strong> that takes into account the recipient's interests, age, and your budget. The <strong>AI gift generator</strong> provides a curated list of suggestions, complete with descriptions and categories, to help you make an informed decision. This makes it the <strong>best AI gift finder</strong> for anyone who wants to give a meaningful and personalized gift. For a different kind of fun, try our <Link href="/tools/roast-joke-generator">Roast & Joke Generator</Link>.</p>
                 
                 <h3>Personalized Gift Ideas for Everyone</h3>
                 <p>The <strong>AI personalized gift suggestions</strong> feature is what sets our tool apart. By understanding the recipient's hobbies and passions, the <strong>AI gift recommender</strong> can suggest presents that they will truly love. It's a versatile <strong>gift idea generator free</strong> tool that can be used for friends, family, and colleagues. The <strong>AI present finder</strong> is perfect for those hard-to-shop-for people in your life.</p>

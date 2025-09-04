@@ -3,6 +3,7 @@ import { type Metadata } from 'next';
 import { HoroscopeGeneratorClient } from '@/components/horoscope-generator-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Free AI Horoscope Generator | Daily, Weekly, Monthly',
@@ -68,8 +69,8 @@ export default function HoroscopeGeneratorPage() {
         <div className="container max-w-4xl">
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Explore Your Future with an AI Horoscope Generator</h2>
-                <p>Astrology has been a source of fascination and guidance for centuries. An <strong>AI horoscope generator</strong> brings this ancient practice into the digital age, offering personalized and insightful readings at the click of a button. Our platform provides a powerful <strong>daily horoscope generator</strong> that can give you a glimpse into your day ahead, covering everything from love and career to health and wellness. It's a fun and engaging way to start your day with a positive outlook.</p>
-                <p>Our tool is designed to be the <strong>best horoscope generator</strong> by offering a comprehensive and user-friendly experience. The <strong>free horoscope generator</strong> is accessible to everyone, allowing you to explore your astrological forecast without any cost. Simply select your zodiac sign and desired timeframe, and our <strong>horoscope writer</strong> will provide you with a detailed and personalized reading. It’s a great way to gain a new perspective on your life and the opportunities that lie ahead.</p>
+                <p>Astrology has been a source of fascination and guidance for centuries. An <strong>AI horoscope generator</strong> brings this ancient practice into the digital age, offering personalized and insightful readings at the click of a button. Our platform provides a powerful <strong>daily horoscope generator</strong> that can give you a glimpse into your day ahead, covering everything from love and career to health and wellness. It's a fun and engaging way to start your day with a positive outlook. For more on astrology, <a href="https://www.astrology.com/" target="_blank" rel="noopener noreferrer">Astrology.com</a> is a great resource.</p>
+                <p>Our tool is designed to be the <strong>best horoscope generator</strong> by offering a comprehensive and user-friendly experience. The <strong>free horoscope generator</strong> is accessible to everyone, allowing you to explore your astrological forecast without any cost. Simply select your zodiac sign and desired timeframe, and our <strong>horoscope writer</strong> will provide you with a detailed and personalized reading. It’s a great way to gain a new perspective on your life and the opportunities that lie ahead. If you're interested in other forms of divination, try our <Link href="/tools/dream-interpreter">Dream Interpreter</Link>.</p>
                 
                 <h3>Your Personalized Astrological Forecast</h3>
                 <p>The <strong>AI astrology</strong> technology behind our tool is designed to provide you with accurate and insightful predictions. It analyzes the positions of the stars and planets to generate a horoscope that is unique to your zodiac sign. This makes it a reliable <strong>horoscope content generator</strong> for anyone who is interested in astrology. The <strong>AI generated horoscope</strong> is written in a clear and easy-to-understand language, so you don't need to be an expert to benefit from its wisdom.</p>
