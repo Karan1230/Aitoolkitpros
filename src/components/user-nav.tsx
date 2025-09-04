@@ -29,13 +29,15 @@ export function UserNav({ user }: UserNavProps) {
     )
   }
 
+  const userInitial = user.user_metadata.full_name?.[0] || user.email?.[0] || 'U';
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
             {user.user_metadata.avatar_url && <AvatarImage src={user.user_metadata.avatar_url} alt="User avatar" />}
-            <AvatarFallback>{user.email?.[0].toUpperCase()}</AvatarFallback>
+            <AvatarFallback>{userInitial.toUpperCase()}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
