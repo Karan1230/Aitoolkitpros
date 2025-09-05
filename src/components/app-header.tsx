@@ -27,6 +27,35 @@ import { createClient } from "@/lib/supabase/client";
 import type { User } from "@supabase/supabase-js";
 import { ThemeToggle } from "./theme-toggle";
 
+const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/tools', label: 'All Tools' },
+    { href: '/contact', label: 'Contact Us' },
+];
+
+function NavLinks({ onLinkClick, isMobile }: { onLinkClick?: () => void, isMobile?: boolean }) {
+    const commonClass = "block p-3 text-base font-medium rounded-lg border border-border transition-all duration-300";
+    const mobileClass = "bg-card hover:border-primary";
+    const desktopClass = "border-none hover:bg-accent/50";
+    
+    return (
+        <nav className={isMobile ? "mt-8 flex flex-col gap-3" : "hidden md:flex items-center gap-2"}>
+            {navLinks.map(link => (
+                <Link 
+                    key={link.href} 
+                    href={link.href} 
+                    onClick={onLinkClick} 
+                    className={isMobile ? `${commonClass} ${mobileClass}` : `${commonClass} ${desktopClass} text-sm`}
+                >
+                    {link.label}
+                </Link>
+            ))}
+        </nav>
+    );
+}
+
+
 function SearchDialog() {
     const [searchQuery, setSearchQuery] = useState('');
     const [isOpen, setIsOpen] = useState(false);
@@ -121,10 +150,13 @@ export function AppHeader() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center justify-between border-b border-border/40 bg-background/80 px-4 backdrop-blur-sm">
-      <Link href="/" className="flex items-center gap-2">
-        <Logo className="h-6 w-6 text-primary" />
-        <span className="font-bold text-lg gradient-text">AI Toolkit Pro</span>
-      </Link>
+      <div className="flex items-center gap-4">
+        <Link href="/" className="flex items-center gap-2">
+            <Logo className="h-6 w-6 text-primary" />
+            <span className="font-bold text-lg gradient-text">AI Toolkit Pro</span>
+        </Link>
+        <NavLinks />
+      </div>
       
       <div className="flex items-center gap-2">
         <div className="hidden md:block">
@@ -153,29 +185,7 @@ export function AppHeader() {
                  <SearchDialog />
                </div>
               <div className="flex-grow">
-                <nav className="mt-8 flex flex-col gap-3">
-                    <Link onClick={handleLinkClick} href="/" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                    Home
-                    </Link>
-                    <Link onClick={handleLinkClick} href="/about" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                    About
-                    </Link>
-                    <Link onClick={handleLinkClick} href="/tools" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                    All Tools
-                    </Link>
-                    <Link onClick={handleLinkClick} href="/contact" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                    Contact Us
-                    </Link>
-                    <Link onClick={handleLinkClick} href="/privacy-policy" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                    Privacy Policy
-                    </Link>
-                    <Link onClick={handleLinkClick} href="/terms-and-conditions" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                    Terms & Conditions
-                    </Link>
-                    <Link onClick={handleLinkClick} href="/copyright-disclaimer" className="block p-3 text-base font-medium rounded-lg border border-border bg-card hover:border-primary transition-all duration-300">
-                    Copyright Disclaimer
-                    </Link>
-                </nav>
+                <NavLinks onLinkClick={handleLinkClick} isMobile={true} />
               </div>
               <div className="mt-auto text-center text-xs text-muted-foreground space-y-2">
                   <p>&copy; {new Date().getFullYear()} AI Toolkit Pro. All rights reserved.</p>
