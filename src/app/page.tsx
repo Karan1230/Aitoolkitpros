@@ -71,6 +71,18 @@ const faqs = [
 const INITIAL_VISIBLE_TOOLS = 9;
 const TOOLS_TO_LOAD = 9;
 
+const NativeAdPlaceholder = () => (
+    <div className="group flex animate-float-in">
+        <Card className="w-full transition-all duration-300 flex flex-col bg-muted/50 backdrop-blur-sm border-dashed">
+            <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
+                <div className="w-full h-full min-h-[150px] flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Native Ad</span>
+                </div>
+            </CardContent>
+        </Card>
+    </div>
+);
+
 export default function Home() {
   const plugin = useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
@@ -81,6 +93,39 @@ export default function Home() {
     setVisibleToolsCount(prevCount => prevCount + TOOLS_TO_LOAD);
   };
   
+  const itemsWithAds: JSX.Element[] = [];
+  let toolCounter = 0;
+  while(toolCounter < visibleToolsCount && toolCounter < allTools.length) {
+    // Add 3 tools
+    for(let i = 0; i < 3; i++) {
+        if (toolCounter < allTools.length) {
+            const tool = allTools[toolCounter];
+            itemsWithAds.push(
+                <Link href={tool.href} key={tool.name} className="group flex animate-float-in" style={{ animationDelay: `${0.1 + toolCounter * 0.05}s`}}>
+                  <Card className="w-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
+                    <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
+                      <div className="p-3 mb-3 rounded-lg bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
+                        {tool.icon}
+                      </div>
+                      <p className="font-semibold text-sm">{tool.name}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{tool.category}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
+            );
+            toolCounter++;
+        }
+    }
+
+    // Add 3 ads
+    if(toolCounter < allTools.length && toolCounter < visibleToolsCount) {
+        for(let i = 0; i < 3; i++) {
+            itemsWithAds.push(<NativeAdPlaceholder key={`ad-row-${Math.floor(toolCounter / 3)}-${i}`} />);
+        }
+    }
+  }
+
+
   return (
     <div className="flex flex-col">
       <section className="py-16 md:py-24 text-center">
@@ -108,19 +153,7 @@ export default function Home() {
             <span className="gradient-text">Popular AI Tools</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {allTools.slice(0, visibleToolsCount).map((tool, index) => (
-                <Link href={tool.href} key={tool.name} className="group flex animate-float-in" style={{ animationDelay: `${0.1 + index * 0.05}s`}}>
-                  <Card className="w-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
-                    <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
-                      <div className="p-3 mb-3 rounded-lg bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
-                        {tool.icon}
-                      </div>
-                      <p className="font-semibold text-sm">{tool.name}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{tool.category}</p>
-                    </CardContent>
-                  </Card>
-                </Link>
-            ))}
+            {itemsWithAds}
           </div>
           {visibleToolsCount < allTools.length && (
             <div className="mt-8 text-center">
