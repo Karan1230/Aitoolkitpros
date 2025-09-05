@@ -100,6 +100,12 @@ export default function HashtagGeneratorPage() {
                 </p>
               </div>
 
+              <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <HashtagGeneratorClient />
               </div>
@@ -117,6 +123,10 @@ export default function HashtagGeneratorPage() {
                   </CardContent>
               </Card>
 
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -130,6 +140,10 @@ export default function HashtagGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
+
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
           </div>
         </div>
       </div>
@@ -138,10 +152,24 @@ export default function HashtagGeneratorPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Boost Your Reach with an AI Hashtag Generator</h2>
                 <p>Hashtags are a vital component of any successful social media strategy. They help categorize your content and make it discoverable to a wider audience. An <strong>AI hashtag generator</strong> is a powerful tool that simplifies the process of finding the right hashtags for your posts. Our platform offers a <strong>free hashtag generator</strong> that can provide you with a list of relevant, trending, and niche-specific hashtags in seconds. It's the perfect tool for marketers, influencers, and anyone who wants to grow their social media presence. For more on hashtag strategy, check out <a href="https://later.com/blog/ultimate-guide-to-using-instagram-hashtags/" target="_blank" rel="noopener noreferrer">Later's blog</a>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Our tool is designed to be the <strong>best hashtag generator</strong> by offering a combination of accuracy and ease of use. The <strong>hashtag generator AI</strong> analyzes your topic and suggests hashtags that are most likely to increase your reach and engagement. This makes it an invaluable <strong>Instagram hashtag generator</strong> for creating posts that connect with your target audience. The <strong>free hashtag generator for Instagram</strong> is also a great way to discover new trends and stay ahead of the competition. Pair your hashtags with great content using our <Link href="/tools/social-media-post-generator">Social Media Post Generator</Link>.</p>
 
                 <h3>Find the Perfect Hashtags for Any Platform</h3>
                 <p>The versatility of our <strong>hashtag suggestion tool</strong> is one of its key strengths. It can be used as a <strong>TikTok hashtag generator</strong> to help your videos go viral, or as a <strong>YouTube hashtag generator</strong> to improve the discoverability of your content. The <strong>hashtag finder</strong> is designed to work across all major social media platforms, so you can maintain a consistent and effective hashtag strategy. Our <strong>free hashtag generator tool</strong> is a must-have for any serious content creator. You can also generate <Link href="/tools/ad-copy-generator">ad copy</Link> to go along with your posts.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+                
                 <p>Using our <strong>hashtag creator</strong> is simple. Just enter your topic, and the AI will do the rest. The <strong>AI hashtag generator free</strong> tool will provide you with a list of hashtags that you can copy and paste directly into your posts. Stop guessing which hashtags to use and start using a data-driven approach. Try our <strong>best free hashtag generator</strong> today and see the difference it can make in your social media performance.</p>
             </div>
         </div>

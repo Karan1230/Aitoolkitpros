@@ -100,6 +100,12 @@ export default function ExamQuestionGeneratorPage() {
                 </p>
               </div>
 
+              <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <QuizGeneratorClient />
               </div>
@@ -117,6 +123,10 @@ export default function ExamQuestionGeneratorPage() {
                   </CardContent>
               </Card>
 
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -130,6 +140,10 @@ export default function ExamQuestionGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
+
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
           </div>
         </div>
       </div>
@@ -138,10 +152,24 @@ export default function ExamQuestionGeneratorPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Enhance Learning with an AI Exam Question Generator</h2>
                 <p>Creating effective exam questions can be a time-consuming process for educators. An <strong>AI exam question generator</strong> is a revolutionary tool that automates this task, allowing teachers to create high-quality assessments in minutes. Our platform offers a powerful <strong>AI question generator from text</strong> that can analyze any topic and produce a variety of question types. This makes it the <strong>best AI question generator</strong> for creating customized exams that align with your curriculum. For more educational resources, visit <a href="https://www.khanacademy.org/" target="_blank" rel="noopener noreferrer">Khan Academy</a>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Our tool is more than just a simple question bank; it's a sophisticated <strong>AI test generator free</strong> of charge that can adapt to different learning levels and subjects. The <strong>AI multiple choice question generator</strong> is perfect for creating quick and effective assessments, while the <strong>AI quiz generator</strong> can be used to create fun and engaging learning activities. With our <strong>free AI test generator</strong>, you can save valuable time and focus on what you do best: teaching. You can even create full course outlines with our <Link href="/tools/course-outline-generator">Course Outline Generator</Link>.</p>
 
                 <h3>Create Customized Assessments in Any Subject</h3>
                 <p>The versatility of our <strong>AI exam generator</strong> is one of its key features. It can be used as a <strong>math question generator</strong>, a <strong>history question generator</strong>, or for any other subject you can think of. The <strong>long answer question generator</strong> is great for assessing critical thinking skills, while the <strong>free multiple choice question generator from text</strong> is perfect for creating objective tests. This makes our tool an invaluable resource for teachers at all levels. Once the exam is done, you can create study materials with our <Link href="/tools/study-notes-creator">Study Notes Creator</Link>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Our <strong>AI question generator free</strong> tool is designed to be user-friendly and intuitive. Simply enter your topic, choose your question types, and let the AI do the rest. The <strong>free AI question generator from text</strong> will provide you with a complete exam, including answers and explanations. Stop spending hours creating assessments and start using the power of AI to enhance your teaching. Try our <strong>AI test question generator free</strong> tool today and revolutionize the way you assess learning.</p>
             </div>
         </div>

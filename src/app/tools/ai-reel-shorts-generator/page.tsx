@@ -117,7 +117,7 @@ export default function AiReelShortsGeneratorPage() {
                   <CardContent className="space-y-4">
                       <p><strong>1. Enter Prompt:</strong> Describe the video you want to create in the text box.</p>
                       <p><strong>2. Generate:</strong> Click the "Run" button and wait for the AI to create your video.</p>
-                      <p><strong>3. Download:</strong> Once generated, you can download the video directly.</p>
+                      <p><strong>3. Download:</strong> Once generated, you can download the video directly from the player.</p>
                   </CardContent>
               </Card>
 

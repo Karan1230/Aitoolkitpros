@@ -100,6 +100,12 @@ export default function ImageToVideoGeneratorPage() {
                 </p>
               </div>
 
+              <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <ImageToVideoGeneratorClient />
               </div>
@@ -117,6 +123,10 @@ export default function ImageToVideoGeneratorPage() {
                   </CardContent>
               </Card>
 
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -130,6 +140,10 @@ export default function ImageToVideoGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
+
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
           </div>
         </div>
       </div>
@@ -138,10 +152,24 @@ export default function ImageToVideoGeneratorPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Animate Your Photos with an AI Image to Video Generator</h2>
                 <p>Static images are great, but video content is more engaging. An <strong>AI image to video generator</strong> is a powerful tool that can transform your still photos into dynamic, eye-catching videos. Our platform offers a state-of-the-art <strong>image to video AI generator free</strong> of charge, allowing you to create stunning animations with just a few clicks. It's the perfect solution for content creators, marketers, and anyone who wants to add a new dimension to their visuals. To generate images from scratch, use our <Link href="/tools/ai-image-generator">AI Image Generator</Link>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Our tool is designed to be the <strong>best AI image to video generator</strong> by providing high-quality results and a user-friendly experience. The <strong>AI video generator from image</strong> technology can animate your photos in a variety of ways, from subtle movements to dramatic effects. This makes it a versatile <strong>picture to video AI generator</strong> for a wide range of applications. The <strong>image to video AI free</strong> tool is accessible to everyone, so you can start creating amazing videos right away. For more on video marketing, check out guides from <a href="https://vimeo.com/blog/category/video-marketing/" target="_blank" rel="noopener noreferrer">Vimeo's blog</a>.</p>
 
                 <h3>From Still Image to Moving Story</h3>
                 <p>The process of using our <strong>image to video maker AI</strong> is incredibly simple. Just upload your image, provide a prompt describing the desired motion, and let the AI do the rest. The <strong>photo to video AI generator free</strong> tool will create a short video clip that you can use on social media, in presentations, or on your website. It's a great way to make your content more engaging and memorable. The <strong>free AI image to video generator</strong> is also a fun tool for personal projects, allowing you to bring your favorite photos to life. You can also generate longer videos with our <Link href="/tools/ltx-ai-video-generator">LTX AI Video Generator</Link>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Whether you're looking to create an animated logo, a looping background, or a dynamic social media post, our <strong>make image into video AI</strong> tool has you covered. It's a powerful <strong>AI image to video free</strong> solution that can help you create professional-looking videos without any editing skills. Stop using static images and start creating dynamic content that captivates your audience. Try our <strong>image to video AI generator no watermark</strong> tool today and see the difference it can make.</p>
             </div>
         </div>

@@ -100,6 +100,12 @@ export default function SloganGeneratorPage() {
                 </p>
               </div>
 
+              <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <SloganGeneratorClient />
               </div>
@@ -117,6 +123,10 @@ export default function SloganGeneratorPage() {
                   </CardContent>
               </Card>
 
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -130,6 +140,10 @@ export default function SloganGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
+
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
           </div>
         </div>
       </div>
@@ -138,10 +152,24 @@ export default function SloganGeneratorPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Craft the Perfect Tagline with an AI Slogan Generator</h2>
                 <p>A great slogan can make your brand unforgettable. An <strong>AI slogan generator</strong> is a powerful tool that can help you create a catchy and memorable tagline for your business. Our platform offers a sophisticated <strong>slogan maker</strong> that can generate a wide variety of slogans based on your brand's identity and key message. It's the perfect solution for startups, small businesses, and anyone who wants to create a strong brand presence. For more on branding, check out <a href="https://www.entrepreneur.com/topic/branding" target="_blank" rel="noopener noreferrer">Entrepreneur's branding resources</a>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Our tool is designed to be the <strong>best slogan generator</strong> by providing creative and relevant suggestions. The <strong>free slogan generator</strong> is easy to use; simply enter your brand details, and the AI will do the rest. This makes it an invaluable <strong>business slogan generator</strong> for entrepreneurs who want to create a professional brand identity without the high cost of a marketing agency. The <strong>slogan creator</strong> is also a great tool for brainstorming and exploring different marketing angles. Once you have a slogan, you can create a <Link href="/tools/ai-logo-maker">logo</Link> to match.</p>
                 
                 <h3>From Brand Name to Catchy Slogan in Seconds</h3>
                 <p>The <strong>AI tagline generator</strong> can create slogans in a variety of styles, from professional and serious to fun and playful. This makes it a versatile <strong>company slogan generator</strong> that can be used for any type of business. The <strong>catchy slogan generator</strong> is perfect for creating taglines that will stick in your customers' minds. Our <strong>free slogan maker</strong> is a must-have for any marketer who wants to create a strong and memorable brand. You can also generate <Link href="/tools/ad-copy-generator">ad copy</Link> to use with your new slogan.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Whether you need a new slogan for your website, a tagline for a marketing campaign, or a motto for your company, our <strong>slogan generator from keywords</strong> can help you achieve your goals. It's a powerful <strong>business name and slogan generator</strong> that can help you create a cohesive brand identity. Stop struggling to come up with the perfect slogan and start using the power of AI to create a tagline that truly represents your brand. Try our <strong>slogan generator free online</strong> today and see the difference it can make.</p>
             </div>
         </div>

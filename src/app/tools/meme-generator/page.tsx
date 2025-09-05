@@ -100,6 +100,12 @@ export default function MemeGeneratorPage() {
                 </p>
               </div>
 
+              <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <MemeGeneratorClient />
               </div>
@@ -117,6 +123,10 @@ export default function MemeGeneratorPage() {
                   </CardContent>
               </Card>
 
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -130,6 +140,10 @@ export default function MemeGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
+
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
           </div>
         </div>
       </div>
@@ -138,10 +152,24 @@ export default function MemeGeneratorPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Go Viral with an AI Meme Generator</h2>
                 <p>Memes are the language of the internet, a fun and engaging way to connect with people and share ideas. An <strong>AI meme generator</strong> is a fantastic tool that allows you to create your own hilarious memes in seconds. Our platform offers a powerful <strong>free meme generator</strong> that can turn your ideas into viral-worthy content. Whether you're a social media manager, a content creator, or just someone who loves to make people laugh, our <strong>AI meme creator</strong> is the perfect tool for you. For more on meme culture, check out <a href="https://knowyourmeme.com/" target="_blank" rel="noopener noreferrer">Know Your Meme</a>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Our tool is designed to be the <strong>best meme generator</strong> by offering a combination of creativity and ease of use. The <strong>meme maker AI</strong> can generate memes from text prompts, or you can upload your own image to use as a template. This makes it a versatile <strong>meme generator from image</strong> tool that can be used to create a wide variety of content. The <strong>free online meme generator</strong> is accessible from any device, so you can create memes on the go. You can also generate jokes and roasts with our <Link href="/tools/roast-joke-generator">Roast/Joke Generator</Link>.</p>
 
                 <h3>Create Hilarious Memes in Seconds</h3>
                 <p>Using our <strong>AI meme generator free</strong> tool is a breeze. Simply enter a topic or a funny situation, and the AI will generate a meme that is sure to get a laugh. This makes it a great <strong>funny meme generator</strong> for creating content that will resonate with your audience. The <strong>meme creator free</strong> tool is also a great way to stay on top of current trends and create timely content that is relevant to what's happening in the world. You can even create animated memes with our <Link href="/tools/image-to-video-generator">Image to Video Generator</Link>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Whether you're looking to create a meme for your personal social media accounts or for a professional marketing campaign, our <strong>meme maker free online</strong> tool has you covered. It's a powerful <strong>online meme maker</strong> that can help you create engaging content that drives likes, shares, and comments. Stop using generic meme templates and start creating your own unique and hilarious content. Try our <strong>AI generated memes</strong> tool today and let your creativity shine.</p>
             </div>
         </div>

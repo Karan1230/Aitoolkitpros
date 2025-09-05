@@ -100,6 +100,12 @@ export default function ImageUpscalerPage() {
                 </p>
               </div>
 
+              <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <ImageUpscalerClient />
               </div>
@@ -117,6 +123,10 @@ export default function ImageUpscalerPage() {
                   </CardContent>
               </Card>
 
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -130,6 +140,10 @@ export default function ImageUpscalerPage() {
                       ))}
                   </CardContent>
               </Card>
+
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
           </div>
         </div>
       </div>
@@ -138,10 +152,24 @@ export default function ImageUpscalerPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Enhance Your Images with an AI Image Upscaler</h2>
                 <p>Low-resolution images can be a major roadblock for any creative project. An <strong>AI image upscaler</strong> is a powerful tool that can increase the resolution of your images without sacrificing quality. Our platform offers a state-of-the-art <strong>AI photo upscaler</strong> that uses advanced algorithms to enhance details and create stunning, high-resolution visuals. It's the perfect solution for anyone who needs to enlarge images for print, web, or any other application. For more on image resolution, check out <a href="https://www.adobe.com/creativecloud/photography/discover/image-resolution.html" target="_blank" rel="noopener noreferrer">Adobe's guide</a>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Our tool is designed to be the <strong>best AI image upscaler</strong> by providing professional-grade results for free. The <strong>free AI image upscaler</strong> is easy to use; simply upload your image, and the AI will do the rest. This makes it an invaluable <strong>photo enlarger AI</strong> for photographers who need to print their work in large formats, or for designers who need to work with high-resolution assets. The <strong>AI image enhancer free</strong> tool is a must-have for any creative professional. You can create original images with our <Link href="/tools/ai-image-generator">AI Image Generator</Link> first.</p>
                 
                 <h3>From Low-Res to High-Def in Seconds</h3>
                 <p>The <strong>AI image resolution increaser</strong> technology behind our tool is what sets it apart. It doesn't just stretch the pixels; it intelligently adds new details to create a sharp and clear image. This makes it a powerful <strong>4k image upscaler</strong> for creating visuals that look great on any screen. The <strong>free online image upscaler</strong> is accessible from any device, so you can enhance your images on the go. You can also edit your images before upscaling with our <Link href="/tools/ai-image-editor">AI Image Editor</Link>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Whether you're working with old family photos or modern digital images, our <strong>photo resolution increaser free online</strong> tool can help you achieve the best possible quality. It's a versatile <strong>picture upscaler</strong> that can be used for a wide range of applications. Stop struggling with blurry, low-resolution images and start using the power of AI to create stunning, high-definition visuals. Try our <strong>best free image upscaler</strong> today and see the difference for yourself.</p>
             </div>
         </div>

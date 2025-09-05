@@ -100,6 +100,12 @@ export default function FluxProImageGeneratorPage() {
                 </p>
               </div>
 
+              <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <FluxProImageGeneratorClient />
               </div>
@@ -116,6 +122,10 @@ export default function FluxProImageGeneratorPage() {
                   </CardContent>
               </Card>
 
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -129,6 +139,10 @@ export default function FluxProImageGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
+
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
           </div>
         </div>
       </div>
@@ -137,10 +151,24 @@ export default function FluxProImageGeneratorPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Unleash Pro-Level Creativity with the Flux Pro Image Generator</h2>
                 <p>The <strong>Flux Pro image generator</strong> is a state-of-the-art tool that brings professional-level AI image creation to your fingertips. This is not just another <strong>AI image generator</strong>; it's a high-performance engine designed to produce exceptionally detailed and high-quality visuals. If you're looking for the <strong>best AI image generator</strong> that combines speed with artistic excellence, Flux Pro is the answer. Our <strong>free AI image generator</strong> makes this advanced technology accessible to everyone, from seasoned designers to aspiring artists. For a simpler version, you can also try our <Link href="/tools/flux-image-generator">standard Flux Image Generator</Link>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Powered by a sophisticated <strong>text to image AI</strong> model, the Flux Pro generator excels at interpreting complex prompts and creating nuanced, lifelike images. Use it as a <strong>realistic AI image generator</strong> to produce photos that are indistinguishable from reality, or as a creative <strong>AI art generator</strong> to explore imaginative and abstract concepts. The level of detail and coherence in the generated images makes it a top-tier <strong>AI image creator</strong> for any professional application. To learn about the latest in AI, visit <a href="https://deepmind.google/" target="_blank" rel="noopener noreferrer">Google DeepMind's blog</a>.</p>
                 
                 <h3>Why Choose Flux Pro for Your Creative Projects?</h3>
                 <p>The <strong>Flux Pro art generator</strong> is more than just a tool; it's a creative partner. It functions as a powerful <strong>AI photo generator</strong> and <strong>AI picture generator</strong>, capable of producing a wide array of visual content. Whether you need a stunning landscape, a detailed character portrait, or a unique abstract piece, this <strong>AI image generator online</strong> tool delivers consistently impressive results. The quality of the output makes it an ideal <strong>AI image generator HD</strong> solution for projects that require high-resolution assets. You can enhance your generated images even further with our <Link href="/tools/image-upscaler">Image Upscaler</Link>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>With our <strong>free AI image creator</strong>, you have access to a tool that is both powerful and user-friendly. The <strong>free text to image AI</strong> interface allows you to start creating right away, without a steep learning curve. Experiment with different prompts and styles to see the full potential of this incredible technology. Whether you're an artist, a designer, or a marketer, the Flux Pro image generator is the ultimate tool for bringing your creative ideas to life. Experience the future of image generation today.</p>
             </div>
         </div>

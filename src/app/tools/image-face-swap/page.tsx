@@ -30,7 +30,7 @@ const faqs = [
     },
     {
         question: "How do I get the best results with the face swapper?",
-        answer: "For the best results, use clear, high-quality photos where the faces are well-lit and facing forward. The closer the angle and lighting are between the source and target photos, the more realistic the final face swap will be."
+        answer: "For the best results, use a clear, high-quality photo where the faces are well-lit and facing forward. The closer the angle and lighting are between the source and target photos, the more realistic the final face swap will be."
     },
     {
         question: "Can I swap faces in a video?",
@@ -100,6 +100,12 @@ export default function ImageFaceSwapPage() {
                 </p>
               </div>
 
+              <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <ImageFaceSwapClient />
               </div>
@@ -117,6 +123,10 @@ export default function ImageFaceSwapPage() {
                   </CardContent>
               </Card>
 
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -130,6 +140,10 @@ export default function ImageFaceSwapPage() {
                       ))}
                   </CardContent>
               </Card>
+
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
           </div>
         </div>
       </div>
@@ -138,10 +152,24 @@ export default function ImageFaceSwapPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Create Fun and Realistic Face Swaps with AI</h2>
                 <p>Have you ever wondered what you would look like with a different hairstyle or in a different historical setting? An <strong>AI image face swap</strong> tool makes this possible. Our platform offers a powerful <strong>AI face swap</strong> that can seamlessly blend a face from one image onto another. It's a fun and creative way to experiment with your photos, create hilarious memes, or even visualize different looks for yourself. The best part is, our <strong>face swap online free</strong> tool is accessible to everyone. For more on this technology, check out resources from <a href="https://www.nvidia.com/en-us/research/ai-playground/" target="_blank" rel="noopener noreferrer">NVIDIA's AI Playground</a>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Our tool is designed to be the <strong>best free face swap app</strong> by providing high-quality, realistic results. The <strong>AI face swapper</strong> uses advanced algorithms to match lighting, skin tone, and angles, ensuring that the final image looks natural and believable. This makes it a great <strong>photo face swap free</strong> tool for both personal and professional use. The <strong>free online face swap</strong> is easy to use, so you can start creating right away, no technical skills required. You can even try our <Link href="/tools/video-face-swap">Video Face Swap</Link> for moving images.</p>
 
                 <h3>How to Swap Faces with AI</h3>
                 <p>The process of using our <strong>face swap generator</strong> is simple. First, you upload a source image containing the face you want to use. Then, you upload a target image where you want to place the face. The <strong>AI face swap free online</strong> tool will then analyze both images and perform the swap. You'll be amazed at how realistic the results are. It's a versatile <strong>face changer online free</strong> tool that can be used for a wide range of creative projects, like making content for our <Link href="/tools/meme-generator">Meme Generator</Link>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Whether you're looking to create a funny picture to share with friends or a professional-looking image for a marketing campaign, our <strong>free face swap online</strong> tool has you covered. It's a powerful <strong>face replacer</strong> that can help you create unique and engaging content. Stop using complicated photo editing software and start using the power of AI to create stunning face swaps. Try our <strong>AI face swap free</strong> tool today and let your creativity run wild.</p>
             </div>
         </div>

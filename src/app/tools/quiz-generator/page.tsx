@@ -100,6 +100,12 @@ export default function QuizGeneratorPage() {
                 </p>
               </div>
 
+              <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <QuizGeneratorClient />
               </div>
@@ -117,6 +123,10 @@ export default function QuizGeneratorPage() {
                   </CardContent>
               </Card>
 
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -130,6 +140,10 @@ export default function QuizGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
+
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
           </div>
         </div>
       </div>
@@ -138,10 +152,24 @@ export default function QuizGeneratorPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Create Engaging Assessments with an AI Quiz Generator</h2>
                 <p>Quizzes are a fantastic way to assess knowledge, engage students, and make learning more interactive. An <strong>AI quiz generator</strong> is a powerful tool that can help you create custom quizzes on any topic in minutes. Our platform offers a versatile <strong>AI question generator</strong> that can produce a variety of question types, from multiple-choice to fill-in-the-blank. It's the perfect solution for educators, trainers, and anyone who wants to create engaging and effective assessments. For more on modern teaching strategies, check out <a href="https://www.edutopia.org/" target="_blank" rel="noopener noreferrer">Edutopia</a>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Our tool is designed to be the <strong>best AI quiz generator</strong> by providing a combination of flexibility and ease of use. The <strong>free quiz generator</strong> is accessible to everyone, allowing you to create high-quality quizzes without any cost. The <strong>AI test generator</strong> can be used to create assessments for any subject, from history to mathematics. It's a powerful <strong>quiz maker AI</strong> that can save you hours of work and help you create more effective learning materials. You can also create study materials with our <Link href="/tools/study-notes-creator">Study Notes Creator</Link>.</p>
                 
                 <h3>From Topic to Test in a Few Clicks</h3>
                 <p>Using our <strong>AI quiz maker</strong> is a simple process. Just enter your topic, select the desired difficulty and question types, and the AI will do the rest. The <strong>AI multiple choice question generator</strong> is perfect for creating quick and easy assessments, while the <strong>AI question generator from text</strong> can be used to create quizzes based on specific learning materials. This makes our tool an invaluable <strong>free AI quiz generator from text</strong> for teachers who want to create customized assessments. For a full curriculum, use our <Link href="/tools/course-outline-generator">Course Outline Generator</Link>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Whether you're creating a quiz for your students, a training module for your employees, or a fun trivia night with friends, our <strong>quiz generator from topic</strong> has you covered. It's a versatile <strong>online quiz maker for teachers free</strong> of charge and for everyone else. Stop spending hours creating quizzes manually and start using the power of AI to create engaging and effective assessments. Try our <strong>best free AI quiz generator</strong> today and see how easy it is to make learning fun.</p>
             </div>
         </div>

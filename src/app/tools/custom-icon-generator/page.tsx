@@ -100,6 +100,12 @@ export default function CustomIconGeneratorPage() {
                 </p>
               </div>
 
+              <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <CustomIconGeneratorClient />
               </div>
@@ -117,6 +123,10 @@ export default function CustomIconGeneratorPage() {
                   </CardContent>
               </Card>
 
+               <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+              </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -130,6 +140,10 @@ export default function CustomIconGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
+              
+               <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+              </div>
           </div>
         </div>
       </div>
@@ -138,10 +152,24 @@ export default function CustomIconGeneratorPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Design Unique Icons with an AI Custom Icon Generator</h2>
                 <p>Icons are a crucial element of modern design, conveying information and enhancing the user experience. An <strong>AI custom icon generator</strong> is a powerful tool that allows you to create unique and professional icons in minutes. Our platform offers a <strong>free AI icon generator</strong> that can produce icons in a variety of styles, from flat and minimalist to 3D and cartoonish. It's the perfect solution for designers, developers, and marketers who need high-quality icons for their projects. For more on icon design principles, check out <a href="https://m2.material.io/design/iconography/system-icons.html" target="_blank" rel="noopener noreferrer">Google's Material Design documentation</a>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Our tool is designed to be the <strong>best AI icon generator</strong> by providing a combination of quality, speed, and ease of use. The <strong>AI icon generator from text</strong> technology allows you to simply describe the icon you want, and the AI will generate a selection of designs that match your vision. This makes it an incredibly efficient <strong>custom icon maker</strong>, saving you time and effort on manual design work. The <strong>AI generated icons</strong> are high-resolution and suitable for both web and print applications. Pair your new icons with a fresh logo from our <Link href="/tools/ai-logo-maker">AI Logo Maker</Link>.</p>
 
                 <h3>From Text to Icon in a Few Clicks</h3>
                 <p>Using our <strong>AI icon creator</strong> is a simple process. First, you provide a text prompt describing the icon you need. Then, you can choose a style and color palette to match your brand's identity. The <strong>free icon maker</strong> will then generate a variety of icons for you to choose from. You can experiment with different prompts and styles until you find the perfect design. It's a versatile <strong>app icon generator</strong> that can be used to create icons for any type of application. You can also generate larger images with our <Link href="/tools/ai-image-generator">AI Image Generator</Link>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Whether you need a new set of icons for your website, a custom icon for a presentation, or a unique app icon, our <strong>AI icon generator free</strong> tool has you covered. It's a powerful <strong>logo and icon generator</strong> that can help you create a cohesive and professional brand identity. Stop using generic stock icons and start creating custom designs that truly represent your brand. Try our <strong>best free AI icon generator</strong> today and experience the future of icon design.</p>
             </div>
         </div>

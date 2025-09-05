@@ -100,6 +100,12 @@ export default function GiftSuggestionToolPage() {
                 </p>
               </div>
 
+              <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <GiftSuggestionToolClient />
               </div>
@@ -117,6 +123,10 @@ export default function GiftSuggestionToolPage() {
                   </CardContent>
               </Card>
 
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -130,6 +140,10 @@ export default function GiftSuggestionToolPage() {
                       ))}
                   </CardContent>
               </Card>
+
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
           </div>
         </div>
       </div>
@@ -138,10 +152,24 @@ export default function GiftSuggestionToolPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Find the Perfect Present with an AI Gift Suggestion Tool</h2>
                 <p>Finding the perfect gift can be a stressful experience. An <strong>AI gift suggestion tool</strong> is designed to make this process easy and enjoyable. Our platform offers a powerful <strong>AI gift ideas generator</strong> that can help you find the ideal present for any person and any occasion. Whether you're shopping for a birthday, anniversary, or holiday, our <strong>gift recommendation AI</strong> is here to help you make a thoughtful choice. For great gift guides, check out sites like <a href="https://www.thespruce.com/gifts-4162914" target="_blank" rel="noopener noreferrer">The Spruce</a>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Our tool is more than just a simple gift finder; it's a sophisticated <strong>AI gift finder</strong> that takes into account the recipient's interests, age, and your budget. The <strong>AI gift generator</strong> provides a curated list of suggestions, complete with descriptions and categories, to help you make an informed decision. This makes it the <strong>best AI gift finder</strong> for anyone who wants to give a meaningful and personalized gift. For a different kind of fun, try our <Link href="/tools/roast-joke-generator">Roast & Joke Generator</Link>.</p>
                 
                 <h3>Personalized Gift Ideas for Everyone</h3>
                 <p>The <strong>AI personalized gift suggestions</strong> feature is what sets our tool apart. By understanding the recipient's hobbies and passions, the <strong>AI gift recommender</strong> can suggest presents that they will truly love. It's a versatile <strong>gift idea generator free</strong> tool that can be used for friends, family, and colleagues. The <strong>AI present finder</strong> is perfect for those hard-to-shop-for people in your life.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Whether you need a <strong>Christmas gift generator</strong> to get a head start on your holiday shopping or a <strong>birthday gift idea generator</strong> for an upcoming celebration, our tool is here to help. The <strong>free gift idea generator</strong> is a great way to discover new and unique gift ideas that you might not have thought of on your own. Stop stressing about gift shopping and start using the power of AI to find the perfect present. Try our <strong>AI gift suggestion tool</strong> today and make every gift-giving occasion a success.</p>
             </div>
         </div>

@@ -100,6 +100,12 @@ export default function CourseOutlineGeneratorPage() {
                 </p>
               </div>
 
+              <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <CourseOutlineGeneratorClient />
               </div>
@@ -117,6 +123,10 @@ export default function CourseOutlineGeneratorPage() {
                   </CardContent>
               </Card>
 
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -130,6 +140,10 @@ export default function CourseOutlineGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
+
+                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+                </div>
           </div>
         </div>
       </div>
@@ -138,10 +152,24 @@ export default function CourseOutlineGeneratorPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Structure Your Knowledge with an AI Course Outline Generator</h2>
                 <p>Creating a well-structured course can be a daunting task. From defining learning objectives to organizing content into logical modules, the process requires careful planning and a significant time investment. An <strong>AI course outline generator</strong> is a powerful tool that simplifies this process, allowing you to create a comprehensive course structure in minutes. Our platform offers a <strong>free course outline generator</strong> that is perfect for educators, trainers, and content creators who want to design effective and engaging learning experiences. For more on instructional design, platforms like <a href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer">Coursera</a> offer great examples.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>Our tool is designed to be the <strong>best AI course outline generator</strong> by providing a detailed and logical structure for your content. The <strong>AI course creator</strong> analyzes your topic and generates a complete outline, including modules, lessons, and key learning points. This makes it an invaluable <strong>course outline creator</strong> for anyone who wants to save time and effort on curriculum development. The <strong>free online course outline generator</strong> is accessible to everyone, regardless of their technical expertise. You can even generate quiz questions for your course with our <Link href="/tools/quiz-generator">Quiz Generator</Link>.</p>
 
                 <h3>From Topic to Curriculum in Minutes</h3>
                 <p>Using our <strong>AI course outline generator free</strong> tool is easy. Simply enter your course topic, specify the target audience and duration, and the AI will generate a detailed outline for you. This makes it a great <strong>course content generator</strong> for creating a wide range of educational materials. The <strong>AI curriculum generator</strong> is also a useful tool for corporate trainers who need to develop training programs quickly and efficiently. It’s a versatile <strong>AI lesson plan generator</strong> that can adapt to any subject matter. Once you have your outline, create engaging <Link href="/tools/study-notes-creator">study notes</Link> for your students.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+                
                 <p>Whether you're creating an online course, a workshop, or a training program, our <strong>course syllabus generator</strong> can help you get started. It's a powerful <strong>training course outline generator</strong> that can save you hours of work. Stop struggling with curriculum design and start using the power of AI to create well-structured and engaging learning experiences. Try our <strong>AI course builder</strong> today and see how easy it is to turn your knowledge into a professional course.</p>
             </div>
         </div>
