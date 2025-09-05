@@ -99,25 +99,38 @@ export async function signUp(formData: FormData) {
       avatar_url = urlData.publicUrl;
   }
 
-  const { error } = await supabase.auth.signUp({
+  const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
     email,
     password,
     options: {
       emailRedirectTo: `${origin}/auth/callback`,
-      data: {
-        username,
-        full_name: fullName,
-        mobile_number: mobileNumber,
-        country,
-        avatar_url,
-        email,
-      },
     },
-  })
+  });
 
-  if (error) {
-    console.error(error)
-    return redirect('/login?message=Could not create user: ' + error.message);
+  if (signUpError) {
+    console.error(signUpError)
+    return redirect('/login?message=Could not create user: ' + signUpError.message);
+  }
+
+  if (!signUpData.user) {
+    return redirect('/login?message=Could not create user, please try again.');
+  }
+
+  const { error: profileError } = await supabase.from('profiles').insert({
+    id: signUpData.user.id,
+    username,
+    full_name: fullName,
+    mobile_number: mobileNumber,
+    country,
+    avatar_url,
+    email
+  });
+
+  if (profileError) {
+    console.error("Profile creation error:", profileError);
+    // Optionally delete the user from auth.users if profile creation fails
+    await supabase.auth.admin.deleteUser(signUpData.user.id);
+    return redirect('/login?message=Could not save user profile: ' + profileError.message);
   }
 
   return redirect('/login?message=Check email to continue sign in process');
