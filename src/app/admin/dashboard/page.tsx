@@ -65,6 +65,36 @@ export default async function DashboardPage() {
             </Card>
 
             <Card>
+              <CardHeader>
+                <CardTitle>Ads Replace Tool</CardTitle>
+                <CardDescription>
+                  Use this tool to replace all demo ads on the website with your original ad codes.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-4">
+                  <h4 className="font-semibold">Native Ads</h4>
+                  <div className="space-y-2">
+                    <Label htmlFor="native-ads-code">
+                      Enter your native ads code here. This will replace demo native ads in sections like the Homepage Popular Tools and All Tools page.
+                    </Label>
+                    <Textarea id="native-ads-code" placeholder="<-- Your Native Ad Code -->" className="min-h-[150px] font-mono" />
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="font-semibold">Banner Ads</h4>
+                  <div className="space-y-2">
+                    <Label htmlFor="banner-ads-code">
+                      Enter your banner ads code here. This will replace demo banner ads across the homepage and individual tool pages.
+                    </Label>
+                    <Textarea id="banner-ads-code" placeholder="<-- Your Banner Ad Code -->" className="min-h-[150px] font-mono" />
+                  </div>
+                </div>
+                <Button variant="secondary" disabled>Save Ad Codes</Button>
+              </CardContent>
+            </Card>
+
+            <Card>
                 <CardHeader>
                     <CardTitle>Website SEO</CardTitle>
                     <CardDescription>Manage on-page SEO for your main pages. These are placeholders for future functionality.</CardDescription>
