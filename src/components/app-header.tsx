@@ -1,4 +1,3 @@
-
 'use client'
 
 import Link from "next/link";
@@ -12,7 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -22,9 +21,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { allTools } from "@/lib/tools";
 import { ScrollArea } from "./ui/scroll-area";
-import { UserNav } from "./user-nav";
-import { createClient } from "@/lib/supabase/client";
-import type { User } from "@supabase/supabase-js";
 import { ThemeToggle } from "./theme-toggle";
 
 const navLinks = [
@@ -120,29 +116,6 @@ function SearchDialog() {
 
 export function AppHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-  
-  useEffect(() => {
-    const supabase = createClient();
-    const fetchUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-      setLoading(false);
-    };
-
-    fetchUser();
-
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setUser(session?.user ?? null);
-      }
-    );
-
-    return () => {
-      authListener.subscription.unsubscribe();
-    };
-  }, []);
   
   const handleLinkClick = () => {
     setIsMenuOpen(false);
@@ -165,8 +138,6 @@ export function AppHeader() {
         
         <ThemeToggle />
         
-        {!loading && <UserNav user={user} />}
-
         <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
                 <Button variant="ghost" size="icon">
