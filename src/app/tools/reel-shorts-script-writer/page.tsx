@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate engaging short-form video scripts for TikTok, Instagram Reels, and YouTube Shorts, complete with hooks, content ideas, and CTAs.",
-      "url": "https://www.aitoolkitpro.com/tools/reel-shorts-script-writer",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/reel-shorts-script-writer",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function ReelShortsScriptWriterPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <ReelShortsScriptWriterClient />
               </div>
@@ -123,10 +117,6 @@ export default function ReelShortsScriptWriterPage() {
                   </CardContent>
               </Card>
 
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -140,10 +130,6 @@ export default function ReelShortsScriptWriterPage() {
                       ))}
                   </CardContent>
               </Card>
-
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
           </div>
         </div>
       </div>
@@ -153,23 +139,11 @@ export default function ReelShortsScriptWriterPage() {
                 <h2>Create Viral Content with an AI Reel/Shorts Script Writer</h2>
                 <p>In the age of short-form video, creating content that grabs attention in the first few seconds is crucial. An <strong>AI reel/shorts script writer</strong> is a powerful tool that can help you craft viral-worthy scripts for platforms like Instagram Reels, YouTube Shorts, and TikTok. Our platform offers a state-of-the-art <strong>AI script writer</strong> that can generate catchy hooks, engaging content, and effective calls-to-action in minutes. It's the perfect solution for creators who want to produce high-quality content without spending hours on brainstorming and writing. For more creator tips, check out <a href="https://www.tubebuddy.com/blog/" target="_blank" rel="noopener noreferrer">TubeBuddy's blog</a>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our tool is designed to be the <strong>best AI script writer for reels</strong> by providing a combination of creativity and strategy. The <strong>AI video script generator free</strong> tool analyzes your topic and suggests scripts that are optimized for maximum engagement. This makes it an invaluable <strong>AI reel script writer</strong> for social media managers and marketers who need to create a high volume of content. The <strong>free AI script generator</strong> is also a great way to experiment with different video formats and find what works best for your audience. For longer scripts, use our full <Link href="/tools/ai-script-writer">AI Script Writer</Link>.</p>
                 
                 <h3>From Idea to Viral Video in a Few Clicks</h3>
                 <p>Using our <strong>AI shorts script generator</strong> is incredibly simple. Just enter your video idea, and the AI will provide you with several script variations to choose from. This makes it an efficient <strong>YouTube shorts script generator</strong> for creators who want to maintain a consistent posting schedule. The <strong>Instagram reel script generator</strong> is perfect for creating content that is both entertaining and informative. Our <strong>TikTok script writer</strong> can help you tap into the latest trends and create videos that have the potential to go viral. You can even generate video content directly with our <Link href="/tools/ltx-ai-video-generator">LTX AI Video Generator</Link>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Whether you're a seasoned content creator or just starting, our <strong>AI script generator for videos</strong> can help you take your content to the next level. It's a versatile <strong>script generator for youtube video free</strong> tool that can adapt to any niche or style. Stop struggling with writer's block and start creating amazing short-form videos with the power of AI. Try our <strong>best free AI script writer</strong> today and see the difference it can make in your content creation process.</p>
             </div>
         </div>

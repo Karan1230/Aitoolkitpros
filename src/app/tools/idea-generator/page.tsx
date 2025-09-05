@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate endless creative ideas for business, marketing, content, and more.",
-      "url": "https://www.aitoolkitpro.com/tools/idea-generator",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/idea-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function IdeaGeneratorPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <IdeaGeneratorClient />
               </div>
@@ -123,10 +117,6 @@ export default function IdeaGeneratorPage() {
                   </CardContent>
               </Card>
 
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -140,10 +130,6 @@ export default function IdeaGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
-
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
           </div>
         </div>
       </div>
@@ -153,23 +139,11 @@ export default function IdeaGeneratorPage() {
                 <h2>Spark Your Next Big Project with an AI Idea Generator</h2>
                 <p>Every great creation starts with an idea. But sometimes, finding that initial spark of inspiration can be a challenge. An <strong>AI idea generator</strong> is a powerful tool designed to help you overcome creative blocks and generate a wide range of ideas for any project. Our platform offers a versatile <strong>free AI idea generator</strong> that can be used for everything from brainstorming business concepts to planning your content calendar. For more on the creative process, check out <a href="https://www.inc.com/jeff-haden/the-science-of-creativity-how-to-get-more-great-ideas.html" target="_blank" rel="noopener noreferrer">Inc. Magazine's articles on creativity</a>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our tool is designed to be the <strong>best AI idea generator</strong> by providing relevant and creative suggestions tailored to your needs. The <strong>AI business idea generator</strong> is perfect for aspiring entrepreneurs looking for their next venture. It can provide you with a list of innovative startup ideas, complete with potential business models and target audiences. For marketers and content creators, the <strong>AI content idea generator</strong> is an invaluable resource for keeping your content fresh and engaging. Once you have an idea, you can create a <Link href="/tools/slogan-generator">slogan</Link> for it.</p>
 
                 <h3>Endless Inspiration for Any Field</h3>
                 <p>The <strong>random idea generator</strong> feature is a great way to explore new and unexpected concepts. You can use the <strong>AI product idea generator</strong> to brainstorm new products for your e-commerce store, or the <strong>AI name generator</strong> to find the perfect name for your brand. The <strong>AI story idea generator</strong> is perfect for writers who need a creative prompt to get their next story started. Our <strong>online idea generator</strong> is a comprehensive tool that can help you in any creative endeavor. You can even generate a <Link href="/tools/ai-logo-maker">logo</Link> for your new idea.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Whether you need a <strong>blog post idea generator</strong> for your website or a <strong>YouTube video idea generator</strong> for your channel, our tool can provide you with a wealth of inspiration. The <strong>free idea generator</strong> is accessible to everyone, so you can start brainstorming right away. Stop waiting for inspiration to strike and start generating your own with the power of AI. Try our <strong>AI idea generator free</strong> tool today and unlock your creative potential.</p>
             </div>
         </div>

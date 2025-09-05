@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate compelling, high-converting, and SEO-friendly product descriptions for e-commerce stores.",
-      "url": "https://www.aitoolkitpro.com/tools/product-description-generator",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/product-description-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function ProductDescriptionGeneratorPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <ProductDescriptionGeneratorClient />
               </div>
@@ -123,10 +117,6 @@ export default function ProductDescriptionGeneratorPage() {
                   </CardContent>
               </Card>
 
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -140,10 +130,6 @@ export default function ProductDescriptionGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
-
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
           </div>
         </div>
       </div>
@@ -153,23 +139,11 @@ export default function ProductDescriptionGeneratorPage() {
                 <h2>Boost Your Sales with an AI Product Description Generator</h2>
                 <p>In the competitive world of e-commerce, a compelling product description can make all the difference. An <strong>AI product description generator</strong> is a powerful tool that can help you create persuasive and SEO-friendly copy that drives sales. Our platform offers a state-of-the-art <strong>product description AI</strong> that can transform your product features into engaging narratives. It's the perfect solution for online store owners who want to create high-quality content without the hassle of writing it themselves. For more e-commerce tips, check out <a href="https://www.bigcommerce.com/blog/" target="_blank" rel="noopener noreferrer">BigCommerce's blog</a>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our tool is designed to be the <strong>best product description generator</strong> by providing a combination of creativity and optimization. The <strong>free product description generator</strong> is easy to use; simply enter your product details, and the AI will do the rest. This makes it an invaluable <strong>ecommerce product description generator</strong> for businesses of all sizes. The <strong>AI generated product descriptions</strong> are not only well-written but also optimized for search engines, helping you attract more organic traffic to your store. You can also generate great ad copy with our <Link href="/tools/ad-copy-generator">Ad Copy Generator</Link>.</p>
                 
                 <h3>Create High-Converting Copy in Minutes</h3>
                 <p>The <strong>product description writer</strong> AI can create descriptions for a wide range of products, from electronics to fashion. It's a versatile <strong>Shopify product description generator</strong> that can be used with any e-commerce platform. The <strong>AI product description writer</strong> is also a great tool for creating content for Amazon, eBay, and other marketplaces. Our <strong>free AI product description generator</strong> is a must-have for any serious online seller. You can also generate a <Link href="/tools/slogan-generator">slogan</Link> for your product.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Whether you need a short and catchy description or a detailed and informative one, our <strong>product description generator from keywords</strong> can help you achieve your goals. It's a powerful <strong>product description maker</strong> that can save you time and money on content creation. Stop struggling with writer's block and start using the power of AI to create compelling product descriptions that sell. Try our <strong>best free product description generator</strong> today and see the difference it can make for your business.</p>
             </div>
         </div>

@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to edit images using simple text prompts. Modify, enhance, and transform photos effortlessly.",
-      "url": "https://www.aitoolkitpro.com/tools/ai-image-editor",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-image-editor",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function AiImageEditorPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <AiImageEditorClient />
               </div>
@@ -123,10 +117,6 @@ export default function AiImageEditorPage() {
                   </CardContent>
               </Card>
 
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -140,10 +130,6 @@ export default function AiImageEditorPage() {
                       ))}
                   </CardContent>
               </Card>
-
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
           </div>
         </div>
       </div>
@@ -153,23 +139,11 @@ export default function AiImageEditorPage() {
                 <h2>Transform Your Photos with an AI Image Editor</h2>
                 <p>Welcome to the next generation of photo editing. An <strong>AI image editor</strong> is a revolutionary tool that simplifies the way we modify images. Forget complicated software and steep learning curves; with our <strong>AI photo editor</strong>, all you need are your words. Describe the changes you want to see, and the AI will bring them to life. This makes it the <strong>best AI photo editor</strong> for users of all skill levels who want to achieve professional results without the hassle. For more advanced background modifications, check out our dedicated <Link href="/tools/background-remover">Background Remover</Link>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our platform offers a powerful <strong>AI photo editor free</strong> of charge, putting advanced capabilities at your fingertips. You can use it as an <strong>AI background editor</strong> to seamlessly change the scenery of your photos or remove unwanted objects. The <strong>AI picture editor</strong> can also be used for more creative tasks, such as adding fantastical elements or changing the artistic style of an image. The possibilities are endless, and the intuitive interface makes it easy to experiment and have fun, a topic often explored by tech journals like <a href="https://www.theverge.com/t/ai" target="_blank" rel="noopener noreferrer">The Verge</a>. Feel free to browse all our <Link href="/tools">tools</Link> for more creative options.</p>
 
                 <h3>How AI is Changing Photo Editing</h3>
                 <p>Traditional photo editing often requires precise selections and manual adjustments. An <strong>AI photo editor online</strong> streamlines this process by interpreting natural language commands. For instance, instead of manually selecting a person's hair to change its color, you can simply type, "make the hair blonde." This makes our tool an incredibly efficient <strong>photo editor AI</strong>. It’s also a powerful <strong>photo enhancer AI free</strong> tool, capable of improving lighting, sharpening details, and correcting colors automatically. If you'd rather create an image from scratch, our <Link href="/tools/ai-image-generator">AI Image Generator</Link> is the perfect tool.</p>
                 
-                 <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>If you're looking for a specific type of transformation, our <strong>AI image editor free</strong> tool has you covered. Use it as an <strong>AI cartoon photo editor</strong> to give your pictures a fun, animated look. The <strong>free AI picture editor</strong> is perfect for creating unique social media content, marketing materials, or personal art projects. Experience the power and simplicity of an <strong>AI editor</strong> and unlock your creative potential. Try the <strong>best free AI photo editor</strong> today and see how easy it is to create stunning visuals.</p>
             </div>
         </div>

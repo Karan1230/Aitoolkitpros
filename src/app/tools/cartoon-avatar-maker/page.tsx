@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to create a unique cartoon or avatar from a photo. Choose from styles like Anime, 3D, and Comic Book.",
-      "url": "https://www.aitoolkitpro.com/tools/cartoon-avatar-maker",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/cartoon-avatar-maker",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function CartoonAvatarMakerPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <CartoonAvatarMakerClient />
               </div>
@@ -124,10 +118,6 @@ export default function CartoonAvatarMakerPage() {
                   </CardContent>
               </Card>
 
-               <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -141,10 +131,6 @@ export default function CartoonAvatarMakerPage() {
                       ))}
                   </CardContent>
               </Card>
-
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
           </div>
         </div>
       </div>
@@ -154,23 +140,11 @@ export default function CartoonAvatarMakerPage() {
                 <h2>Create a Digital Version of Yourself with an AI Avatar Maker</h2>
                 <p>In the digital age, your profile picture is your personal brand. An <strong>AI cartoon avatar maker</strong> is a fantastic tool for creating a unique and memorable online presence. Our platform offers a powerful <strong>AI avatar generator</strong> that can transform your photo into a stunning cartoon, 3D avatar, or anime character. It's a fun and easy way to express your personality and stand out from the crowd. This <strong>free AI avatar generator</strong> is perfect for gamers, social media users, and anyone who wants to create a personalized digital identity. Learn more about the history of avatars from <a href="https://en.wikipedia.org/wiki/Avatar_(computing)" target="_blank" rel="noopener noreferrer">Wikipedia</a>.</p>
                 
-                 <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our <strong>cartoon avatar maker</strong> is designed to be user-friendly and versatile. You can choose from a variety of styles to create an avatar that truly represents you. The <strong>AI avatar maker</strong> uses advanced algorithms to capture your likeness while applying the artistic style of your choice. As the <strong>best AI avatar generator</strong>, we are committed to providing high-quality results that you'll be proud to share. The <strong>AI avatar generator free</strong> service is accessible to everyone, so you can start creating your new look right away. For a different kind of fun, try our <Link href="/tools/meme-generator">Meme Generator</Link>.</p>
 
                 <h3>From Photo to Cartoon in Seconds</h3>
                 <p>The process of creating your avatar is simple. Just upload a clear photo of yourself, and our <strong>AI avatar from photo</strong> tool will do the rest. You can use it as an <strong>anime avatar maker</strong> to create a character straight out of your favorite show, or as a <strong>3D avatar creator</strong> to generate a modern, stylized version of yourself. The <strong>free cartoon avatar maker from photo</strong> is a great way to experiment with different looks and have fun with your digital identity. You can even swap your new avatar into different scenes using our <Link href="/tools/image-face-swap">Image Face Swap</Link> tool.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our <strong>online avatar maker</strong> is accessible from any device, so you can create your avatar on the go. It's a powerful <strong>pfp maker</strong> that can help you create a professional and eye-catching profile picture for any platform. Whether you're looking for a <strong>free avatar creator</strong> for your gaming channel or a <strong>cartoon pfp maker</strong> for your social media, our tool has you covered. Try the <strong>best free AI avatar generator</strong> today and create a digital version of yourself that is as unique as you are.</p>
             </div>
         </div>

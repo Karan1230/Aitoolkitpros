@@ -69,28 +69,8 @@ const faqs = [
     }
 ];
 
-const INITIAL_VISIBLE_TOOLS = 9;
+const INITIAL_VISIBLE_TOOLS = 12;
 const TOOLS_TO_LOAD = 9;
-
-const NativeAdPlaceholder = ({ className }: { className?: string }) => (
-    <div className={cn("group flex animate-float-in", className)}>
-        <Card className="w-full transition-all duration-300 flex flex-col bg-muted/50 backdrop-blur-sm border-dashed">
-            <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
-                <div className="w-full h-full min-h-[150px] flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Native Ad</span>
-                </div>
-            </CardContent>
-        </Card>
-    </div>
-);
-
-const BannerAdPlaceholder = ({ className }: { className?: string }) => (
-    <div className={cn("container my-8", className)}>
-        <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-            <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-        </div>
-    </div>
-);
 
 export default function Home() {
   const plugin = useRef(
@@ -102,67 +82,7 @@ export default function Home() {
     setVisibleToolsCount(prevCount => prevCount + TOOLS_TO_LOAD);
   };
   
-  const desktopItems: JSX.Element[] = [];
-  const mobileItems: JSX.Element[] = [];
-
-  let toolCounter = 0;
-  while(toolCounter < visibleToolsCount && toolCounter < allTools.length) {
-    const tool = allTools[toolCounter];
-    const toolCard = (
-        <Link href={tool.href} key={tool.name} className="group flex animate-float-in" style={{ animationDelay: `${0.1 + toolCounter * 0.05}s`}}>
-          <Card className="w-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
-            <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
-              <div className="p-3 mb-3 rounded-lg bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
-                {tool.icon}
-              </div>
-              <p className="font-semibold text-sm">{tool.name}</p>
-              <p className="text-xs text-muted-foreground mt-1">{tool.category}</p>
-            </CardContent>
-          </Card>
-        </Link>
-    );
-
-    // Mobile layout: 1 tool, 1 ad
-    mobileItems.push(toolCard);
-    mobileItems.push(<NativeAdPlaceholder key={`mobile-ad-${toolCounter}`} />);
-
-    toolCounter++;
-  }
-
-  // Reset counter for desktop layout
-  toolCounter = 0;
-  let adCounter = 0;
-  while(toolCounter < visibleToolsCount && toolCounter < allTools.length) {
-    // Add 3 tools
-    for(let i = 0; i < 3; i++) {
-        if (toolCounter < allTools.length && toolCounter < visibleToolsCount) {
-            const tool = allTools[toolCounter];
-            desktopItems.push(
-                 <Link href={tool.href} key={tool.name} className="group flex animate-float-in" style={{ animationDelay: `${0.1 + toolCounter * 0.05}s`}}>
-                  <Card className="w-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
-                    <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
-                      <div className="p-3 mb-3 rounded-lg bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
-                        {tool.icon}
-                      </div>
-                      <p className="font-semibold text-sm">{tool.name}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{tool.category}</p>
-                    </CardContent>
-                  </Card>
-                </Link>
-            );
-            toolCounter++;
-        }
-    }
-
-    // Add a row of 3 ads
-    if (toolCounter < allTools.length && toolCounter < visibleToolsCount) {
-      for (let i = 0; i < 3; i++) {
-        desktopItems.push(<NativeAdPlaceholder key={`ad-row-${adCounter}-${i}`} />);
-      }
-      adCounter++;
-    }
-  }
-
+  const visibleTools = allTools.slice(0, visibleToolsCount);
 
   return (
     <div className="flex flex-col">
@@ -184,21 +104,26 @@ export default function Home() {
         </div>
       </section>
 
-      <BannerAdPlaceholder />
-
       {/* Tools Section */}
       <section id="tools" className="py-12">
         <div className="container px-4">
           <h2 className="font-headline text-3xl font-bold text-center mb-8">
             <span className="gradient-text">Popular AI Tools</span>
           </h2>
-          {/* Desktop Grid */}
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6">
-            {desktopItems}
-          </div>
-           {/* Mobile Grid */}
-          <div className="grid md:hidden grid-cols-1 sm:grid-cols-2 gap-6">
-             {mobileItems.slice(0, visibleToolsCount * 2)}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {visibleTools.map((tool, index) => (
+               <Link href={tool.href} key={tool.name} className="group flex animate-float-in" style={{ animationDelay: `${0.1 + index * 0.05}s`}}>
+                <Card className="w-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50 flex flex-col bg-card/50 backdrop-blur-sm">
+                  <CardContent className="p-4 flex flex-col items-center justify-center text-center flex-grow">
+                    <div className="p-3 mb-3 rounded-lg bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
+                      {tool.icon}
+                    </div>
+                    <p className="font-semibold text-sm">{tool.name}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{tool.category}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
           </div>
           {visibleToolsCount < allTools.length && (
             <div className="mt-8 text-center">
@@ -249,8 +174,6 @@ export default function Home() {
         </div>
       </section>
 
-      <BannerAdPlaceholder />
-      
       {/* FAQ Section */}
       <section className="py-16 md:py-24">
         <div className="container max-w-3xl">

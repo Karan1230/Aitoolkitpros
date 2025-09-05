@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate endless story plots with unique ideas, characters, settings, conflicts, and resolutions for any genre.",
-      "url": "https://www.aitoolkitpro.com/tools/story-plot-generator",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/story-plot-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function StoryPlotGeneratorPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <StoryPlotGeneratorClient />
               </div>
@@ -123,10 +117,6 @@ export default function StoryPlotGeneratorPage() {
                   </CardContent>
               </Card>
 
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -140,10 +130,6 @@ export default function StoryPlotGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
-
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
           </div>
         </div>
       </div>
@@ -153,23 +139,11 @@ export default function StoryPlotGeneratorPage() {
                 <h2>Conquer Writer's Block with an AI Story Plot Generator</h2>
                 <p>Every writer knows the feeling of staring at a blank page, waiting for inspiration to strike. An <strong>AI story plot generator</strong> is a powerful tool that can help you overcome writer's block and generate a wealth of creative ideas. Our platform offers a sophisticated <strong>AI story generator</strong> that can create unique plots, characters, and settings for any genre. It's the perfect companion for novelists, screenwriters, and anyone who loves to tell stories. For writing tips, check out <a href="https://www.masterclass.com/articles/writing-101" target="_blank" rel="noopener noreferrer">MasterClass</a>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our tool is designed to be the <strong>best AI story generator</strong> by providing detailed and imaginative story elements. The <strong>free AI story generator</strong> is easy to use; simply choose a genre, and the AI will do the rest. This makes it an invaluable <strong>AI story writer</strong> for authors who need a creative spark to get started. The <strong>AI generated stories</strong> are not just random collections of ideas; they are coherent and well-structured narratives that can serve as the foundation for your next masterpiece. Once you have a plot, you can use our <Link href="/tools/ai-script-writer">AI Script Writer</Link> to write the full script.</p>
                 
                 <h3>From a Single Prompt to a Complete Story</h3>
                 <p>The <strong>AI story generator from prompt</strong> feature allows you to guide the creative process. You can provide a simple idea or a detailed outline, and the AI will build a story around it. This makes it a versatile <strong>AI short story generator</strong> for creating everything from flash fiction to novellas. The <strong>random story generator</strong> is perfect for when you want to be surprised with a completely new and unexpected idea. Our <strong>AI story creator</strong> is a fun and engaging way to explore your creativity. You can also generate character ideas with our <Link href="/tools/cartoon-avatar-maker">Cartoon Avatar Maker</Link>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Whether you're writing a fantasy epic, a thrilling mystery, or a heartwarming romance, our <strong>AI novel generator</strong> can help you craft a compelling narrative. It's a powerful <strong>plot generator</strong> that can save you hours of brainstorming and outlining. Stop waiting for your muse and start creating your own inspiration with the power of AI. Try our <strong>best AI story generator free</strong> tool today and unlock your storytelling potential.</p>
             </div>
         </div>

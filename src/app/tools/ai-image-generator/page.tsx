@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate stunning, high-quality images from text prompts. Turn creative ideas into visual art instantly.",
-      "url": "https://www.aitoolkitpro.com/tools/ai-image-generator",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-image-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function AiImageGeneratorPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <AiImageGeneratorClient />
               </div>
@@ -122,11 +116,6 @@ export default function AiImageGeneratorPage() {
                   </CardContent>
               </Card>
 
-              {/* Ad Placeholder */}
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
-
                <Card className="bg-card/50">
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -140,10 +129,6 @@ export default function AiImageGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
-
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
           </div>
         </div>
       </div>
@@ -153,23 +138,11 @@ export default function AiImageGeneratorPage() {
                 <h2>Unleash Your Creativity with an AI Image Generator</h2>
                 <p>In a world driven by visual content, the ability to create stunning images quickly is a significant advantage. An <strong>ai image generator</strong> is a revolutionary tool that allows anyone to become a digital artist. By simply describing what you want to see, you can generate breathtaking visuals in seconds. Our platform offers a <strong>free ai image generator</strong> that is both powerful and easy to use, making it the perfect choice for content creators, marketers, and artists alike. There's no need for complicated software or design skills; if you can describe it, our AI can create it. Learn more about the technology behind it on <a href="https://en.wikipedia.org/wiki/Generative_art" target="_blank" rel="noopener noreferrer">Wikipedia</a>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>The core technology behind this is <strong>text to image ai</strong>, which interprets your written prompts and translates them into visual art. This opens up a world of possibilities. You can use our <strong>ai art generator</strong> to create unique pieces for your blog, social media, or personal projects. Looking for something specific? Our <strong>ai image generator from text</strong> can produce everything from photorealistic landscapes to abstract art. This flexibility makes it the <strong>best ai art generator</strong> for a wide range of creative needs. For more specific design needs, you can also try our <Link href="/tools/ai-logo-maker">AI Logo Maker</Link>. And for any questions about our services, please see our <Link href="/contact">contact page</Link>.</p>
                 
                 <h3>Endless Possibilities with a Free AI Image Creator</h3>
                 <p>One of the most exciting aspects of our tool is its versatility. It's not just an <strong>ai photo generator</strong>; it's a complete creative suite. You can use it as an <strong>ai cartoon generator</strong> to create fun and engaging characters, or as an <strong>ai anime generator</strong> to bring your own anime-style visions to life. The <strong>ai picture generator</strong> can also produce high-quality avatars for your online profiles, making it a powerful <strong>ai avatar generator</strong>. All of these features are available for free, making it the ultimate <strong>free ai art generator</strong>. You can even use it to design unique <Link href="/tools/custom-icon-generator">custom icons</Link> for your projects.</p>
                 
-                 <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Quality is paramount, which is why our tool is designed to be an <strong>ai image generator hd quality</strong> platform. The images you create are high-resolution and suitable for both digital and print use. As a leading <strong>ai image generator online</strong>, we are committed to providing a seamless and enjoyable experience. Whether you need a quick graphic for a presentation or a masterpiece for your portfolio, our <strong>ai image creator</strong> is here to help. Explore the limitless potential of AI and start creating stunning visuals today with the <strong>best ai image generator free</strong> tool on the web.</p>
             </div>
         </div>

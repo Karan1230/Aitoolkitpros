@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate engaging social media posts and captions with hashtags for platforms like Instagram, Facebook, Twitter, and LinkedIn.",
-      "url": "https://www.aitoolkitpro.com/tools/social-media-post-generator",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/social-media-post-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function SocialMediaPostGeneratorPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <SocialMediaPostClient />
               </div>
@@ -123,10 +117,6 @@ export default function SocialMediaPostGeneratorPage() {
                   </CardContent>
               </Card>
 
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -140,10 +130,6 @@ export default function SocialMediaPostGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
-
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
           </div>
         </div>
       </div>
@@ -153,23 +139,11 @@ export default function SocialMediaPostGeneratorPage() {
                 <h2>Supercharge Your Social Media with an AI Post Generator</h2>
                 <p>Consistency is key to a successful social media strategy, but creating fresh and engaging content every day can be a challenge. A <strong>social media post generator</strong> is an essential tool for any marketer, business owner, or influencer who wants to maintain an active online presence. Our platform offers a powerful <strong>AI social media post generator</strong> that can create high-quality content for a variety of platforms, from Instagram to LinkedIn. For more on social media strategy, check out <a href="https://blog.hootsuite.com/" target="_blank" rel="noopener noreferrer">Hootsuite's blog</a>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our tool is designed to be the <strong>best AI social media post generator</strong> by providing relevant, creative, and optimized content. The <strong>AI content generator for social media</strong> can help you brainstorm ideas, write compelling captions, and even suggest relevant hashtags to increase your reach. The <strong>free AI social media post generator</strong> is a great way to save time and effort on content creation, so you can focus on what you do best: running your business. For more targeted engagement, try our <Link href="/tools/engagement-post-generator">Engagement Post Ideas Generator</Link>.</p>
 
                 <h3>Create Engaging Content for Any Platform</h3>
                 <p>The versatility of our <strong>AI generated social media posts</strong> is one of its greatest strengths. You can use it as an <strong>Instagram post generator</strong> to create visually-driven content, a <strong>Facebook post generator</strong> for more in-depth posts, or a <strong>LinkedIn post generator</strong> for professional updates. The <strong>Twitter post generator</strong> is perfect for crafting short and snappy messages that grab attention. Our <strong>social media content generator free</strong> tool is a one-stop-shop for all your content needs. You can also generate hashtags with our <Link href="/tools/hashtag-generator">Hashtag Generator</Link>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Using our <strong>AI post creator</strong> is simple. Just enter a topic or a keyword, and the AI will generate a variety of post ideas for you to choose from. This makes it an invaluable <strong>social media post creator</strong> for anyone who needs to produce a high volume of content. Stop struggling with content creation and start using the power of AI to build a strong and engaging online presence. Try our <strong>AI social media content generator free</strong> tool today and see the results for yourself.</p>
             </div>
         </div>

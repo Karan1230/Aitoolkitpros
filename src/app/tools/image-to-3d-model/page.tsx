@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI-powered tool to convert 2D images into detailed 3D models, bringing pictures to life in three dimensions instantly.",
-      "url": "https://www.aitoolkitpro.com/tools/image-to-3d-model",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/image-to-3d-model",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function ImageTo3dModelPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <ImageTo3dModelClient />
               </div>
@@ -122,10 +116,6 @@ export default function ImageTo3dModelPage() {
                   </CardContent>
               </Card>
 
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -139,10 +129,6 @@ export default function ImageTo3dModelPage() {
                       ))}
                   </CardContent>
               </Card>
-
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
           </div>
         </div>
       </div>
@@ -152,23 +138,11 @@ export default function ImageTo3dModelPage() {
                 <h2>Bring Your Images to Life with an AI Image to 3D Model Converter</h2>
                 <p>The world of 3D modeling has traditionally been complex and time-consuming. An <strong>AI image to 3D model converter</strong> is a groundbreaking tool that changes this narrative. Our platform offers a powerful <strong>AI 3D model generator from image</strong> that can transform your 2D pictures into detailed 3D assets. This is a game-changer for game developers, animators, and designers who need to create 3D models quickly and efficiently. For more on 3D modeling, check out resources like <a href="https://www.blender.org/" target="_blank" rel="noopener noreferrer">Blender's official website</a>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our tool is designed to be the <strong>best AI 3D model generator</strong> by providing high-quality results with minimal effort. The <strong>free AI 3D model generator</strong> is accessible to everyone, regardless of their technical skills. You can use our <strong>image to 3D model AI free</strong> tool to create assets for your games, animations, or virtual reality experiences. It's a versatile <strong>AI 3D generator</strong> that can handle a wide range of image types and produce impressive 3D models. You can also edit your source images with our <Link href="/tools/ai-image-editor">AI Image Editor</Link> first.</p>
                 
                 <h3>From 2D Picture to 3D Asset in Minutes</h3>
                 <p>The process of using our <strong>picture to 3D model AI</strong> is simple. Just upload one or more images of your object from different angles, and the AI will do the rest. The <strong>turn image into 3D model AI</strong> technology analyzes the images and reconstructs the object in three dimensions. This makes it an incredibly efficient <strong>photo to 3D model AI free</strong> tool for creating realistic and detailed models. It’s also a powerful <strong>2D to 3D model converter AI</strong> for turning your flat designs into tangible 3D assets. If you need to upscale your images before converting, use our <Link href="/tools/image-upscaler">Image Upscaler</Link>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Whether you're a professional designer or a hobbyist, our <strong>AI 3D model creator</strong> can help you bring your ideas to life. The <strong>free 3D model generator</strong> is perfect for experimenting with different designs and creating prototypes. Stop spending hours on manual 3D modeling and start using the power of AI to create stunning 3D assets. Try our <strong>AI from image 3D model</strong> converter today and experience the future of 3D creation.</p>
             </div>
         </div>

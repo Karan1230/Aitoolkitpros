@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI-powered tool to generate professional, eye-catching YouTube thumbnails. Increase your click-through rate with stunning designs.",
-      "url": "https://www.aitoolkitpro.com/tools/youtube-thumbnail-generator",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/youtube-thumbnail-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function YoutubeThumbnailGeneratorPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <YoutubeThumbnailGeneratorClient />
               </div>
@@ -123,11 +117,6 @@ export default function YoutubeThumbnailGeneratorPage() {
                   </CardContent>
               </Card>
 
-              {/* Ad Placeholder */}
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -141,10 +130,6 @@ export default function YoutubeThumbnailGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
-
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
           </div>
         </div>
       </div>
@@ -154,23 +139,11 @@ export default function YoutubeThumbnailGeneratorPage() {
                 <h2>Create Click-Worthy Thumbnails with a YouTube Thumbnail Generator</h2>
                 <p>A great thumbnail is one of the most important factors in a video's success on YouTube. It's the first thing viewers see and can make the difference between a click and a scroll. A <strong>YouTube thumbnail generator</strong> is a powerful tool that can help you create eye-catching thumbnails that will entice viewers to watch your content. Our platform offers an advanced <strong>AI thumbnail generator</strong> that can produce professional-looking thumbnails in seconds. For more on thumbnail best practices, check out <a href="https://support.google.com/youtube/answer/72431?hl=en" target="_blank" rel="noopener noreferrer">YouTube's own creator academy</a>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our tool is designed to be the <strong>best YouTube thumbnail generator</strong> by providing a combination of creativity and ease of use. The <strong>free thumbnail maker for YouTube</strong> is accessible to everyone, regardless of their design skills. Simply enter your video title, and our <strong>AI YouTube thumbnail generator</strong> will create a variety of designs for you to choose from. This makes it an invaluable <strong>YouTube thumbnail maker free</strong> tool for any content creator. You can also use our <Link href="/tools/youtube-seo-tool">YouTube SEO Tool</Link> to optimize your video's title and tags.</p>
 
                 <h3>From Title to Thumbnail in a Few Clicks</h3>
                 <p>The <strong>AI thumbnail maker</strong> uses advanced AI to create thumbnails that are not only visually appealing but also relevant to your content. The <strong>YouTube thumbnail creator</strong> can generate thumbnails in a variety of styles, from bold and colorful to clean and minimalist. This makes it a versatile <strong>free thumbnail creator for YouTube</strong> that can be used for any type of video. Our <strong>YouTube thumbnail downloader</strong> also allows you to easily save your creations in high resolution. Once you have your thumbnail, get the perfect script with our <Link href="/tools/ai-script-writer">AI Script Writer</Link>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Whether you're a vlogger, a gamer, or a business owner, our <strong>free online thumbnail maker for YouTube</strong> can help you create a strong and consistent brand identity. It's a powerful <strong>YouTube thumbnail design</strong> tool that can help you stand out in a crowded marketplace. Stop using generic templates and start creating custom thumbnails that truly represent your content. Try our <strong>best free thumbnail maker for YouTube</strong> today and see the difference it can make in your video's performance.</p>
             </div>
         </div>

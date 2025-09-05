@@ -66,9 +66,9 @@ export default async function DashboardPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Ads Replace Tool</CardTitle>
+                <CardTitle>Ads Management</CardTitle>
                 <CardDescription>
-                  Use this tool to replace all demo ads on the website with your original ad codes.
+                  This feature is a placeholder. You would need to implement the backend logic to save and serve these ad codes.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -76,7 +76,7 @@ export default async function DashboardPage() {
                   <h4 className="font-semibold">Native Ads</h4>
                   <div className="space-y-2">
                     <Label htmlFor="native-ads-code">
-                      Enter your native ads code here. This will replace demo native ads in sections like the Homepage Popular Tools and All Tools page.
+                      Enter your native ads code here.
                     </Label>
                     <Textarea id="native-ads-code" placeholder="<-- Your Native Ad Code -->" className="min-h-[150px] font-mono" />
                   </div>
@@ -85,21 +85,12 @@ export default async function DashboardPage() {
                   <h4 className="font-semibold">Banner Ads</h4>
                   <div className="space-y-2">
                     <Label htmlFor="banner-ads-code">
-                      Enter your banner ads code here. This will replace demo banner ads across the homepage and individual tool pages.
+                      Enter your banner ads code here.
                     </Label>
                     <Textarea id="banner-ads-code" placeholder="<-- Your Banner Ad Code -->" className="min-h-[150px] font-mono" />
                   </div>
                 </div>
-                <div className="space-y-4">
-                  <h4 className="font-semibold">Homepage Banner Ads</h4>
-                  <div className="space-y-2">
-                    <Label htmlFor="homepage-banner-ads-code">
-                      Enter your homepage-specific banner ads code here.
-                    </Label>
-                    <Textarea id="homepage-banner-ads-code" placeholder="<-- Your Homepage Banner Ad Code -->" className="min-h-[150px] font-mono" />
-                  </div>
-                </div>
-                <Button>Save Ad Codes</Button>
+                <Button disabled>Save Ad Codes</Button>
               </CardContent>
             </Card>
 

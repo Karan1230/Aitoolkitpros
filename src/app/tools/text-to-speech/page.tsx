@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI Text-to-Speech (TTS) tool to convert text into natural-sounding speech. Perfect for voiceovers, accessibility, and content creation.",
-      "url": "https://www.aitoolkitpro.com/tools/text-to-speech",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/text-to-speech",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function TextToSpeechPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <TextToSpeechClient />
               </div>
@@ -122,11 +116,6 @@ export default function TextToSpeechPage() {
                   </CardContent>
               </Card>
 
-              {/* Ad Placeholder */}
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -140,10 +129,6 @@ export default function TextToSpeechPage() {
                       ))}
                   </CardContent>
               </Card>
-
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
           </div>
         </div>
       </div>
@@ -153,23 +138,11 @@ export default function TextToSpeechPage() {
                 <h2>Create Natural-Sounding Audio with an AI Text-to-Speech Converter</h2>
                 <p>In a world where content is consumed in various formats, audio is becoming increasingly important. An <strong>AI text-to-speech</strong> (TTS) converter is a powerful tool that can transform your written content into natural-sounding audio. Our platform offers a high-quality <strong>TTS tool</strong> that can be used for a wide range of applications, from creating voiceovers for videos to making your content more accessible to visually impaired audiences. It's the perfect solution for anyone who wants to create professional audio content without the need for expensive recording equipment. For more on accessibility, see the <a href="https://www.w3.org/WAI/" target="_blank" rel="noopener noreferrer">W3C's Web Accessibility Initiative</a>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our tool is designed to be the <strong>best free text-to-speech</strong> service by offering a wide variety of natural-sounding voices and languages. The <strong>free text-to-speech online</strong> tool is easy to use; simply paste your text, choose a voice, and the AI will do the rest. This makes it an invaluable <strong>AI voice generator</strong> for content creators who want to add a new dimension to their work. The <strong>text to speech online</strong> service is also a great way to listen to articles and documents on the go. You can also transcribe audio to text with our <Link href="/tools/voice-to-text">Voice-to-Text Converter</Link>.</p>
 
                 <h3>From Text to Voice in a Few Clicks</h3>
                 <p>The <strong>free text to speech AI</strong> technology behind our tool is what sets it apart. It uses advanced machine learning to produce voices that are clear, natural, and expressive. This makes it a great <strong>AI voice generator free</strong> tool for creating high-quality voiceovers that will engage your audience. The <strong>text to voice AI free</strong> service is also a great way to prototype voice applications and interactive voice response (IVR) systems. Our <strong>natural sounding text to speech free</strong> tool is a must-have for any developer working with voice technology. For custom voices, check out our <Link href="/tools/ai-voice-cloning">AI Voice Cloning</Link> tool.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Whether you need a <strong>text to speech generator</strong> for a professional project or a <strong>free tts</strong> service for personal use, our tool has you covered. It's a versatile <strong>online text to speech</strong> platform that can be used for a wide range of applications. Stop using robotic-sounding text-to-speech voices and start creating natural and engaging audio content with the power of AI. Try our <strong>best text to speech free</strong> tool today and hear the difference for yourself.</p>
             </div>
         </div>

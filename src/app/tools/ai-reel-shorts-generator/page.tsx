@@ -50,7 +50,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate stunning short-form videos for TikTok, Instagram Reels, and YouTube Shorts from text prompts.",
-      "url": "https://www.aitoolkitpro.com/tools/ai-reel-shorts-generator",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-reel-shorts-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -99,12 +99,6 @@ export default function AiReelShortsGeneratorPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <AiReelShortsGeneratorClient />
               </div>
@@ -121,10 +115,6 @@ export default function AiReelShortsGeneratorPage() {
                   </CardContent>
               </Card>
 
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -138,10 +128,6 @@ export default function AiReelShortsGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
-
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
           </div>
         </div>
       </div>
@@ -151,23 +137,11 @@ export default function AiReelShortsGeneratorPage() {
                 <h2>Create Viral Videos with an AI Reel/Shorts Generator</h2>
                 <p>In the world of social media, short-form video is king. Platforms like Instagram Reels, YouTube Shorts, and TikTok have created a massive demand for engaging, fast-paced content. An <strong>AI reel/shorts generator</strong> is the ultimate tool for meeting this demand. Our platform offers a powerful <strong>AI video generator for reels</strong> that allows you to create stunning videos from simple text prompts. There's no need for expensive equipment or complicated software; just describe your idea, and the AI will handle the rest.</p>
                 
-                 <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our tool is designed to be the <strong>best AI reel generator</strong> by offering a seamless and intuitive creative process. It functions as an <strong>AI reel maker</strong> that can generate a wide variety of content, from funny skits to motivational clips. The <strong>AI YouTube shorts generator</strong> feature is perfect for creators who want to tap into YouTube's growing short-form video audience. And because it's a <strong>free AI shorts generator</strong>, it's accessible to everyone, from individual creators to large marketing teams.</p>
 
                 <h3>Effortless Content Creation for Social Media</h3>
                 <p>The magic of our <strong>AI generated shorts</strong> lies in its simplicity. You can use our <strong>AI reel generator from text</strong> to turn a simple idea into a fully realized video in minutes. This makes it an invaluable <strong>Instagram reel generator AI</strong> for social media managers who need to produce a high volume of content. The <strong>free AI reel generator from text</strong> is also a great tool for brainstorming and experimenting with new video concepts.</p>
                 
-                 <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Whether you're looking to create a viral dance video or an informative tutorial, our <strong>reels AI generator</strong> is up to the task. It's the <strong>best free AI reel generator</strong> for creating high-quality, engaging content that will captivate your audience. Stop spending hours on video production and start creating amazing content with the power of AI. Try our <strong>AI shorts generator free</strong> tool today and take your social media presence to the next level.</p>
             </div>
         </div>

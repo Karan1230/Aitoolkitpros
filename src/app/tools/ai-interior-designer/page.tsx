@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to redesign spaces by uploading a room photo and choosing a new style. Instantly visualize different layouts and designs.",
-      "url": "https://www.aitoolkitpro.com/tools/ai-interior-designer",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-interior-designer",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function AiInteriorDesignerPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <AiInteriorDesignerClient />
               </div>
@@ -123,10 +117,6 @@ export default function AiInteriorDesignerPage() {
                   </CardContent>
               </Card>
 
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -140,10 +130,6 @@ export default function AiInteriorDesignerPage() {
                       ))}
                   </CardContent>
               </Card>
-
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
           </div>
         </div>
       </div>
@@ -153,23 +139,11 @@ export default function AiInteriorDesignerPage() {
                 <h2>Visualize Your Dream Space with an AI Interior Designer</h2>
                 <p>Have you ever struggled to imagine how a new design would look in your home? An <strong>AI interior designer</strong> is here to change that. Our powerful tool allows you to upload a photo of any room and see it transformed into your dream space. As the <strong>best AI interior design app free</strong> on the market, it offers a seamless and intuitive experience for visualizing different styles, colors, and furniture arrangements. This technology empowers you to make confident design decisions without the guesswork. For more design inspiration, check out resources like <a href="https://www.architecturaldigest.com/" target="_blank" rel="noopener noreferrer">Architectural Digest</a>.</p>
                 
-                 <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our platform is more than just a simple design tool; it's a comprehensive <strong>AI home design</strong> assistant. Use it as an <strong>AI room designer free</strong> tool to get instant inspiration for your living room, bedroom, or kitchen. The <strong>AI room planner free</strong> feature helps you optimize your layout for both style and functionality. Whether you're planning a full renovation or just a simple refresh, our <strong>interior design AI</strong> is the perfect partner for your project. You can even find the perfect color scheme with our <Link href="/tools/color-palette-finder">AI Color Palette Finder</Link>. For more details about our privacy practices, see our <Link href="/privacy-policy">Privacy Policy</Link>.</p>
                 
                 <h3>How AI is Revolutionizing Home Design</h3>
                 <p>The magic of our <strong>AI interior design generator</strong> lies in its ability to understand and reinterpret your space. Simply upload your photo, select a style like "Modern," "Minimalist," or "Bohemian," and let the AI work its magic. The tool will generate a high-quality, realistic image of your redesigned room. This makes it an invaluable <strong>AI for interior design</strong>, saving you time and money on professional mockups. It’s also an excellent <strong>AI interior design from photo</strong> tool for real estate professionals who want to showcase the potential of a property.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>The applications are endless. Use the <strong>room AI generator</strong> to experiment with bold new color palettes or to see how a piece of furniture would fit in your space. The <strong>AI room generator from photo</strong> feature is perfect for those who want a quick and easy way to explore design ideas. Our commitment is to provide the best <strong>free AI room design</strong> experience possible. Stop wondering and start visualizing with our <strong>AI interior design app free</strong> tool today. Your perfect home is just a click away.</p>
             </div>
         </div>

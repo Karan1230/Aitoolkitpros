@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate complete comic strips from text prompts, with characters, scenes, and stories created in seconds.",
-      "url": "https://www.aitoolkitpro.com/tools/ai-comics-generator",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-comics-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function AiComicsGeneratorPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <AiComicsGeneratorClient />
               </div>
@@ -123,10 +117,6 @@ export default function AiComicsGeneratorPage() {
                   </CardContent>
               </Card>
 
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -140,10 +130,6 @@ export default function AiComicsGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
-
-               <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
           </div>
         </div>
       </div>
@@ -153,23 +139,11 @@ export default function AiComicsGeneratorPage() {
                   <h2>Create Stunning Visual Stories with an AI Comics Generator</h2>
                   <p>Have you ever had a story in your head that you wished you could see as a comic? With the rise of artificial intelligence, now you can. An <strong>AI comics generator</strong> is a revolutionary tool that empowers writers, marketers, and hobbyists to create their own comics without any drawing skills. Our platform offers a <strong>free AI comics generator</strong> that transforms your text prompts into beautifully illustrated comic panels, complete with characters, backgrounds, and dialogue. It’s the perfect way to bring your creative visions to life. Start with a great plot from our <Link href="/tools/story-plot-generator">Story Plot Generator</Link> to build a compelling narrative.</p>
                   
-                   <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                  </div>
-
                   <p>The process is incredibly intuitive. Using our <strong>AI comic maker</strong>, you can define every aspect of your story. Describe your main character, from their appearance to their personality. Detail the setting, whether it's a futuristic cityscape or a mystical forest. Outline the plot, and the <strong>AI generate comic</strong> tool will create a sequence of panels that tell your story visually. This <strong>AI comic creator</strong> is designed to be user-friendly, making it accessible to everyone, regardless of their technical or artistic background, a concept celebrated by comic enthusiasts at <a href="https://www.comicsbeat.com/" target="_blank" rel="noopener noreferrer">The Comics Beat</a>. Please review our <Link href="/terms-and-conditions">Terms and Conditions</Link> before using generated content.</p>
                   
                   <h3>From Text to Comic Strip in Minutes</h3>
                   <p>Imagine being able to <strong>generate comics from text AI</strong> technology in a matter of minutes. That's the power our <strong>AI comic generator from text</strong> provides. It’s not just about creating single images; it’s a full-fledged <strong>comic AI generator</strong> that understands narrative structure. You can specify different scenes, actions, and character interactions, and the AI will assemble a coherent and engaging comic strip. This makes it an excellent tool for content creators looking for a unique way to engage their audience. You can even design unique characters with our <Link href="/tools/cartoon-avatar-maker">Cartoon Avatar Maker</Link>.</p>
                   
-                  <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                  </div>
-
                   <p>Whether you're looking to create a graphic novel, a webcomic, or just a short, funny strip, our <strong>AI generated comic</strong> tool has you covered. As the <strong>best AI comic generator</strong> available for free, it offers a wide range of styles and customization options. Stop dreaming about your story and start creating it. Try our <strong>AI comic generator free</strong> today and unlock a new world of visual storytelling. Your next masterpiece is just a few clicks away.</p>
               </div>
           </div>

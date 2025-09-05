@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "LifestyleApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate delicious recipes based on the ingredients you have at home, helping to reduce food waste.",
-      "url": "https://www.aitoolkitpro.com/tools/ai-recipe-maker",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-recipe-maker",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function AiRecipeMakerPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <AiRecipeMakerClient />
               </div>
@@ -123,10 +117,6 @@ export default function AiRecipeMakerPage() {
                   </CardContent>
               </Card>
 
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
-
                <Card className="bg-card/50">
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -140,10 +130,6 @@ export default function AiRecipeMakerPage() {
                       ))}
                   </CardContent>
               </Card>
-
-              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-              </div>
           </div>
         </div>
       </div>
@@ -153,23 +139,11 @@ export default function AiRecipeMakerPage() {
                 <h2>Transform Your Kitchen with an AI Recipe Maker</h2>
                 <p>How many times have you stared into your fridge, full of ingredients, yet feeling like you have nothing to cook? An <strong>AI recipe maker</strong> is the perfect solution to this common dilemma. Our innovative tool acts as your personal chef, taking the ingredients you already have and transforming them into delicious, easy-to-follow recipes. This not only sparks creativity in the kitchen but also helps you reduce food waste and save money. It’s a smart, sustainable way to approach meal planning, a concept championed by organizations like <a href="https://www.feedingamerica.org/our-work/reduce-food-waste" target="_blank" rel="noopener noreferrer">Feeding America</a>.</p>
                 
-                 <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our platform features the <strong>best AI recipe generator</strong> because it is designed with the user in mind. The <strong>AI recipe generator from ingredients</strong> is incredibly intuitive; simply list what you have on hand, and the AI will provide a variety of meal ideas. You can also customize the results based on your dietary preferences, such as vegetarian, gluten-free, or low-carb. This makes it a versatile <strong>recipe generator by ingredients free</strong> tool that caters to your specific needs. Need a gift for a foodie friend? Try our <Link href="/tools/gift-suggestion-tool">Gift Suggestion Tool</Link>.</p>
                 
                 <h3>Endless Culinary Inspiration at Your Fingertips</h3>
                 <p>The power of our <strong>recipe generator AI</strong> lies in its vast database of culinary knowledge. It can suggest recipes from various cuisines, from Italian to Thai, and for any meal type, whether it's a quick breakfast or a gourmet dinner. This <strong>free AI recipe generator</strong> is like having a cookbook that writes itself based on what's in your pantry. It’s the ultimate kitchen assistant for busy families, students, and anyone looking to simplify their cooking routine.</p>
                 
-                 <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Using the <strong>recipe generator from ingredients</strong> is a fun and exciting way to discover new dishes. You might be surprised by the creative combinations our <strong>AI generated recipes</strong> can come up with. It’s also a great way to learn new cooking techniques and expand your culinary skills. Stop letting good food go to waste and start making delicious meals with what you have. Try our <strong>AI recipe generator free</strong> today and revolutionize the way you cook.</p>
             </div>
         </div>

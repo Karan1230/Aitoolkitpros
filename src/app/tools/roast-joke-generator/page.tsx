@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "EntertainmentApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate hilarious roasts, jokes, and one-liners. Choose a tone and topic to get creative and funny content in seconds.",
-      "url": "https://www.aitoolkitpro.com/tools/roast-joke-generator",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/roast-joke-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function RoastJokeGeneratorPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <RoastJokeGeneratorClient />
               </div>
@@ -123,10 +117,6 @@ export default function RoastJokeGeneratorPage() {
                   </CardContent>
               </Card>
 
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -140,10 +130,6 @@ export default function RoastJokeGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
-
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
           </div>
         </div>
       </div>
@@ -153,23 +139,11 @@ export default function RoastJokeGeneratorPage() {
                 <h2>Generate Laughter with an AI Roast & Joke Generator</h2>
                 <p>Humor is a powerful way to connect with people, and an <strong>AI roast & joke generator</strong> is the perfect tool to have in your comedic arsenal. Our platform offers a versatile <strong>AI joke generator</strong> that can create everything from lighthearted one-liners to savage roasts. Whether you're preparing for a friendly roast, writing a comedy script, or just want to have some fun, our <strong>funny joke generator</strong> is here to help you craft the perfect punchline. For more on the art of comedy, check out resources from <a href="https://www.vulture.com/comedy/" target="_blank" rel="noopener noreferrer">Vulture</a>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our tool is designed to be the <strong>best AI joke generator</strong> by offering a wide range of tones and styles. You can use the <strong>AI roast generator</strong> to come up with witty insults for a friend's birthday, or the <strong>dirty joke generator</strong> for more adult-oriented humor. The <strong>free joke generator</strong> is accessible to everyone, so you can start creating hilarious content right away. It's a fun and easy way to bring more laughter into your life. You can even generate funny images with our <Link href="/tools/meme-generator">Meme Generator</Link>.</p>
                 
                 <h3>Endless Jokes for Any Occasion</h3>
                 <p>The <strong>random joke generator</strong> feature is perfect for when you need a quick laugh. The <strong>joke writer AI</strong> can generate jokes on any topic, from everyday life to pop culture. This makes it a great <strong>stand up comedy joke generator</strong> for aspiring comedians who need new material. The <strong>joke creator</strong> is also a fantastic tool for social media content, helping you create posts that are sure to get a reaction. Pair your jokes with a funny avatar from our <Link href="/tools/cartoon-avatar-maker">Cartoon Avatar Maker</Link>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Whether you need a <strong>dad joke generator</strong> to entertain your kids or a <strong>dark humor joke generator</strong> to share with your friends, our tool has you covered. It's a versatile <strong>joke maker</strong> that can adapt to any comedic style. Stop struggling to come up with funny material and start using the power of AI to generate laughter on demand. Try our <strong>AI joke writer free</strong> tool today and become the life of the party.</p>
             </div>
         </div>

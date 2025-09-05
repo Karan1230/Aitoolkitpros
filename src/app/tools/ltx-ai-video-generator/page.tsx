@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free LTX AI Video Generator to create stunning, high-quality videos from text prompts with fast generation and improved prompt understanding.",
-      "url": "https://www.aitoolkitpro.com/tools/ltx-ai-video-generator",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/ltx-ai-video-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function LtxAiVideoGeneratorPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <LtxAiVideoGeneratorClient />
               </div>
@@ -122,10 +116,6 @@ export default function LtxAiVideoGeneratorPage() {
                   </CardContent>
               </Card>
 
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -139,10 +129,6 @@ export default function LtxAiVideoGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
-
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
           </div>
         </div>
       </div>
@@ -152,23 +138,11 @@ export default function LtxAiVideoGeneratorPage() {
                 <h2>Create Cinematic Videos with the LTX AI Video Generator</h2>
                 <p>The <strong>LTX AI video generator</strong> is at the forefront of AI-powered video creation. This advanced tool allows you to generate high-quality, cinematic videos from simple text prompts. It's the <strong>best AI video generator</strong> for filmmakers, marketers, and content creators who want to produce professional-looking videos without the need for expensive equipment or complex editing software. Our <strong>free AI video generator</strong> makes this cutting-edge technology accessible to everyone. For a different video creation experience, try our <Link href="/tools/ai-reel-shorts-generator">Reel/Shorts Generator</Link>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>What sets the <strong>LTX AI video generator</strong> apart is its incredible attention to detail and enhanced prompt understanding. This <strong>AI video creator</strong> can interpret nuanced descriptions and translate them into stunning visual narratives. Whether you're creating a short film, a promotional video, or a social media clip, this <strong>AI video maker</strong> delivers results that are sure to impress. The <strong>AI video generator from text</strong> technology is so advanced that it can create coherent scenes, dynamic camera movements, and realistic character animations. Learn more about the latest in AI video from publications like <a href="https://www.wired.com/tag/artificial-intelligence/" target="_blank" rel="noopener noreferrer">WIRED</a>.</p>
 
                 <h3>Unleash Your Inner Filmmaker with AI</h3>
                 <p>Our <strong>AI video generator free</strong> tool is designed to be user-friendly and intuitive. You don't need to be a professional filmmaker to use it. Simply write a detailed description of the scene you want to create, and the <strong>AI movie maker</strong> will bring it to life. This makes it a fantastic <strong>AI film generator</strong> for experimenting with different story ideas and visual styles. The <strong>free AI video creator</strong> is a great way to quickly prototype your ideas and get feedback before committing to a full production. You can start with a great script from our <Link href="/tools/ai-script-writer">AI Script Writer</Link>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>The <strong>text to video AI generator free</strong> tool is perfect for creating a wide range of content. Use it to generate eye-catching social media videos, informative explainer videos, or even artistic short films. As the <strong>best free AI video generator</strong>, we are committed to providing a high-quality, accessible tool for all your creative needs. Stop dreaming about your next video project and start creating it with the power of AI. Try our <strong>AI video generator no watermark</strong> tool today and see your ideas come to life on screen.</p>
             </div>
         </div>

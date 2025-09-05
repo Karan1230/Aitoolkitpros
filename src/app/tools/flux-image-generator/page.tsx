@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free Flux Image Generator to create stunning, high-quality photorealistic or artistic visuals from text prompts in seconds.",
-      "url": "https://www.aitoolkitpro.com/tools/flux-image-generator",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/flux-image-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function FluxImageGeneratorPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <FluxImageGeneratorClient />
               </div>
@@ -122,10 +116,6 @@ export default function FluxImageGeneratorPage() {
                   </CardContent>
               </Card>
 
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -139,10 +129,6 @@ export default function FluxImageGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
-
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
           </div>
         </div>
       </div>
@@ -152,23 +138,11 @@ export default function FluxImageGeneratorPage() {
                 <h2>Create Stunning Visuals with the Flux Image Generator</h2>
                 <p>The <strong>Flux image generator</strong> represents the next wave of AI-powered creativity. This advanced <strong>AI image generator</strong> is engineered for both speed and quality, allowing you to produce stunning visuals from text prompts in record time. Whether you're a digital artist, a marketer, or a content creator, this tool is designed to be your go-to resource for high-impact images. Our <strong>free AI image generator</strong> harnesses the power of Flux to deliver photorealistic and artistic results that will elevate your projects. For a more powerful version, try our <Link href="/tools/flux-pro-image-generator">Flux Pro Image Generator</Link>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>As a leading <strong>text to image AI</strong>, the Flux generator offers unparalleled control and flexibility. You can create everything from detailed character portraits to sweeping landscapes with just a few descriptive words. This makes it the <strong>best AI image generator</strong> for users who demand high quality without the complexity. The <strong>AI art generator</strong> capabilities of this tool allow you to experiment with various styles, from classic to contemporary, ensuring that your creative vision is always realized. For more about generative art, check out resources from <a href="https://www.artsy.net/gene/generative-art" target="_blank" rel="noopener noreferrer">Artsy</a>.</p>
 
                 <h3>Experience the Next Generation of AI Art</h3>
                 <p>Our platform provides a powerful <strong>AI image creator</strong> that is accessible to everyone. The <strong>free AI image creator</strong> is designed to be intuitive, so you can start generating images right away. It's an excellent <strong>AI photo generator</strong> for creating realistic images that can be used in a wide range of applications, from marketing materials to personal art projects. The <strong>AI picture generator</strong> is also perfect for creating unique visuals that will make your content stand out. You can even edit your creations with our <Link href="/tools/ai-image-editor">AI Image Editor</Link>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>With the <strong>Flux art generator</strong>, you're not just creating images; you're creating art. This <strong>AI image generator online</strong> tool is constantly learning and improving, so you can always expect the best possible results. Whether you need an <strong>AI drawing generator</strong> for a creative project or a <strong>free text to image AI</strong> for a professional one, our Flux generator is the perfect choice. Unlock your creativity and start generating stunning, high-quality images today.</p>
             </div>
         </div>

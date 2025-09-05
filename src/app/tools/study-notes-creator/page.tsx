@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to convert long articles, documents, and textbooks into concise study notes with key points and summaries.",
-      "url": "https://www.aitoolkitpro.com/tools/study-notes-creator",
+      "url": "https://ai-toolkit-pro.vercel.app/tools/study-notes-creator",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -100,12 +100,6 @@ export default function StudyNotesCreatorPage() {
                 </p>
               </div>
 
-              <div className="my-8">
-                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                </div>
-              </div>
-
               <div className="mt-8">
                   <StudyNotesCreatorClient />
               </div>
@@ -123,10 +117,6 @@ export default function StudyNotesCreatorPage() {
                   </CardContent>
               </Card>
 
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
-
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -140,10 +130,6 @@ export default function StudyNotesCreatorPage() {
                       ))}
                   </CardContent>
               </Card>
-
-                <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
-                </div>
           </div>
         </div>
       </div>
@@ -153,23 +139,11 @@ export default function StudyNotesCreatorPage() {
                 <h2>Streamline Your Studying with an AI Study Notes Creator</h2>
                 <p>Studying effectively often means condensing large amounts of information into concise, manageable notes. An <strong>AI study notes creator</strong> is a revolutionary tool that automates this process, saving you countless hours of reading and note-taking. Our platform offers a powerful <strong>AI notes generator</strong> that can analyze any text and extract the most important key points, definitions, and concepts. It's the perfect study partner for students of all levels. For study tips, check out <a href="https://collegeinfogeek.com/how-to-take-notes-in-college/" target="_blank" rel="noopener noreferrer">College Info Geek</a>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Our tool is designed to be the <strong>best AI note taker</strong> by providing clear, organized, and accurate summaries. The <strong>free AI notes generator</strong> is easy to use; simply paste your text, and the AI will do the rest. This makes it an invaluable <strong>AI note taking app</strong> for anyone who needs to quickly grasp the main ideas of a long article, textbook chapter, or research paper. The <strong>AI notes summarizer</strong> is a game-changer for efficient and effective learning. You can also create a full course outline with our <Link href="/tools/course-outline-generator">Course Outline Generator</Link>.</p>
                 
                 <h3>From Long Texts to Concise Notes in Seconds</h3>
                 <p>The <strong>AI that takes notes from lectures</strong> feature is perfect for students who want to focus on listening during class. Simply record the lecture, transcribe it, and let our tool create the notes for you. The <strong>AI notes generator from text</strong> can also be used to create study guides, flashcards, and other learning materials. Our <strong>free AI note taking app</strong> is a versatile tool that can be adapted to any learning style. You can test your knowledge with our <Link href="/tools/quiz-generator">Quiz Generator</Link>.</p>
                 
-                <div className="my-8">
-                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
-                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
-                    </div>
-                </div>
-
                 <p>Whether you're preparing for an exam, writing a research paper, or just trying to learn something new, our <strong>AI notes app</strong> can help you succeed. It's a powerful <strong>AI for note taking</strong> that can help you study smarter, not harder. Stop spending hours on manual note-taking and start using the power of AI to streamline your study process. Try our <strong>best free AI note taking app</strong> today and see the difference it can make in your academic performance.</p>
             </div>
         </div>
