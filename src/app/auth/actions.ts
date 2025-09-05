@@ -62,6 +62,23 @@ export async function signUp(formData: FormData) {
 
   const supabase = createClient()
 
+  // Check if user already exists
+    const { data: existingUser, error: existingUserError } = await supabase
+    .from('profiles')
+    .select('id, username, email')
+    .or(`email.eq.${email},username.eq.${username}`)
+    .single();
+
+    if (existingUser) {
+        if (existingUser.username === username) {
+            return redirect('/login?message=Username already exists.');
+        }
+        if (existingUser.email === email) {
+            return redirect('/login?message=Email already exists.');
+        }
+    }
+
+
   let avatar_url: string | null = null;
   if (avatarFile && avatarFile.size > 0) {
       const { data: uploadData, error: uploadError } = await supabase
