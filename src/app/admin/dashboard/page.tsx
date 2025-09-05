@@ -90,6 +90,15 @@ export default async function DashboardPage() {
                     <Textarea id="banner-ads-code" placeholder="<-- Your Banner Ad Code -->" className="min-h-[150px] font-mono" />
                   </div>
                 </div>
+                <div className="space-y-4">
+                  <h4 className="font-semibold">Homepage Banner Ads</h4>
+                  <div className="space-y-2">
+                    <Label htmlFor="homepage-banner-ads-code">
+                      Enter your homepage-specific banner ads code here.
+                    </Label>
+                    <Textarea id="homepage-banner-ads-code" placeholder="<-- Your Homepage Banner Ad Code -->" className="min-h-[150px] font-mono" />
+                  </div>
+                </div>
                 <Button>Save Ad Codes</Button>
               </CardContent>
             </Card>
