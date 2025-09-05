@@ -58,13 +58,6 @@ export const toolCategories = [
 
 export const allTools: Tool[] = [
   {
-    name: "AI Music Generator (Lyria)",
-    description: "Create real-time music from text prompts using Gemini's Lyria model.",
-    href: "/tools/ai-music-generator",
-    icon: <Music className="h-8 w-8 text-primary" />,
-    category: "Audio",
-  },
-  {
     name: "AI Personal Finance Assistant",
     description: "Get help with budgeting, savings, and expense tracking.",
     href: "/tools/personal-finance-assistant",
