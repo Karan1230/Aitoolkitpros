@@ -12,14 +12,12 @@ export async function signIn(formData: FormData) {
   const redirectTo = formData.get('redirectTo') as string || '/';
   const supabase = createClient();
 
-  // Check if identifier is an email
   const emailSchema = z.string().email();
   const isEmail = emailSchema.safeParse(identifier).success;
 
   let emailToAuth = identifier;
 
   if (!isEmail) {
-    // If it's not an email, assume it's a username and get the email from the database
     const { data: profile, error: profileError } = await supabase
       .from('profiles')
       .select('email')
@@ -27,7 +25,7 @@ export async function signIn(formData: FormData) {
       .single();
     
     if (profileError || !profile) {
-        return redirect('/login?message=Invalid username or password');
+        return { message: 'Invalid username or password' };
     }
     emailToAuth = profile.email;
   }
@@ -38,7 +36,7 @@ export async function signIn(formData: FormData) {
   });
   
   if (error) {
-    return redirect('/login?message=Could not authenticate user');
+    return { message: error.message };
   }
 
   return redirect(redirectTo);
@@ -56,8 +54,7 @@ export async function signUp(formData: FormData) {
 
     const supabase = createClient();
 
-    // First, check if username or email already exists in profiles table
-    const { data: existingUser, error: existingUserError } = await supabase
+    const { data: existingUser } = await supabase
         .from('profiles')
         .select('id, username, email')
         .or(`email.eq.${email},username.eq.${username}`)
@@ -65,14 +62,13 @@ export async function signUp(formData: FormData) {
 
     if (existingUser) {
         if (existingUser.username === username) {
-            return redirect('/login?message=Username already taken. Please choose another.');
+            return { message: 'Username already taken. Please choose another.' };
         }
         if (existingUser.email === email) {
-            return redirect('/login?message=An account with this email already exists.');
+            return { message: 'An account with this email already exists.' };
         }
     }
 
-    // Create the user in auth.users
     const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
         email,
         password,
@@ -82,14 +78,13 @@ export async function signUp(formData: FormData) {
     });
 
     if (signUpError) {
-        return redirect(`/login?message=Could not sign up user: ${signUpError.message}`);
+        return { message: `Could not sign up user: ${signUpError.message}` };
     }
 
     if (!signUpData.user) {
-        return redirect('/login?message=User registration failed. Please try again.');
+        return { message: 'User registration failed. Please try again.' };
     }
 
-    // Handle avatar upload
     let avatar_url: string | null = null;
     if (avatarFile && avatarFile.size > 0) {
         const { data: uploadData, error: uploadError } = await supabase
@@ -99,7 +94,6 @@ export async function signUp(formData: FormData) {
 
         if (uploadError) {
             console.error("Avatar upload error:", uploadError);
-            // Non-critical error, we can proceed without an avatar
         } else {
             const { data: urlData } = supabase
                 .storage
@@ -109,7 +103,6 @@ export async function signUp(formData: FormData) {
         }
     }
 
-    // Manually insert into public.profiles
     const { error: profileError } = await supabase.from('profiles').insert({
         id: signUpData.user.id,
         username: username,
@@ -122,15 +115,12 @@ export async function signUp(formData: FormData) {
 
     if (profileError) {
         console.error("Profile creation error:", profileError);
-        // If profile insert fails, delete the auth user to prevent orphaned users.
-        const { error: adminError } = await supabase.auth.admin.deleteUser(signUpData.user.id);
-        if (adminError) {
-            console.error("Failed to delete orphaned user:", adminError);
-        }
-        return redirect(`/login?message=Could not save user profile. Please try again.`);
+        await supabase.auth.admin.deleteUser(signUpData.user.id);
+        return { message: `Could not save user profile. Please try again.` };
     }
 
-    return redirect('/login?message=Check email to continue sign in process');
+    // On success, return null (no message)
+    return { message: null };
 }
 
 
