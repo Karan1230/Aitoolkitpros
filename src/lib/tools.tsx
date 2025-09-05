@@ -58,6 +58,13 @@ export const toolCategories = [
 
 export const allTools: Tool[] = [
   {
+    name: "Poem & Song Lyrics Generator",
+    description: "Generate beautiful poems and song lyrics on any topic.",
+    href: "/tools/poem-lyrics-generator",
+    icon: <FileSignature className="h-8 w-8 text-primary" />,
+    category: "Content"
+  },
+  {
     name: "Virtual Try-On",
     description: "Virtually try on different outfits using our free AI-powered tool.",
     href: "/tools/virtual-try-on",
