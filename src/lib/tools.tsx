@@ -58,6 +58,13 @@ export const toolCategories = [
 
 export const allTools: Tool[] = [
   {
+    name: "AI Jokes & Shayari Maker",
+    description: "Instant jokes, shayari, pickup lines.",
+    href: "/tools/jokes-shayari-maker",
+    icon: <Laugh className="h-8 w-8 text-primary" />,
+    category: "Fun"
+  },
+  {
     name: "Poem & Song Lyrics Generator",
     description: "Generate beautiful poems and song lyrics on any topic.",
     href: "/tools/poem-lyrics-generator",
