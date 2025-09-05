@@ -78,7 +78,7 @@ export function AuthForm({ isLoginPage = false }: AuthFormProps) {
         toast({ title: "Success!", description: "Please check your email to complete the sign-up process." });
         setIsLogin(true);
     } else {
-      router.push(redirectTo);
+      // Successful login redirects via the server action, so nothing more to do here.
     }
     
     setIsSubmitting(false);
@@ -116,6 +116,7 @@ export function AuthForm({ isLoginPage = false }: AuthFormProps) {
     <div>
       {isLogin ? (
         <form onSubmit={onLogin} className="space-y-4">
+          <input type="hidden" name="redirectTo" value={redirectTo} />
           <div className="space-y-2">
             <Label htmlFor="identifier">Email or Username</Label>
             <Input id="identifier" {...registerLogin('identifier')} placeholder="you@example.com" />
