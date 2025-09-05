@@ -45,95 +45,94 @@ export async function signIn(formData: FormData) {
 }
 
 export async function signUp(formData: FormData) {
-  const origin = headers().get('origin')
-  const email = formData.get('email') as string
-  const password = formData.get('password') as string
-  const username = formData.get('username') as string
-  const fullName = formData.get('full_name') as string
-  const mobileNumber = formData.get('mobile_number') as string
-  const country = formData.get('country') as string
-  const avatarFile = formData.get('avatar') as File
+    const origin = headers().get('origin');
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const username = formData.get('username') as string;
+    const fullName = formData.get('full_name') as string;
+    const mobileNumber = formData.get('mobile_number') as string;
+    const country = formData.get('country') as string;
+    const avatarFile = formData.get('avatar') as File;
 
-  const supabase = createClient()
+    const supabase = createClient();
 
-  // First, check if username or email already exists in profiles table
-  const { data: existingUser, error: existingUserError } = await supabase
-    .from('profiles')
-    .select('id, username, email')
-    .or(`email.eq.${email},username.eq.${username}`)
-    .maybeSingle();
+    // First, check if username or email already exists in profiles table
+    const { data: existingUser, error: existingUserError } = await supabase
+        .from('profiles')
+        .select('id, username, email')
+        .or(`email.eq.${email},username.eq.${username}`)
+        .maybeSingle();
 
     if (existingUser) {
         if (existingUser.username === username) {
-            return redirect('/login?message=Username already exists.');
+            return redirect('/login?message=Username already taken. Please choose another.');
         }
         if (existingUser.email === email) {
-            return redirect('/login?message=Email already exists.');
+            return redirect('/login?message=An account with this email already exists.');
         }
     }
 
-  // Create the user in auth.users
-  const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      emailRedirectTo: `${origin}/auth/callback`,
-    },
-  });
+    // Create the user in auth.users
+    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+            emailRedirectTo: `${origin}/auth/callback`,
+        },
+    });
 
-  if (signUpError) {
-    console.error("Sign up error:", signUpError);
-    return redirect(`/login?message=Could not sign up user: ${signUpError.message}`);
-  }
+    if (signUpError) {
+        return redirect(`/login?message=Could not sign up user: ${signUpError.message}`);
+    }
 
-  if (!signUpData.user) {
-    return redirect('/login?message=Could not create user, please try again.');
-  }
+    if (!signUpData.user) {
+        return redirect('/login?message=User registration failed. Please try again.');
+    }
 
-  // Handle avatar upload
-  let avatar_url: string | null = null;
-  if (avatarFile && avatarFile.size > 0) {
-      const { data: uploadData, error: uploadError } = await supabase
-          .storage
-          .from('avatars')
-          .upload(`public/${signUpData.user.id}/${Date.now()}_${avatarFile.name}`, avatarFile);
-      
-      if (uploadError) {
-          console.error("Avatar upload error:", uploadError);
-          // If avatar fails, we can proceed without it or handle the error
-      } else {
-        const { data: urlData } = supabase
+    // Handle avatar upload
+    let avatar_url: string | null = null;
+    if (avatarFile && avatarFile.size > 0) {
+        const { data: uploadData, error: uploadError } = await supabase
             .storage
             .from('avatars')
-            .getPublicUrl(uploadData.path);
-        avatar_url = urlData.publicUrl;
-      }
-  }
+            .upload(`public/${signUpData.user.id}/${Date.now()}_${avatarFile.name}`, avatarFile);
 
-  // Manually insert into public.profiles, as triggers can sometimes be unreliable.
-  // This requires RLS policy to be set correctly for authenticated users to insert their own profile.
-  const { error: profileError } = await supabase.from('profiles').insert({
-    id: signUpData.user.id,
-    username: username,
-    full_name: fullName,
-    mobile_number: mobileNumber,
-    country: country,
-    avatar_url: avatar_url,
-    email: email,
-  });
-
-  if (profileError) {
-    console.error("Profile creation error:", profileError);
-    // If profile insert fails, it's critical to delete the auth user to prevent orphaned users.
-    const { data: adminUser, error: adminError } = await supabase.auth.admin.deleteUser(signUpData.user.id);
-    if(adminError){
-        console.error("Failed to delete orphaned user:", adminError);
+        if (uploadError) {
+            console.error("Avatar upload error:", uploadError);
+            // Non-critical error, we can proceed without an avatar
+        } else {
+            const { data: urlData } = supabase
+                .storage
+                .from('avatars')
+                .getPublicUrl(uploadData.path);
+            avatar_url = urlData.publicUrl;
+        }
     }
-    return redirect(`/login?message=Could not save user profile. Please try again. Error: ${profileError.message}`);
-  }
 
-  return redirect('/login?message=Check email to continue sign in process');
+    // Manually insert into public.profiles
+    const { error: profileError } = await supabase.from('profiles').insert({
+        id: signUpData.user.id,
+        username: username,
+        full_name: fullName,
+        mobile_number: mobileNumber,
+        country: country,
+        avatar_url: avatar_url,
+        email: email,
+    });
+
+    if (profileError) {
+        console.error("Profile creation error:", profileError);
+        // If profile insert fails, delete the auth user to prevent orphaned users.
+        const { error: adminError } = await supabase.auth.admin.deleteUser(signUpData.user.id);
+        if (adminError) {
+            console.error("Failed to delete orphaned user:", adminError);
+        }
+        return redirect(`/login?message=Could not save user profile. Please try again.`);
+    }
+
+    return redirect('/login?message=Check email to continue sign in process');
 }
+
 
 export async function signOut() {
     const supabase = createClient()
