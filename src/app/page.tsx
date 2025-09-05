@@ -131,10 +131,11 @@ export default function Home() {
 
   // Reset counter for desktop layout
   toolCounter = 0;
+  let adCounter = 0;
   while(toolCounter < visibleToolsCount && toolCounter < allTools.length) {
     // Add 3 tools
     for(let i = 0; i < 3; i++) {
-        if (toolCounter < allTools.length) {
+        if (toolCounter < allTools.length && toolCounter < visibleToolsCount) {
             const tool = allTools[toolCounter];
             desktopItems.push(
                  <Link href={tool.href} key={tool.name} className="group flex animate-float-in" style={{ animationDelay: `${0.1 + toolCounter * 0.05}s`}}>
@@ -153,11 +154,12 @@ export default function Home() {
         }
     }
 
-    // Add 3 ads
-    if(toolCounter < allTools.length && toolCounter < visibleToolsCount) {
-        for(let i = 0; i < 3; i++) {
-            desktopItems.push(<NativeAdPlaceholder key={`ad-row-${Math.floor(toolCounter / 3)}-${i}`} />);
-        }
+    // Add a row of 3 ads
+    if (toolCounter < allTools.length && toolCounter < visibleToolsCount) {
+      for (let i = 0; i < 3; i++) {
+        desktopItems.push(<NativeAdPlaceholder key={`ad-row-${adCounter}-${i}`} />);
+      }
+      adCounter++;
     }
   }
 

@@ -90,7 +90,7 @@ export default async function DashboardPage() {
                     <Textarea id="banner-ads-code" placeholder="<-- Your Banner Ad Code -->" className="min-h-[150px] font-mono" />
                   </div>
                 </div>
-                <Button variant="secondary">Save Ad Codes</Button>
+                <Button>Save Ad Codes</Button>
               </CardContent>
             </Card>
 
