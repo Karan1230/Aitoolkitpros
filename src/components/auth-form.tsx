@@ -35,8 +35,12 @@ const signupSchema = z.object({
   avatar: z.any().optional(),
 });
 
-export function AuthForm() {
-  const [isLogin, setIsLogin] = useState(true)
+interface AuthFormProps {
+    isLoginPage?: boolean;
+}
+
+export function AuthForm({ isLoginPage = true }: AuthFormProps) {
+  const [isLogin, setIsLogin] = useState(isLoginPage);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null)
   const [formError, setFormError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -186,26 +190,30 @@ export function AuthForm() {
         </form>
       )}
 
-      <div className="relative mt-4">
-            <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
-            </div>
-      </div>
-      <form action={signInWithGoogle}>
-        <Button variant="outline" className="w-full mt-4">
-            <svg className="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 126 21.2 173.4 58.2L339.2 174.1C312.7 151.3 283.5 140 248 140c-63.6 0-114.9 51.3-114.9 114.9S184.4 370.9 248 370.9c73.3 0 106.3-43.2 109.8-65.5H248V204.9h239.1c1.2 6.4 3.3 12.7 3.3 19.4v37.5z"></path></svg>
-            Sign in with Google
-        </Button>
-      </form>
+        {isLoginPage && (
+            <>
+                <div className="relative mt-4">
+                        <div className="absolute inset-0 flex items-center">
+                            <span className="w-full border-t" />
+                        </div>
+                        <div className="relative flex justify-center text-xs uppercase">
+                            <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+                        </div>
+                </div>
+                <form action={signInWithGoogle}>
+                    <Button variant="outline" className="w-full mt-4">
+                        <svg className="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 126 21.2 173.4 58.2L339.2 174.1C312.7 151.3 283.5 140 248 140c-63.6 0-114.9 51.3-114.9 114.9S184.4 370.9 248 370.9c73.3 0 106.3-43.2 109.8-65.5H248V204.9h239.1c1.2 6.4 3.3 12.7 3.3 19.4v37.5z"></path></svg>
+                        Sign in with Google
+                    </Button>
+                </form>
 
-      <div className="mt-4 text-center text-sm">
-        <button onClick={() => { setIsLogin(!isLogin); setFormError(null); }} className="underline">
-          {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
-        </button>
-      </div>
+                <div className="mt-4 text-center text-sm">
+                    <button onClick={() => { setIsLogin(!isLogin); setFormError(null); }} className="underline">
+                    {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
+                    </button>
+                </div>
+            </>
+        )}
 
       {(formError || clientError) && (
         <Alert variant="destructive" className="mt-4">
@@ -220,5 +228,3 @@ export function AuthForm() {
     </div>
   )
 }
-
-    

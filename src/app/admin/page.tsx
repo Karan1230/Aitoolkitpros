@@ -27,7 +27,7 @@ export default async function AdminLoginPage() {
             </CardHeader>
             <CardContent>
               <Suspense fallback={<div>Loading...</div>}>
-                <AuthForm />
+                <AuthForm isLoginPage={false} />
               </Suspense>
             </CardContent>
         </Card>
