@@ -36,3 +36,4 @@ import '@/ai/flows/study-notes-creator.ts';
 import '@/ai/flows/course-outline-generator.ts';
 import '@/ai/flows/poem-lyrics-generator.ts';
 import '@/ai/flows/jokes-shayari-maker.ts';
+import '@/ai/flows/personal-finance-assistant.ts';

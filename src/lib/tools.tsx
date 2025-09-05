@@ -1,5 +1,5 @@
 
-import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus, BookImage, Clapperboard, MonitorPlay, Wand2, History, Voicemail, Music, Shirt } from 'lucide-react';
+import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus, BookImage, Clapperboard, MonitorPlay, Wand2, History, Voicemail, Music, Shirt, Landmar } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export interface Tool {
@@ -57,6 +57,13 @@ export const toolCategories = [
 
 
 export const allTools: Tool[] = [
+  {
+    name: "AI Personal Finance Assistant",
+    description: "Get help with budgeting, savings, and expense tracking.",
+    href: "/tools/personal-finance-assistant",
+    icon: <Landmar className="h-8 w-8 text-primary" />,
+    category: "Assistant"
+  },
   {
     name: "AI Jokes & Shayari Maker",
     description: "Instant jokes, shayari, pickup lines.",
