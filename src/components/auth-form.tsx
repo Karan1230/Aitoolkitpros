@@ -15,6 +15,10 @@ import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Upload } from 'lucide-react'
 import Image from 'next/image'
+import { useToast } from '@/hooks/use-toast'
+import { Alert, AlertDescription, AlertTitle } from './ui/alert'
+import { Terminal } from 'lucide-react'
+
 
 const loginSchema = z.object({
   identifier: z.string().min(1, 'Please enter your email or username'),
@@ -36,11 +40,12 @@ export function AuthForm() {
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null)
   const [formError, setFormError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const { toast } = useToast()
   const pathname = usePathname();
   const router = useRouter();
 
-  const { register: registerLogin, handleSubmit: handleLoginSubmit } = useForm({ resolver: zodResolver(loginSchema) });
-  const { register: registerSignup, handleSubmit: handleSignupSubmit, watch } = useForm({ resolver: zodResolver(signupSchema) });
+  const { register: registerLogin, handleSubmit: handleLoginSubmit, formState: { errors: loginErrors } } = useForm({ resolver: zodResolver(loginSchema) });
+  const { register: registerSignup, handleSubmit: handleSignupSubmit, formState: { errors: signupErrors } } = useForm({ resolver: zodResolver(signupSchema) });
   
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -84,15 +89,24 @@ export function AuthForm() {
   const onSignup = handleSignupSubmit((data) => {
       const formData = new FormData();
       Object.entries(data).forEach(([key, value]) => {
-          if (key === 'avatar') {
+          if (key === 'avatar' && value instanceof FileList) {
               if (value && value.length > 0) formData.append(key, value[0]);
           } else {
-              formData.append(key, value);
+              formData.append(key, value as string);
           }
       });
       handleAuthAction('signup', formData);
   });
 
+  const getErrorMessage = (errors: any) => {
+    const error = Object.values(errors)[0];
+    if (error && typeof error === 'object' && 'message' in error) {
+      return error.message as string;
+    }
+    return null;
+  }
+
+  const clientError = isLogin ? getErrorMessage(loginErrors) : getErrorMessage(signupErrors);
 
   return (
     <div>
@@ -100,11 +114,11 @@ export function AuthForm() {
         <form onSubmit={onLogin} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="identifier">Email or Username</Label>
-            <Input id="identifier" {...registerLogin('identifier')} placeholder="you@example.com" required />
+            <Input id="identifier" {...registerLogin('identifier')} placeholder="you@example.com" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" {...registerLogin('password')} required />
+            <Input id="password" type="password" {...registerLogin('password')} />
           </div>
            <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
@@ -141,30 +155,30 @@ export function AuthForm() {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="username">Username</Label>
-              <Input id="username" {...registerSignup('username')} required />
+              <Input id="username" {...registerSignup('username')} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="full_name">Full Name</Label>
-              <Input id="full_name" {...registerSignup('full_name')} required />
+              <Input id="full_name" {...registerSignup('full_name')} />
             </div>
           </div>
            <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" {...registerSignup('email')} required />
+            <Input id="email" type="email" {...registerSignup('email')} />
           </div>
           <div className="grid grid-cols-2 gap-4">
              <div className="space-y-2">
               <Label htmlFor="mobile_number">Mobile Number</Label>
-              <Input id="mobile_number" type="tel" {...registerSignup('mobile_number')} required />
+              <Input id="mobile_number" type="tel" {...registerSignup('mobile_number')} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="country">Country</Label>
-              <Input id="country" {...registerSignup('country')} required />
+              <Input id="country" {...registerSignup('country')} />
             </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" {...registerSignup('password')} required />
+            <Input id="password" type="password" {...registerSignup('password')} />
           </div>
            <Button type="submit" className="w-full" disabled={isSubmitting}>
              {isSubmitting ? 'Signing up...' : 'Sign Up'}
@@ -193,11 +207,18 @@ export function AuthForm() {
         </button>
       </div>
 
-      {formError && (
-        <p className="mt-4 p-4 bg-destructive/10 text-destructive text-center rounded-md">
-          {formError}
-        </p>
+      {(formError || clientError) && (
+        <Alert variant="destructive" className="mt-4">
+            <Terminal className="h-4 w-4" />
+            <AlertTitle>Authentication Error</AlertTitle>
+            <AlertDescription>
+                {clientError || formError}
+                {formError?.includes('rate limit') && ' Please wait a moment before trying again.'}
+            </AlertDescription>
+        </Alert>
       )}
     </div>
   )
 }
+
+    
