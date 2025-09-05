@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { AppHeader } from '@/components/app-header';
 import { AppFooter } from '@/components/app-footer';
+import { ThemeProvider } from '@/components/theme-provider';
 
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -90,13 +91,20 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       </head>
-      <body className={cn('min-h-screen bg-background font-body antialiased dark', inter.variable, spaceGrotesk.variable)}>
-        <div className="relative flex min-h-screen flex-col bg-gradient-bg">
-          <AppHeader />
-          <main className="flex-1 pt-16">{children}</main>
-          <AppFooter />
-        </div>
-        <Toaster />
+      <body className={cn('min-h-screen bg-background font-body antialiased', inter.variable, spaceGrotesk.variable)}>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+        >
+            <div className="relative flex min-h-screen flex-col bg-gradient-bg">
+            <AppHeader />
+            <main className="flex-1 pt-16">{children}</main>
+            <AppFooter />
+            </div>
+            <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

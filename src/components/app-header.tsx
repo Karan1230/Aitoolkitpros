@@ -25,6 +25,7 @@ import { ScrollArea } from "./ui/scroll-area";
 import { UserNav } from "./user-nav";
 import { createClient } from "@/lib/supabase/client";
 import type { User } from "@supabase/supabase-js";
+import { ThemeToggle } from "./theme-toggle";
 
 function SearchDialog() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -129,6 +130,8 @@ export function AppHeader() {
         <div className="hidden md:block">
             <SearchDialog />
         </div>
+        
+        <ThemeToggle />
         
         {!loading && <UserNav user={user} />}
 
