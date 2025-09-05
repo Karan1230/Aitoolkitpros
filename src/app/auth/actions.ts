@@ -16,32 +16,26 @@ export async function signIn(formData: FormData) {
   const emailSchema = z.string().email();
   const isEmail = emailSchema.safeParse(identifier).success;
 
-  let error;
+  let emailToAuth = identifier;
 
-  if (isEmail) {
-    const { error: signInError } = await supabase.auth.signInWithPassword({
-      email: identifier,
-      password,
-    });
-    error = signInError;
-  } else {
-    // Assume it's a username, fetch the user's email from the profiles table
+  if (!isEmail) {
+    // If it's not an email, assume it's a username and get the email from the database
     const { data: profile, error: profileError } = await supabase
       .from('profiles')
       .select('email')
       .eq('username', identifier)
       .single();
-
+    
     if (profileError || !profile) {
-      return redirect('/login?message=Invalid username');
+        return redirect('/login?message=Invalid username or password');
     }
-
-    const { error: signInError } = await supabase.auth.signInWithPassword({
-      email: profile.email,
-      password,
-    });
-    error = signInError;
+    emailToAuth = profile.email;
   }
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email: emailToAuth,
+    password,
+  });
   
   if (error) {
     return redirect('/login?message=Could not authenticate user');
@@ -62,12 +56,12 @@ export async function signUp(formData: FormData) {
 
   const supabase = createClient()
 
-  // Check if user already exists
-    const { data: existingUser, error: existingUserError } = await supabase
+  // First, check if username or email already exists in profiles table
+  const { data: existingUser, error: existingUserError } = await supabase
     .from('profiles')
     .select('id, username, email')
     .or(`email.eq.${email},username.eq.${username}`)
-    .single();
+    .maybeSingle();
 
     if (existingUser) {
         if (existingUser.username === username) {
@@ -78,27 +72,7 @@ export async function signUp(formData: FormData) {
         }
     }
 
-
-  let avatar_url: string | null = null;
-  if (avatarFile && avatarFile.size > 0) {
-      const { data: uploadData, error: uploadError } = await supabase
-          .storage
-          .from('avatars')
-          .upload(`public/${Date.now()}_${avatarFile.name}`, avatarFile);
-      
-      if (uploadError) {
-          console.error("Avatar upload error:", uploadError);
-          return redirect('/login?message=Could not upload avatar');
-      }
-
-      const { data: urlData } = supabase
-          .storage
-          .from('avatars')
-          .getPublicUrl(uploadData.path);
-      
-      avatar_url = urlData.publicUrl;
-  }
-
+  // Create the user in auth.users
   const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
     email,
     password,
@@ -108,29 +82,54 @@ export async function signUp(formData: FormData) {
   });
 
   if (signUpError) {
-    console.error(signUpError)
-    return redirect('/login?message=Could not create user: ' + signUpError.message);
+    console.error("Sign up error:", signUpError);
+    return redirect(`/login?message=Could not sign up user: ${signUpError.message}`);
   }
 
   if (!signUpData.user) {
     return redirect('/login?message=Could not create user, please try again.');
   }
 
+  // Handle avatar upload
+  let avatar_url: string | null = null;
+  if (avatarFile && avatarFile.size > 0) {
+      const { data: uploadData, error: uploadError } = await supabase
+          .storage
+          .from('avatars')
+          .upload(`public/${signUpData.user.id}/${Date.now()}_${avatarFile.name}`, avatarFile);
+      
+      if (uploadError) {
+          console.error("Avatar upload error:", uploadError);
+          // If avatar fails, we can proceed without it or handle the error
+      } else {
+        const { data: urlData } = supabase
+            .storage
+            .from('avatars')
+            .getPublicUrl(uploadData.path);
+        avatar_url = urlData.publicUrl;
+      }
+  }
+
+  // Manually insert into public.profiles, as triggers can sometimes be unreliable.
+  // This requires RLS policy to be set correctly for authenticated users to insert their own profile.
   const { error: profileError } = await supabase.from('profiles').insert({
     id: signUpData.user.id,
-    username,
+    username: username,
     full_name: fullName,
     mobile_number: mobileNumber,
-    country,
-    avatar_url,
-    email
+    country: country,
+    avatar_url: avatar_url,
+    email: email,
   });
 
   if (profileError) {
     console.error("Profile creation error:", profileError);
-    // Optionally delete the user from auth.users if profile creation fails
-    await supabase.auth.admin.deleteUser(signUpData.user.id);
-    return redirect('/login?message=Could not save user profile: ' + profileError.message);
+    // If profile insert fails, it's critical to delete the auth user to prevent orphaned users.
+    const { data: adminUser, error: adminError } = await supabase.auth.admin.deleteUser(signUpData.user.id);
+    if(adminError){
+        console.error("Failed to delete orphaned user:", adminError);
+    }
+    return redirect(`/login?message=Could not save user profile. Please try again. Error: ${profileError.message}`);
   }
 
   return redirect('/login?message=Check email to continue sign in process');
