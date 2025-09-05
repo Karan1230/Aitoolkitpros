@@ -12,6 +12,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 const testimonials = [
     {
@@ -83,6 +84,14 @@ const NativeAdPlaceholder = () => (
     </div>
 );
 
+const BannerAdPlaceholder = ({ className }: { className?: string }) => (
+    <div className={cn("container my-8", className)}>
+        <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+            <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+        </div>
+    </div>
+);
+
 export default function Home() {
   const plugin = useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
@@ -146,6 +155,8 @@ export default function Home() {
         </div>
       </section>
 
+      <BannerAdPlaceholder />
+
       {/* Tools Section */}
       <section id="tools" className="py-12">
         <div className="container px-4">
@@ -203,6 +214,8 @@ export default function Home() {
           </Carousel>
         </div>
       </section>
+
+      <BannerAdPlaceholder />
       
       {/* FAQ Section */}
       <section className="py-16 md:py-24">
