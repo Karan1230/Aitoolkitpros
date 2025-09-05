@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Button } from "@/components/ui/button";
@@ -86,7 +85,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="py-16 md:py-24 text-center">
+      <section className="pt-16 pb-8 md:pt-24 text-center">
         <div className="container">
           <h1 className="font-headline text-4xl md:text-6xl font-bold gradient-text animate-float-in">
             AI Toolkit Pro
