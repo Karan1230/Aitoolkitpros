@@ -100,6 +100,12 @@ export default function AiAdsGeneratorPage() {
                 </p>
               </div>
 
+               <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <AiAdsGeneratorClient />
               </div>
@@ -116,6 +122,10 @@ export default function AiAdsGeneratorPage() {
                       <p><strong>4. Download:</strong> Once generated, you can download your video ad.</p>
                   </CardContent>
               </Card>
+              
+               <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+              </div>
 
                <Card>
                   <CardHeader>
@@ -130,6 +140,10 @@ export default function AiAdsGeneratorPage() {
                       ))}
                   </CardContent>
               </Card>
+
+              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+              </div>
           </div>
         </div>
       </div>
@@ -138,10 +152,24 @@ export default function AiAdsGeneratorPage() {
               <div className="prose dark:prose-invert mx-auto">
                   <h2>Revolutionize Your Marketing with an AI Ads Generator</h2>
                   <p>In the fast-paced world of digital marketing, video content is king. However, creating high-quality video ads can be time-consuming and expensive. That's where our <strong>AI ads generator</strong> comes in. This cutting-edge tool allows you to create professional video advertisements in just a few minutes, all for free. The <strong>free AI video ad generator</strong> is perfect for small businesses, dropshippers, and marketers who want to create engaging content without breaking the bank. For compelling ad copy to go with your video, try our <Link href="/tools/ad-copy-generator">AI Ad Copy Generator</Link>.</p>
+                  
+                  <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                   <p>Our platform is more than just a simple video maker; it's a comprehensive <strong>AI ad creator</strong> designed to optimize your content for various social media platforms. Whether you need a <strong>TikTok ad generator</strong>, a <strong>Facebook video ad generator</strong>, or a tool to create YouTube Shorts, our system has you covered. The <strong>AI YouTube ad generator</strong> feature ensures your ads meet the specific requirements and best practices for the world's largest video platform, as detailed in <a href="https://support.google.com/google-ads/answer/2375424?hl=en" target="_blank" rel="noopener noreferrer">Google's own ad specifications</a>, helping you reach a wider audience and maximize your impact. Learn more about our mission on our <Link href="/about">About Us</Link> page.</p>
                   
                   <h3>Create Ads for Any Platform Instantly</h3>
                   <p>The versatility of our <strong>AI ad generator free</strong> tool is one of its greatest strengths. It functions as an effective <strong>Instagram ad generator</strong> and <strong>Facebook ad generator</strong>, producing visually appealing content that stops the scroll. For e-commerce businesses, the <strong>AI product ad video generator</strong> is a game-changer. Simply input your product name, and the AI will create a dynamic video that highlights its key features and benefits, driving traffic and sales to your store. This is especially useful for creating <strong>dropshipping video ads</strong> that look polished and professional. You can even generate a unique brand identity with our <Link href="/tools/ai-logo-maker">AI Logo Maker</Link>.</p>
+                  
+                   <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                   <p>Stop spending hours on complicated video editing software. With our <strong>AI video ad generator free</strong> tool, you can produce stunning advertisements with just a few clicks. It's the <strong>best free AI video ad generator</strong> on the market, offering a seamless experience from start to finish. Embrace the future of advertising and let our <strong>AI generate video ad</strong> content that captivates your audience and grows your business. Try the <strong>free AI ads generator</strong> today and see the difference for yourself.</p>
               </div>
           </div>

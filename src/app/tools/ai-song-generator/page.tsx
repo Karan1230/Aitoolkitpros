@@ -102,7 +102,7 @@ export default function AiSongGeneratorPage() {
 
                {/* Ad Placeholder */}
               <div className="my-8">
-                <div className="mx-auto w-full h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
                     <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
                 </div>
               </div>

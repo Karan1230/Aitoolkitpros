@@ -100,6 +100,12 @@ export default function BackgroundRemoverPage() {
                 </p>
               </div>
 
+              <div className="my-8">
+                <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                </div>
+              </div>
+
               <div className="mt-8">
                   <BackgroundRemoverClient />
               </div>
@@ -117,6 +123,10 @@ export default function BackgroundRemoverPage() {
                   </CardContent>
               </Card>
 
+               <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+              </div>
+
                <Card>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">Benefits</CardTitle>
@@ -130,6 +140,10 @@ export default function BackgroundRemoverPage() {
                       ))}
                   </CardContent>
               </Card>
+
+              <div className="mx-auto w-full max-w-[300px] h-[250px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Demo Ad (300x250)</span>
+              </div>
           </div>
         </div>
       </div>
@@ -138,10 +152,24 @@ export default function BackgroundRemoverPage() {
             <div className="prose dark:prose-invert mx-auto">
                 <h2>Effortlessly Remove Backgrounds with an AI Background Remover</h2>
                 <p>In the world of digital imagery, clean, professional photos are essential. A cluttered background can distract from the main subject and diminish the overall quality of an image. An <strong>AI background remover</strong> is a powerful tool that allows you to instantly remove the background from any photo, leaving you with a clean, isolated subject. Our platform offers a <strong>free background remover</strong> that is perfect for e-commerce sellers, graphic designers, and anyone who needs to create high-quality visuals. For more advanced editing, try our <Link href="/tools/ai-image-editor">AI Image Editor</Link>.</p>
+                
+                <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>The <strong>background remover from image</strong> technology uses advanced AI to accurately detect the subject and erase the background. This makes it the <strong>best free background remover</strong> for achieving professional results without the need for complex software like Photoshop. Our <strong>AI background removal</strong> tool is designed to be fast and efficient, saving you valuable time and effort. It's the ultimate <strong>photo background remover free</strong> solution for all your creative needs. Major e-commerce platforms like <a href="https://www.shopify.com/blog/product-photography" target="_blank" rel="noopener noreferrer">Shopify</a> emphasize the importance of clean product images.</p>
 
                 <h3>Create Stunning Visuals with a Transparent Background</h3>
                 <p>One of the most common uses for our tool is to <strong>remove background from image free</strong> of charge to create a transparent background. This is incredibly useful for creating product photos for e-commerce websites, as it allows you to place your product on any background you choose. The <strong>picture background remover free</strong> tool is also great for creating professional headshots and social media profile pictures. Our <strong>image background remover free</strong> service is designed to be as user-friendly as possible. After removing the background, you can <Link href="/tools/image-upscaler">upscale your image</Link> for better quality.</p>
+                
+                 <div className="my-8">
+                    <div className="mx-auto w-full max-w-[728px] h-[90px] bg-muted/50 border border-dashed rounded-lg flex items-center justify-center">
+                        <span className="text-muted-foreground text-sm">Demo Banner Ad (728x90)</span>
+                    </div>
+                </div>
+
                 <p>With our <strong>background remover AI free</strong> tool, you can also add a new background to your image. Choose from a solid color or upload your own custom background to create a unique and eye-catching visual. The <strong>free background remover from image</strong> is a versatile tool that can be used for a wide range of applications. Stop struggling with manual selection tools and start using the power of AI to create stunning images. Try our <strong>best background remover free</strong> tool today and see the difference for yourself.</p>
             </div>
         </div>
