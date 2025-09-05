@@ -58,13 +58,6 @@ export const toolCategories = [
 
 export const allTools: Tool[] = [
   {
-    name: "YouTube SEO Tool",
-    description: "Analyze and optimize your YouTube videos, channels, and keywords.",
-    href: "/tools/youtube-seo-tool",
-    icon: <Youtube className="h-8 w-8 text-primary" />,
-    category: "Business"
-  },
-  {
     name: "Virtual Try-On",
     description: "Virtually try on different outfits using our free AI-powered tool.",
     href: "/tools/virtual-try-on",
