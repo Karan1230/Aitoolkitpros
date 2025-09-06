@@ -3,7 +3,7 @@ import { type MetadataRoute } from 'next';
 import { allTools } from '@/lib/tools';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = 'https://www.aitoolkitpro.com';
+  const siteUrl = 'https://aitoolkitpro.netlify.app/';
 
   const toolRoutes = allTools.map((tool) => ({
     url: `${siteUrl}${tool.href}`,
