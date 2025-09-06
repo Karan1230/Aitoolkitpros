@@ -2,7 +2,7 @@
 import { type Metadata } from 'next';
 import { AiCodeAgentClient } from '@/components/ai-code-agent-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Lightbulb } from 'lucide-react';
 import Link from 'next/link';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -81,6 +81,21 @@ const schema = {
   ]
 };
 
+const examplePrompts = [
+    {
+        title: "React To-Do App",
+        prompt: "A simple to-do list app using React, TypeScript, and Tailwind CSS. It should have a single component to add, list, and delete tasks. State should be managed within the component.",
+    },
+    {
+        title: "Python Web Scraper",
+        prompt: "A Python script that uses BeautifulSoup and Requests to scrape the titles and links from the front page of Hacker News (news.ycombinator.com). The results should be saved to a CSV file.",
+    },
+    {
+        title: "Node.js Express API",
+        prompt: "A basic Node.js backend using Express. It should have two routes: a GET route at '/' that returns 'Hello World', and a GET route at '/api/users' that returns a JSON array of mock user data.",
+    }
+];
+
 export default function AiCodeAgentPage() {
   return (
     <>
@@ -133,6 +148,23 @@ export default function AiCodeAgentPage() {
           </div>
         </div>
       </div>
+      <section className="py-16 bg-muted/50">
+        <div className="container max-w-5xl">
+            <h2 className="font-headline text-3xl font-bold text-center mb-8">Example Prompts</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {examplePrompts.map((example, index) => (
+                    <Card key={index} className="flex flex-col">
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2"><Lightbulb className="h-6 w-6 text-primary"/>{example.title}</CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex-grow">
+                            <p className="text-sm text-muted-foreground font-mono bg-background/50 p-4 rounded-md">"{example.prompt}"</p>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
+        </div>
+      </section>
       <section className="py-16">
         <div className="container max-w-4xl">
             <div className="prose dark:prose-invert mx-auto">
