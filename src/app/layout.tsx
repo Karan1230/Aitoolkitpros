@@ -79,9 +79,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="monetag" content="803be72e60a8dc84014c97c22a08131a" />
-        <meta name="google-site-verification" content="O53X2mdbJz3WwgeqtSsvQVCGlo5jYyvjVrckboIfecg" />
-        <meta name="msvalidate.01" content="428CEBBD8BBBA5CC5CE5570CEA5F0964" />
+        <meta name="monetag" content="988e7060a5c1fec9e76a5ab72a2630ab" />
+        <meta name="google-site-verification" content="" />
+        <meta name="msvalidate.01" content="" />
         <link rel="icon" href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3cfilter id='glow' x='-50%25' y='-50%25' width='200%25' height='200%25'%3e%3cfeGaussianBlur stdDeviation='5' result='coloredBlur'/%3e%3cfeMerge%3e%3cfeMergeNode in='coloredBlur'/%3e%3cfeMergeNode in='SourceGraphic'/%3e%3c/feMerge%3e%3c/filter%3e%3c/defs%3e%3cg fill='%23f472b6' filter='url(%23glow)'%3e%3cpath d='M20,40 h-5 v-5 h10 v-5 h-15 v35 h5 v5 h-10 v5 h70 v-5 h-10 v-5 h5 v-35 h-15 v5 h10 v5 h-30 Z'/%3e%3ccircle cx='40' cy='50' r='5'/%3e%3ccircle cx='60' cy='50' r='5'/%3e%3c/g%3e%3c/svg%3e" />
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
