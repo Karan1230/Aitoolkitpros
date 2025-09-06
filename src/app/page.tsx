@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Button } from "@/components/ui/button";
@@ -59,8 +60,8 @@ const faqs = [
         answer: "We prioritize your privacy. We do not store the inputs you provide or the content you generate on our servers. Your data is processed by the respective AI API and the results are returned to you. Please see our Privacy Policy for more."
     },
     {
-        question: "Is the website design AdSense friendly?",
-        answer: "Yes, the website has been designed with clear navigation, user-friendly layout, and high-quality content structure to be fully compatible with Google AdSense policies, increasing the likelihood of approval."
+        question: "In which languages can I use the tools?",
+        answer: "Many of our tools support multiple languages. You can often select your desired language directly within the tool's interface, allowing you to generate content for a global audience."
     },
     {
         question: "Can I request a new AI tool to be added?",
