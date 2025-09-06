@@ -57,6 +57,13 @@ export const toolCategories = [
 
 export const allTools: Tool[] = [
   {
+    name: "Humanizer",
+    description: "Transform AI-generated text to sound more human-like, enhancing its relatability and authenticity.",
+    href: "/tools/humanizer",
+    icon: <BrainCircuit className="h-8 w-8 text-primary" />,
+    category: "Content"
+  },
+  {
     name: "AI Code Agent",
     description: "Generate an entire codebase from a text prompt.",
     href: "/tools/ai-code-agent",
