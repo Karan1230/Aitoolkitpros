@@ -1,12 +1,18 @@
 
+'use client';
+
 import { type Metadata } from 'next';
 import { AiCodeAgentClient } from '@/components/ai-code-agent-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Lightbulb } from 'lucide-react';
+import { CheckCircle, Lightbulb, Copy, Check } from 'lucide-react';
 import Link from 'next/link';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 
+// Note: Metadata is not used in client components, but kept for reference
 export const metadata: Metadata = {
   title: 'Free AI Code Agent | Generate Complete Codebases from Prompts',
   description: 'Describe your project, and let our AI Code Agent write the entire codebase with directories and files, ready for you to download as a ZIP file.',
@@ -97,6 +103,16 @@ const examplePrompts = [
 ];
 
 export default function AiCodeAgentPage() {
+  const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  const handleCopy = (prompt: string) => {
+    navigator.clipboard.writeText(prompt);
+    setCopiedPrompt(prompt);
+    toast({ title: "Prompt copied to clipboard!" });
+    setTimeout(() => setCopiedPrompt(null), 2000);
+  };
+
   return (
     <>
       <script
@@ -153,13 +169,21 @@ export default function AiCodeAgentPage() {
             <h2 className="font-headline text-3xl font-bold text-center mb-8">Example Prompts</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {examplePrompts.map((example, index) => (
-                    <Card key={index} className="flex flex-col">
+                    <Card key={index} className="flex flex-col relative">
                         <CardHeader>
-                            <CardTitle className="flex items-center gap-2"><Lightbulb className="h-6 w-6 text-primary"/>{example.title}</CardTitle>
+                            <CardTitle className="flex items-center gap-2 pr-10"><Lightbulb className="h-6 w-6 text-primary"/>{example.title}</CardTitle>
                         </CardHeader>
                         <CardContent className="flex-grow">
                             <p className="text-sm text-muted-foreground font-mono bg-background/50 p-4 rounded-md">"{example.prompt}"</p>
                         </CardContent>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="absolute top-4 right-4 h-8 w-8"
+                            onClick={() => handleCopy(example.prompt)}
+                        >
+                            {copiedPrompt === example.prompt ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+                        </Button>
                     </Card>
                 ))}
             </div>
@@ -205,3 +229,5 @@ export default function AiCodeAgentPage() {
     </>
   );
 }
+
+    
