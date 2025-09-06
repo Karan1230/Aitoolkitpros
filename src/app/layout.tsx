@@ -90,6 +90,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
+        <script src="https://fpyf8.com/88/tag.min.js" data-zone="168961" async data-cfasync="false"></script>
       </head>
       <body className={cn('min-h-screen bg-background font-body antialiased', inter.variable, spaceGrotesk.variable)}>
         <ThemeProvider
