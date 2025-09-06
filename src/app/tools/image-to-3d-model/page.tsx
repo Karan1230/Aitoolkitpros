@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI-powered tool to convert 2D images into detailed 3D models, bringing pictures to life in three dimensions instantly.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/image-to-3d-model",
+      "url": "https://aitoolkitpro.netlify.app/tools/image-to-3d-model",
       "offers": {
         "@type": "Offer",
         "price": "0",

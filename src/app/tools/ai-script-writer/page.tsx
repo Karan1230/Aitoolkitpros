@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to effortlessly create compelling scripts for YouTube videos, podcasts, and presentations.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-script-writer",
+      "url": "https://aitoolkitpro.netlify.app/tools/ai-script-writer",
       "offers": {
         "@type": "Offer",
         "price": "0",

@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to redesign spaces by uploading a room photo and choosing a new style. Instantly visualize different layouts and designs.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-interior-designer",
+      "url": "https://aitoolkitpro.netlify.app/tools/ai-interior-designer",
       "offers": {
         "@type": "Offer",
         "price": "0",

@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate memorable slogans and taglines for your brand. Create catchy, professional, or funny taglines in any language.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/slogan-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/slogan-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

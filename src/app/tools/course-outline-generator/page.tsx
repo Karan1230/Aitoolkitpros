@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate a complete course outline with modules, lessons, and key points for educators and creators.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/course-outline-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/course-outline-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate beautiful and harmonious color palettes from a text description.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/color-palette-finder",
+      "url": "https://aitoolkitpro.netlify.app/tools/color-palette-finder",
       "offers": {
         "@type": "Offer",
         "price": "0",

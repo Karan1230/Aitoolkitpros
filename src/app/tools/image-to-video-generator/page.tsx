@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI-powered tool to create stunning videos from images. Turn static pictures into dynamic video clips in seconds.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/image-to-video-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/image-to-video-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

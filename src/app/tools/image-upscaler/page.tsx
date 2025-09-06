@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI-powered tool to upscale images to a higher resolution without losing quality. Enlarge photos for print or digital use.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/image-upscaler",
+      "url": "https://aitoolkitpro.netlify.app/tools/image-upscaler",
       "offers": {
         "@type": "Offer",
         "price": "0",

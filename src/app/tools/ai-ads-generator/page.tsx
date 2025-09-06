@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate professional video ads for products in minutes, suitable for various social media platforms.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-ads-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/ai-ads-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

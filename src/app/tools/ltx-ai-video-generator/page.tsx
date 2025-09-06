@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free LTX AI Video Generator to create stunning, high-quality videos from text prompts with fast generation and improved prompt understanding.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/ltx-ai-video-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/ltx-ai-video-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

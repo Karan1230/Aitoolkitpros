@@ -9,7 +9,7 @@ export const metadata: Metadata = {
    openGraph: {
     title: 'Terms and Conditions | AI Toolkit Pro',
     description: 'Read the terms and conditions for using our free AI tools.',
-    url: 'https://www.aitoolkitpro.com/terms-and-conditions',
+    url: 'https://aitoolkitpro.netlify.app/terms-and-conditions',
     type: 'website',
   },
   twitter: {
@@ -23,14 +23,14 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Terms and Conditions",
-  "url": "https://www.aitoolkitpro.com/terms-and-conditions",
+  "url": "https://aitoolkitpro.netlify.app/terms-and-conditions",
   "description": "Please read our Terms and Conditions carefully before using the tools provided by AI Toolkit Pro.",
   "publisher": {
     "@type": "Organization",
     "name": "AI Toolkit Pro",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.aitoolkitpro.com/logo.png"
+      "url": "https://aitoolkitpro.netlify.app/logo.png"
     }
   }
 };

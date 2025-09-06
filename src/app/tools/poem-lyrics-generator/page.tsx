@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate poems and song lyrics from a topic, genre, and mood.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/poem-lyrics-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/poem-lyrics-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

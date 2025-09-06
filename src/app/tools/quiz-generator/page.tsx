@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate custom quizzes on any topic, with options for difficulty, question type, and language.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/quiz-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/quiz-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI-powered tool to swap faces in any video with a face from an image, creating a realistic face swap in seconds.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/video-face-swap",
+      "url": "https://aitoolkitpro.netlify.app/tools/video-face-swap",
       "offers": {
         "@type": "Offer",
         "price": "0",

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About Us | AI Toolkit Pro',
     description: 'Learn about our mission to democratize access to powerful AI tools for everyone.',
-    url: 'https://www.aitoolkitpro.com/about',
+    url: 'https://aitoolkitpro.netlify.app/about',
     type: 'website',
   },
   twitter: {
@@ -26,8 +26,8 @@ const schema = {
   "mainEntity": {
     "@type": "Organization",
     "name": "AI Toolkit Pro",
-    "url": "https://www.aitoolkitpro.com",
-    "logo": "https://www.aitoolkitpro.com/logo.png",
+    "url": "https://aitoolkitpro.netlify.app",
+    "logo": "https://aitoolkitpro.netlify.app/logo.png",
     "description": "AI Toolkit Pro is dedicated to making powerful AI tools accessible to everyone, for free. Our mission is to empower creators, developers, and enthusiasts by removing barriers to cutting-edge technology.",
     "sameAs": [
       "https://twitter.com",
@@ -36,7 +36,7 @@ const schema = {
       "https://youtube.com"
     ]
   },
-  "url": "https://www.aitoolkitpro.com/about"
+  "url": "https://aitoolkitpro.netlify.app/about"
 };
 
 export default function AboutPage() {

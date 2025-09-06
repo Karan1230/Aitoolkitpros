@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI Meme Generator to create hilarious, shareable memes from text or images. Go viral with your creativity.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/meme-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/meme-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

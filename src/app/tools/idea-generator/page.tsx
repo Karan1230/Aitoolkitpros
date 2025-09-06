@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate endless creative ideas for business, marketing, content, and more.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/idea-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/idea-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

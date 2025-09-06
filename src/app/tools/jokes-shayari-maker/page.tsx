@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "EntertainmentApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate jokes, shayari, and pickup lines in any language. Perfect for social media, chats, and fun.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/jokes-shayari-maker",
+      "url": "https://aitoolkitpro.netlify.app/tools/jokes-shayari-maker",
       "offers": {
         "@type": "Offer",
         "price": "0",

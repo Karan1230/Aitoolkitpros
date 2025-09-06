@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI-powered tool to restore old, damaged, and faded photos with enhanced quality and color.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/old-photo-restoration",
+      "url": "https://aitoolkitpro.netlify.app/tools/old-photo-restoration",
       "offers": {
         "@type": "Offer",
         "price": "0",

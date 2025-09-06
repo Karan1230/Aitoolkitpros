@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI Text-to-Speech (TTS) tool to convert text into natural-sounding speech. Perfect for voiceovers, accessibility, and content creation.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/text-to-speech",
+      "url": "https://aitoolkitpro.netlify.app/tools/text-to-speech",
       "offers": {
         "@type": "Offer",
         "price": "0",

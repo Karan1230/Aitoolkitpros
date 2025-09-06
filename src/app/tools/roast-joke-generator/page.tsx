@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "EntertainmentApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate hilarious roasts, jokes, and one-liners. Choose a tone and topic to get creative and funny content in seconds.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/roast-joke-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/roast-joke-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

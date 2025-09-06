@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI-powered tool to easily remove the background from any image, creating a transparent PNG or adding a custom color background.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/background-remover",
+      "url": "https://aitoolkitpro.netlify.app/tools/background-remover",
       "offers": {
         "@type": "Offer",
         "price": "0",

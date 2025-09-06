@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate custom exam questions on any topic. Choose difficulty, question type, and language to create practice tests.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/exam-question-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/exam-question-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

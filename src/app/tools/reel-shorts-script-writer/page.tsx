@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate engaging short-form video scripts for TikTok, Instagram Reels, and YouTube Shorts, complete with hooks, content ideas, and CTAs.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/reel-shorts-script-writer",
+      "url": "https://aitoolkitpro.netlify.app/tools/reel-shorts-script-writer",
       "offers": {
         "@type": "Offer",
         "price": "0",

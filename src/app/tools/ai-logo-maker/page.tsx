@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to create unique, professional logos for businesses. Generate and download high-quality logos in seconds.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-logo-maker",
+      "url": "https://aitoolkitpro.netlify.app/tools/ai-logo-maker",
       "offers": {
         "@type": "Offer",
         "price": "0",

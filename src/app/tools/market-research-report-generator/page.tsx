@@ -50,7 +50,7 @@ const schema = {
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate detailed market research reports on any industry, product, or region.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/market-research-report-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/market-research-report-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

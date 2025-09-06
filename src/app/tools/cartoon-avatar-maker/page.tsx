@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to create a unique cartoon or avatar from a photo. Choose from styles like Anime, 3D, and Comic Book.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/cartoon-avatar-maker",
+      "url": "https://aitoolkitpro.netlify.app/tools/cartoon-avatar-maker",
       "offers": {
         "@type": "Offer",
         "price": "0",

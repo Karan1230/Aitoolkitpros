@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to convert long articles, documents, and textbooks into concise study notes with key points and summaries.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/study-notes-creator",
+      "url": "https://aitoolkitpro.netlify.app/tools/study-notes-creator",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -110,7 +110,7 @@ export default function StudyNotesCreatorPage() {
                       <CardTitle className="font-headline text-2xl">How to Use</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                      <p><strong>1. Paste Your Text:</strong> Copy the content you want to summarize and paste it into the text area.</p>
+                      <p><strong>1. Paste Your Content:</strong> Copy the content you want to summarize and paste it into the text area.</p>
                       <p><strong>2. Set Preferences:</strong> Choose your desired note length, format, and language.</p>
                       <p><strong>3. Generate:</strong> Click the "Create Notes" button to get your AI-generated summary.</p>
                       <p><strong>4. Copy & Download:</strong> Use the buttons to copy the notes or download them as a text file.</p>

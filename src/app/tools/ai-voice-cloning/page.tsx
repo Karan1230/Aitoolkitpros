@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to clone any voice from an audio sample and generate speech from text in the cloned voice.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-voice-cloning",
+      "url": "https://aitoolkitpro.netlify.app/tools/ai-voice-cloning",
       "offers": {
         "@type": "Offer",
         "price": "0",

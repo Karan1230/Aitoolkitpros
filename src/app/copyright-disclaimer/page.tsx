@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Copyright Disclaimer | AI Toolkit Pro',
     description: 'Learn about content ownership, fair use, and responsibilities regarding AI-generated materials.',
-    url: 'https://www.aitoolkitpro.com/copyright-disclaimer',
+    url: 'https://aitoolkitpro.netlify.app/copyright-disclaimer',
     type: 'website',
   },
   twitter: {
@@ -23,14 +23,14 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Copyright Disclaimer",
-  "url": "https://www.aitoolkitpro.com/copyright-disclaimer",
+  "url": "https://aitoolkitpro.netlify.app/copyright-disclaimer",
   "description": "Official copyright disclaimer for AI Toolkit Pro. Learn about content ownership, fair use, and responsibilities regarding AI-generated materials.",
   "publisher": {
     "@type": "Organization",
     "name": "AI Toolkit Pro",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.aitoolkitpro.com/logo.png"
+      "url": "https://aitoolkitpro.netlify.app/logo.png"
     }
   }
 };

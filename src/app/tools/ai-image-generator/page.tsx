@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate stunning, high-quality images from text prompts. Turn creative ideas into visual art instantly.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-image-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/ai-image-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

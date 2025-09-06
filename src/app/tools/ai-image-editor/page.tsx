@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to edit images using simple text prompts. Modify, enhance, and transform photos effortlessly.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-image-editor",
+      "url": "https://aitoolkitpro.netlify.app/tools/ai-image-editor",
       "offers": {
         "@type": "Offer",
         "price": "0",

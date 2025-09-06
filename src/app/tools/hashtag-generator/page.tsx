@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate relevant, trending, and niche-specific hashtags for Instagram, TikTok, YouTube, and more.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/hashtag-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/hashtag-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

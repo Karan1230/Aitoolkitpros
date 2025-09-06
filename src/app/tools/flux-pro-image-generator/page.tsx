@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free Flux Pro Image Generator to create stunning, high-quality photorealistic or artistic visuals from text prompts in seconds.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/flux-pro-image-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/flux-pro-image-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

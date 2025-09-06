@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "LifestyleApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to get personalized daily, weekly, and monthly horoscopes for any zodiac sign.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/horoscope-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/horoscope-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

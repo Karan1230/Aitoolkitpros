@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate engaging social media posts and captions with hashtags for platforms like Instagram, Facebook, Twitter, and LinkedIn.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/social-media-post-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/social-media-post-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

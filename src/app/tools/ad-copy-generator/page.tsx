@@ -50,7 +50,7 @@ const schema = {
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate effective ad copy for Google, Facebook, Instagram, and more. Create headlines, body text, and CTAs in seconds.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/ad-copy-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/ad-copy-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

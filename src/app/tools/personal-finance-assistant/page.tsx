@@ -50,7 +50,7 @@ const schema = {
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Web",
       "description": "A free AI-powered assistant for managing personal finances, including budgeting, savings plans, and expense analysis.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/personal-finance-assistant",
+      "url": "https://aitoolkitpro.netlify.app/tools/personal-finance-assistant",
       "offers": {
         "@type": "Offer",
         "price": "0",

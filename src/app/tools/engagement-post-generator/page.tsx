@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate creative post ideas for Instagram, Facebook, TikTok and more to boost social media engagement, including captions and hashtags.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/engagement-post-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/engagement-post-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

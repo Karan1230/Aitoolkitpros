@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "LifestyleApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate delicious recipes based on the ingredients you have at home, helping to reduce food waste.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-recipe-maker",
+      "url": "https://aitoolkitpro.netlify.app/tools/ai-recipe-maker",
       "offers": {
         "@type": "Offer",
         "price": "0",

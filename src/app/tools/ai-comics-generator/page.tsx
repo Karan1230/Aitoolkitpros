@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate complete comic strips from text prompts, with characters, scenes, and stories created in seconds.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-comics-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/ai-comics-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

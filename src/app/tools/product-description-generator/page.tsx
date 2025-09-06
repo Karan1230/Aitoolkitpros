@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate compelling, high-converting, and SEO-friendly product descriptions for e-commerce stores.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/product-description-generator",
+      "url": "https://aitoolkitpro.netlify.app/tools/product-description-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

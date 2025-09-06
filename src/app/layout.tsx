@@ -22,11 +22,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Toolkit Pro - Free All-in-One AI Tools for Content, SEO & Design',
     description: 'Instantly access a suite of AI-powered tools for content creation, image editing, and audio processing. 100% free, no subscriptions.',
-    url: 'https://www.aitoolkitpro.com',
+    url: 'https://aitoolkitpro.netlify.app/',
     siteName: 'AI Toolkit Pro',
     images: [
       {
-        url: 'https://www.aitoolkitpro.com/og-image.png',
+        url: 'https://aitoolkitpro.netlify.app/og-image.png',
         width: 1200,
         height: 630,
         alt: 'AI Toolkit Pro - All-in-one AI Tools',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'AI Toolkit Pro - Free All-in-One AI Tools',
     description: 'Discover a powerful collection of free AI tools. From script writing to image generation, boost your creativity with AI Toolkit Pro.',
-    images: ['https://www.aitoolkitpro.com/twitter-image.png'],
+    images: ['https://aitoolkitpro.netlify.app/twitter-image.png'],
   },
   robots: {
     index: true,
@@ -68,10 +68,10 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "AI Toolkit Pro",
-    "url": "https://www.aitoolkitpro.com",
+    "url": "https://aitoolkitpro.netlify.app/",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://www.aitoolkitpro.com/tools?q={search_term_string}",
+      "target": "https://aitoolkitpro.netlify.app/tools?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };

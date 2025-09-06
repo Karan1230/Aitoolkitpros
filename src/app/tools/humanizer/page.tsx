@@ -50,7 +50,7 @@ const schema = {
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to convert robotic-sounding AI text into natural, engaging, human-like content.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/humanizer",
+      "url": "https://aitoolkitpro.netlify.app/tools/humanizer",
       "offers": {
         "@type": "Offer",
         "price": "0",

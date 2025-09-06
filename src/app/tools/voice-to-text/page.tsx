@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
       "description": "A free AI Voice-to-Text converter to accurately transcribe speech from audio files into text. Ideal for interviews, meetings, and content creation.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/voice-to-text",
+      "url": "https://aitoolkitpro.netlify.app/tools/voice-to-text",
       "offers": {
         "@type": "Offer",
         "price": "0",
