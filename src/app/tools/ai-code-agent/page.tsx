@@ -3,7 +3,7 @@
 
 import { AiCodeAgentClient } from '@/components/ai-code-agent-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Lightbulb, Copy, Check } from 'lucide-react';
+import { CheckCircle, Lightbulb, Copy, Check, FileText, Bot, FileZip, ArrowDown } from 'lucide-react';
 import Link from 'next/link';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
@@ -40,45 +40,6 @@ const faqs = [
     }
 ];
 
-const schema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "SoftwareApplication",
-      "name": "AI Code Agent",
-      "applicationCategory": "DeveloperTool",
-      "operatingSystem": "Web",
-      "description": "An AI tool that generates a complete, structured codebase from a text prompt and provides it as a downloadable ZIP file.",
-      "url": "https://ai-toolkit-pro.vercel.app/tools/ai-code-agent",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "410"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "AI Toolkit Pro"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": faqs.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
-    }
-  ]
-};
-
 const examplePrompts = [
     {
         title: "React To-Do App",
@@ -107,12 +68,8 @@ export default function AiCodeAgentPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
       <div className="container py-12 md:py-20">
-        <div className="grid lg:grid-cols-5 gap-12">
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
           <div className="lg:col-span-3">
               <h1 className="font-headline text-4xl md:text-5xl font-bold gradient-text">
                   AI Code Agent
@@ -156,6 +113,45 @@ export default function AiCodeAgentPage() {
           </div>
         </div>
       </div>
+
+       <section className="py-16 bg-background">
+        <div className="container max-w-5xl">
+            <div className="text-center mb-12">
+                <h2 className="font-headline text-3xl font-bold">How It Works in 3 Simple Steps</h2>
+                <p className="text-muted-foreground mt-2">Go from a simple idea to a complete codebase in minutes.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center relative">
+                
+                <div className="absolute top-1/2 left-0 w-full h-0.5 bg-border -mt-4 hidden md:block"></div>
+                <div className="absolute top-12 left-1/2 w-0.5 h-full bg-border -ml-px hidden"></div>
+
+                <div className="flex flex-col items-center">
+                    <div className="flex items-center justify-center h-20 w-20 rounded-full bg-primary/10 border-2 border-primary/20 mb-4 z-10 bg-background">
+                        <FileText className="h-10 w-10 text-primary" />
+                    </div>
+                    <h3 className="font-headline text-xl font-semibold mb-2">1. Describe Your Idea</h3>
+                    <p className="text-muted-foreground text-sm">Write a detailed prompt describing the application you want, including technology stack and key features.</p>
+                </div>
+
+                <div className="flex flex-col items-center">
+                    <div className="flex items-center justify-center h-20 w-20 rounded-full bg-primary/10 border-2 border-primary/20 mb-4 z-10 bg-background">
+                        <Bot className="h-10 w-10 text-primary" />
+                    </div>
+                    <h3 className="font-headline text-xl font-semibold mb-2">2. AI Builds Your Code</h3>
+                    <p className="text-muted-foreground text-sm">Our AI agent analyzes your prompt and generates the complete codebase, from file structure to the code within each file.</p>
+                </div>
+
+                <div className="flex flex-col items-center">
+                    <div className="flex items-center justify-center h-20 w-20 rounded-full bg-primary/10 border-2 border-primary/20 mb-4 z-10 bg-background">
+                        <FileZip className="h-10 w-10 text-primary" />
+                    </div>
+                    <h3 className="font-headline text-xl font-semibold mb-2">3. Download Your Project</h3>
+                    <p className="text-muted-foreground text-sm">Receive a complete, ready-to-run project in a ZIP file. Unzip, install dependencies, and start coding!</p>
+                </div>
+            </div>
+        </div>
+      </section>
+
       <section className="py-16 bg-muted/50">
         <div className="container max-w-5xl">
             <h2 className="font-headline text-3xl font-bold text-center mb-8">Example Prompts</h2>
