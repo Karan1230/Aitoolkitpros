@@ -3,7 +3,7 @@
 
 import { AiCodeAgentClient } from '@/components/ai-code-agent-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Lightbulb, Copy, Check, FileText, Bot, FileZip, ArrowDown } from 'lucide-react';
+import { CheckCircle, Lightbulb, Copy, Check, FileText, Bot, FileArchive, ArrowDown } from 'lucide-react';
 import Link from 'next/link';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
@@ -143,7 +143,7 @@ export default function AiCodeAgentPage() {
 
                 <div className="flex flex-col items-center">
                     <div className="flex items-center justify-center h-20 w-20 rounded-full bg-primary/10 border-2 border-primary/20 mb-4 z-10 bg-background">
-                        <FileZip className="h-10 w-10 text-primary" />
+                        <FileArchive className="h-10 w-10 text-primary" />
                     </div>
                     <h3 className="font-headline text-xl font-semibold mb-2">3. Download Your Project</h3>
                     <p className="text-muted-foreground text-sm">Receive a complete, ready-to-run project in a ZIP file. Unzip, install dependencies, and start coding!</p>
