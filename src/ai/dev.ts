@@ -38,3 +38,4 @@ import '@/ai/flows/poem-lyrics-generator.ts';
 import '@/ai/flows/jokes-shayari-maker.ts';
 import '@/ai/flows/personal-finance-assistant.ts';
 import '@/ai/flows/ai-code-agent.ts';
+import '@/ai/flows/market-research-report-generator.ts';

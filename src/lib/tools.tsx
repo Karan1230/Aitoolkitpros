@@ -1,5 +1,4 @@
-
-import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus, BookImage, Clapperboard, MonitorPlay, Wand2, History, Voicemail, Music, Shirt, Landmark, Code2 } from 'lucide-react';
+import { AudioLines, FileText, ImageIcon, Laugh, Wrench, Bot, Share2, Youtube, HelpCircle, ScanSearch, Lightbulb, PenTool, ShoppingCart, BookMarked, Hash, MessageSquare, Megaphone, ThumbsUp, Video, UserSquare, Star, Moon, Palette, Image as LucideImage, Gift, ChefHat, Notebook, BookCopy, BrainCircuit, Paintbrush, PenLine, FileSignature, Box, Scaling, Users2, VideoIcon, Sofa, ImagePlus, BookImage, Clapperboard, MonitorPlay, Wand2, History, Voicemail, Music, Shirt, Landmark, Code2, AreaChart } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export interface Tool {
@@ -63,6 +62,13 @@ export const allTools: Tool[] = [
     href: "/tools/ai-code-agent",
     icon: <Code2 className="h-8 w-8 text-primary" />,
     category: "Assistant"
+  },
+  {
+    name: "Market Research Report Generator",
+    description: "Generate a detailed market research report for any industry or product.",
+    href: "/tools/market-research-report-generator",
+    icon: <AreaChart className="h-8 w-8 text-primary" />,
+    category: "Business"
   },
   {
     name: "AI Personal Finance Assistant",
