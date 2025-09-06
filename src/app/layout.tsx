@@ -14,11 +14,11 @@ const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space
 
 export const metadata: Metadata = {
   title: {
-    default: 'AI Toolkit Pro - Free All-in-One AI Tools for Content, SEO & Design',
+    default: 'AI Toolkit Pro – Best Free AI Tools Hub Online',
     template: '%s | AI Toolkit Pro',
   },
-  description: 'Your ultimate suite of free AI tools. Generate ad copy, create scripts, design logos, find SEO keywords, and much more. Boost your productivity with our all-in-one toolkit, fully AdSense friendly and SEO optimized.',
-  keywords: ['ai tools', 'free ai tools', 'content generator', 'seo tools', 'image generator', 'ai script writer', 'adsense friendly', 'ai ad copy generator', 'free logo maker', 'youtube seo tool'],
+  description: 'AI Toolkit Pro offers the best free online AI tools. voice ganerator, Generate ad copy, logos, scripts, SEO keywords, image & more—boost creativity fast.',
+  keywords: ['AI Content Generator, AI Image Generator, AI Video Generator, AI Script Writer, AI Logo Maker, AI Voice Cloning, AI Text-to-Speech, AI Social Media Tools, AI SEO Tools, AI Resume Builder, AI Quiz Generator, AI Study Notes Creator, AI Ad Copy Generator, AI Background Remover, AI Cartoon Maker'],
   openGraph: {
     title: 'AI Toolkit Pro - Free All-in-One AI Tools for Content, SEO & Design',
     description: 'Instantly access a suite of AI-powered tools for content creation, image editing, and audio processing. 100% free, no subscriptions.',
