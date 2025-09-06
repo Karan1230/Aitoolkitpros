@@ -95,7 +95,7 @@ export default function MarketResearchReportGeneratorPage() {
               </h1>
               <div className="mt-4 p-6 rounded-lg bg-muted/50 border">
                 <p className="text-lg text-muted-foreground">
-                  Quickly generate a comprehensive <strong>market research report</strong> for any industry. Our <strong>AI market analysis tool</strong> provides detailed insights into market size, trends, competition, and more, helping you make informed decisions.
+                  Get a competitive edge with our <strong>AI market research report generator</strong>. This powerful <strong>market analysis tool</strong> automates the research process, providing you with a professionally structured report in minutes. Get instant insights into market size, growth trends, <strong>competitor analysis</strong>, and <strong>SWOT analysis</strong>. This <strong>free market research</strong> tool is essential for startups, marketers, and students who need to make data-driven decisions quickly and efficiently.
                 </p>
               </div>
 
