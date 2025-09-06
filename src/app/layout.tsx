@@ -14,7 +14,7 @@ const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space
 
 export const metadata: Metadata = {
   title: {
-    default: 'AI Toolkit Pro – Best Free AI Tools Hub Online',
+    default: 'AI Toolkit Pro – Best Free Online AI Tools Hub',
     template: '%s | AI Toolkit Pro',
   },
   description: 'AI Toolkit Pro offers the best free online AI tools. voice ganerator, Generate ad copy, logos, scripts, SEO keywords, image & more—boost creativity fast.',
