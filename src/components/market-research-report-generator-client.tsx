@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -13,7 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Sparkles, Copy, Download, Briefcase, Users, Globe, FileText, CheckCircle, BarChart, TrendingUp, Bullseye, Swords, ShieldCheck, XCircle, Lightbulb, Zap, LineChart, ListOrdered } from 'lucide-react';
+import { Sparkles, Copy, Download, Briefcase, Users, Globe, FileText, CheckCircle, BarChart, TrendingUp, Target, Swords, ShieldCheck, XCircle, Lightbulb, Zap, LineChart, ListOrdered } from 'lucide-react';
 import { Badge } from './ui/badge';
 import Image from 'next/image';
 
@@ -207,7 +208,7 @@ export function MarketResearchReportGeneratorClient() {
             
             <div className="grid md:grid-cols-2 gap-4">
                 <Card>
-                <CardHeader><CardTitle className="flex items-center gap-2"><Bullseye/> Target Audience</CardTitle></CardHeader>
+                <CardHeader><CardTitle className="flex items-center gap-2"><Target/> Target Audience</CardTitle></CardHeader>
                 <CardContent className="space-y-3">
                     <p><strong className="text-foreground">Demographics:</strong> {report.targetAudience.demographics}</p>
                     <p><strong className="text-foreground">Behavior:</strong> {report.targetAudience.behavior}</p>
