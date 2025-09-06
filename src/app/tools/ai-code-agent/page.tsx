@@ -1,7 +1,6 @@
 
 'use client';
 
-import { type Metadata } from 'next';
 import { AiCodeAgentClient } from '@/components/ai-code-agent-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Lightbulb, Copy, Check } from 'lucide-react';
@@ -10,13 +9,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
-
-
-// Note: Metadata is not used in client components, but kept for reference
-export const metadata: Metadata = {
-  title: 'Free AI Code Agent | Generate Complete Codebases from Prompts',
-  description: 'Describe your project, and let our AI Code Agent write the entire codebase with directories and files, ready for you to download as a ZIP file.',
-};
 
 const benefits = [
     "Rapidly prototype new applications.",
@@ -229,5 +221,3 @@ export default function AiCodeAgentPage() {
     </>
   );
 }
-
-    
