@@ -13,7 +13,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Download, ImageIcon, Sparkles, Smartphone, Square, RectangleHorizontal } from 'lucide-react';
+import { Download, ImageIcon, Sparkles, Smartphone, Square, RectangleHorizontal, Bot } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 
@@ -22,9 +22,11 @@ const formSchema = z.object({
   style: z.string().min(1, 'Please select a style.'),
   aspectRatio: z.string().min(1, 'Please select an aspect ratio.'),
   model: z.string(),
+  modelVersion: z.number().min(1).max(9),
 });
 
 const styles = ['Realistic', 'Anime', 'Digital Art', 'Cartoon'];
+const modelVersions = Array.from({ length: 9 }, (_, i) => i + 1);
 
 export function AiImageGeneratorClient() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
@@ -38,6 +40,7 @@ export function AiImageGeneratorClient() {
       style: 'Realistic',
       aspectRatio: '1:1',
       model: 'googleai/gemini-2.0-flash-preview-image-generation',
+      modelVersion: 1,
     },
   });
 
@@ -121,6 +124,27 @@ export function AiImageGeneratorClient() {
                     <FormMessage />
                     </FormItem>
                 )}
+                />
+                 <FormField
+                    control={form.control}
+                    name="modelVersion"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel className="font-semibold text-lg">Model Version</FormLabel>
+                        <Select onValueChange={(value) => field.onChange(parseInt(value))} defaultValue={String(field.value)}>
+                            <FormControl>
+                            <SelectTrigger>
+                                <Bot className="mr-2 h-4 w-4" />
+                                <SelectValue placeholder="Select version" />
+                            </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                            {modelVersions.map(v => <SelectItem key={v} value={String(v)}>Version {v}</SelectItem>)}
+                            </SelectContent>
+                        </Select>
+                        <FormMessage />
+                        </FormItem>
+                    )}
                 />
             </div>
 

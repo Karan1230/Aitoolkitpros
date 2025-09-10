@@ -14,7 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Download, PenTool, Sparkles, Image as ImageIcon } from 'lucide-react';
+import { Download, PenTool, Sparkles, Bot } from 'lucide-react';
 
 const formSchema = z.object({
   brandName: z.string().min(2, 'Brand name must be at least 2 characters long.'),
@@ -22,9 +22,11 @@ const formSchema = z.object({
   industry: z.string().min(3, 'Industry must be at least 3 characters long.'),
   style: z.string().min(1, 'Please select a style.'),
   colors: z.string().min(3, 'Please describe your color preferences.'),
+  modelVersion: z.number().min(1).max(9),
 });
 
 const styles = ['Modern', 'Minimalist', 'Luxury', 'Vintage', 'Playful', 'Professional'];
+const modelVersions = Array.from({ length: 9 }, (_, i) => i + 1);
 
 export function AiLogoMakerClient() {
   const [logos, setLogos] = useState<AiLogoGeneratorOutput['logos']>([]);
@@ -39,6 +41,7 @@ export function AiLogoMakerClient() {
       industry: '',
       style: 'Modern',
       colors: 'Blue and silver',
+      modelVersion: 1,
     },
   });
 
@@ -177,6 +180,28 @@ export function AiLogoMakerClient() {
                     )}
                     />
             </div>
+            
+            <FormField
+                control={form.control}
+                name="modelVersion"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel className="font-semibold text-lg">Model Version</FormLabel>
+                    <Select onValueChange={(value) => field.onChange(parseInt(value))} defaultValue={String(field.value)}>
+                        <FormControl>
+                        <SelectTrigger>
+                            <Bot className="mr-2 h-4 w-4" />
+                            <SelectValue placeholder="Select version" />
+                        </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                        {modelVersions.map(v => <SelectItem key={v} value={String(v)}>Version {v}</SelectItem>)}
+                        </SelectContent>
+                    </Select>
+                    <FormMessage />
+                    </FormItem>
+                )}
+            />
 
             <Button type="submit" disabled={isLoading} size="lg" className="w-full">
               {isLoading ? 'Designing...' : 'Generate Logos'}

@@ -10,6 +10,8 @@
 
 import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
+import { genkit } from 'genkit';
+import { googleAI } from '@genkit-ai/googleai';
 
 const BackgroundRemoverInputSchema = z.object({
   imageDataUri: z
@@ -18,6 +20,7 @@ const BackgroundRemoverInputSchema = z.object({
       "The image to process, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'."
     ),
   background: z.string().describe('The desired background. This can be "transparent" or a hex color code (e.g., "#FFFFFF").'),
+  modelVersion: z.number().min(1).max(9).optional().default(1),
 });
 export type BackgroundRemoverInput = z.infer<typeof BackgroundRemoverInputSchema>;
 
@@ -33,8 +36,16 @@ export async function backgroundRemover(input: BackgroundRemoverInput): Promise<
         { text: promptText },
         { media: { url: input.imageDataUri } }
     ];
+    
+    const apiKey = process.env[`GEMINI_API_KEY_${input.modelVersion}`] || process.env.GEMINI_API_KEY;
 
-    const { media } = await ai.generate({
+    const localAi = genkit({
+      plugins: [
+        googleAI({ apiKey }),
+      ],
+    });
+
+    const { media } = await localAi.generate({
         model: 'googleai/gemini-2.0-flash-preview-image-generation',
         prompt,
         config: {

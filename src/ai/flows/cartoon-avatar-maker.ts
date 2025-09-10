@@ -10,6 +10,8 @@
 
 import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
+import { genkit } from 'genkit';
+import { googleAI } from '@genkit-ai/googleai';
 
 const CartoonAvatarMakerInputSchema = z.object({
   imageDataUri: z
@@ -22,6 +24,7 @@ const CartoonAvatarMakerInputSchema = z.object({
     type: z.string().describe('The type of background (e.g., transparent, solid, custom).'),
     value: z.string().describe('The value for the background (e.g., a hex code for solid, or a prompt for custom).'),
   }),
+  modelVersion: z.number().min(1).max(9).optional().default(1),
 });
 export type CartoonAvatarMakerInput = z.infer<typeof CartoonAvatarMakerInputSchema>;
 
@@ -30,7 +33,7 @@ const CartoonAvatarMakerOutputSchema = z.object({
 });
 export type CartoonAvatarMakerOutput = z.infer<typeof CartoonAvatarMakerOutputSchema>;
 
-export async function cartoonAvatarMaker({ imageDataUri, style, background }: CartoonAvatarMakerInput): Promise<CartoonAvatarMakerOutput> {
+export async function cartoonAvatarMaker({ imageDataUri, style, background, modelVersion }: CartoonAvatarMakerInput): Promise<CartoonAvatarMakerOutput> {
     let backgroundInstruction = '';
     switch (background.type) {
         case 'transparent':
@@ -56,8 +59,16 @@ export async function cartoonAvatarMaker({ imageDataUri, style, background }: Ca
         }
     ];
 
+    const apiKey = process.env[`GEMINI_API_KEY_${modelVersion}`] || process.env.GEMINI_API_KEY;
+
+    const localAi = genkit({
+      plugins: [
+        googleAI({ apiKey }),
+      ],
+    });
+
     const imagePromises = Array(4).fill(null).map(() => 
-        ai.generate({
+        localAi.generate({
             model: 'googleai/gemini-2.0-flash-preview-image-generation',
             prompt: fullPrompt,
             config: {

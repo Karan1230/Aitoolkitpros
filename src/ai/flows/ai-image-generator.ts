@@ -10,6 +10,8 @@
 
 import { ai } from '@/ai/genkit';
 import {z} from 'genkit';
+import { genkit } from 'genkit';
+import { googleAI } from '@genkit-ai/googleai';
 
 const AiImageGeneratorInputSchema = z.object({
   prompt: z.string().describe('The text prompt to generate the image from.'),
@@ -17,6 +19,7 @@ const AiImageGeneratorInputSchema = z.object({
   aspectRatio: z.string().describe('The aspect ratio of the image.').optional(),
   model: z.string().describe('The image generation model to use.'),
   isThumbnail: z.boolean().describe('Whether the image is a thumbnail.').optional(),
+  modelVersion: z.number().min(1).max(9).optional().default(1),
 });
 export type AiImageGeneratorInput = z.infer<typeof AiImageGeneratorInputSchema>;
 
@@ -35,9 +38,17 @@ export async function aiImageGenerator(input: AiImageGeneratorInput): Promise<Ai
     }
 
     const isGemini = input.model.startsWith('googleai/');
+    
+    const apiKey = process.env[`GEMINI_API_KEY_${input.modelVersion}`] || process.env.GEMINI_API_KEY;
+
+    const localAi = genkit({
+      plugins: [
+        googleAI({ apiKey }),
+      ],
+    });
 
     const imagePromises = Array(4).fill(null).map(() => 
-        ai.generate({
+        localAi.generate({
             model: input.model as any,
             prompt: fullPrompt,
             ...(isGemini ? {

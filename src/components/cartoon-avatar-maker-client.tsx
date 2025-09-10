@@ -14,7 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Download, Sparkles, Upload, Trash2, Palette, Image as ImageIcon, UserSquare } from 'lucide-react';
+import { Download, Sparkles, Upload, Trash2, Palette, Image as ImageIcon, UserSquare, Bot } from 'lucide-react';
 import { Label } from './ui/label';
 
 const MAX_FILE_SIZE_MB = 5;
@@ -22,6 +22,7 @@ const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
 
 const styles = ["2D Cartoon", "3D Avatar", "Anime", "Pixar Style", "Comic Book", "Line Art"];
 const bgTypes = ["Transparent", "Solid Color", "Custom Scene"];
+const modelVersions = Array.from({ length: 9 }, (_, i) => i + 1);
 
 const formSchema = z.object({
   imageFile: z
@@ -35,6 +36,7 @@ const formSchema = z.object({
   backgroundType: z.string().min(1, 'Please select a background type.'),
   backgroundColor: z.string().optional(),
   backgroundPrompt: z.string().optional(),
+  modelVersion: z.number().min(1).max(9),
 }).refine(data => {
     if (data.backgroundType === 'Solid Color' && !data.backgroundColor) return false;
     if (data.backgroundType === 'Custom Scene' && !data.backgroundPrompt) return false;
@@ -58,6 +60,7 @@ export function CartoonAvatarMakerClient() {
       backgroundType: 'Transparent',
       backgroundColor: '#F0BA18',
       backgroundPrompt: '',
+      modelVersion: 1,
     },
   });
 
@@ -115,6 +118,7 @@ export function CartoonAvatarMakerClient() {
                 type: values.backgroundType.toLowerCase().replace(' ', ''),
                 value: backgroundValue,
             },
+            modelVersion: values.modelVersion,
         });
         setAvatars(result.imageUrls);
     } catch (error) {
@@ -272,6 +276,28 @@ export function CartoonAvatarMakerClient() {
                     )}
                 />
             )}
+            
+            <FormField
+                control={form.control}
+                name="modelVersion"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel className="font-semibold text-lg">Model Version</FormLabel>
+                    <Select onValueChange={(value) => field.onChange(parseInt(value))} defaultValue={String(field.value)}>
+                        <FormControl>
+                        <SelectTrigger>
+                            <Bot className="mr-2 h-4 w-4" />
+                            <SelectValue placeholder="Select version" />
+                        </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                        {modelVersions.map(v => <SelectItem key={v} value={String(v)}>Version {v}</SelectItem>)}
+                        </SelectContent>
+                    </Select>
+                    <FormMessage />
+                    </FormItem>
+                )}
+            />
 
 
             <Button type="submit" disabled={isLoading} size="lg" className="w-full">

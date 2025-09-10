@@ -15,16 +15,18 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Download, Sparkles, Languages, Palette, Image as ImageIcon, Brush } from 'lucide-react';
+import { Download, Sparkles, Languages, Palette, Image as ImageIcon, Brush, Bot } from 'lucide-react';
 
 const formSchema = z.object({
   prompt: z.string().min(3, 'Prompt must be at least 3 characters long.'),
   style: z.string().min(1, 'Please select a style.'),
   colorScheme: z.string().min(3, 'Please describe your color scheme.'),
   language: z.string().min(1, 'Please select a language.'),
+  modelVersion: z.number().min(1).max(9),
 });
 
 const styles = ['Flat', '3D', 'Outline', 'Glyph', 'Cartoon', 'Minimalist', 'Pixel Art'];
+const modelVersions = Array.from({ length: 9 }, (_, i) => i + 1);
 
 export function CustomIconGeneratorClient() {
   const [icons, setIcons] = useState<CustomIconGeneratorOutput['imageUrls']>([]);
@@ -38,6 +40,7 @@ export function CustomIconGeneratorClient() {
       style: 'Flat',
       colorScheme: 'Blue and white',
       language: 'English',
+      modelVersion: 1,
     },
   });
 
@@ -137,29 +140,52 @@ export function CustomIconGeneratorClient() {
                     />
             </div>
             
-             <FormField
-                control={form.control}
-                name="language"
-                render={({ field }) => (
-                    <FormItem>
-                    <FormLabel className="text-lg font-semibold">Prompt Language</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                        <SelectTrigger>
-                            <Languages className="mr-2 h-4 w-4" />
-                            <SelectValue placeholder="Select a language" />
-                        </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                        {languages.map(lang => (
-                            <SelectItem key={lang.value} value={lang.name}>{lang.name}</SelectItem>
-                        ))}
-                        </SelectContent>
-                    </Select>
-                    <FormMessage />
-                    </FormItem>
-                )}
-            />
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FormField
+                    control={form.control}
+                    name="language"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel className="text-lg font-semibold">Prompt Language</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                            <SelectTrigger>
+                                <Languages className="mr-2 h-4 w-4" />
+                                <SelectValue placeholder="Select a language" />
+                            </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                            {languages.map(lang => (
+                                <SelectItem key={lang.value} value={lang.name}>{lang.name}</SelectItem>
+                            ))}
+                            </SelectContent>
+                        </Select>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="modelVersion"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel className="font-semibold text-lg">Model Version</FormLabel>
+                        <Select onValueChange={(value) => field.onChange(parseInt(value))} defaultValue={String(field.value)}>
+                            <FormControl>
+                            <SelectTrigger>
+                                <Bot className="mr-2 h-4 w-4" />
+                                <SelectValue placeholder="Select version" />
+                            </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                            {modelVersions.map(v => <SelectItem key={v} value={String(v)}>Version {v}</SelectItem>)}
+                            </SelectContent>
+                        </Select>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                />
+             </div>
 
             <Button type="submit" disabled={isLoading} size="lg" className="w-full">
               {isLoading ? 'Generating...' : 'Generate Icons'}

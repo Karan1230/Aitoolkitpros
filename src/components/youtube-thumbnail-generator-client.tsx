@@ -12,15 +12,19 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { Download, ImageIcon, Sparkles, Square, RectangleHorizontal } from 'lucide-react';
+import { Download, ImageIcon, Sparkles, Square, RectangleHorizontal, Bot } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
 const formSchema = z.object({
   prompt: z.string().min(5, 'Title must be at least 5 characters long.'),
   aspectRatio: z.string().min(1, 'Please select an aspect ratio.'),
   style: z.string().optional(), // Style is optional but can be used for prompt engineering
+  modelVersion: z.number().min(1).max(9),
 });
+
+const modelVersions = Array.from({ length: 9 }, (_, i) => i + 1);
 
 export function YoutubeThumbnailGeneratorClient() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
@@ -32,7 +36,8 @@ export function YoutubeThumbnailGeneratorClient() {
     defaultValues: {
       prompt: '',
       aspectRatio: '16:9',
-      style: 'Digital Art'
+      style: 'Digital Art',
+      modelVersion: 1,
     },
   });
 
@@ -95,6 +100,28 @@ export function YoutubeThumbnailGeneratorClient() {
                   <FormMessage />
                 </FormItem>
               )}
+            />
+            
+            <FormField
+                control={form.control}
+                name="modelVersion"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel className="font-semibold text-lg">Model Version</FormLabel>
+                    <Select onValueChange={(value) => field.onChange(parseInt(value))} defaultValue={String(field.value)}>
+                        <FormControl>
+                        <SelectTrigger>
+                            <Bot className="mr-2 h-4 w-4" />
+                            <SelectValue placeholder="Select version" />
+                        </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                        {modelVersions.map(v => <SelectItem key={v} value={String(v)}>Version {v}</SelectItem>)}
+                        </SelectContent>
+                    </Select>
+                    <FormMessage />
+                    </FormItem>
+                )}
             />
             
             <FormField

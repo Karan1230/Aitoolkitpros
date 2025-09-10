@@ -11,14 +11,16 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
-import { Download, Image as ImageIcon, Sparkles, Upload, Trash2, Palette, Check } from 'lucide-react';
+import { Download, Image as ImageIcon, Sparkles, Upload, Trash2, Check, Bot } from 'lucide-react';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
 const MAX_FILE_SIZE_MB = 5;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
 
 const colors = ["#FFFFFF", "#000000", "#FF5733", "#33FF57", "#3357FF", "#FF33A1", "#F4D03F"];
+const modelVersions = Array.from({ length: 9 }, (_, i) => i + 1);
 
 const formSchema = z.object({
   imageFile: z
@@ -30,6 +32,7 @@ const formSchema = z.object({
     ),
   background: z.string().min(1, 'Please select a background.'),
   customColor: z.string().optional(),
+  modelVersion: z.number().min(1).max(9),
 }).refine(data => {
     if (data.background === 'custom' && !data.customColor) {
         return false;
@@ -52,7 +55,8 @@ export function BackgroundRemoverClient() {
     defaultValues: {
       imageFile: undefined,
       background: 'transparent',
-      customColor: '#CCCCCC'
+      customColor: '#CCCCCC',
+      modelVersion: 1,
     },
   });
 
@@ -98,7 +102,7 @@ export function BackgroundRemoverClient() {
 
         const backgroundValue = values.background === 'custom' ? values.customColor! : values.background;
 
-        const result = await backgroundRemover({ imageDataUri, background: backgroundValue });
+        const result = await backgroundRemover({ imageDataUri, background: backgroundValue, modelVersion: values.modelVersion });
         setResultImageUrl(result.imageUrl);
     } catch (error) {
       console.error('Background removal failed:', error);
@@ -174,6 +178,28 @@ export function BackgroundRemoverClient() {
                   </FormControl>
                   <FormMessage />
                 </FormItem>
+              )}
+            />
+            
+            <FormField
+              control={form.control}
+              name="modelVersion"
+              render={({ field }) => (
+                  <FormItem>
+                  <FormLabel className="font-semibold text-lg">Model Version</FormLabel>
+                  <Select onValueChange={(value) => field.onChange(parseInt(value))} defaultValue={String(field.value)}>
+                      <FormControl>
+                      <SelectTrigger>
+                          <Bot className="mr-2 h-4 w-4" />
+                          <SelectValue placeholder="Select version" />
+                      </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                      {modelVersions.map(v => <SelectItem key={v} value={String(v)}>Version {v}</SelectItem>)}
+                      </SelectContent>
+                  </Select>
+                  <FormMessage />
+                  </FormItem>
               )}
             />
 
