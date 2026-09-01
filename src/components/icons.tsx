@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 
-export function Logo(props: SVGProps<SVGSVGElement>) {
+export function Logo({ className, width = 24, height = 24, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,6 +10,9 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      width={width}
+      height={height}
+      className={className}
       {...props}
     >
       <path d="M12 8V4H8" />
@@ -21,3 +24,4 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+

@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
 import Link from "next/link";
-import { Menu, Search } from "lucide-react";
+import { Menu, Search, Sparkles } from "lucide-react";
 import { Logo } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,12 +22,14 @@ import { Input } from "@/components/ui/input";
 import { allTools } from "@/lib/tools";
 import { ScrollArea } from "./ui/scroll-area";
 import { ThemeToggle } from "./theme-toggle";
+import { GuestTrialBar } from "./auth/guest-trial-bar";
 
 const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
     { href: '/tools', label: 'All Tools' },
-    { href: '/contact', label: 'Contact Us' },
+    { href: '/blog', label: 'Blog & Guides' },
+    { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact' },
 ];
 
 function NavLinks({ onLinkClick, isMobile }: { onLinkClick?: () => void, isMobile?: boolean }) {
@@ -36,13 +38,13 @@ function NavLinks({ onLinkClick, isMobile }: { onLinkClick?: () => void, isMobil
     const desktopClass = "border-none hover:bg-accent/50";
     
     return (
-        <nav className={isMobile ? "mt-8 flex flex-col gap-3" : "hidden md:flex items-center gap-2"}>
+        <nav className={isMobile ? "mt-8 flex flex-col gap-3" : "hidden md:flex items-center gap-1 lg:gap-2"}>
             {navLinks.map(link => (
                 <Link 
                     key={link.href} 
                     href={link.href} 
                     onClick={onLinkClick} 
-                    className={isMobile ? `${commonClass} ${mobileClass}` : `${commonClass} ${desktopClass} text-sm`}
+                    className={isMobile ? `${commonClass} ${mobileClass}` : `${commonClass} ${desktopClass} text-xs lg:text-sm font-semibold`}
                 >
                     {link.label}
                 </Link>
@@ -50,7 +52,6 @@ function NavLinks({ onLinkClick, isMobile }: { onLinkClick?: () => void, isMobil
         </nav>
     );
 }
-
 
 function SearchDialog() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -70,20 +71,21 @@ function SearchDialog() {
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <Button
                 variant="outline"
-                className="justify-start text-muted-foreground w-full md:w-auto"
+                size="sm"
+                className="justify-start text-muted-foreground w-full md:w-auto h-8 text-xs"
                 onClick={() => setIsOpen(true)}
             >
-                <Search className="h-5 w-5 mr-2" />
-                <span className="hidden md:inline-block">Search tools...</span>
-                <span className="inline-block md:hidden">Search...</span>
+                <Search className="h-3.5 w-3.5 mr-1.5" />
+                <span className="hidden lg:inline-block">Search 10+ AI tools...</span>
+                <span className="inline-block lg:hidden">Search...</span>
             </Button>
             <DialogContent className="sm:max-w-xl">
                 <DialogHeader>
-                    <DialogTitle>Search Tools</DialogTitle>
+                    <DialogTitle>Search AI Tools</DialogTitle>
                 </DialogHeader>
                 <div className="py-4">
                     <Input
-                        placeholder="Type to search for a tool..."
+                        placeholder="Type to search for a tool (e.g. logo, ad copy, script)..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         autoFocus
@@ -122,26 +124,29 @@ export function AppHeader() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center justify-between border-b border-border/40 bg-background/80 px-4 backdrop-blur-sm">
-      <div className="flex items-center gap-4">
+    <header className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center justify-between border-b border-border/40 bg-background/80 px-4 backdrop-blur-md">
+      <div className="flex items-center gap-4 lg:gap-6">
         <Link href="/" className="flex items-center gap-2">
             <Logo className="h-6 w-6 text-primary" />
-            <span className="font-bold text-lg gradient-text">AI Toolkit Pro</span>
+            <span className="font-bold text-base lg:text-lg gradient-text whitespace-nowrap">AI Toolkit Pro</span>
         </Link>
         <NavLinks />
       </div>
       
       <div className="flex items-center gap-2">
-        <div className="hidden md:block">
+        <div className="hidden sm:block">
             <SearchDialog />
         </div>
         
+        {/* Guest 1-Hour Trial Bar / User Account Badge */}
+        <GuestTrialBar />
+
         <ThemeToggle />
         
         <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="icon">
-                    <Menu className="h-6 w-6" />
+                <Button variant="ghost" size="icon" className="h-9 w-9">
+                    <Menu className="h-5 w-5" />
                     <span className="sr-only">Open menu</span>
                 </Button>
             </SheetTrigger>

@@ -1,23 +1,41 @@
-import { allPosts, Post } from './blog-data';
+import { Post } from './blog-data';
+import { getStoredBlogPosts } from './server-storage';
 import { notFound } from 'next/navigation';
 
-export function getPostBySlug(slug: string): Post {
-  const post = allPosts.find((p) => p.slug === slug);
+export async function getAllPosts(): Promise<Post[]> {
+  try {
+    const posts = getStoredBlogPosts();
+    return posts.filter(p => p.status === 'published').sort((a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime());
+  } catch (e) {
+    return [];
+  }
+}
+
+export async function getAllAdminPosts(): Promise<Post[]> {
+  try {
+    const posts = getStoredBlogPosts();
+    return posts.sort((a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime());
+  } catch (e) {
+    return [];
+  }
+}
+
+export async function getPostBySlug(slug: string): Promise<Post> {
+  const posts = getStoredBlogPosts();
+  const post = posts.find((p) => p.slug === slug);
   if (!post) {
     notFound();
   }
   return post;
 }
 
-export function getAllPosts(): Post[] {
-  return allPosts.sort((a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime());
-}
-
-export function getRelatedPosts(currentPost: Post): Post[] {
-    return allPosts
-      .filter(p => 
-        p.slug !== currentPost.slug && 
-        (p.category === currentPost.category || p.tags.some(tag => currentPost.tags.includes(tag)))
-      )
-      .slice(0, 3);
+export async function getRelatedPosts(currentPost: Post): Promise<Post[]> {
+  const posts = getStoredBlogPosts();
+  return posts
+    .filter(p => 
+      p.status === 'published' &&
+      p.slug !== currentPost.slug && 
+      (p.category === currentPost.category || p.tags.some(tag => currentPost.tags.includes(tag)))
+    )
+    .slice(0, 3);
 }

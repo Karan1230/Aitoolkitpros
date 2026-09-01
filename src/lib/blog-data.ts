@@ -1,15 +1,5 @@
-export interface Post {
-  title: string;
-  slug: string;
-  description: string;
-  content: string;
-  featuredImage: string;
-  dataAiHint: string;
-  tags: string[];
-  author: string;
-  datePublished: string;
-  dateModified: string;
-  category: string;
-}
+import { BlogPost, INITIAL_BLOG_POSTS, getStoredBlogPosts } from './server-storage';
 
-export const allPosts: Post[] = [];
+export type Post = BlogPost;
+
+export const allPosts: Post[] = INITIAL_BLOG_POSTS;
