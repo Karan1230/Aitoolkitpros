@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateGeminiImage, buildPhotorealisticPromptsForTopic, getCuratedUnsplashForTopic } from '@/lib/blog-image-curator';
 import { generateQwenImage } from '@/lib/qwen-image-service';
-import { generateNanoBananaImage, getFreeWatermarkFreeImage } from '@/lib/nano-banana-image-service';
 import { GoogleGenAI } from '@google/genai';
 
 export async function POST(req: NextRequest) {
@@ -14,22 +13,22 @@ export async function POST(req: NextRequest) {
       sectionTitle = '',
       keyword = '',
       category = 'Tech',
-      engine = 'nano-banana' // 'nano-banana' | 'qwen' | 'unsplash' | 'flux'
+      engine = 'qwen' // 'qwen' | 'flux' | 'unsplash'
     } = body;
 
     const cleanTopic = topic.trim() || 'Modern Technology and Digital Productivity';
 
-    // If user specifically requested 100% free online watermark-free stock photography
+    // If user specifically requested 100% genuine Unsplash real stock photography
     if (engine === 'unsplash') {
       const idx = type === 'featured' ? 0 : Math.floor(Math.random() * 3) + 1;
-      const freePhoto = getFreeWatermarkFreeImage(cleanTopic, idx);
+      const unsplashPhoto = getCuratedUnsplashForTopic(cleanTopic, idx);
       return NextResponse.json({
         success: true,
-        imageUrl: freePhoto.url,
-        source: 'unsplash-free',
-        prompt: `Free Online Watermark-Free Photography: ${freePhoto.alt}`,
-        alt: freePhoto.alt,
-        caption: freePhoto.caption || `Watermark-free high-resolution photography for ${cleanTopic}.`
+        imageUrl: unsplashPhoto.url,
+        source: 'curated-hd',
+        prompt: `Authentic Unsplash Photography: ${unsplashPhoto.alt}`,
+        alt: unsplashPhoto.alt,
+        caption: unsplashPhoto.caption || `High-resolution photography for ${cleanTopic}.`
       });
     }
 
@@ -53,7 +52,7 @@ export async function POST(req: NextRequest) {
 
           const geminiRes = await ai.models.generateContent({
             model: 'gemini-3.7-flash',
-            contents: `You are an expert AI image prompt engineer for Nano Banana image generation model.
+            contents: `You are an expert AI image prompt engineer for Qwen-Image model.
 Create a vivid, photorealistic commercial photography prompt in 16:9 widescreen format for:
 Topic: "${cleanTopic}"
 Type: "${type}"
@@ -112,18 +111,11 @@ Rules:
 
     const seed = Math.floor(Math.random() * 900000) + 100000;
 
+    // Use Qwen Image model (or FLUX if requested)
     let imageUrl = '';
-    let imageSource = 'nano-banana';
+    let imageSource = 'qwen-image';
 
-    if (engine === 'nano-banana' || !engine) {
-      const nanoRes = await generateNanoBananaImage(finalPrompt, {
-        aspectRatio: '16:9',
-        modelVariant: 'lite',
-        topic: cleanTopic
-      });
-      imageUrl = nanoRes.url;
-      imageSource = nanoRes.source;
-    } else if (engine === 'qwen') {
+    if (engine === 'qwen' || !engine) {
       const qwenResult = await generateQwenImage(finalPrompt, { width: 1280, height: 720, seed });
       imageUrl = qwenResult.url;
       imageSource = qwenResult.source;

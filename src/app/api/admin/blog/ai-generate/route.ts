@@ -7,7 +7,6 @@ import {
   generateAiImageUrl,
   CuratedImage
 } from '@/lib/blog-image-curator';
-import { generateNanoBananaImage, getFreeWatermarkFreeImage } from '@/lib/nano-banana-image-service';
 import { generateQwenImage } from '@/lib/qwen-image-service';
 
 // High Search Volume Internal Pages on the platform
@@ -229,38 +228,38 @@ Return your response in raw JSON format with this exact structure:
                 }
               ];
 
-          // Concurrently generate the Featured Image and all 3 in-article images using Nano Banana (gemini-3.1-flash-lite-image) model with free watermark-free fallback
+          // Concurrently generate the Featured Image and all 3 in-article images using Qwen-Image
           const [featRes, img1Res, img2Res, img3Res] = await Promise.all([
-            generateNanoBananaImage(featPrompt, { aspectRatio: '16:9', modelVariant: 'lite', topic: cleanTopic, index: 0 }),
-            generateNanoBananaImage(imagePlans[0].prompt, { aspectRatio: '16:9', modelVariant: 'lite', topic: cleanTopic, index: 1 }),
-            generateNanoBananaImage(imagePlans[1].prompt, { aspectRatio: '16:9', modelVariant: 'lite', topic: cleanTopic, index: 2 }),
-            generateNanoBananaImage(imagePlans[2].prompt, { aspectRatio: '16:9', modelVariant: 'lite', topic: cleanTopic, index: 3 }),
+            generateQwenImage(featPrompt, { width: 1280, height: 720, seed: seedBase }),
+            generateQwenImage(imagePlans[0].prompt, { width: 1280, height: 720, seed: seedBase + 1 }),
+            generateQwenImage(imagePlans[1].prompt, { width: 1280, height: 720, seed: seedBase + 2 }),
+            generateQwenImage(imagePlans[2].prompt, { width: 1280, height: 720, seed: seedBase + 3 }),
           ]);
 
           const finalInArticleImages: CuratedImage[] = [
             {
               url: img1Res.url,
-              alt: imagePlans[0].alt || img1Res.alt,
-              caption: imagePlans[0].caption || img1Res.caption,
+              alt: imagePlans[0].alt,
+              caption: imagePlans[0].caption,
               prompt: imagePlans[0].prompt,
               sectionTitle: imagePlans[0].sectionTitle,
-              source: (img1Res.source === 'nano-banana' ? 'gemini' : 'curated-hd') as any
+              source: img1Res.source
             },
             {
               url: img2Res.url,
-              alt: imagePlans[1].alt || img2Res.alt,
-              caption: imagePlans[1].caption || img2Res.caption,
+              alt: imagePlans[1].alt,
+              caption: imagePlans[1].caption,
               prompt: imagePlans[1].prompt,
               sectionTitle: imagePlans[1].sectionTitle,
-              source: (img2Res.source === 'nano-banana' ? 'gemini' : 'curated-hd') as any
+              source: img2Res.source
             },
             {
               url: img3Res.url,
-              alt: imagePlans[2].alt || img3Res.alt,
-              caption: imagePlans[2].caption || img3Res.caption,
+              alt: imagePlans[2].alt,
+              caption: imagePlans[2].caption,
               prompt: imagePlans[2].prompt,
               sectionTitle: imagePlans[2].sectionTitle,
-              source: (img3Res.source === 'nano-banana' ? 'gemini' : 'curated-hd') as any
+              source: img3Res.source
             }
           ];
 

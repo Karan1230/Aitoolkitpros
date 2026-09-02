@@ -289,8 +289,8 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
     }
   };
 
-  // Regenerate Context-Aware AI Thumbnail On Demand (Nano Banana, Qwen, Unsplash Free, FLUX)
-  const handleRegenerateThumbnail = async (styleModifier: string = '', engine: 'nano-banana' | 'qwen' | 'unsplash' | 'flux' = 'nano-banana') => {
+  // Regenerate Context-Aware AI Thumbnail On Demand (FLUX.1 or Unsplash)
+  const handleRegenerateThumbnail = async (styleModifier: string = '', engine: 'flux' | 'unsplash' = 'flux') => {
     setIsRegeneratingThumbnail(true);
     try {
       const topicForThumb = title || aiTopic || 'Modern AI Technology and Digital Workflow';
@@ -319,9 +319,7 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
         setFeedback({
           type: 'success',
           message: engine === 'unsplash'
-            ? '📷 Applied 100% Free Watermark-Free Online HD Photo!'
-            : engine === 'nano-banana'
-            ? '🍌 New Nano Banana Image generated!'
+            ? '📷 Applied High-Resolution Authentic Real-World Photo!'
             : engine === 'qwen'
             ? '🌟 New Qwen-Image Photorealistic Thumbnail generated!'
             : '🔥 New AI Thumbnail generated!'
@@ -332,7 +330,7 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
         setFeaturedImage(fallbackUrl);
         setFeedback({
           type: 'success',
-          message: '🔥 New AI Thumbnail generated!'
+          message: '🔥 New FLUX.1 AI Thumbnail generated!'
         });
       }
     } catch (e: any) {
@@ -342,64 +340,8 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
     }
   };
 
-  // 1-Click Replace All Images in Article (Internet Free Watermark-Free or Nano Banana)
-  const [isReplacingAllImages, setIsReplacingAllImages] = useState(false);
-  const handleReplaceAllArticleImages = async (mode: 'free-online' | 'nano-banana' = 'free-online') => {
-    setIsReplacingAllImages(true);
-    setFeedback(null);
-
-    try {
-      const topicToUse = title || aiTopic || 'Modern Technology';
-      const res = await fetch('/api/admin/blog/replace-images', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          topic: topicToUse,
-          content,
-          currentFeaturedImage: featuredImage,
-          mode
-        })
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        if (data.featuredImage) {
-          setFeaturedImage(data.featuredImage);
-        }
-        if (data.content) {
-          setContent(data.content);
-        }
-
-        // Update in-article images list if any
-        if (data.replacedImages && data.replacedImages.length > 0) {
-          const newInArticle = data.replacedImages.map((item: any, idx: number) => ({
-            url: item.newUrl,
-            alt: item.alt,
-            caption: item.caption,
-            sectionTitle: `Visual ${idx + 1}`,
-            source: mode === 'free-online' ? 'curated-hd' : 'gemini'
-          }));
-          setInArticleImages(newInArticle);
-        }
-
-        setFeedback({
-          type: 'success',
-          message: mode === 'free-online'
-            ? `✅ 1-Click Success: All article images replaced with relevant, 100% watermark-free HD free online photos!`
-            : `🍌 1-Click Success: All article images replaced with fresh Nano Banana AI images!`
-        });
-      } else {
-        setFeedback({ type: 'error', message: data.error || 'Failed to replace article images' });
-      }
-    } catch (err: any) {
-      setFeedback({ type: 'error', message: err.message || 'Error replacing article images' });
-    } finally {
-      setIsReplacingAllImages(false);
-    }
-  };
-
-  // Regenerate Specific In-Article Image on demand (with Nano Banana / Free Online)
-  const handleRegenerateInArticleImage = async (index: number, engine: 'nano-banana' | 'unsplash' = 'nano-banana') => {
+  // Regenerate Specific In-Article Image on demand
+  const handleRegenerateInArticleImage = async (index: number) => {
     const targetImg = inArticleImages[index];
     if (!targetImg) return;
 
@@ -415,8 +357,7 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
           topic: topicToUse,
           sectionTitle: targetImg.sectionTitle || `Section ${index + 1}`,
           keyword: focusKeywords.split(',')[0],
-          category,
-          engine
+          category
         })
       });
 
@@ -442,9 +383,7 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
 
         setFeedback({
           type: 'success',
-          message: engine === 'unsplash'
-            ? `📷 Section ${index + 1} image replaced with free watermark-free HD online photo!`
-            : `🍌 In-article visual for Section ${index + 1} regenerated with Nano Banana!`
+          message: `✨ In-article visual for Section ${index + 1} regenerated with photorealistic fidelity!`
         });
       } else {
         setFeedback({ type: 'error', message: data.error || 'Failed to regenerate image' });
