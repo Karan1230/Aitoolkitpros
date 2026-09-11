@@ -28,7 +28,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const seo = getStoredSeoSettings();
-  const siteUrl = seo.canonicalUrl || 'https://aitoolkitpro.netlify.app';
+  const siteUrl = seo.canonicalUrl || 'https://aitoolkitpro.in';
 
   try {
     const post = await getPostBySlug(slug);
@@ -92,7 +92,7 @@ export default async function BlogPostPage({
 
   const relatedPosts = await getRelatedPosts(post);
   const seo = getStoredSeoSettings();
-  const siteUrl = seo.canonicalUrl || 'https://aitoolkitpro.netlify.app';
+  const siteUrl = seo.canonicalUrl || 'https://aitoolkitpro.in';
   const postUrl = `${siteUrl}/blog/${post.slug}`;
 
   // Structured JSON-LD for Google Rich Results

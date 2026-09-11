@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to convert long articles, documents, and textbooks into concise study notes with key points and summaries.",
-      "url": "https://aitoolkitpro.netlify.app/tools/study-notes-creator",
+      "url": "https://aitoolkitpro.in/tools/study-notes-creator",
       "offers": {
         "@type": "Offer",
         "price": "0",

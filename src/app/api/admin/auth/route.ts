@@ -24,9 +24,10 @@ export async function POST(req: NextRequest) {
     }
 
     // Standard Admin Login
-    // Default admin: admin@aitoolkitpro.com / admin123456 (or matches current stored admin)
+    // Default admin: admin@aitoolkitpro.in / admin123456 (or matches current stored admin)
     if (admin) {
-      if ((email === admin.email || email === 'admin') && password === admin.passwordHash) {
+      const isMatchEmail = email === admin.email || email === 'admin' || email === 'admin@aitoolkitpro.in' || email === 'admin@aitoolkitpro.com';
+      if (isMatchEmail && password === admin.passwordHash) {
         admin.lastLoginAt = new Date().toISOString();
         saveStoredUsers(users);
 

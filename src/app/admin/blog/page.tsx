@@ -214,9 +214,10 @@ export default function AdminBlogListPage() {
                       <div className="flex items-center gap-3">
                         <div className="relative h-12 w-16 shrink-0 rounded-lg overflow-hidden bg-muted border border-border">
                           <Image
-                            src={post.featuredImage}
-                            alt={post.title}
+                            src={post.featuredImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'}
+                            alt={post.title || 'Post thumbnail'}
                             fill
+                            unoptimized
                             className="object-cover"
                             referrerPolicy="no-referrer"
                           />

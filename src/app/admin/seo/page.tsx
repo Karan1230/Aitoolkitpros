@@ -195,7 +195,7 @@ export default function AdminSeoPage() {
               id="og-image"
               value={seo.ogImageUrl}
               onChange={(e) => setSeo({ ...seo, ogImageUrl: e.target.value })}
-              placeholder="https://aitoolkitpro.netlify.app/og-image.jpg"
+              placeholder="https://aitoolkitpro.in/og-image.jpg"
               className="text-xs"
             />
           </div>
@@ -217,7 +217,7 @@ export default function AdminSeoPage() {
               id="canonical-url"
               value={seo.canonicalUrl}
               onChange={(e) => setSeo({ ...seo, canonicalUrl: e.target.value })}
-              placeholder="https://aitoolkitpro.netlify.app"
+              placeholder="https://aitoolkitpro.in"
               className="text-xs font-mono"
             />
           </div>

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Complete Directory of Free AI Tools | AI Toolkit Pro',
     description: 'Explore all the free AI-powered tools offered by AI Toolkit Pro, categorized for easy browsing.',
-    url: 'https://aitoolkitpro.netlify.app/tools',
+    url: 'https://aitoolkitpro.in/tools',
     type: 'website',
   },
   twitter: {
@@ -27,13 +27,13 @@ const schema = {
   "@type": "CollectionPage",
   "name": "All AI Tools at AI Toolkit Pro",
   "description": "A complete directory of all free AI tools available on AI Toolkit Pro, categorized for easy browsing.",
-  "url": "https://aitoolkitpro.netlify.app/tools",
+  "url": "https://aitoolkitpro.in/tools",
   "publisher": {
     "@type": "Organization",
     "name": "AI Toolkit Pro",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://aitoolkitpro.netlify.app/logo.png"
+      "url": "https://aitoolkitpro.in/logo.png"
     }
   },
   "mainEntity": {
@@ -44,7 +44,7 @@ const schema = {
       "item": {
         "@type": "SoftwareApplication",
         "name": tool.name,
-        "url": `https://aitoolkitpro.netlify.app${tool.href}`,
+        "url": `https://aitoolkitpro.in${tool.href}`,
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
         "description": tool.description,

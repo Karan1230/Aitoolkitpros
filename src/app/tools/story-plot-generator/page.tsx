@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate endless story plots with unique ideas, characters, settings, conflicts, and resolutions for any genre.",
-      "url": "https://aitoolkitpro.netlify.app/tools/story-plot-generator",
+      "url": "https://aitoolkitpro.in/tools/story-plot-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

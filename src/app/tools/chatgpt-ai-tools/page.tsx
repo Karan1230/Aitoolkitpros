@@ -48,7 +48,7 @@ const schema = {
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
       "description": "A suite of free AI tools for question answering, coding help, grammar correction, and text rewriting.",
-      "url": "https://aitoolkitpro.netlify.app/tools/chatgpt-ai-tools",
+      "url": "https://aitoolkitpro.in/tools/chatgpt-ai-tools",
       "offers": {
         "@type": "Offer",
         "price": "0",

@@ -4,7 +4,7 @@ import { getStoredBlogPosts, getStoredSeoSettings } from '@/lib/server-storage';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const seo = getStoredSeoSettings();
-  const siteUrl = seo.canonicalUrl ? seo.canonicalUrl.replace(/\/$/, '') : 'https://aitoolkitpro.netlify.app';
+  const siteUrl = seo.canonicalUrl ? seo.canonicalUrl.replace(/\/$/, '') : 'https://aitoolkitpro.in';
 
   // Dynamic Blog Posts
   const blogPosts = getStoredBlogPosts().filter(p => p.status === 'published');

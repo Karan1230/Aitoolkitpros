@@ -13,7 +13,7 @@ export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = getStoredSeoSettings();
-  const siteUrl = seo.canonicalUrl || 'https://aitoolkitpro.netlify.app';
+  const siteUrl = seo.canonicalUrl || 'https://aitoolkitpro.in';
 
   return {
     title: 'AI Blog & Tutorials – Master Content Creation, SEO & Productivity',
@@ -67,7 +67,7 @@ export default async function BlogPage({
   const regularPosts = featuredPost ? filteredPosts.filter(p => p.id !== featuredPost.id) : filteredPosts;
 
   const seo = getStoredSeoSettings();
-  const siteUrl = seo.canonicalUrl || 'https://aitoolkitpro.netlify.app';
+  const siteUrl = seo.canonicalUrl || 'https://aitoolkitpro.in';
 
   // Schema.org structured data for SEO
   const jsonLd = {

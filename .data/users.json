@@ -1,0 +1,12 @@
+[
+  {
+    "id": "admin-1",
+    "name": "Admin Master",
+    "email": "admin@aitoolkitpro.in",
+    "passwordHash": "admin123456",
+    "role": "admin",
+    "createdAt": "2025-01-01T00:00:00Z",
+    "lastLoginAt": "2025-01-01T00:00:00Z",
+    "isUnlimited": true
+  }
+]

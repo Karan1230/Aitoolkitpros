@@ -14,7 +14,7 @@ export const metadata: Metadata = {
    openGraph: {
     title: 'Contact Us | AI Toolkit Pro',
     description: 'We welcome your questions, feedback, and suggestions. Get in touch with our team.',
-    url: 'https://aitoolkitpro.netlify.app/contact',
+    url: 'https://aitoolkitpro.in/contact',
     type: 'website',
   },
   twitter: {
@@ -30,16 +30,16 @@ const schema = {
   "mainEntity": {
     "@type": "Organization",
     "name": "AI Toolkit Pro",
-    "url": "https://aitoolkitpro.netlify.app",
-    "logo": "https://aitoolkitpro.netlify.app/logo.png",
+    "url": "https://aitoolkitpro.in",
+    "logo": "https://aitoolkitpro.in/logo.png",
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Customer Support",
-      "email": "support@aitoolkitpro.com",
+      "email": "support@aitoolkitpro.in",
       "availableLanguage": "English"
     }
   },
-  "url": "https://aitoolkitpro.netlify.app/contact"
+  "url": "https://aitoolkitpro.in/contact"
 };
 
 export default function ContactPage() {

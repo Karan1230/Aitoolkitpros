@@ -7,6 +7,7 @@ import {
   generateAiImageUrl,
   CuratedImage
 } from '@/lib/blog-image-curator';
+import { generateNanoBananaImage } from '@/lib/nano-banana-service';
 import { generateQwenImage } from '@/lib/qwen-image-service';
 
 // High Search Volume Internal Pages on the platform
@@ -228,12 +229,12 @@ Return your response in raw JSON format with this exact structure:
                 }
               ];
 
-          // Concurrently generate the Featured Image and all 3 in-article images using Qwen-Image
+          // Concurrently generate the Featured Image and all 3 in-article images using Nano Banana
           const [featRes, img1Res, img2Res, img3Res] = await Promise.all([
-            generateQwenImage(featPrompt, { width: 1280, height: 720, seed: seedBase }),
-            generateQwenImage(imagePlans[0].prompt, { width: 1280, height: 720, seed: seedBase + 1 }),
-            generateQwenImage(imagePlans[1].prompt, { width: 1280, height: 720, seed: seedBase + 2 }),
-            generateQwenImage(imagePlans[2].prompt, { width: 1280, height: 720, seed: seedBase + 3 }),
+            generateNanoBananaImage(featPrompt, { aspectRatio: '16:9', seed: seedBase }),
+            generateNanoBananaImage(imagePlans[0].prompt, { aspectRatio: '16:9', seed: seedBase + 1 }),
+            generateNanoBananaImage(imagePlans[1].prompt, { aspectRatio: '16:9', seed: seedBase + 2 }),
+            generateNanoBananaImage(imagePlans[2].prompt, { aspectRatio: '16:9', seed: seedBase + 3 }),
           ]);
 
           const finalInArticleImages: CuratedImage[] = [

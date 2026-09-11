@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Privacy Policy | AI Toolkit Pro',
     description: 'Understand how we handle your data and protect your privacy.',
-    url: 'https://aitoolkitpro.netlify.app/privacy-policy',
+    url: 'https://aitoolkitpro.in/privacy-policy',
     type: 'website',
   },
   twitter: {
@@ -23,14 +23,14 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Privacy Policy",
-  "url": "https://aitoolkitpro.netlify.app/privacy-policy",
+  "url": "https://aitoolkitpro.in/privacy-policy",
   "description": "Read the Privacy Policy for AI Toolkit Pro to understand how we handle your data and protect your privacy.",
   "publisher": {
     "@type": "Organization",
     "name": "AI Toolkit Pro",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://aitoolkitpro.netlify.app/logo.png"
+      "url": "https://aitoolkitpro.in/logo.png"
     }
   }
 };

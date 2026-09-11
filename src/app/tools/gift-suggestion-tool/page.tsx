@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "LifestyleApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to get personalized gift ideas for any occasion, age, or interest.",
-      "url": "https://aitoolkitpro.netlify.app/tools/gift-suggestion-tool",
+      "url": "https://aitoolkitpro.in/tools/gift-suggestion-tool",
       "offers": {
         "@type": "Offer",
         "price": "0",

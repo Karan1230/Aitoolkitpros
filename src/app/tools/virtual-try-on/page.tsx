@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "LifestyleApplication",
       "operatingSystem": "Web",
       "description": "A free AI-powered tool to virtually try on different outfits by uploading a photo of yourself and a photo of the clothing item.",
-      "url": "https://aitoolkitpro.netlify.app/tools/virtual-try-on",
+      "url": "https://aitoolkitpro.in/tools/virtual-try-on",
       "offers": {
         "@type": "Offer",
         "price": "0",

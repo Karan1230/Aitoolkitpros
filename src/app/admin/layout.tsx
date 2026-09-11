@@ -53,7 +53,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           const localAuth = localStorage.getItem('admin_authenticated');
           if (localAuth === 'true') {
             setIsAuthenticated(true);
-            setAdminUser({ name: 'Admin Master', email: 'admin@aitoolkitpro.com' });
+            setAdminUser({ name: 'Admin Master', email: 'admin@aitoolkitpro.in' });
           } else {
             setIsAuthenticated(false);
           }
@@ -74,7 +74,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       const res = await fetch('/api/admin/auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: loginEmail || 'admin@aitoolkitpro.com', password: loginPassword })
+        body: JSON.stringify({ email: loginEmail || 'admin@aitoolkitpro.in', password: loginPassword })
       });
       const data = await res.json();
       setIsLoggingIn(false);
@@ -82,7 +82,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       if (data.success) {
         localStorage.setItem('admin_authenticated', 'true');
         setIsAuthenticated(true);
-        setAdminUser(data.user || { name: 'Admin Master', email: 'admin@aitoolkitpro.com' });
+        setAdminUser(data.user || { name: 'Admin Master', email: 'admin@aitoolkitpro.in' });
         router.refresh();
       } else {
         setLoginError(data.error || 'Invalid admin credentials');
@@ -124,9 +124,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-muted/30 flex items-center justify-center p-4">
-        <head>
-          <meta name="robots" content="noindex, nofollow" />
-        </head>
+        <meta name="robots" content="noindex, nofollow" />
         <div className="w-full max-w-md bg-card rounded-2xl border border-border p-8 shadow-xl space-y-6">
           <div className="text-center space-y-2">
             <div className="inline-flex p-3 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-2xl border border-amber-500/20">

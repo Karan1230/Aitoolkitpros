@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI-powered tool to swap faces in any photo. Upload two images and let the AI perform a realistic face swap in seconds.",
-      "url": "https://aitoolkitpro.netlify.app/tools/image-face-swap",
+      "url": "https://aitoolkitpro.in/tools/image-face-swap",
       "offers": {
         "@type": "Offer",
         "price": "0",

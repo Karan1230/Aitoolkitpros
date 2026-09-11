@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate custom, high-quality icons from a text description in various styles.",
-      "url": "https://aitoolkitpro.netlify.app/tools/custom-icon-generator",
+      "url": "https://aitoolkitpro.in/tools/custom-icon-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

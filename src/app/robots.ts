@@ -3,7 +3,7 @@ import { getStoredSeoSettings } from '@/lib/server-storage';
 
 export default function robots(): MetadataRoute.Robots {
   const seo = getStoredSeoSettings();
-  const siteUrl = seo.canonicalUrl ? seo.canonicalUrl.replace(/\/$/, '') : 'https://aitoolkitpro.netlify.app';
+  const siteUrl = seo.canonicalUrl ? seo.canonicalUrl.replace(/\/$/, '') : 'https://aitoolkitpro.in';
 
   return {
     rules: {

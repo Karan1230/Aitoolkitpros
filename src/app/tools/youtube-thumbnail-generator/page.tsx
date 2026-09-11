@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
       "description": "A free AI-powered tool to generate professional, eye-catching YouTube thumbnails. Increase your click-through rate with stunning designs.",
-      "url": "https://aitoolkitpro.netlify.app/tools/youtube-thumbnail-generator",
+      "url": "https://aitoolkitpro.in/tools/youtube-thumbnail-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

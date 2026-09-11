@@ -97,8 +97,8 @@ export const INITIAL_SEO_SETTINGS: SeoSettings = {
     'AI SEO Tools',
     'Free AI Tools Hub'
   ],
-  canonicalUrl: 'https://aitoolkitpro.netlify.app',
-  ogImageUrl: 'https://aitoolkitpro.netlify.app/og-image.jpg',
+  canonicalUrl: 'https://aitoolkitpro.in',
+  ogImageUrl: 'https://aitoolkitpro.in/og-image.jpg',
   twitterHandle: '@AIToolkitPro',
   searchConsoleId: 'O53X2mdbJz3WwgeqtSsvQVCGlo5jYyvjVrckboIfecg',
   googleAnalyticsId: 'G-XXXXXXXXXX',
@@ -122,14 +122,14 @@ export const INITIAL_SITE_SETTINGS: SiteSettings = {
   announcementText: '🚀 Explore 20+ Free AI Generation Tools & In-Depth SEO Guides!',
   announcementLink: '/blog',
   announcementEnabled: true,
-  supportEmail: 'support@aitoolkitpro.com',
+  supportEmail: 'support@aitoolkitpro.in',
   footerText: 'AI Toolkit Pro. An all-in-one suite of free AI tools for creators, developers, and marketers.'
 };
 
 export const INITIAL_ADMIN_USER: UserAccount = {
   id: 'admin-1',
   name: 'Admin Master',
-  email: 'admin@aitoolkitpro.com',
+  email: 'admin@aitoolkitpro.in',
   passwordHash: 'admin123456',
   role: 'admin',
   createdAt: '2025-01-01T00:00:00Z',

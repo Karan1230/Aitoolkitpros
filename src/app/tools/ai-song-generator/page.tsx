@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to generate original songs with vocals and instrumentals from text prompts.",
-      "url": "https://aitoolkitpro.netlify.app/tools/ai-song-generator",
+      "url": "https://aitoolkitpro.in/tools/ai-song-generator",
       "offers": {
         "@type": "Offer",
         "price": "0",

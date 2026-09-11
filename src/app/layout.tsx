@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = getStoredSeoSettings();
-  const siteUrl = seo.canonicalUrl || 'https://aitoolkitpro.netlify.app';
+  const siteUrl = seo.canonicalUrl || 'https://aitoolkitpro.in';
 
   return {
     title: {
@@ -45,7 +45,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: seo.organizationName || 'AI Toolkit Pro',
       images: [
         {
-          url: seo.ogImageUrl || 'https://aitoolkitpro.netlify.app/og-image.jpg',
+          url: seo.ogImageUrl || 'https://aitoolkitpro.in/og-image.jpg',
           width: 1200,
           height: 630,
           alt: seo.siteTitle,
@@ -58,7 +58,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
       title: seo.siteTitle,
       description: seo.siteDescription,
-      images: [seo.ogImageUrl || 'https://aitoolkitpro.netlify.app/og-image.jpg'],
+      images: [seo.ogImageUrl || 'https://aitoolkitpro.in/og-image.jpg'],
       creator: seo.twitterHandle || '@AIToolkitPro',
     },
     robots: {
@@ -87,7 +87,7 @@ export default function RootLayout({
 }>) {
   const seo = getStoredSeoSettings();
   const siteSettings = getStoredSiteSettings();
-  const siteUrl = seo.canonicalUrl || 'https://aitoolkitpro.netlify.app';
+  const siteUrl = seo.canonicalUrl || 'https://aitoolkitpro.in';
 
   const schema = {
     "@context": "https://schema.org",

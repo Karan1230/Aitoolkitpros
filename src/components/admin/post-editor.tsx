@@ -44,6 +44,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription
+} from '@/components/ui/dialog';
 import { BlogPost } from '@/lib/storage-types';
 import { allTools } from '@/lib/tools';
 import { CuratedImage, generateAiImageUrl } from '@/lib/blog-image-curator';
@@ -111,6 +118,13 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
   const [serpDevice, setSerpDevice] = useState<'desktop' | 'mobile'>('desktop');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+  // 1-Click Free Web Photos Replacement & Search Modal
+  const [isReplacingAllImages, setIsReplacingAllImages] = useState(false);
+  const [showFreeImageModal, setShowFreeImageModal] = useState(false);
+  const [freeSearchQuery, setFreeSearchQuery] = useState('');
+  const [freeSearchResults, setFreeSearchResults] = useState<Array<{ url: string; alt: string; caption: string; source: string }>>([]);
+  const [isSearchingFreeImages, setIsSearchingFreeImages] = useState(false);
 
   // Image Compression State
   const [isCompressingImage, setIsCompressingImage] = useState(false);
@@ -289,8 +303,73 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
     }
   };
 
-  // Regenerate Context-Aware AI Thumbnail On Demand (FLUX.1 or Unsplash)
-  const handleRegenerateThumbnail = async (styleModifier: string = '', engine: 'flux' | 'unsplash' = 'flux') => {
+  // 1-Click Replace All Article Images with Free Online Photos (Watermark-Free)
+  const handleReplaceAllImagesWithFreePhotos = async () => {
+    if (!title.trim() && !content.trim()) {
+      setFeedback({ type: 'error', message: 'Please write an Article Title or Content first so we can find relevant free online images.' });
+      return;
+    }
+    setIsReplacingAllImages(true);
+    setFeedback(null);
+    try {
+      const res = await fetch('/api/admin/blog/replace-all-images', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: title || aiTopic,
+          content,
+          category,
+          inArticleImages
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        if (data.featuredImage) {
+          setFeaturedImage(data.featuredImage);
+        }
+        if (data.content) {
+          setContent(data.content);
+        }
+        if (data.inArticleImages && data.inArticleImages.length > 0) {
+          setInArticleImages(data.inArticleImages);
+        }
+        setFeedback({
+          type: 'success',
+          message: `🎉 All images replaced in 1 click! ${data.replacedCount} watermark-free free online photos applied from the internet.`
+        });
+      } else {
+        setFeedback({ type: 'error', message: data.error || 'Failed to replace images.' });
+      }
+    } catch (err: any) {
+      setFeedback({ type: 'error', message: err.message || 'Error replacing images.' });
+    } finally {
+      setIsReplacingAllImages(false);
+    }
+  };
+
+  // Search Free Online Images (Wikimedia Commons & Unsplash)
+  const handleSearchFreeImages = async (customQuery?: string) => {
+    const q = (customQuery || freeSearchQuery || title || category || 'technology').trim();
+    if (!q) return;
+    setIsSearchingFreeImages(true);
+    try {
+      const res = await fetch(`/api/admin/blog/search-free-images?q=${encodeURIComponent(q)}&limit=12`);
+      const data = await res.json();
+      if (data.success && data.images) {
+        setFreeSearchResults(data.images);
+      }
+    } catch (e) {
+      console.error('Failed to search free images:', e);
+    } finally {
+      setIsSearchingFreeImages(false);
+    }
+  };
+
+  // Regenerate Context-Aware AI Thumbnail On Demand (Nano Banana, Free Online, FLUX.1, or Qwen)
+  const handleRegenerateThumbnail = async (
+    styleModifier: string = '',
+    engine: 'nano-banana' | 'free-online' | 'flux' | 'qwen' | 'unsplash' = 'nano-banana'
+  ) => {
     setIsRegeneratingThumbnail(true);
     try {
       const topicForThumb = title || aiTopic || 'Modern AI Technology and Digital Workflow';
@@ -318,8 +397,10 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
         setFeaturedImage(data.imageUrl);
         setFeedback({
           type: 'success',
-          message: engine === 'unsplash'
-            ? '📷 Applied High-Resolution Authentic Real-World Photo!'
+          message: engine === 'free-online' || engine === 'unsplash'
+            ? '📷 Applied High-Resolution Free Web Photo (Zero Watermark)!'
+            : engine === 'nano-banana'
+            ? '🍌 New Nano Banana AI Thumbnail generated!'
             : engine === 'qwen'
             ? '🌟 New Qwen-Image Photorealistic Thumbnail generated!'
             : '🔥 New AI Thumbnail generated!'
@@ -330,7 +411,7 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
         setFeaturedImage(fallbackUrl);
         setFeedback({
           type: 'success',
-          message: '🔥 New FLUX.1 AI Thumbnail generated!'
+          message: '🔥 New AI Thumbnail generated!'
         });
       }
     } catch (e: any) {
@@ -340,8 +421,11 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
     }
   };
 
-  // Regenerate Specific In-Article Image on demand
-  const handleRegenerateInArticleImage = async (index: number) => {
+  // Regenerate Specific In-Article Image on demand (Nano Banana or Free Online Web Photo)
+  const handleRegenerateInArticleImage = async (
+    index: number,
+    engine: 'nano-banana' | 'free-online' = 'nano-banana'
+  ) => {
     const targetImg = inArticleImages[index];
     if (!targetImg) return;
 
@@ -357,7 +441,8 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
           topic: topicToUse,
           sectionTitle: targetImg.sectionTitle || `Section ${index + 1}`,
           keyword: focusKeywords.split(',')[0],
-          category
+          category,
+          engine
         })
       });
 
@@ -372,7 +457,8 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
           url: newUrl,
           alt: data.alt || updated[index].alt,
           caption: data.caption || updated[index].caption,
-          prompt: data.prompt || updated[index].prompt
+          prompt: data.prompt || updated[index].prompt,
+          source: data.source || updated[index].source
         };
         setInArticleImages(updated);
 
@@ -383,7 +469,9 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
 
         setFeedback({
           type: 'success',
-          message: `✨ In-article visual for Section ${index + 1} regenerated with photorealistic fidelity!`
+          message: engine === 'free-online'
+            ? `📷 In-article visual for Section ${index + 1} replaced with free watermark-free web photo!`
+            : `🍌 In-article visual for Section ${index + 1} regenerated with Nano Banana AI!`
         });
       } else {
         setFeedback({ type: 'error', message: data.error || 'Failed to regenerate image' });
@@ -491,6 +579,28 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
               </Button>
             </Link>
           )}
+
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={handleReplaceAllImagesWithFreePhotos}
+            disabled={isReplacingAllImages || isGeneratingArticle}
+            className="gap-1.5 font-bold text-xs border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 shadow-xs"
+            title="1-Click: Replace all images in this article with free, relevant, watermark-free photos from the web"
+          >
+            {isReplacingAllImages ? (
+              <>
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                <span>Replacing All...</span>
+              </>
+            ) : (
+              <>
+                <Globe className="h-3.5 w-3.5" />
+                <span>⚡ 1-Click Free Web Images</span>
+              </>
+            )}
+          </Button>
 
           <Button
             variant="outline"
@@ -651,7 +761,7 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
 
             {/* Permanent Slug Editor */}
             <div className="flex items-center gap-2 text-xs bg-muted/50 p-3 rounded-xl border border-border">
-              <span className="text-muted-foreground font-mono shrink-0">https://aitoolkitpro.com/blog/</span>
+              <span className="text-muted-foreground font-mono shrink-0">https://aitoolkitpro.in/blog/</span>
               <input
                 type="text"
                 value={slug}
@@ -865,9 +975,27 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
                     </p>
                   </div>
                 </div>
-                <Badge variant="outline" className="text-[10px] text-primary border-primary/30 bg-primary/5">
-                  {inArticleImages.length} Visuals Ready
-                </Badge>
+                <div className="flex items-center gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={handleReplaceAllImagesWithFreePhotos}
+                    disabled={isReplacingAllImages}
+                    className="h-7 text-[11px] font-bold gap-1.5 border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 shadow-xs"
+                    title="Replace all images in this article with relevant, free, watermark-free photos from the web"
+                  >
+                    {isReplacingAllImages ? (
+                      <Loader2 className="h-3 w-3 animate-spin" />
+                    ) : (
+                      <Zap className="h-3 w-3 text-blue-500" />
+                    )}
+                    <span>⚡ 1-Click Replace All (Free Web Photos)</span>
+                  </Button>
+                  <Badge variant="outline" className="text-[10px] text-primary border-primary/30 bg-primary/5">
+                    {inArticleImages.length} Visuals Ready
+                  </Badge>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
@@ -880,19 +1008,9 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
                           <span className="text-[10px] font-bold text-primary px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20">
                             {img.sectionTitle || `Visual ${idx + 1}`}
                           </span>
-                          <button
-                            type="button"
-                            onClick={() => handleRegenerateInArticleImage(idx)}
-                            disabled={isRegenerating}
-                            title="Regenerate this visual with Gemini"
-                            className="p-1 rounded-md text-[10px] text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors disabled:opacity-50"
-                          >
-                            {isRegenerating ? (
-                              <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" />
-                            ) : (
-                              <RefreshCw className="h-3.5 w-3.5" />
-                            )}
-                          </button>
+                          <span className="text-[9px] text-muted-foreground uppercase font-semibold">
+                            {img.source === 'wikimedia' ? 'Wikimedia Free' : img.source?.includes('nano-banana') ? '🍌 Nano Banana' : 'HD Web'}
+                          </span>
                         </div>
 
                         <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-muted border border-border/60">
@@ -927,13 +1045,40 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
                         </div>
                       </div>
 
-                      <div className="pt-1 flex gap-1.5">
+                      <div className="pt-1 space-y-1.5">
+                        {/* Replacement controls for single image */}
+                        <div className="grid grid-cols-2 gap-1">
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleRegenerateInArticleImage(idx, 'nano-banana')}
+                            disabled={isRegenerating}
+                            className="h-6 text-[9px] font-bold p-1 bg-amber-500/10 border-amber-500/30 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20"
+                            title="Generate with Nano Banana AI"
+                          >
+                            {isRegenerating ? <Loader2 className="h-2.5 w-2.5 animate-spin" /> : <span>🍌 Nano Banana</span>}
+                          </Button>
+
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleRegenerateInArticleImage(idx, 'free-online')}
+                            disabled={isRegenerating}
+                            className="h-6 text-[9px] font-bold p-1 bg-blue-500/10 border-blue-500/30 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20"
+                            title="Replace with Free Watermark-Free Web Photo"
+                          >
+                            {isRegenerating ? <Loader2 className="h-2.5 w-2.5 animate-spin" /> : <span>🌐 Free Web Photo</span>}
+                          </Button>
+                        </div>
+
                         <Button
                           type="button"
                           variant="outline"
                           size="sm"
                           onClick={() => insertTextAtCursor(`\n\n![${img.alt}](${img.url})\n*${img.caption || img.alt}*\n\n`)}
-                          className="flex-1 text-[10px] h-7 font-bold gap-1 bg-background hover:bg-primary hover:text-primary-foreground transition-all"
+                          className="w-full text-[10px] h-7 font-bold gap-1 bg-background hover:bg-primary hover:text-primary-foreground transition-all"
                         >
                           <span>Insert into Post</span>
                         </Button>
@@ -992,7 +1137,7 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
                 <div className="h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center text-[10px] font-bold text-primary">
                   AI
                 </div>
-                <span className="truncate text-[11px]">https://aitoolkitpro.com › blog › {slug || 'article-slug'}</span>
+                <span className="truncate text-[11px]">https://aitoolkitpro.in › blog › {slug || 'article-slug'}</span>
               </div>
               <div className="text-base sm:text-lg font-semibold text-blue-600 dark:text-blue-400 hover:underline cursor-pointer line-clamp-1">
                 {metaTitle || (title ? `${title} | AI Toolkit Pro` : 'Article Title - AI Toolkit Pro')}
@@ -1139,14 +1284,52 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
 
             {/* Instant AI & Real Photo Controls */}
             <div className="space-y-2 pt-1">
-              <div className="grid grid-cols-2 gap-2">
+              {/* 1-Click Replace All Images Banner inside Thumbnail card */}
+              <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+                    <Globe className="h-3.5 w-3.5" />
+                    <span>Free Online Web Photos</span>
+                  </span>
+                  <Badge variant="outline" className="text-[9px] bg-blue-500/10 text-blue-600 border-blue-500/30">
+                    Zero Watermark
+                  </Badge>
+                </div>
+                <p className="text-[10px] text-muted-foreground leading-tight">
+                  Replace all images in this post with high-resolution, watermark-free photos from the web.
+                </p>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={handleReplaceAllImagesWithFreePhotos}
+                  disabled={isReplacingAllImages}
+                  className="w-full h-7 text-[11px] font-bold gap-1.5 bg-blue-600 text-white hover:bg-blue-700 shadow-xs border-blue-600"
+                >
+                  {isReplacingAllImages ? (
+                    <>
+                      <Loader2 className="h-3 w-3 animate-spin" />
+                      <span>Replacing All Images...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Zap className="h-3 w-3 text-amber-300 fill-amber-300" />
+                      <span>⚡ 1-Click Replace All Images</span>
+                    </>
+                  )}
+                </Button>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 pt-1">
+                {/* Nano Banana AI Engine Button */}
                 <Button
                   type="button"
                   variant="default"
                   size="sm"
-                  onClick={() => handleRegenerateThumbnail('', 'qwen')}
+                  onClick={() => handleRegenerateThumbnail('', 'nano-banana')}
                   disabled={isRegeneratingThumbnail}
-                  className="text-[11px] font-bold gap-1.5 bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm"
+                  className="text-[11px] font-bold gap-1.5 bg-amber-500 hover:bg-amber-600 text-black shadow-sm"
+                  title="Generate with Google Nano Banana Image Model"
                 >
                   {isRegeneratingThumbnail ? (
                     <>
@@ -1155,12 +1338,44 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
                     </>
                   ) : (
                     <>
-                      <Sparkles className="h-3.5 w-3.5 text-amber-300" />
-                      <span>🌟 Qwen-Image AI</span>
+                      <span>🍌 Nano Banana AI</span>
                     </>
                   )}
                 </Button>
 
+                {/* Free Online Web Photo Instant Button */}
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleRegenerateThumbnail('', 'free-online')}
+                  disabled={isRegeneratingThumbnail}
+                  className="text-[11px] font-bold gap-1.5 border-blue-500/40 bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 shadow-xs"
+                  title="Apply free watermark-free web photo matching topic"
+                >
+                  <Globe className="h-3.5 w-3.5" />
+                  <span>🌐 Free Web Photo</span>
+                </Button>
+
+                {/* Search Free Web Photos Modal Button */}
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setShowFreeImageModal(true);
+                    if (freeSearchResults.length === 0) {
+                      handleSearchFreeImages(title || aiTopic || category);
+                    }
+                  }}
+                  className="text-[11px] font-bold gap-1.5 border-border bg-muted/40 hover:bg-muted text-foreground shadow-xs"
+                  title="Search & browse Wikimedia and Unsplash free photos"
+                >
+                  <Search className="h-3.5 w-3.5 text-primary" />
+                  <span>🔍 Search Photos</span>
+                </Button>
+
+                {/* FLUX.1 Pro Alternative Button */}
                 <Button
                   type="button"
                   variant="outline"
@@ -1172,48 +1387,36 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
                   <Sparkles className="h-3.5 w-3.5 text-indigo-500" />
                   <span>FLUX.1 Pro</span>
                 </Button>
-
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleRegenerateThumbnail('', 'unsplash')}
-                  disabled={isRegeneratingThumbnail}
-                  className="text-[11px] font-bold gap-1.5 border-border bg-muted/40 hover:bg-muted text-foreground shadow-xs"
-                >
-                  <ImagePlus className="h-3.5 w-3.5 text-blue-500" />
-                  <span>📷 Unsplash HD</span>
-                </Button>
               </div>
 
               {/* Style Presets for Editorial Thumbnail */}
-              <div className="space-y-1">
+              <div className="space-y-1 pt-1">
                 <Label className="text-[10px] text-muted-foreground uppercase font-bold">Quick Realistic Photography Styles:</Label>
                 <div className="grid grid-cols-2 gap-1.5">
                   <button
                     type="button"
-                    onClick={() => handleRegenerateThumbnail('photorealistic commercial editorial studio tech photography with soft natural daylight and high detail', 'qwen')}
+                    onClick={() => handleRegenerateThumbnail('photorealistic commercial editorial studio tech photography with soft natural daylight and high detail', 'nano-banana')}
                     className="p-1.5 rounded-lg text-[10px] font-semibold border border-border bg-muted/40 hover:bg-primary/10 hover:border-primary/40 text-left truncate transition-colors"
                   >
                     📸 Editorial Studio
                   </button>
                   <button
                     type="button"
-                    onClick={() => handleRegenerateThumbnail('modern sleek desk workstation with laptop showing digital dashboard and charts', 'qwen')}
+                    onClick={() => handleRegenerateThumbnail('modern sleek desk workstation with laptop showing digital dashboard and charts', 'nano-banana')}
                     className="p-1.5 rounded-lg text-[10px] font-semibold border border-border bg-muted/40 hover:bg-primary/10 hover:border-primary/40 text-left truncate transition-colors"
                   >
                     💻 Modern Workspace
                   </button>
                   <button
                     type="button"
-                    onClick={() => handleRegenerateThumbnail('hands on tech product showcase with clean bokeh background and sharp macro focus', 'qwen')}
+                    onClick={() => handleRegenerateThumbnail('hands on tech product showcase with clean bokeh background and sharp macro focus', 'nano-banana')}
                     className="p-1.5 rounded-lg text-[10px] font-semibold border border-border bg-muted/40 hover:bg-primary/10 hover:border-primary/40 text-left truncate transition-colors"
                   >
                     📱 Tech Showcase
                   </button>
                   <button
                     type="button"
-                    onClick={() => handleRegenerateThumbnail('minimalist clean modern luxury technology aesthetic with balanced negative space', 'qwen')}
+                    onClick={() => handleRegenerateThumbnail('minimalist clean modern luxury technology aesthetic with balanced negative space', 'nano-banana')}
                     className="p-1.5 rounded-lg text-[10px] font-semibold border border-border bg-muted/40 hover:bg-primary/10 hover:border-primary/40 text-left truncate transition-colors"
                   >
                     💎 Minimalist Pro
@@ -1366,6 +1569,125 @@ export function PostEditor({ initialPost, isEditMode = false }: PostEditorProps)
           </div>
         </div>
       </div>
+
+      {/* Free Online Web Photos Search Modal */}
+      <Dialog open={showFreeImageModal} onOpenChange={setShowFreeImageModal}>
+        <DialogContent className="max-w-3xl max-h-[85vh] flex flex-col p-6 rounded-3xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-base font-bold">
+              <Globe className="h-5 w-5 text-primary" />
+              <span>Free Online Photos (Watermark-Free & High-Res)</span>
+            </DialogTitle>
+            <DialogDescription className="text-xs text-muted-foreground">
+              Search copyright-free, watermark-free authentic web photos from Wikimedia Commons and curated collections.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="flex gap-2 pt-2">
+            <Input
+              value={freeSearchQuery}
+              onChange={(e) => setFreeSearchQuery(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSearchFreeImages()}
+              placeholder="Search keyword (e.g. smartphone, coding, laptop workspace, marketing)..."
+              className="text-xs rounded-xl"
+            />
+            <Button
+              type="button"
+              size="sm"
+              onClick={() => handleSearchFreeImages()}
+              disabled={isSearchingFreeImages}
+              className="gap-1.5 text-xs font-bold shrink-0"
+            >
+              {isSearchingFreeImages ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Search className="h-3.5 w-3.5" />}
+              <span>Search Free Photos</span>
+            </Button>
+          </div>
+
+          {/* Quick topic tags */}
+          <div className="flex flex-wrap gap-1.5 pt-1">
+            {['Smartphone', 'Artificial Intelligence', 'Laptop Workspace', 'SEO Analytics', 'Video Production', 'Coding Python'].map((tag) => (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => {
+                  setFreeSearchQuery(tag);
+                  handleSearchFreeImages(tag);
+                }}
+                className="text-[10px] px-2 py-0.5 rounded-full border border-border bg-muted/30 hover:bg-primary/10 hover:border-primary/40 transition-colors"
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+
+          {/* Results Grid */}
+          <div className="flex-1 overflow-y-auto min-h-[300px] pt-3 pr-1">
+            {isSearchingFreeImages ? (
+              <div className="flex flex-col items-center justify-center h-48 gap-2 text-muted-foreground">
+                <Loader2 className="h-6 w-6 animate-spin text-primary" />
+                <span className="text-xs">Searching authentic free web photos...</span>
+              </div>
+            ) : freeSearchResults.length > 0 ? (
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {freeSearchResults.map((item, idx) => (
+                  <div key={idx} className="group rounded-2xl overflow-hidden border border-border bg-card shadow-xs flex flex-col justify-between">
+                    <div className="relative aspect-video w-full bg-muted">
+                      <Image
+                        src={item.url}
+                        alt={item.alt}
+                        fill
+                        unoptimized
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        referrerPolicy="no-referrer"
+                      />
+                      <span className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded text-[9px] font-semibold bg-black/70 text-white backdrop-blur-xs">
+                        {item.source === 'wikimedia' ? 'Wikimedia Free' : 'Unsplash HD'}
+                      </span>
+                    </div>
+                    <div className="p-2 space-y-1.5">
+                      <p className="text-[10px] font-medium text-foreground line-clamp-2 leading-tight">
+                        {item.caption || item.alt}
+                      </p>
+                      <div className="grid grid-cols-2 gap-1 pt-1">
+                        <Button
+                          type="button"
+                          variant="default"
+                          size="sm"
+                          onClick={() => {
+                            setFeaturedImage(item.url);
+                            setShowFreeImageModal(false);
+                            setFeedback({ type: 'success', message: '📷 Set free online photo as Featured Thumbnail!' });
+                          }}
+                          className="h-6 text-[9px] font-bold p-0"
+                        >
+                          Set Thumbnail
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            insertTextAtCursor(`\n\n![${item.alt}](${item.url})\n*${item.caption || item.alt}*\n\n`);
+                            setShowFreeImageModal(false);
+                            setFeedback({ type: 'success', message: '📝 Inserted free photo into content!' });
+                          }}
+                          className="h-6 text-[9px] font-bold p-0"
+                        >
+                          Insert in Post
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12 text-muted-foreground text-xs">
+                Type a keyword above to find 100% free, high-resolution, watermark-free images from the web.
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

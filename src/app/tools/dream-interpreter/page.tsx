@@ -51,7 +51,7 @@ const schema = {
       "applicationCategory": "LifestyleApplication",
       "operatingSystem": "Web",
       "description": "A free AI tool to get instant analysis of dream symbols, emotions, and context in over 100 languages.",
-      "url": "https://aitoolkitpro.netlify.app/tools/dream-interpreter",
+      "url": "https://aitoolkitpro.in/tools/dream-interpreter",
       "offers": {
         "@type": "Offer",
         "price": "0",

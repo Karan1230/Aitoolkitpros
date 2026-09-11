@@ -224,7 +224,7 @@ export default function AdminSettingsPage() {
 
           <div className="p-3 bg-muted/60 rounded-xl text-xs space-y-1 border border-border">
             <div className="font-semibold">Current Default Admin:</div>
-            <div className="text-muted-foreground font-mono">admin@aitoolkitpro.com</div>
+            <div className="text-muted-foreground font-mono">admin@aitoolkitpro.in</div>
           </div>
 
           <div className="space-y-1.5">

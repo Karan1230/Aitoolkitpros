@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { getStoredBlogPosts } from '@/lib/server-storage';
 import { PostEditor } from '@/components/admin/post-editor';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminEditBlogPage({
   params,
 }: {

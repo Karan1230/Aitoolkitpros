@@ -403,32 +403,32 @@ export function buildPhotorealisticPromptsForTopic(topic: string, keywords: stri
     };
   }
 
-  // 5. Default / General Real-World Topics
+  // 5. Topic-Specific Custom Real-World Prompts (Animals, Lifestyle, Health, Food, Travel, etc.)
   return {
     categoryKey: 'general',
     featured: {
-      prompt: `Inspiring commercial editorial photograph for "${cleanTopic}", rich vibrant visual storytelling, natural golden hour lighting, clean minimalist composition, 8k resolution, 16:9 widescreen`,
-      alt: `${cleanTopic} professional strategic execution and masterclass guide`,
-      caption: `Masterclass guide to ${cleanTopic}: Strategies, execution blueprints, and real-world results.`
+      prompt: `Commercial magazine editorial photograph showcasing "${cleanTopic}", authentic scene highlighting key subjects, natural cinematic ambient lighting, high contrast, razor-sharp 8k resolution, 16:9 widescreen composition, no watermark`,
+      alt: `${cleanTopic} - Complete detailed visual guide and overview`,
+      caption: `Visual guide to ${cleanTopic}: Detailed breakdown and essential insights.`
     },
     sections: [
       {
-        sectionTitle: 'Foundations & Key Principles',
-        prompt: `Artistic photographic concept representing core fundamentals of ${cleanTopic}, clean balanced geometry, studio spotlight, crisp textures, 8k, 16:9`,
-        alt: `Practical setup and foundational principles for ${cleanTopic}`,
-        caption: `Foundational strategy: defining goals, audience intent, and execution milestones.`
+        sectionTitle: 'Core Features & In-Depth Details',
+        prompt: `Close-up commercial photography displaying key practical details and authentic environment of ${cleanTopic}, crisp studio focus, 8k resolution, 16:9 aspect ratio`,
+        alt: `${cleanTopic} primary characteristics and in-depth details`,
+        caption: `Practical look at the key elements and real-world highlights of ${cleanTopic}.`
       },
       {
-        sectionTitle: 'Real-World Applications & Case Studies',
-        prompt: `Dynamic visual showing real-world impact and measurable growth for ${cleanTopic}, bright contemporary aesthetics, 8k, 16:9`,
-        alt: `Real-world case study and measurable results for ${cleanTopic}`,
-        caption: `Data-backed case study: quantifiable efficiency gains and ROI.`
+        sectionTitle: 'Real-World Performance & Comparison',
+        prompt: `Action shot and real-world environment showcasing ${cleanTopic} in practical use, vibrant dynamic lighting, cinematic depth of field, 8k, 16:9`,
+        alt: `${cleanTopic} real-world application and performance`,
+        caption: `Assessing performance and measurable quality in daily use.`
       },
       {
-        sectionTitle: 'Future Outlook & Pro Recommendations',
-        prompt: `Visionary creative concept with bright horizon and modern architectural lines for ${cleanTopic}, inspiring atmosphere, 8k, 16:9`,
-        alt: `Pro tips, strategic roadmap, and industry best practices for ${cleanTopic}`,
-        caption: `Actionable takeaways and future-proof implementation frameworks.`
+        sectionTitle: 'Best Practices & Expert Takeaways',
+        prompt: `Professional setup and curated demonstration scene for ${cleanTopic}, clean modern aesthetic, sharp focus, beautiful color grading, 8k, 16:9`,
+        alt: `${cleanTopic} expert recommendations and best practices`,
+        caption: `Expert takeaways and top recommendations for ${cleanTopic}.`
       }
     ]
   };
