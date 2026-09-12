@@ -104,6 +104,47 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={cn(inter.variable, spaceGrotesk.variable)} suppressHydrationWarning>
+      <head>
+        <script
+          id="circular-json-safe-guard"
+          dangerouslySetInnerHTML={{
+            __html: `
+(function() {
+  if (typeof JSON !== 'undefined' && JSON.stringify) {
+    var _origStringify = JSON.stringify;
+    JSON.stringify = function(value, replacer, space) {
+      var seen = new WeakSet();
+      var safeReplacer = function(key, val) {
+        if (typeof val === 'object' && val !== null) {
+          if (seen.has(val)) {
+            return '[Circular]';
+          }
+          seen.add(val);
+        }
+        if (typeof replacer === 'function') {
+          return replacer.call(this, key, val);
+        }
+        if (Array.isArray(replacer) && key !== '') {
+          return replacer.indexOf(key) !== -1 ? val : undefined;
+        }
+        return val;
+      };
+      try {
+        return _origStringify(value, safeReplacer, space);
+      } catch (err) {
+        try {
+          return _origStringify(String(value));
+        } catch (_) {
+          return '"[Circular]"';
+        }
+      }
+    };
+  }
+})();
+`,
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-background font-body text-foreground antialiased selection:bg-primary/20 selection:text-primary">
         <script
           type="application/ld+json"

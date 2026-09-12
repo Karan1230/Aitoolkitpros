@@ -7,6 +7,7 @@ import {
   db,
   googleProvider,
   handleFirestoreError,
+  safeStringify,
   OperationType,
 } from '@/lib/firebase';
 import {
@@ -69,38 +70,42 @@ const AuthGuestContext = createContext<AuthGuestContextType | undefined>(undefin
 async function syncUserProfileDocument(fbUser: FirebaseUser, mappedUser: User) {
   try {
     const userDocRef = doc(db, 'users', fbUser.uid);
-    const userSnap = await getDoc(userDocRef);
     const nowIso = new Date().toISOString();
+    const displayName = (mappedUser.name || fbUser.email?.split('@')[0] || 'User').slice(0, 128);
+    const photoURL = (fbUser.photoURL || '').slice(0, 1024);
 
-    if (!userSnap.exists()) {
-      await setDoc(userDocRef, {
-        userId: fbUser.uid,
-        email: fbUser.email || '',
-        displayName: (mappedUser.name || fbUser.email?.split('@')[0] || 'User').slice(0, 128),
-        photoURL: (fbUser.photoURL || '').slice(0, 1024),
-        createdAt: nowIso,
-        updatedAt: nowIso,
-      });
-    } else {
-      const existingData = userSnap.data();
-      const updatePayload: Record<string, string> = {
-        updatedAt: nowIso,
-      };
-      const newDisplayName = (mappedUser.name || fbUser.email?.split('@')[0] || 'User').slice(0, 128);
-      if (newDisplayName && newDisplayName !== existingData?.displayName) {
-        updatePayload.displayName = newDisplayName;
-      }
-      const newPhoto = (fbUser.photoURL || '').slice(0, 1024);
-      if (newPhoto && newPhoto !== existingData?.photoURL) {
-        updatePayload.photoURL = newPhoto;
-      }
-      await updateDoc(userDocRef, updatePayload);
-    }
-  } catch (err) {
+    let existingCreatedAt: string | null = null;
     try {
-      handleFirestoreError(err, OperationType.WRITE, `users/${fbUser.uid}`);
-    } catch (e) {
-      console.warn('User profile sync error:', e);
+      const userSnap = await getDoc(userDocRef);
+      if (userSnap.exists()) {
+        const data = userSnap.data();
+        existingCreatedAt = data?.createdAt || null;
+      }
+    } catch {
+      // If offline or connecting, reading from server is unavailable; proceed with upsert
+      console.info('User document read deferred (client offline or connecting)');
+    }
+
+    const payload = {
+      userId: fbUser.uid,
+      email: fbUser.email || '',
+      displayName,
+      photoURL,
+      createdAt: existingCreatedAt || nowIso,
+      updatedAt: nowIso,
+    };
+
+    await setDoc(userDocRef, payload, { merge: true });
+  } catch (err: unknown) {
+    const errMsg = err instanceof Error ? err.message : String(err);
+    if (errMsg.toLowerCase().includes('permission') || errMsg.toLowerCase().includes('insufficient')) {
+      try {
+        handleFirestoreError(err, OperationType.WRITE, `users/${fbUser.uid}`);
+      } catch (e) {
+        console.warn('User profile sync error:', e instanceof Error ? e.message : String(e));
+      }
+    } else {
+      console.warn('User profile sync deferred (offline/network unavailable):', errMsg);
     }
   }
 }
@@ -193,16 +198,21 @@ export function AuthGuestProvider({ children }: { children: React.ReactNode }) {
 
           // Update local cache as backup
           try {
-            localStorage.setItem(`user_generations_${user.id}`, JSON.stringify(items));
+            localStorage.setItem(`user_generations_${user.id}`, safeStringify(items));
           } catch {
             // Ignore quota errors
           }
         },
         (error) => {
-          try {
-            handleFirestoreError(error, OperationType.LIST, generationsColPath);
-          } catch (e) {
-            console.warn('Generations onSnapshot error, falling back to local cache:', e);
+          const errMsg = error instanceof Error ? error.message : String(error);
+          if (errMsg.toLowerCase().includes('permission') || errMsg.toLowerCase().includes('insufficient')) {
+            try {
+              handleFirestoreError(error, OperationType.LIST, generationsColPath);
+            } catch (e) {
+              console.warn('Generations onSnapshot permission error, falling back to local cache:', e instanceof Error ? e.message : String(e));
+            }
+          } else {
+            console.warn('Generations onSnapshot network/offline state, using local cache:', errMsg);
           }
 
           // Fallback to localStorage on error
@@ -313,10 +323,15 @@ export function AuthGuestProvider({ children }: { children: React.ReactNode }) {
       try {
         await setDoc(doc(db, 'users', user.id, 'generations', id), newGeneration);
       } catch (error) {
-        try {
-          handleFirestoreError(error, OperationType.CREATE, docPath);
-        } catch (e) {
-          console.error('Failed to save generation to Firestore:', e);
+        const errMsg = error instanceof Error ? error.message : String(error);
+        if (errMsg.toLowerCase().includes('permission') || errMsg.toLowerCase().includes('insufficient')) {
+          try {
+            handleFirestoreError(error, OperationType.CREATE, docPath);
+          } catch (e) {
+            console.error('Failed to save generation to Firestore:', e instanceof Error ? e.message : String(e));
+          }
+        } else {
+          console.warn('Generation save queued / deferred (offline or network unavailable):', errMsg);
         }
       }
     }
@@ -324,7 +339,7 @@ export function AuthGuestProvider({ children }: { children: React.ReactNode }) {
     // Always keep in local storage as fast cache
     try {
       const cached = [newGeneration, ...savedGenerations.filter((item) => item.id !== id)].slice(0, 100);
-      localStorage.setItem(`user_generations_${user.id}`, JSON.stringify(cached));
+      localStorage.setItem(`user_generations_${user.id}`, safeStringify(cached));
     } catch {
       // Ignore
     }
@@ -344,10 +359,15 @@ export function AuthGuestProvider({ children }: { children: React.ReactNode }) {
       try {
         await deleteDoc(doc(db, 'users', user.id, 'generations', id));
       } catch (error) {
-        try {
-          handleFirestoreError(error, OperationType.DELETE, docPath);
-        } catch (e) {
-          console.error('Failed to delete generation from Firestore:', e);
+        const errMsg = error instanceof Error ? error.message : String(error);
+        if (errMsg.toLowerCase().includes('permission') || errMsg.toLowerCase().includes('insufficient')) {
+          try {
+            handleFirestoreError(error, OperationType.DELETE, docPath);
+          } catch (e) {
+            console.error('Failed to delete generation from Firestore:', e instanceof Error ? e.message : String(e));
+          }
+        } else {
+          console.warn('Generation delete deferred (offline or network unavailable):', errMsg);
         }
       }
     }
@@ -355,7 +375,7 @@ export function AuthGuestProvider({ children }: { children: React.ReactNode }) {
     // Update local storage
     try {
       const updated = savedGenerations.filter((item) => item.id !== id);
-      localStorage.setItem(`user_generations_${user.id}`, JSON.stringify(updated));
+      localStorage.setItem(`user_generations_${user.id}`, safeStringify(updated));
     } catch {
       // Ignore
     }
