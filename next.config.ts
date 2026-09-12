@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  experimental: {
+    cpus: 1,
+    workerThreads: false,
+  },
   images: {
     unoptimized: true,
     formats: ['image/avif', 'image/webp'],

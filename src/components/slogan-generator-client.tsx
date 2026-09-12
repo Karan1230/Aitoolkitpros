@@ -16,6 +16,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 import { Sparkles, Copy, Download, Languages, Palette } from 'lucide-react';
+import { useAuthGuest } from '@/context/auth-guest-context';
+import { SaveToHistoryButton } from '@/components/auth/save-to-history-button';
 
 const tones = ["Catchy", "Professional", "Creative", "Funny", "Luxury"];
 
@@ -33,6 +35,7 @@ export function SloganGeneratorClient() {
   const [slogans, setSlogans] = useState<string[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const { user, saveGeneration } = useAuthGuest();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -54,6 +57,13 @@ export function SloganGeneratorClient() {
     try {
       const result = await sloganGenerator(values);
       setSlogans(result.slogans);
+      if (user && result.slogans?.length > 0) {
+        saveGeneration(
+          'Slogan Generator',
+          `${values.brandName} - ${values.keyMessage}`,
+          result.slogans.join('\n')
+        );
+      }
     } catch (error) {
       console.error('Slogan generation failed:', error);
       toast({
@@ -240,9 +250,14 @@ export function SloganGeneratorClient() {
           <div className="mt-6">
             <div className="flex justify-between items-center mb-2">
                 <h3 className="text-xl font-headline">Generated Slogans</h3>
-                <div className="flex gap-2">
-                    <Button variant="outline" size="icon" onClick={copyToClipboard}><Copy className="h-4 w-4" /></Button>
-                    <Button variant="outline" size="icon" onClick={downloadSlogans}><Download className="h-4 w-4" /></Button>
+                <div className="flex items-center gap-2">
+                    <SaveToHistoryButton
+                      toolName="Slogan Generator"
+                      prompt={`${form.getValues().brandName} - ${form.getValues().keyMessage}`}
+                      result={formatSlogansForAction('\n')}
+                    />
+                    <Button variant="outline" size="icon" onClick={copyToClipboard} title="Copy all slogans"><Copy className="h-4 w-4" /></Button>
+                    <Button variant="outline" size="icon" onClick={downloadSlogans} title="Download slogans"><Download className="h-4 w-4" /></Button>
                 </div>
             </div>
             <Card className="bg-muted/50">

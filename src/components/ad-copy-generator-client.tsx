@@ -18,6 +18,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import { Sparkles, Copy, Download, Languages, Palette, Megaphone, Bot } from 'lucide-react';
 import { Badge } from './ui/badge';
+import { useAuthGuest } from '@/context/auth-guest-context';
+import { SaveToHistoryButton } from '@/components/auth/save-to-history-button';
 
 const platforms = ["Google Ads", "Facebook Ads", "Instagram Ads", "LinkedIn Ads", "Twitter/X Ads"];
 const tones = ["Persuasive", "Informative", "Emotional", "Luxury", "Humorous"];
@@ -35,6 +37,7 @@ export function AdCopyGeneratorClient() {
   const [adCopies, setAdCopies] = useState<AdCopyGeneratorOutput['adCopies'] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const { user, saveGeneration } = useAuthGuest();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -55,6 +58,12 @@ export function AdCopyGeneratorClient() {
     try {
       const result = await adCopyGenerator(values);
       setAdCopies(result.adCopies);
+      if (user && result.adCopies?.length > 0) {
+        const fullOutput = result.adCopies
+          .map((ad, i) => `Option ${i + 1}:\nHeadline: ${ad.headline}\nBody: ${ad.mainText}\nCTA: ${ad.callToAction}`)
+          .join('\n\n');
+        saveGeneration('Ad Copy Generator', `${values.platform} - ${values.productDetails.slice(0, 80)}`, fullOutput);
+      }
     } catch (error) {
       console.error('Ad copy generation failed:', error);
       toast({
@@ -221,9 +230,17 @@ export function AdCopyGeneratorClient() {
                    <p className="text-sm">{ad.mainText}</p>
                    <Badge>{ad.callToAction}</Badge>
                 </CardContent>
-                <Button variant="outline" size="icon" className="absolute top-4 right-4 h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => copyToClipboard(ad)}>
-                    <Copy className="h-4 w-4" />
-                </Button>
+                 <div className="absolute top-4 right-4 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                   <SaveToHistoryButton
+                     toolName="Ad Copy Generator"
+                     prompt={ad.headline}
+                     result={formatAdCopyForAction(ad)}
+                     size="sm"
+                   />
+                   <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => copyToClipboard(ad)} title="Copy ad copy">
+                       <Copy className="h-4 w-4" />
+                   </Button>
+                 </div>
               </Card>
             ))}
           </div>

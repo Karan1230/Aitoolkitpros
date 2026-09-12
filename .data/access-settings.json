@@ -1,0 +1,8 @@
+{
+  "guestTrialMinutes": 60,
+  "guestModeEnabled": true,
+  "enforceTrialLock": true,
+  "lockTitle": "Your 1-Hour Free Guest Trial Has Ended",
+  "lockDescription": "You have enjoyed 60 minutes of free AI tools access. To continue generating unlimited content with no restrictions, please create a free account or log in below.",
+  "allowTrialResetForTesting": true
+}

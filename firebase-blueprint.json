@@ -1,0 +1,95 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account information and preferences",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The unique Firebase Auth UID of the user",
+          "maxLength": 128
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address",
+          "maxLength": 256
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name",
+          "maxLength": 128
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "User avatar URL",
+          "maxLength": 1024
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of account creation",
+          "maxLength": 64
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last update",
+          "maxLength": 64
+        }
+      },
+      "required": ["userId", "email", "displayName", "createdAt", "updatedAt"]
+    },
+    "Generation": {
+      "title": "Generation",
+      "description": "Saved AI tool generations, prompt history, and results",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique generation ID",
+          "maxLength": 128
+        },
+        "userId": {
+          "type": "string",
+          "description": "Author UID who generated this content",
+          "maxLength": 128
+        },
+        "toolName": {
+          "type": "string",
+          "description": "Name or key of the AI tool used",
+          "maxLength": 128
+        },
+        "prompt": {
+          "type": "string",
+          "description": "The prompt or input provided by the user",
+          "maxLength": 10000
+        },
+        "result": {
+          "type": "string",
+          "description": "The generated output or result",
+          "maxLength": 50000
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp when the generation occurred",
+          "maxLength": 64
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last modification",
+          "maxLength": 64
+        }
+      },
+      "required": ["id", "userId", "toolName", "prompt", "result", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Stores individual user profile and authentication metadata"
+    },
+    "/users/{userId}/generations/{generationId}": {
+      "schema": "Generation",
+      "description": "Stores user-specific AI generated content and tools history"
+    }
+  }
+}

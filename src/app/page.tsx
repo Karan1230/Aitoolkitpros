@@ -76,18 +76,23 @@ export default function Home() {
   const [latestPosts, setLatestPosts] = useState<BlogPost[]>([]);
 
   useEffect(() => {
+    let isMounted = true;
     async function loadFeaturedBlog() {
       try {
         const res = await fetch('/api/blog');
+        if (!res.ok) return;
         const data = await res.json();
-        if (data.success && data.posts) {
+        if (isMounted && data.success && Array.isArray(data.posts)) {
           setLatestPosts(data.posts.slice(0, 3));
         }
-      } catch (e) {
-        console.error(e);
+      } catch {
+        // Silently handle if request is interrupted or during local navigation
       }
     }
     loadFeaturedBlog();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleLoadMore = () => {

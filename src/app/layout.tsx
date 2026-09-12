@@ -8,6 +8,7 @@ import { AppFooter } from '@/components/app-footer';
 import { ThemeProvider } from '@/components/theme-provider';
 import { AuthGuestProvider } from '@/context/auth-guest-context';
 import { AuthModal } from '@/components/auth/auth-modal';
+import { SavedHistoryDialog } from '@/components/auth/saved-history-dialog';
 import { getStoredSeoSettings, getStoredSiteSettings } from '@/lib/server-storage';
 import Link from 'next/link';
 import { Sparkles } from 'lucide-react';
@@ -139,6 +140,8 @@ export default function RootLayout({
 
               {/* 1-Hour Guest Lock & Registration Modal */}
               <AuthModal />
+              {/* User Saved Content & History Dialog */}
+              <SavedHistoryDialog />
             </div>
             <Toaster />
           </AuthGuestProvider>
