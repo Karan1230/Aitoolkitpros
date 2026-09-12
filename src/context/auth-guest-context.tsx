@@ -19,6 +19,8 @@ import {
   collection,
   doc,
   setDoc,
+  getDoc,
+  updateDoc,
   deleteDoc,
   onSnapshot,
 } from 'firebase/firestore';
@@ -64,6 +66,45 @@ interface AuthGuestContextType {
 
 const AuthGuestContext = createContext<AuthGuestContextType | undefined>(undefined);
 
+async function syncUserProfileDocument(fbUser: FirebaseUser, mappedUser: User) {
+  try {
+    const userDocRef = doc(db, 'users', fbUser.uid);
+    const userSnap = await getDoc(userDocRef);
+    const nowIso = new Date().toISOString();
+
+    if (!userSnap.exists()) {
+      await setDoc(userDocRef, {
+        userId: fbUser.uid,
+        email: fbUser.email || '',
+        displayName: (mappedUser.name || fbUser.email?.split('@')[0] || 'User').slice(0, 128),
+        photoURL: (fbUser.photoURL || '').slice(0, 1024),
+        createdAt: nowIso,
+        updatedAt: nowIso,
+      });
+    } else {
+      const existingData = userSnap.data();
+      const updatePayload: Record<string, string> = {
+        updatedAt: nowIso,
+      };
+      const newDisplayName = (mappedUser.name || fbUser.email?.split('@')[0] || 'User').slice(0, 128);
+      if (newDisplayName && newDisplayName !== existingData?.displayName) {
+        updatePayload.displayName = newDisplayName;
+      }
+      const newPhoto = (fbUser.photoURL || '').slice(0, 1024);
+      if (newPhoto && newPhoto !== existingData?.photoURL) {
+        updatePayload.photoURL = newPhoto;
+      }
+      await updateDoc(userDocRef, updatePayload);
+    }
+  } catch (err) {
+    try {
+      handleFirestoreError(err, OperationType.WRITE, `users/${fbUser.uid}`);
+    } catch (e) {
+      console.warn('User profile sync error:', e);
+    }
+  }
+}
+
 export function AuthGuestProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
@@ -93,29 +134,8 @@ export function AuthGuestProvider({ children }: { children: React.ReactNode }) {
         setUser(mappedUser);
         setIsLoading(false);
 
-        // Ensure user profile document exists in Firestore
-        try {
-          const userDocRef = doc(db, 'users', fbUser.uid);
-          await setDoc(
-            userDocRef,
-            {
-              userId: fbUser.uid,
-              email: fbUser.email || '',
-              displayName: mappedUser.name.slice(0, 128),
-              photoURL: (fbUser.photoURL || '').slice(0, 1024),
-              createdAt: new Date().toISOString(),
-              updatedAt: new Date().toISOString(),
-            },
-            { merge: true }
-          );
-        } catch (err) {
-          // Log structured error if permissions or network issue
-          try {
-            handleFirestoreError(err, OperationType.WRITE, `users/${fbUser.uid}`);
-          } catch (e) {
-            console.warn('User profile sync error:', e);
-          }
-        }
+        // Ensure user profile document exists or is updated in Firestore
+        await syncUserProfileDocument(fbUser, mappedUser);
       } else {
         // Fallback check: local server admin session
         try {
@@ -237,22 +257,7 @@ export function AuthGuestProvider({ children }: { children: React.ReactNode }) {
         setUser(mappedUser);
 
         // Sync profile to Firestore
-        try {
-          await setDoc(
-            doc(db, 'users', fbUser.uid),
-            {
-              userId: fbUser.uid,
-              email: fbUser.email || '',
-              displayName: mappedUser.name.slice(0, 128),
-              photoURL: (fbUser.photoURL || '').slice(0, 1024),
-              createdAt: new Date().toISOString(),
-              updatedAt: new Date().toISOString(),
-            },
-            { merge: true }
-          );
-        } catch (firestoreErr) {
-          console.warn('Initial profile doc sync notice:', firestoreErr);
-        }
+        await syncUserProfileDocument(fbUser, mappedUser);
 
         setIsAuthModalOpen(false);
         return { success: true };
