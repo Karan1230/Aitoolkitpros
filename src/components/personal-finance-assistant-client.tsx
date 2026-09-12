@@ -5,9 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import type { Message } from 'genkit';
-
-import { personalFinanceAssistant } from '@/ai/flows/personal-finance-assistant';
+import { personalFinanceAssistant, type ChatMessage } from '@/ai/flows/personal-finance-assistant';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
@@ -24,7 +22,7 @@ const formSchema = z.object({
 });
 
 export function PersonalFinanceAssistantClient() {
-  const [history, setHistory] = useState<Message[]>([]);
+  const [history, setHistory] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
@@ -50,7 +48,7 @@ export function PersonalFinanceAssistantClient() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
 
-    const userMessage: Message = {
+    const userMessage: ChatMessage = {
       role: 'user',
       content: [{ text: values.prompt }],
     };
@@ -59,7 +57,7 @@ export function PersonalFinanceAssistantClient() {
 
     try {
       const result = await personalFinanceAssistant({ history, prompt: values.prompt });
-      const assistantMessage: Message = {
+      const assistantMessage: ChatMessage = {
         role: 'model',
         content: [{ text: result.response }],
       };
@@ -71,7 +69,7 @@ export function PersonalFinanceAssistantClient() {
         title: 'Uh oh! Something went wrong.',
         description: 'Failed to get a response. Please try again.',
       });
-       const errorMessage: Message = {
+       const errorMessage: ChatMessage = {
             role: 'model',
             content: [{ text: "I'm sorry, I encountered an error and can't respond right now. Please try again later." }],
        };

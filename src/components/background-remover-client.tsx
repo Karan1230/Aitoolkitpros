@@ -27,7 +27,7 @@ const formSchema = z.object({
     .custom<FileList>()
     .refine((files) => files && files.length > 0, "An image file is required.")
     .refine(
-        (files) => files?.[0]?.size <= MAX_FILE_SIZE_BYTES,
+        (files) => !!files && files[0] ? files[0].size <= MAX_FILE_SIZE_BYTES : false,
         `Image file must be less than ${MAX_FILE_SIZE_MB}MB.`
     ),
   background: z.string().min(1, 'Please select a background.'),
@@ -73,7 +73,7 @@ export function BackgroundRemoverClient() {
                 title: 'File too large',
                 description: `Please upload an image smaller than ${MAX_FILE_SIZE_MB}MB.`
             });
-            setValue('imageFile', undefined);
+            setValue('imageFile', undefined as unknown as FileList);
             setPreviewUrl(null);
             return;
         }
@@ -92,7 +92,10 @@ export function BackgroundRemoverClient() {
     setResultImageUrl(null);
 
     try {
-        const file = values.imageFile[0];
+        const file = values.imageFile?.[0];
+        if (!file) {
+          throw new Error('Please select an image file first.');
+        }
         const imageDataUri = await new Promise<string>((resolve, reject) => {
             const reader = new FileReader();
             reader.onloadend = () => resolve(reader.result as string);
@@ -151,7 +154,7 @@ export function BackgroundRemoverClient() {
                         {previewUrl ? (
                              <div className="relative">
                                 <Image src={previewUrl} alt="Image preview" width={200} height={200} className="rounded-md object-contain max-h-[200px] mx-auto" />
-                                <Button variant="destructive" size="icon" className="absolute top-2 right-2 h-8 w-8" onClick={() => { setValue('imageFile', undefined); setPreviewUrl(null); }}>
+                                <Button variant="destructive" size="icon" className="absolute top-2 right-2 h-8 w-8" onClick={() => { setValue('imageFile', undefined as unknown as FileList); setPreviewUrl(null); }}>
                                     <Trash2 className="h-4 w-4" />
                                 </Button>
                             </div>

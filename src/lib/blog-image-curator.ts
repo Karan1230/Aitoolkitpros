@@ -6,7 +6,7 @@ export interface CuratedImage {
   caption: string;
   prompt?: string;
   sectionTitle?: string;
-  source?: 'gemini' | 'flux-ai' | 'curated-hd';
+  source?: 'gemini' | 'flux-ai' | 'curated-hd' | 'wikimedia' | 'nano-banana' | 'nano-banana-lite' | string;
 }
 
 /**

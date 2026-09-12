@@ -16,8 +16,13 @@ import { Message, Part } from 'genkit';
 // We don't export the schema types for this flow as it's a bit different.
 // It takes a history of messages and a new prompt.
 
+export type ChatMessage = {
+  role: 'user' | 'model' | 'system';
+  content: { text: string }[];
+};
+
 export type PersonalFinanceAssistantInput = {
-  history: Message[];
+  history: ChatMessage[];
   prompt: string;
 };
 
@@ -46,21 +51,21 @@ export async function personalFinanceAssistant(input: PersonalFinanceAssistantIn
   const { history, prompt } = input;
 
   // Construct the messages array for the AI
-  const messages: Message[] = [
+  const messages = [
     {
-      role: 'system',
+      role: 'system' as const,
       content: [{ text: systemPrompt }],
     },
     ...history, // Add the previous conversation history
     {
-      role: 'user',
+      role: 'user' as const,
       content: [{ text: prompt }],
     },
   ];
   
   const { output } = await ai.generate({
     model: 'googleai/gemini-2.0-flash',
-    messages: messages,
+    messages: messages as any,
     config: {
       temperature: 0.5, // Lower temperature for more factual, less creative responses
     },
